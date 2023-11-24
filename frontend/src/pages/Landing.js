@@ -1,8 +1,15 @@
-import React from 'react'
+import { Box, } from "@mui/material";
+import React from "react";
+import Header from "../components/Header";
 
 const Landing = () => {
   return (
-    <div>Landing</div>
+    <>
+   <Box>
+<Header/>
+   </Box>
+    
+    </>
   )
 }
 
