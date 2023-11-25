@@ -15,6 +15,8 @@ import { createTheme } from '@mui/material/styles';
       ParaColor:"#6d6e71",
       ButtonGredient:"linear-gradient(to bottom, rgba(109,110,113,1), rgba(0,0,0,1))",
       BackGredient:"linear-gradient(to bottom, rgba(43,57,144,.8), rgba(39,170,225,1) 65%)",
+      SidebarBgGredient:"linear-gradient(to bottom, rgba(39,170,225,.8), rgb(112 174 224 / 80%))",
+      Green:"#8dc63f"
     },
     secondary: {
       light: '#ff7961',
