@@ -1,8 +1,19 @@
 import React from 'react'
+import { Box } from '@mui/material';
+import Sidebar from '../components/Sidebar'
 
 const NewsFeed = () => {
   return (
-    <div>NewsFeed</div>
+    <>
+      <Box sx={{ display: "flex" }}>
+        <Box flex={1}>
+          <Sidebar />
+        </Box>
+        <Box flex={1}>
+          <Sidebar />
+        </Box>
+      </Box>
+    </>
   )
 }
 

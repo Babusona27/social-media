@@ -1,8 +1,11 @@
+import { Box, Typography } from '@mui/material'
 import React from 'react'
 
 const Sidebar = () => {
   return (
-    <div>Sidebar</div>
+    <Box>
+      <Typography>heloo</Typography>
+    </Box>
   )
 }
 
