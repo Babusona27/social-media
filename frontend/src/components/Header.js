@@ -1,10 +1,25 @@
 import { AppBar, Box, Container, Toolbar } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import theme from '../Theme'
 
+
+
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const checkScroll = () => {
+      setIsScrolled(window.scrollY > 500);
+    };
+
+    window.addEventListener('scroll', checkScroll);
+    return () => {
+      window.removeEventListener('scroll', checkScroll);
+    };
+  }, []);
+
   return (
-    <AppBar position='sticky' sx={{ backgroundColor: theme.palette.primary.Black, height: "60px", boxShadow:"0 5px 10px 0 rgb(87 101 128 / 12%)" }}>
+    <AppBar  className={isScrolled ? 'active_header' : ''} sx={{ opacity:"0", backgroundColor: theme.palette.primary.Black, height: "60px", boxShadow:"0 5px 10px 0 rgb(87 101 128 / 12%)" }}>
     <Container maxWidth="lg" sx={{ height: "100%" }}>
       <Toolbar disableGutters sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "100%",}}>
       <Box href='#' component={"a"} sx={{ width:{  xs: "80px", sm:"100px", lg: "180px" },
@@ -14,6 +29,8 @@ const Header = () => {
 
      
       </Toolbar>
+
+      
     </Container>
   </AppBar>
   )
