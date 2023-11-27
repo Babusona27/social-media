@@ -145,7 +145,13 @@ const NearbyPeople = () => {
                 </Box>
               </Box>
             </Box>
-            <AddFriend />
+            <Box>
+              <AddFriend />
+              <AddFriend />
+              <AddFriend />
+              <AddFriend />
+              <AddFriend />
+            </Box>
           </Box>
           <Box flex={0.5} p={"0 10px"}>
             <RightBar />

@@ -1,5 +1,5 @@
-import { AppBar, Box, Container, Drawer, FormControl, IconButton, InputAdornment, List, ListItem, ListItemButton, ListItemText, TextField, Toolbar, Typography, makeStyles } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { AppBar, Box, Container, Drawer, FormControl, IconButton, InputAdornment, List, ListItem, ListItemButton, TextField, Toolbar, Typography } from '@mui/material'
+import React from 'react'
 import theme from '../Theme'
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
