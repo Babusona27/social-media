@@ -13,7 +13,9 @@ const AddFriend = () => {
             <Box flex={"1"} padding={"0 10px"}>
                 <Avatar
                     alt="Remy Sharp"
-                    src="/assets/images/profileImg.jpg"
+                    src={
+                        process.env.PUBLIC_URL + "/assets/images/profileImg.png"
+                      }
                     sx={{
                         marginRight: "5px",
                         height: "80px",

@@ -57,7 +57,9 @@ const Sidebar = () => {
           }}>
             <Avatar
               alt="Remy Sharp"
-              src="/assets/images/profileImg.jpg"
+              src={
+                process.env.PUBLIC_URL + "/assets/images/profileImg.png"
+              }
               sx={{
                 border: "7px solid #fff",
                 float: "left",
@@ -322,7 +324,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -339,7 +345,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -356,7 +366,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -373,7 +387,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -390,7 +408,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -407,7 +429,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -424,7 +450,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -441,7 +471,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -458,7 +492,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
