@@ -21,6 +21,7 @@ import { createTheme } from '@mui/material/styles';
       GrayGredient:"-webkit-radial-gradient(#fff 50%, #EFEFEF 90%)",
       Gray2:"#f8f8f8",
       BoxShadow: "0 12px 12px rgba(39, 170, 225, 0.3)",
+      BoxShadow1:"0 12px 12px rgb(31 31 31 / 32%)",
     },
     secondary: {
       light: '#ff7961',
