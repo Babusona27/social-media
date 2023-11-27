@@ -71,49 +71,7 @@ const Sidebar = () => {
                 borderRadius: "50%",
               }}
             />
-            {/* <Link href="#"
-                    sx={{
-                        fontSize: "15px",
-                        color: theme.palette.primary.White,
-                        textDecoration: hover1 ? "underline" : "none",
-                    }}
-                    onMouseEnter={() => setHover1(true)}
-                    onMouseLeave={() => setHover1(false)}
-
-                >
-                    <Typography sx={{
-                        fontSize: "15px",
-                        color: theme.palette.primary.White,
-                    }} margin={"10px 0"}
-                    >Sarah Cruiz</Typography>
-                </Link>
-                <Box sx={{
-                    display: "flex",
-                    alignItems: "center",
-                }}>
-                    <PersonAdd sx={{
-                        fontSize: "12px",
-                        color: theme.palette.primary.White,
-                    }}
-                    />
-                    <Link
-                        href="#"
-                        sx={{
-                            textDecoration: hover2 ? `underline ${theme.palette.primary.White}` : "none",
-                        }}
-                        onMouseEnter={() => setHover2(true)}
-                        onMouseLeave={() => setHover2(false)}
-                    >
-                        <Typography
-                            sx={{
-                                fontSize: "12px",
-                                color: theme.palette.primary.White,
-                            }}
-                        >
-                            1,299 followers
-                        </Typography>
-                    </Link> */}
-            {/* </Box> */}
+           
             <Box margin={"10px 0"}>
               <Typography component={"a"} href='#' sx={{
                 fontSize: "20px",
