@@ -95,6 +95,16 @@ opacity: 1;
     top: -6px;
 	color: rgb(255 255 255 / 80%);
 }
+
+.form_imput .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+    padding: 10px 14px !important;
+    color: #fff;
+}
+.form_imput .css-dbtxhb-MuiInputBase-root-MuiOutlinedInput-root {
+    padding-right: 0;
+    background: #ffffff2b;
+	border-radius: 30px;
+}
 .comment_input .Mui-focused .MuiOutlinedInput-notchedOutline {
     border-color: initial !important;
     border-width: 1px !important;
@@ -109,3 +119,4 @@ opacity: 1;
     top: -6px;
 	color: #939598;
 }
+
