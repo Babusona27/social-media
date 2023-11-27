@@ -23,6 +23,9 @@ import { createTheme } from '@mui/material/styles';
       GrayGredient:"-webkit-radial-gradient(#fff 50%, #EFEFEF 90%)",
       Gray2:"#f8f8f8",
       BoxShadow: "0 12px 12px rgba(39, 170, 225, 0.3)",
+      BoxShadow1:"0 12px 12px rgb(31 31 31 / 32%)",
+      LightBlue:" rgb(41 171 226 / 5%)",
+      CoverBgGradient:"linear-gradient(to bottom, rgb(35 31 32 / 50%), rgb(112 174 224 / 80%))",
     },
     secondary: {
       light: '#ff7961',
@@ -30,7 +33,6 @@ import { createTheme } from '@mui/material/styles';
       dark: '#ba000d',
       contrastText: '#000',
     },
-   
   },
 });
 

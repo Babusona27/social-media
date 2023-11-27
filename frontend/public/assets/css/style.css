@@ -94,6 +94,29 @@ opacity: 1;
 .form_imput .css-xfn8dw-MuiFormLabel-root-MuiInputLabel-root {
     top: -6px;
 	color: rgb(255 255 255 / 80%);
-
-
 }
+
+.form_imput .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+    padding: 10px 14px !important;
+    color: #fff;
+}
+.form_imput .css-dbtxhb-MuiInputBase-root-MuiOutlinedInput-root {
+    padding-right: 0;
+    background: #ffffff2b;
+	border-radius: 30px;
+}
+.comment_input .Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: initial !important;
+    border-width: 1px !important;
+}
+.comment_input :hover .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.3) !important;
+}
+.comment_input .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+	padding: 10px 14px !important;
+}
+.comment_input .css-xfn8dw-MuiFormLabel-root-MuiInputLabel-root {
+    top: -6px;
+	color: #939598;
+}
+
