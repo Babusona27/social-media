@@ -20,6 +20,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import OnlinePredictionIcon from '@mui/icons-material/OnlinePrediction';
 import styled from "@emotion/styled";
+import Footer from "../components/Footer";
 
 const Landing = () => {
   return (
@@ -27,6 +28,7 @@ const Landing = () => {
       <Box>
         <Header />
       </Box>
+   
       <Box
         sx={{
           height: "500px",
@@ -925,6 +927,7 @@ const Landing = () => {
           </Box>
         </Container>
       </Box>
+ 
       <Box
         sx={{
           minHeight: "460px",
@@ -2067,6 +2070,8 @@ const Landing = () => {
           </Box>
 </Container>
       </Box>
+      <Footer />
+
     </>
   );
 };
