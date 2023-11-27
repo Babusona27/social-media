@@ -24,6 +24,7 @@ import { createTheme } from '@mui/material/styles';
       Gray2:"#f8f8f8",
       BoxShadow: "0 12px 12px rgba(39, 170, 225, 0.3)",
       BoxShadow1:"0 12px 12px rgb(31 31 31 / 32%)",
+      LightBlue:" rgb(41 171 226 / 5%)",
     },
     secondary: {
       light: '#ff7961',
