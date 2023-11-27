@@ -107,3 +107,24 @@ exports.friendRequestList = async (req, res) => {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
     }
 }
+
+exports.friendRequestStatusUpdate = async (req, res) => {
+    try {
+        let payload = req.body;
+        let userFriend = await userFriendSchema.findOne({ user_id_1: payload.user_id_1, user_id_2: req.user.userId });
+        if (!userFriend) {
+            return res.status(400).json(helper.response(400, false, "Friend Request Not Found!"));
+        }
+        if (payload.status) {
+            userFriend.status = payload.status;
+        }
+        let userFriendResult = await userFriend.save();
+        if (userFriendResult) {
+            return res.status(200).json(helper.response(200, true, "Friend Request Status Update Successfully!", userFriendResult));
+        } else {
+            return res.status(400).json(helper.response(400, false, "Friend Request Status Update Failed!"));
+        }
+    } catch (error) {
+        return res.status(500).json(helper.response(500, false, "something went wrong!"));
+    }
+}

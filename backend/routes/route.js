@@ -10,5 +10,7 @@ router.post('/login', userController.login);
 router.post('/send-friend-request', [authMiddleware.isAuth], userController.sendFriendRequest);
 //friend request list
 router.get('/friend-request-list', [authMiddleware.isAuth], userController.friendRequestList);
+//frind request status update
+router.put('/friend-request-status-update', [authMiddleware.isAuth], userController.friendRequestStatusUpdate);
 
 module.exports = router;
