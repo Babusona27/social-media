@@ -6,6 +6,9 @@ const AddFriend = () => {
     return (
         <Box sx={{
             display: "flex",
+            borderBottom: `1px solid ${theme.palette.primary.Gray}`,
+            paddingBottom: "20px",
+            marginBottom: "20px",
         }}>
             <Box flex={"1"} padding={"0 10px"}>
                 <Avatar
@@ -45,8 +48,25 @@ const AddFriend = () => {
                 }}>500m away
                 </Typography>
             </Box>
-            <Box flex={"1.5"} padding={"0 10px"}>
-
+            <Box flex={"2"} margin={"0 10px"}>
+                <Box
+                    component={"a"} href='#'>
+                    <Typography
+                        sx={{
+                            color: theme.palette.primary.White,
+                            fontSize: "14px",
+                            fontWeight: "600",
+                            backgroundColor: theme.palette.primary.LogoColor,
+                            borderRadius: "30px",
+                            padding: "7px 25px",
+                            marginLeft: "10px",
+                            textAlign: "center",
+                            "&:hover": {
+                                backgroundColor: theme.palette.primary.LogoColor,
+                            },
+                        }}
+                    >Add Friend</Typography>
+                </Box>
             </Box>
 
         </Box>

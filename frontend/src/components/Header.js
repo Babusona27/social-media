@@ -1,3 +1,4 @@
+
 import {
   AppBar,
   Box,
@@ -18,6 +19,9 @@ import theme from "../Theme";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import styled from "@emotion/styled";
+
+
+
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
