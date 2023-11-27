@@ -188,7 +188,7 @@ const Sidebar = () => {
         </Box>
       </List>
 
-      <Box>
+      <Box mt={"25px"}>
         <Typography
           sx={{
             backgroundColor: theme.palette.primary.Green,
@@ -211,7 +211,7 @@ const Sidebar = () => {
         paddingX: "30px",
         display: "grid",
         gridTemplateColumns: "repeat(3, 1fr)",
-        Gap: "20px",
+        // Gap: "20px",
 
          }}>
         <Tooltip title="Linda Lohan">
