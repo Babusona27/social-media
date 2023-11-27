@@ -6,6 +6,7 @@ import Feed from '../components/Feed';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import theme from '../Theme';
 import { EditNote, Map, Photo, Videocam } from '@mui/icons-material';
+import RightBar from '../components/RightBar';
 
 const NewsFeed = () => {
   return (
@@ -145,9 +146,10 @@ const NewsFeed = () => {
               </Box>
             </Box>
             <Feed />
+            <Feed />
           </Box>
-          <Box flex={1} p={"0 10px"}>
-            <Typography>hiii</Typography>
+          <Box flex={0.5} p={"0 10px"}>
+            <RightBar/>
           </Box>
         </Box>
       </Container>
