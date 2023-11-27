@@ -103,6 +103,7 @@ opacity: 1;
 .form_imput .css-dbtxhb-MuiInputBase-root-MuiOutlinedInput-root {
     padding-right: 0;
     background: #ffffff2b;
+	border-radius: 30px;
 }
 .comment_input .Mui-focused .MuiOutlinedInput-notchedOutline {
     border-color: initial !important;
