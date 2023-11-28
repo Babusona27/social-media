@@ -24,7 +24,7 @@ const ImageGallery = () => {
                         bottom: 3,
                         left: 0,
                         background: 'rgba(0, 0, 0, 0)',
-                        cursor: 'pointer',
+                        // cursor: 'pointer',
                         transition: 'all 0.5s ease-in-out',
                     },
          
