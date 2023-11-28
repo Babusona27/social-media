@@ -7,6 +7,7 @@ import { createTheme } from '@mui/material/styles';
       dark: '#002884',
       LogoColor:"#27aae1",
       MainFont: 'Agdasima',
+      MainFont1: "'Lato', sans-serif !important",
       Black: '#231F20',
       White: '#FFFFFF',
       Gray: '#E5E5E5',
