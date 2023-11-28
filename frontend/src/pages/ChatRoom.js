@@ -15,6 +15,8 @@ import { EditNote, Map, Photo, Videocam } from "@mui/icons-material";
 import RightBar from "../components/RightBar";
 import Footer from "../components/Footer";
 import ReplyIcon from "@mui/icons-material/Reply";
+import DoneIcon from '@mui/icons-material/Done';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 const ChatRoom = () => {
   const [activeTab, setActiveTab] = useState(1);
 
@@ -284,7 +286,7 @@ const ChatRoom = () => {
                           >
                             Okay fine. thank you
                           </Typography>
-                          <ReplyIcon
+                          <DoneIcon
                             sx={{
                               fontSize: "15px",
                               color: theme.palette.primary.ParaColor,
@@ -489,7 +491,7 @@ const ChatRoom = () => {
                           >
                             Okay fine. thank you{" "}
                           </Typography>
-                          <ReplyIcon
+                          <DoneAllIcon
                             sx={{
                               fontSize: "15px",
                               color: theme.palette.primary.ParaColor,
@@ -585,7 +587,7 @@ const ChatRoom = () => {
                           >
                             Okay fine. thank you{" "}
                           </Typography>
-                          <ReplyIcon
+                          <DoneIcon
                             sx={{
                               fontSize: "15px",
                               color: theme.palette.primary.ParaColor,
@@ -777,7 +779,7 @@ const ChatRoom = () => {
                           >
                             Okay fine. thank you{" "}
                           </Typography>
-                          <ReplyIcon
+                          <DoneAllIcon
                             sx={{
                               fontSize: "15px",
                               color: theme.palette.primary.ParaColor,
@@ -1079,7 +1081,7 @@ const ChatRoom = () => {
                           >
                             Okay fine. thank you{" "}
                           </Typography>
-                          <ReplyIcon
+                          <DoneIcon
                             sx={{
                               fontSize: "15px",
                               color: theme.palette.primary.ParaColor,
@@ -1285,7 +1287,7 @@ const ChatRoom = () => {
                           >
                             Okay fine. thank you{" "}
                           </Typography>
-                          <ReplyIcon
+                          <DoneIcon
                             sx={{
                               fontSize: "15px",
                               color: theme.palette.primary.ParaColor,
