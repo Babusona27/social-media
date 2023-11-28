@@ -14,6 +14,7 @@ import theme from "../Theme";
 import { EditNote, Map, Photo, Videocam } from "@mui/icons-material";
 import RightBar from "../components/RightBar";
 import Footer from "../components/Footer";
+import ReplyIcon from "@mui/icons-material/Reply";
 const ChatRoom = () => {
   const [activeTab, setActiveTab] = useState(1);
 
@@ -188,53 +189,1087 @@ const ChatRoom = () => {
               }}
             >
               <Box
+                className="ChatRoomLeftBar"
                 sx={{
-                  flex: "1",
-                  background: "yellow",
-                  padding: "20px 10px",
+                  padding: "20px 0px",
                   maxHeight: "400px",
-                  width: "100%",
+                  width: "250px",
                   overflowY: "scroll",
                   height: "400px",
                 }}
               >
                 <Tabs orientation="vertical" variant="scrollable">
                   <Button
+                    sx={{
+                      display: "block",
+                      textTransform: "initial",
+                      padding: "10px 10px",
+                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
+                      },
+                    }}
                     onClick={() => setActiveTab(1)}
                     className={activeTab === 1 ? "ActiveTab" : ""}
                   >
-                    Tab 1
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: "15px",
+                       
+                      }}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={process.env.PUBLIC_URL + "/assets/images/pf1.jpg"}
+                      />
+                      <Box
+                        sx={{
+                          width: "100%",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.LogoColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"h6"}
+                          >
+                            Suraj
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "12px",
+                              fontWeight: "400",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"small"}
+                          >
+                            13 hour ago
+                          </Typography>
+                        </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              width: "140px",
+                              display: "flex",
+                            }}
+                            component={"p"}
+                          >
+                            Okay fine. thank you{" "}
+                          </Typography>
+                          <ReplyIcon
+                            sx={{
+                              fontSize: "15px",
+                              color: theme.palette.primary.ParaColor,
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Box>
                   </Button>
                   <Button
+                    sx={{
+                      display: "block",
+                      textTransform: "initial",
+                      padding: "10px 10px",
+                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
+                      },
+                    }}
                     onClick={() => setActiveTab(2)}
                     className={activeTab === 2 ? "ActiveTab" : ""}
                   >
-                    Tab 2
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: "15px",
+                       
+                      }}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={process.env.PUBLIC_URL + "/assets/images/pf2.jpg"}
+                      />
+                      <Box
+                        sx={{
+                          width: "100%",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.LogoColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"h6"}
+                          >
+                            Suraj
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "12px",
+                              fontWeight: "400",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"small"}
+                          >
+                            13 hour ago
+                          </Typography>
+                        </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              width: "140px",
+                              display: "flex",
+                            }}
+                            component={"p"}
+                          >
+                            Okay fine. thank you{" "}
+                          </Typography>
+                          <ReplyIcon
+                            sx={{
+                              fontSize: "15px",
+                              color: theme.palette.primary.ParaColor,
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Box>
                   </Button>
+
                   <Button
+                    sx={{
+                      display: "block",
+                      textTransform: "initial",
+                      padding: "10px 10px",
+                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
+                      },
+                    }}
                     onClick={() => setActiveTab(3)}
                     className={activeTab === 3 ? "ActiveTab" : ""}
                   >
-                    Tab 3
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: "15px",
+                       
+                      }}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={process.env.PUBLIC_URL + "/assets/images/pf3.jpg"}
+                      />
+                      <Box
+                        sx={{
+                          width: "100%",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.LogoColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"h6"}
+                          >
+                            Suraj
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "12px",
+                              fontWeight: "400",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"small"}
+                          >
+                            13 hour ago
+                          </Typography>
+                        </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              width: "140px",
+                              display: "flex",
+                            }}
+                            component={"p"}
+                          >
+                            Okay fine. thank you{" "}
+                          </Typography>
+                          <ReplyIcon
+                            sx={{
+                              fontSize: "15px",
+                              color: theme.palette.primary.ParaColor,
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Box>
                   </Button>
+
                   <Button
+                    sx={{
+                      display: "block",
+                      textTransform: "initial",
+                      padding: "10px 10px",
+                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
+                      },
+                    }}
                     onClick={() => setActiveTab(4)}
                     className={activeTab === 4 ? "ActiveTab" : ""}
                   >
-                    Tab 4
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: "15px",
+                       
+                      }}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={process.env.PUBLIC_URL + "/assets/images/pf4.jpg"}
+                      />
+                      <Box
+                        sx={{
+                          width: "100%",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.LogoColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"h6"}
+                          >
+                            Suraj
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "12px",
+                              fontWeight: "400",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"small"}
+                          >
+                            13 hour ago
+                          </Typography>
+                        </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              width: "140px",
+                              display: "flex",
+                            }}
+                            component={"p"}
+                          >
+                            Okay fine. thank you{" "}
+                          </Typography>
+                          <ReplyIcon
+                            sx={{
+                              fontSize: "15px",
+                              color: theme.palette.primary.ParaColor,
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Box>
                   </Button>
+
                   <Button
+                    sx={{
+                      display: "block",
+                      textTransform: "initial",
+                      padding: "10px 10px",
+                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
+                      },
+                    }}
                     onClick={() => setActiveTab(5)}
                     className={activeTab === 5 ? "ActiveTab" : ""}
                   >
-                    Tab 5
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: "15px",
+                       
+                      }}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={process.env.PUBLIC_URL + "/assets/images/pf2.jpg"}
+                      />
+                      <Box
+                        sx={{
+                          width: "100%",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.LogoColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"h6"}
+                          >
+                            Suraj
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "12px",
+                              fontWeight: "400",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"small"}
+                          >
+                            13 hour ago
+                          </Typography>
+                        </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              width: "140px",
+                              display: "flex",
+                            }}
+                            component={"p"}
+                          >
+                            Okay fine. thank you{" "}
+                          </Typography>
+                          <ReplyIcon
+                            sx={{
+                              fontSize: "15px",
+                              color: theme.palette.primary.ParaColor,
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Box>
                   </Button>
+
+                  <Button
+                    sx={{
+                      display: "block",
+                      textTransform: "initial",
+                      padding: "10px 10px",
+                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
+                      },
+                    }}
+                    onClick={() => setActiveTab(6)}
+                    className={activeTab === 6 ? "ActiveTab" : ""}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: "15px",
+                       
+                      }}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={process.env.PUBLIC_URL + "/assets/images/pf1.jpg"}
+                      />
+                      <Box
+                        sx={{
+                          width: "100%",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.LogoColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"h6"}
+                          >
+                            Suraj
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "12px",
+                              fontWeight: "400",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"small"}
+                          >
+                            13 hour ago
+                          </Typography>
+                        </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              width: "140px",
+                              display: "flex",
+                            }}
+                            component={"p"}
+                          >
+                            Okay fine. thank you{" "}
+                          </Typography>
+                          <ReplyIcon
+                            sx={{
+                              fontSize: "15px",
+                              color: theme.palette.primary.ParaColor,
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Button>
+
+                  <Button
+                    sx={{
+                      display: "block",
+                      textTransform: "initial",
+                      padding: "10px 10px",
+                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
+                      },
+                    }}
+                    onClick={() => setActiveTab(7)}
+                    className={activeTab === 7 ? "ActiveTab" : ""}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: "15px",
+                       
+                      }}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={process.env.PUBLIC_URL + "/assets/images/pf3.jpg"}
+                      />
+                      <Box
+                        sx={{
+                          width: "100%",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.LogoColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"h6"}
+                          >
+                            Suraj
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "12px",
+                              fontWeight: "400",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"small"}
+                          >
+                            13 hour ago
+                          </Typography>
+                        </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              width: "140px",
+                              display: "flex",
+                            }}
+                            component={"p"}
+                          >
+                            Okay fine. thank you{" "}
+                          </Typography>
+                          <ReplyIcon
+                            sx={{
+                              fontSize: "15px",
+                              color: theme.palette.primary.ParaColor,
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Button>
+
+                  <Button
+                    sx={{
+                      display: "block",
+                      textTransform: "initial",
+                      padding: "10px 10px",
+                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
+                      },
+                    }}
+                    onClick={() => setActiveTab(8)}
+                    className={activeTab === 8 ? "ActiveTab" : ""}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: "15px",
+                       
+                      }}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={process.env.PUBLIC_URL + "/assets/images/pf4.jpg"}
+                      />
+                      <Box
+                        sx={{
+                          width: "100%",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.LogoColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"h6"}
+                          >
+                            Suraj
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "12px",
+                              fontWeight: "400",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"small"}
+                          >
+                            13 hour ago
+                          </Typography>
+                        </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              width: "140px",
+                              display: "flex",
+                            }}
+                            component={"p"}
+                          >
+                            Okay fine. thank you{" "}
+                          </Typography>
+                          <ReplyIcon
+                            sx={{
+                              fontSize: "15px",
+                              color: theme.palette.primary.ParaColor,
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Button>
+
+                  <Button
+                    sx={{
+                      display: "block",
+                      textTransform: "initial",
+                      padding: "10px 10px",
+                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
+                      },
+                    }}
+                    onClick={() => setActiveTab(9)}
+                    className={activeTab === 9 ? "ActiveTab" : ""}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: "15px",
+                       
+                      }}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={process.env.PUBLIC_URL + "/assets/images/pf1.jpg"}
+                      />
+                      <Box
+                        sx={{
+                          width: "100%",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.LogoColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"h6"}
+                          >
+                            Suraj
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "12px",
+                              fontWeight: "400",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"small"}
+                          >
+                            13 hour ago
+                          </Typography>
+                        </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              width: "140px",
+                              display: "flex",
+                            }}
+                            component={"p"}
+                          >
+                            Okay fine. thank you{" "}
+                          </Typography>
+                          <ReplyIcon
+                            sx={{
+                              fontSize: "15px",
+                              color: theme.palette.primary.ParaColor,
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Button>
+
+                  <Button
+                    sx={{
+                      display: "block",
+                      textTransform: "initial",
+                      padding: "10px 10px",
+                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
+                      },
+                    }}
+                    onClick={() => setActiveTab(10)}
+                    className={activeTab === 10 ? "ActiveTab" : ""}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: "15px",
+                       
+                      }}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={process.env.PUBLIC_URL + "/assets/images/pf2.jpg"}
+                      />
+                      <Box
+                        sx={{
+                          width: "100%",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.LogoColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"h6"}
+                          >
+                            Suraj
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "12px",
+                              fontWeight: "400",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"small"}
+                          >
+                            13 hour ago
+                          </Typography>
+                        </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              width: "140px",
+                              display: "flex",
+                            }}
+                            component={"p"}
+                          >
+                            Okay fine. thank you{" "}
+                          </Typography>
+                          <ReplyIcon
+                            sx={{
+                              fontSize: "15px",
+                              color: theme.palette.primary.ParaColor,
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Button>
+
+                  <Button
+                    sx={{
+                      display: "block",
+                      textTransform: "initial",
+                      padding: "10px 10px",
+                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
+                      },
+                    }}
+                    onClick={() => setActiveTab(11)}
+                    className={activeTab === 11 ? "ActiveTab" : ""}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: "15px",
+                       
+                      }}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={process.env.PUBLIC_URL + "/assets/images/pf4.jpg"}
+                      />
+                      <Box
+                        sx={{
+                          width: "100%",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.LogoColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"h6"}
+                          >
+                            Suraj
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "12px",
+                              fontWeight: "400",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                            }}
+                            component={"small"}
+                          >
+                            13 hour ago
+                          </Typography>
+                        </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "15px",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontSize: "13px",
+                              fontWeight: "500",
+                              color: theme.palette.primary.ParaColor,
+                              fontFamily: theme.palette.primary.MainFont1,
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              width: "140px",
+                              display: "flex",
+                            }}
+                            component={"p"}
+                          >
+                            Okay fine. thank you{" "}
+                          </Typography>
+                          <ReplyIcon
+                            sx={{
+                              fontSize: "15px",
+                              color: theme.palette.primary.ParaColor,
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Button>
+
                 </Tabs>
               </Box>
-              <Box
+              <Box className="ChatRoomLeftBar"
                 sx={{
                   flex: "2",
-                  background: "#f22",
                   paddingX: "10px",
                   maxHeight: "400px",
                   width: "100%",
@@ -269,6 +1304,36 @@ const ChatRoom = () => {
                 <Box
                   className={activeTab === 5 ? "activeTabContent" : ""}
                   style={{ display: activeTab === 5 ? "block" : "none" }}
+                >
+                  Item Three
+                </Box>
+                <Box
+                  className={activeTab === 6 ? "activeTabContent" : ""}
+                  style={{ display: activeTab === 6 ? "block" : "none" }}
+                >
+                  Item One
+                </Box>
+                <Box
+                  className={activeTab === 7 ? "activeTabContent" : ""}
+                  style={{ display: activeTab === 7 ? "block" : "none" }}
+                >
+                  Item Two
+                </Box>
+                <Box
+                  className={activeTab === 8 ? "activeTabContent" : ""}
+                  style={{ display: activeTab === 8 ? "block" : "none" }}
+                >
+                  Item Three
+                </Box>
+                <Box
+                  className={activeTab === 9 ? "activeTabContent" : ""}
+                  style={{ display: activeTab === 9 ? "block" : "none" }}
+                >
+                  Item Two
+                </Box>
+                <Box
+                  className={activeTab === 10 ? "activeTabContent" : ""}
+                  style={{ display: activeTab === 10 ? "block" : "none" }}
                 >
                   Item Three
                 </Box>
