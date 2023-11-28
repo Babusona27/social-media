@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -58,9 +59,7 @@ const userSchema = new mongoose.Schema({
     company_city: {
         type: String,
     },
-    hobbies: {
-        type: String,
-    },
+    hobbies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Hobbies' }],
     follow_me: {
         type: Boolean,
         enum: [true, false],

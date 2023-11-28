@@ -1,5 +1,7 @@
 const userSchema = require('../models/userModel');
+const userHobbiesSchema = require('../models/userHobbiesModel');
 const userFriendSchema = require('../models/userFriend');
+const userFollowSchema = require('../models/userFollow');
 const helper = require('../helper/index');
 const bcrypt = require('bcrypt');
 const jwt_token = require('jsonwebtoken');
@@ -66,6 +68,100 @@ exports.login = async (req, res) => {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
     }
 }
+exports.profile = async (req, res) => {
+    try {
+        let user = await userSchema.findById(req.user.userId).populate('hobbies');
+        if (!user) {
+            return res.status(400).json(helper.response(400, false, "User Not Found!"));
+        }
+        return res.status(200).json(helper.response(200, true, "User Profile!", user));
+    } catch (error) {
+        return res.status(500).json(helper.response(500, false, "something went wrong!"));
+    }
+}
+
+exports.updateProfile = async (req, res) => {
+    try {
+        let payload = req.body;
+        let user = await userSchema.findById(req.user.userId);
+        if (!user) {
+            return res.status(400).json(helper.response(400, false, "User Not Found!"));
+        }
+        if (payload.name) {
+            user.name = payload.name;
+        }
+        // if (payload.email) {
+        //     user.email = payload.email;
+        // }
+        // if (payload.phone) {
+        //     user.phone = payload.phone;
+        // }
+        if (payload.dob) {
+            user.dob = payload.dob;
+        }
+        if (payload.gender) {
+            user.gender = payload.gender;
+        }
+        if (payload.latitude) {
+            user.latitude = payload.latitude;
+        }
+        if (payload.longitude) {
+            user.longitude = payload.longitude;
+        }
+        if (payload.about_me) {
+            user.about_me = payload.about_me;
+        }
+        if (payload.university_name) {
+            user.university_name = payload.university_name;
+        }
+        if (payload.from) {
+            user.from = payload.from;
+        }
+        if (payload.to) {
+            user.to = payload.to;
+        }
+        if (payload.education_description) {
+            user.education_description = payload.education_description;
+        }
+        if (payload.company_name) {
+            user.company_name = payload.company_name;
+        }
+        if (payload.work_description) {
+            user.work_description = payload.work_description;
+        }
+        if (payload.designation) {
+            user.designation = payload.designation;
+        }
+        if (payload.company_city) {
+            user.company_city = payload.company_city;
+        }
+        if (payload.hobbies) {
+            let hobbies = await Promise.all(payload.hobbies.map(async (hobbyName) => {
+                let hobby = new userHobbiesSchema({ name: hobbyName });
+                await hobby.save();
+                return hobby._id;
+            }));
+            user.hobbies = hobbies;
+        }
+        if (payload.follow_me) {
+            user.follow_me = payload.follow_me;
+        }
+        if (payload.send_notification) {
+            user.send_notification = payload.send_notification;
+        }
+        if (payload.enable_tagging) {
+            user.enable_tagging = payload.enable_tagging;
+        }
+        let userResult = await user.save();
+        if (userResult) {
+            return res.status(200).json(helper.response(200, true, "User Profile Update Successfully!", userResult));
+        } else {
+            return res.status(400).json(helper.response(400, false, "User Profile Update Failed!"));
+        }
+    } catch (error) {
+        return res.status(500).json(helper.response(500, false, "something went wrong!"));
+    }
+}
 
 exports.sendFriendRequest = async (req, res) => {
     try {
@@ -123,6 +219,59 @@ exports.friendRequestStatusUpdate = async (req, res) => {
             return res.status(200).json(helper.response(200, true, "Friend Request Status Update Successfully!", userFriendResult));
         } else {
             return res.status(400).json(helper.response(400, false, "Friend Request Status Update Failed!"));
+        }
+    } catch (error) {
+        return res.status(500).json(helper.response(500, false, "something went wrong!"));
+    }
+}
+
+exports.friendList = async (req, res) => {
+    try {
+        let userFriend = await userFriendSchema.find({ $or: [{ user_id_1: req.user.userId }, { user_id_2: req.user.userId }], status: "accepted" }).populate('user_id_1').populate('user_id_2');
+        if (userFriend) {
+            return res.status(200).json(helper.response(200, true, "Friend List!", userFriend));
+        } else {
+            return res.status(400).json(helper.response(400, false, "Friend List Not Found!"));
+        }
+    } catch (error) {
+        return res.status(500).json(helper.response(500, false, "something went wrong!"));
+    }
+}
+
+exports.followUser = async (req, res) => {
+    try {
+        let payload = req.body;
+        let user = await userSchema.findById(payload.followUserId);
+        if (!user) {
+            return res.status(400).json(helper.response(400, false, "User Not Found!"));
+        }
+        let userFollow = await userFollowSchema.findOne({ userId: req.user.userId, followUserId: payload.followUserId });
+        if (userFollow) {
+            return res.status(400).json(helper.response(400, false, "User Already Followed!"));
+        }
+        let userFollow1 = new userFollowSchema({
+            userId: req.user.userId,
+            followUserId: payload.followUserId
+        });
+        let userFollowResult = await userFollow1.save();
+        if (userFollowResult) {
+            return res.status(200).json(helper.response(200, true, "User Followed Successfully!", userFollowResult));
+        } else {
+            return res.status(400).json(helper.response(400, false, "User Followed Failed!"));
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json(helper.response(500, false, "something went wrong!"));
+    }
+}
+
+exports.followUserList = async (req, res) => {
+    try {
+        let userFollow = await userFollowSchema.find({ $or: [{ userId: req.user.userId }, { followUserId: req.user.userId }] }).populate('userId').populate('followUserId');
+        if (userFollow) {
+            return res.status(200).json(helper.response(200, true, "Follow User List!", userFollow));
+        } else {
+            return res.status(400).json(helper.response(400, false, "Follow User List Not Found!"));
         }
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
