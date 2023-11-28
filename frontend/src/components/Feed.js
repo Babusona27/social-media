@@ -15,7 +15,9 @@ const Feed = () => {
             <CardMedia
                 component="img"
                 height="194"
-                image="/assets/images/profileImg.jpg"
+                image={
+                    process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                }
                 alt="Paella dish"
             />
 
@@ -28,7 +30,9 @@ const Feed = () => {
                     <Box>
                         <Avatar
                             alt="Remy Sharp"
-                            src="/assets/images/profileImg.jpg"
+                            src={
+                                process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                            }
                             sx={{
                                 float: "left",
                                 marginRight: "5px",
@@ -86,7 +90,7 @@ const Feed = () => {
                                     color: theme.palette.primary.LightGray1,
                                 }}>Published a photo about 3 mins ago</Typography>
                         </Box>
-                        <Box flex={"1"} sx={{
+                        <Box flex={"1.2"} sx={{
                             display: "flex",
                             justifyContent: "space-between",
                             alignItems: "center",
@@ -95,6 +99,7 @@ const Feed = () => {
                                 display: "flex",
                                 alignItems: "center",
                                 color: theme.palette.primary.Green,
+                                gap: "5px",
                             }}>
                                 <ThumbUpAlt sx={{
                                     fontSize: "14px",
@@ -104,10 +109,11 @@ const Feed = () => {
                                     fontWeight: "400",
                                 }} >13</Typography>
                             </Box>
-                            <Box sx={{
+                            <Box component={"a"} href='#' sx={{
                                 display: "flex",
                                 alignItems: "center",
                                 color: theme.palette.secondary.main,
+                                gap: "5px",
                             }}>
                                 <ThumbDownAlt sx={{
                                     fontSize: "14px",
@@ -140,7 +146,9 @@ const Feed = () => {
                         }}>
                             <Avatar
                                 alt="Remy Sharp"
-                                src="/assets/images/profileImg.jpg"
+                                src={
+                                    process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                }
                                 sx={{
                                     marginRight: "10px",
                                     height: "40px",
@@ -174,7 +182,9 @@ const Feed = () => {
                         }}>
                             <Avatar
                                 alt="Remy Sharp"
-                                src="/assets/images/profileImg.jpg"
+                                src={
+                                    process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                }
                                 sx={{
                                     marginRight: "10px",
                                     height: "40px",
@@ -209,7 +219,9 @@ const Feed = () => {
                         }}>
                             <Avatar
                                 alt="Remy Sharp"
-                                src="/assets/images/profileImg.jpg"
+                                src={
+                                    process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                }
                                 sx={{
                                     marginRight: "10px",
                                     height: "40px",
