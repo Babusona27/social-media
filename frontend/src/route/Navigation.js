@@ -12,6 +12,10 @@ import Timeline from "../pages/Timeline";
 import TimelineAbout from "../pages/TimelineAbout";
 import TimelineFriend from "../pages/TimelineFriend";
 import Page404 from "../pages/Page404";
+import Faq from "../pages/Faq";
+import Terms from "../pages/Terms";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+
 
 const Navigation = () => {
   return(
@@ -28,6 +32,9 @@ const Navigation = () => {
             <Route path="/timeline" element={<Timeline />} />
             <Route path="/timelineabout" element={<TimelineAbout />} />
             <Route path="/timelinefriend" element={<TimelineFriend />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/Terms" element={<Terms />} />
+            <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
             <Route path="*" element={<Page404 />} />
         </Routes>
         </Router>
