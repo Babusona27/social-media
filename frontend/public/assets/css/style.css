@@ -153,4 +153,6 @@ opacity: 1;
 .ChatRoomLeftBar::-webkit-scrollbar-thumb:hover {
 	background: #c2c2c2;
 }
-
+.css-raiz8k-MuiPaper-root-MuiAccordion-root:before {
+display: none !important;
+}

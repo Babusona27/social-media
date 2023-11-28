@@ -104,6 +104,7 @@ const EditProfile = () => {
       </Container>
       <Footer />
     </>
+
   )
 }
 
