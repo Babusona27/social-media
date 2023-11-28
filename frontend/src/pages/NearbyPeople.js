@@ -40,7 +40,7 @@ const NearbyPeople = () => {
                   <Avatar
                     alt="Remy Sharp"
                     src={
-                      process.env.PUBLIC_URL + "/assets/images/profileImg.png"
+                      process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
                     }
                     sx={{
                       border: "7px solid #fff",

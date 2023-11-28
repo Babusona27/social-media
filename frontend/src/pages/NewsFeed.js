@@ -13,7 +13,7 @@ const NewsFeed = () => {
   return (
     <>
       <HeaderNew />
-      <Container>
+      <Container maxWidth="lg" sx={{ height: "100%" }}>
         <Box sx={{ display: "flex", padding: "100px 0 50px" }}>
           <Box flex={1} p={"0 10px"}>
             <Sidebar />
@@ -40,7 +40,7 @@ const NewsFeed = () => {
                   <Avatar
                     alt="Remy Sharp"
                     src={
-                      process.env.PUBLIC_URL + "/assets/images/profileImg.png"
+                      process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
                     }
                     sx={{
                       border: "7px solid #fff",
@@ -142,6 +142,7 @@ const NewsFeed = () => {
                         color: theme.palette.primary.White,
                         fontSize: "14px",
                         fontWeight: "600",
+                        lineHeight: "26px",
                       }}
                     >Publish</Typography>
                   </Box>

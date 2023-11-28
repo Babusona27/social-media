@@ -8,7 +8,7 @@ const Page404 = () => {
   return (
     <>
       <HeaderNew />
-      <Container>
+      <Container maxWidth="lg" sx={{ height: "100%" }}>
         <Box sx={{
           padding: "200px 0",
         }}>

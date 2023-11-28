@@ -14,7 +14,7 @@ const AddFriend = () => {
                 <Avatar
                     alt="Remy Sharp"
                     src={
-                        process.env.PUBLIC_URL + "/assets/images/profileImg.png"
+                        process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
                       }
                     sx={{
                         marginRight: "5px",
@@ -58,6 +58,7 @@ const AddFriend = () => {
                             color: theme.palette.primary.White,
                             fontSize: "14px",
                             fontWeight: "600",
+                            lineHeight: "26px",
                             backgroundColor: theme.palette.primary.LogoColor,
                             borderRadius: "30px",
                             padding: "7px 25px",

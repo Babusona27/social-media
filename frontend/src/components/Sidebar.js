@@ -58,7 +58,7 @@ const Sidebar = () => {
             <Avatar
               alt="Remy Sharp"
               src={
-                process.env.PUBLIC_URL + "/assets/images/profileImg.png"
+                process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
               }
               sx={{
                 border: "7px solid #fff",
@@ -125,7 +125,7 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.secondary.contrastText,
-              fontSize: "18px",
+              fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
               paddingBottom: "10px",
@@ -146,7 +146,7 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.secondary.contrastText,
-              fontSize: "18px",
+              fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
               paddingBottom: "10px",
@@ -167,7 +167,7 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.secondary.contrastText,
-              fontSize: "18px",
+              fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
               paddingBottom: "10px",
@@ -188,7 +188,7 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.secondary.contrastText,
-              fontSize: "18px",
+              fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
               paddingBottom: "10px",
@@ -209,7 +209,7 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.secondary.contrastText,
-              fontSize: "18px",
+              fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
               paddingBottom: "10px",
@@ -230,7 +230,7 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.secondary.contrastText,
-              fontSize: "18px",
+              fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
               paddingBottom: "10px",
@@ -284,7 +284,7 @@ const Sidebar = () => {
                   height: "58px",
                 }} alt="Remy Sharp"
                   src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
                   }
                 />
               </StyledBadge>
@@ -305,7 +305,7 @@ const Sidebar = () => {
                   height: "58px",
                 }} alt="Remy Sharp"
                   src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
                   }
                 />
               </StyledBadge>
@@ -326,7 +326,7 @@ const Sidebar = () => {
                   height: "58px",
                 }} alt="Remy Sharp"
                   src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
                   }
                 />
               </StyledBadge>
@@ -347,7 +347,7 @@ const Sidebar = () => {
                   height: "58px",
                 }} alt="Remy Sharp"
                   src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
                   }
                 />
               </StyledBadge>
@@ -368,7 +368,7 @@ const Sidebar = () => {
                   height: "58px",
                 }} alt="Remy Sharp"
                   src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
                   }
                 />
               </StyledBadge>
@@ -389,7 +389,7 @@ const Sidebar = () => {
                   height: "58px",
                 }} alt="Remy Sharp"
                   src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
                   }
                 />
               </StyledBadge>
@@ -410,7 +410,7 @@ const Sidebar = () => {
                   height: "58px",
                 }} alt="Remy Sharp"
                   src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
                   }
                 />
               </StyledBadge>
@@ -431,7 +431,7 @@ const Sidebar = () => {
                   height: "58px",
                 }} alt="Remy Sharp"
                   src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
                   }
                 />
               </StyledBadge>
@@ -452,7 +452,7 @@ const Sidebar = () => {
                   height: "58px",
                 }} alt="Remy Sharp"
                   src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.png"
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
                   }
                 />
               </StyledBadge>
