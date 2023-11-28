@@ -18,9 +18,11 @@ import theme from "../Theme";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import styled from "@emotion/styled";
-
+import { useDispatch } from "react-redux";
+import { logOut } from "../redux/reducers/UserReducer";
 
 const HeaderNew = () => {
+  const dispatch = useDispatch();
   // menubar open
   const [open, setOpen] = React.useState(false);
 
@@ -172,7 +174,7 @@ const HeaderNew = () => {
                     <Typography>Newsfeed </Typography>
                   </ListItemButton>
                 </ListItem>
-                <ListItem disablePadding>
+                {/* <ListItem disablePadding>
                   <ListItemButton
                     sx={{
                       color: theme.palette.primary.White,
@@ -190,7 +192,7 @@ const HeaderNew = () => {
                   >
                     <Typography>Timeline </Typography>
                   </ListItemButton>
-                </ListItem>
+                </ListItem> */}
                 <ListItem disablePadding>
                   <ListItemButton
                     sx={{
@@ -210,7 +212,7 @@ const HeaderNew = () => {
                     <Typography>About us </Typography>
                   </ListItemButton>
                 </ListItem>
-                <ListItem disablePadding>
+                {/* <ListItem disablePadding>
                   <ListItemButton
                     sx={{
                       color: theme.palette.primary.White,
@@ -228,7 +230,7 @@ const HeaderNew = () => {
                   >
                     <Typography>Blog</Typography>
                   </ListItemButton>
-                </ListItem>
+                </ListItem> */}
                 <ListItem disablePadding>
                   <ListItemButton
                     sx={{
@@ -246,6 +248,28 @@ const HeaderNew = () => {
                     href="#"
                   >
                     <Typography>Contact us</Typography>
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton
+                    sx={{
+                      color: theme.palette.primary.White,
+                      transition: "all .3s ease-in-out",
+                      padding: "0px",
+                      fontSize: "14px",
+                      textAlign: "center",
+                      display: "block",
+                      "&:hover": {
+                        color: theme.palette.primary.LogoColor,
+                      },
+                    }}
+                    component="a"
+                    href="#"
+                    onClick={() => {
+                      dispatch(logOut());
+                    }}
+                  >
+                    <Typography>Logout </Typography>
                   </ListItemButton>
                 </ListItem>
               </List>
