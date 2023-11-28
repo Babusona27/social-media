@@ -50,6 +50,12 @@ input{
     cursor: pointer;
 	font-family: 'Lato', sans-serif !important;
 }
+label{
+	border: none;
+	outline: none;
+	cursor: pointer;
+	font-family: 'Lato', sans-serif !important;
+}
 textarea{
     border: none;
     outline: none;
