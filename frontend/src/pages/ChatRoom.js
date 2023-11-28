@@ -21,7 +21,7 @@ const ChatRoom = () => {
   return (
     <>
       <HeaderNew />
-      <Container>
+      <Container maxWidth="lg" sx={{ height: "100%" }}>
         <Box sx={{ display: "flex", padding: "100px 0 50px" }}>
           <Box flex={1} p={"0 10px"}>
             <Sidebar />
@@ -218,7 +218,6 @@ const ChatRoom = () => {
                         alignItems: "center",
                         justifyContent: "space-between",
                         gap: "15px",
-                       
                       }}
                     >
                       <Avatar
@@ -258,7 +257,7 @@ const ChatRoom = () => {
                             }}
                             component={"small"}
                           >
-                            13 hour ago
+                            2 hour ago
                           </Typography>
                         </Box>
                         <Box
@@ -283,7 +282,7 @@ const ChatRoom = () => {
                             }}
                             component={"p"}
                           >
-                            Okay fine. thank you{" "}
+                            Okay fine. thank you
                           </Typography>
                           <ReplyIcon
                             sx={{
@@ -314,7 +313,6 @@ const ChatRoom = () => {
                         alignItems: "center",
                         justifyContent: "space-between",
                         gap: "15px",
-                       
                       }}
                     >
                       <Avatar
@@ -354,7 +352,7 @@ const ChatRoom = () => {
                             }}
                             component={"small"}
                           >
-                            13 hour ago
+                            a hour ago
                           </Typography>
                         </Box>
                         <Box
@@ -379,14 +377,28 @@ const ChatRoom = () => {
                             }}
                             component={"p"}
                           >
-                            Okay fine. thank you{" "}
+                            Okay fine. thank you
                           </Typography>
-                          <ReplyIcon
+                          {/* <ReplyIcon
                             sx={{
                               fontSize: "15px",
                               color: theme.palette.primary.ParaColor,
                             }}
-                          />
+                          /> */}
+                          <Box sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                           height:"18px",
+                            width:"16px",
+                          lineHeight:"1",
+                            borderRadius:"5px",
+                            backgroundColor:"red",
+                            color:"#fff",
+                            fontSize:"14px",
+                            fontWeight:"600"
+
+                          }} component={"span"}>1</Box>
                         </Box>
                       </Box>
                     </Box>
@@ -411,7 +423,6 @@ const ChatRoom = () => {
                         alignItems: "center",
                         justifyContent: "space-between",
                         gap: "15px",
-                       
                       }}
                     >
                       <Avatar
@@ -508,7 +519,6 @@ const ChatRoom = () => {
                         alignItems: "center",
                         justifyContent: "space-between",
                         gap: "15px",
-                       
                       }}
                     >
                       <Avatar
@@ -605,7 +615,6 @@ const ChatRoom = () => {
                         alignItems: "center",
                         justifyContent: "space-between",
                         gap: "15px",
-                       
                       }}
                     >
                       <Avatar
@@ -702,7 +711,6 @@ const ChatRoom = () => {
                         alignItems: "center",
                         justifyContent: "space-between",
                         gap: "15px",
-                       
                       }}
                     >
                       <Avatar
@@ -799,7 +807,6 @@ const ChatRoom = () => {
                         alignItems: "center",
                         justifyContent: "space-between",
                         gap: "15px",
-                       
                       }}
                     >
                       <Avatar
@@ -896,7 +903,6 @@ const ChatRoom = () => {
                         alignItems: "center",
                         justifyContent: "space-between",
                         gap: "15px",
-                       
                       }}
                     >
                       <Avatar
@@ -993,7 +999,6 @@ const ChatRoom = () => {
                         alignItems: "center",
                         justifyContent: "space-between",
                         gap: "15px",
-                       
                       }}
                     >
                       <Avatar
@@ -1090,7 +1095,6 @@ const ChatRoom = () => {
                         alignItems: "center",
                         justifyContent: "space-between",
                         gap: "15px",
-                       
                       }}
                     >
                       <Avatar
@@ -1157,12 +1161,26 @@ const ChatRoom = () => {
                           >
                             Okay fine. thank you{" "}
                           </Typography>
-                          <ReplyIcon
+                          {/* <ReplyIcon
                             sx={{
                               fontSize: "15px",
                               color: theme.palette.primary.ParaColor,
                             }}
-                          />
+                          /> */}
+                            <Box sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                           height:"18px",
+                            width:"16px",
+                          lineHeight:"1",
+                            borderRadius:"5px",
+                            backgroundColor:"red",
+                            color:"#fff",
+                            fontSize:"14px",
+                            fontWeight:"600"
+
+                          }} component={"span"}>1</Box>
                         </Box>
                       </Box>
                     </Box>
@@ -1187,7 +1205,6 @@ const ChatRoom = () => {
                         alignItems: "center",
                         justifyContent: "space-between",
                         gap: "15px",
-                       
                       }}
                     >
                       <Avatar
@@ -1264,10 +1281,10 @@ const ChatRoom = () => {
                       </Box>
                     </Box>
                   </Button>
-
                 </Tabs>
               </Box>
-              <Box className="ChatRoomLeftBar"
+              <Box
+                className="ChatRoomLeftBar"
                 sx={{
                   flex: "2",
                   paddingX: "10px",
@@ -1275,6 +1292,7 @@ const ChatRoom = () => {
                   width: "100%",
                   overflowY: "scroll",
                   height: "400px",
+                  marginLeft: "10px",
                 }}
               >
                 <Box
