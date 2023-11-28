@@ -119,4 +119,10 @@ opacity: 1;
     top: -6px;
 	color: #939598;
 }
+.search_content_form .MuiOutlinedInput-notchedOutline {
+	border-radius: 50px;
+}
+.search_content_form .MuiInputBase-input {
+	padding: 16.5px 20px !important;
+}
 
