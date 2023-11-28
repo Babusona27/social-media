@@ -3,6 +3,8 @@ import HeaderNew from '../components/HeaderNew'
 import { Box, Container, Typography } from '@mui/material'
 import Footer from '../components/Footer'
 import theme from '../Theme'
+import ProfileSideBar from '../components/ProfileSideBar'
+import ProfileRightBar from '../components/ProfileRightBar'
 
 const EditProfile = () => {
   return (
@@ -18,7 +20,6 @@ const EditProfile = () => {
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            // padding: "0 20px",
             position: "relative",
             "&::before": {
               content: "''",
@@ -68,34 +69,47 @@ const EditProfile = () => {
                 alignItems: "center",
                 justifyContent: "flex-end",
               }}>
-                  <Box>
-                    <Typography sx={{
-                      fontSize: "15px",
-                      color: theme.palette.primary.White,
-                      paddingRight: "20px",
-                    }}>1,299 people following her</Typography>
+                <Box>
+                  <Typography sx={{
+                    fontSize: "15px",
+                    color: theme.palette.primary.White,
+                    paddingRight: "20px",
+                  }}>1,299 people following her</Typography>
 
-                  </Box>
-                  <Box
-                    component={"a"} href='#'>
-                    <Typography
-                      sx={{
-                        color: theme.palette.primary.White,
-                        fontSize: "14px",
-                        fontWeight: "600",
-                        lineHeight: "26px",
+                </Box>
+                <Box
+                  component={"a"} href='#'>
+                  <Typography
+                    sx={{
+                      color: theme.palette.primary.White,
+                      fontSize: "14px",
+                      fontWeight: "600",
+                      lineHeight: "26px",
+                      backgroundColor: theme.palette.primary.LogoColor,
+                      borderRadius: "30px",
+                      padding: "7px 25px",
+                      marginLeft: "10px",
+                      "&:hover": {
                         backgroundColor: theme.palette.primary.LogoColor,
-                        borderRadius: "30px",
-                        padding: "7px 25px",
-                        marginLeft: "10px",
-                        "&:hover": {
-                          backgroundColor: theme.palette.primary.LogoColor,
-                        },
-                      }}
-                    >Add Friend</Typography>
+                      },
+                    }}
+                  >Add Friend</Typography>
                 </Box>
               </Box>
             </Box>
+          </Box>
+        </Box>
+        <Box sx={{
+          display: "flex",
+          marginTop:"30px",
+          textAlign:"center",
+        }}>
+          <Box flex={"0.7"}>
+            <ProfileSideBar />
+          </Box>
+          <Box flex={"2"}></Box>
+          <Box flex={"0.5"}>
+            <ProfileRightBar />
           </Box>
         </Box>
         <Typography sx={{
