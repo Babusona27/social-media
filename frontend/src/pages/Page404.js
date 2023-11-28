@@ -80,6 +80,7 @@ const Page404 = () => {
                     color: theme.palette.primary.White,
                     fontSize: "14px",
                     fontWeight: "600",
+                    lineHeight: "26px",
                     backgroundColor: theme.palette.primary.LogoColor,
                     borderRadius: "30px",
                     padding: "7px 25px",
