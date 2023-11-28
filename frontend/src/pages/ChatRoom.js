@@ -873,12 +873,26 @@ const ChatRoom = () => {
                           >
                             Okay fine. thank you{" "}
                           </Typography>
-                          <ReplyIcon
+                          {/* <ReplyIcon
                             sx={{
                               fontSize: "15px",
                               color: theme.palette.primary.ParaColor,
                             }}
-                          />
+                          /> */}
+                            <Box sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                           height:"18px",
+                            width:"16px",
+                          lineHeight:"1",
+                            borderRadius:"5px",
+                            backgroundColor:"red",
+                            color:"#fff",
+                            fontSize:"14px",
+                            fontWeight:"600"
+
+                          }} component={"span"}>1</Box>
                         </Box>
                       </Box>
                     </Box>
