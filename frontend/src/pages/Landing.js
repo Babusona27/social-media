@@ -259,6 +259,7 @@ const Landing = () => {
                 xl: "215px",
               },
               color: theme.palette.primary.LightGray,
+              textShadow: "9px 3px 5px rgb(0 0 0 / 15%)",
               lineHeight: "1",
               marginBottom: "-50px",
             }}
@@ -804,6 +805,7 @@ const Landing = () => {
                 xl: "215px",
               },
               color: theme.palette.primary.LightGray,
+              textShadow: "9px 3px 5px rgb(0 0 0 / 15%)",
               lineHeight: "1",
               marginBottom: "-50px",
             }}
@@ -1189,6 +1191,7 @@ const Landing = () => {
                 xl: "215px",
               },
               color: theme.palette.primary.LightGray,
+              textShadow: "9px 3px 5px rgb(0 0 0 / 15%)",
               lineHeight: "1",
               marginBottom: "-50px",
             }}
@@ -2070,6 +2073,9 @@ const Landing = () => {
           </Box>
 </Container>
       </Box>
+
+
+      
       <Footer />
 
     </>

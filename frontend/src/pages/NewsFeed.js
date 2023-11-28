@@ -7,12 +7,13 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import theme from '../Theme';
 import { EditNote, Map, Photo, Videocam } from '@mui/icons-material';
 import RightBar from '../components/RightBar';
+import Footer from '../components/Footer';
 
 const NewsFeed = () => {
   return (
     <>
       <HeaderNew />
-      <Container>
+      <Container maxWidth="lg" sx={{ height: "100%" }}>
         <Box sx={{ display: "flex", padding: "100px 0 50px" }}>
           <Box flex={1} p={"0 10px"}>
             <Sidebar />
@@ -38,7 +39,9 @@ const NewsFeed = () => {
                 }}>
                   <Avatar
                     alt="Remy Sharp"
-                    src="/assets/images/profileImg.jpg"
+                    src={
+                      process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                    }
                     sx={{
                       border: "7px solid #fff",
                       float: "left",
@@ -139,6 +142,7 @@ const NewsFeed = () => {
                         color: theme.palette.primary.White,
                         fontSize: "14px",
                         fontWeight: "600",
+                        lineHeight: "26px",
                       }}
                     >Publish</Typography>
                   </Box>
@@ -149,10 +153,11 @@ const NewsFeed = () => {
             <Feed />
           </Box>
           <Box flex={0.5} p={"0 10px"}>
-            <RightBar/>
+            <RightBar />
           </Box>
         </Box>
       </Container>
+      <Footer />
     </>
   )
 }

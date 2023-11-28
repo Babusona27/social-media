@@ -7,6 +7,7 @@ import theme from '../Theme';
 import { EditNote, Map, Photo, Videocam } from '@mui/icons-material';
 import RightBar from '../components/RightBar';
 import AddFriend from '../components/AddFriend';
+import Footer from '../components/Footer';
 
 const NearbyPeople = () => {
   return (
@@ -38,7 +39,9 @@ const NearbyPeople = () => {
                 }}>
                   <Avatar
                     alt="Remy Sharp"
-                    src="/assets/images/profileImg.jpg"
+                    src={
+                      process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                    }
                     sx={{
                       border: "7px solid #fff",
                       float: "left",
@@ -158,6 +161,7 @@ const NearbyPeople = () => {
           </Box>
         </Box>
       </Container>
+      <Footer />
     </>
   )
 }

@@ -26,7 +26,9 @@ const FriendListCard = () => {
                     <Box>
                         <Avatar
                             alt="Remy Sharp"
-                            src="/assets/images/profileImg.jpg"
+                            src={
+                                process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                              }
                             sx={{
                                 border: "7px solid #fff",
                                 marginRight: "20px",

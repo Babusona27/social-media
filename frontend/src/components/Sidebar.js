@@ -57,7 +57,9 @@ const Sidebar = () => {
           }}>
             <Avatar
               alt="Remy Sharp"
-              src="/assets/images/profileImg.jpg"
+              src={
+                process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+              }
               sx={{
                 border: "7px solid #fff",
                 float: "left",
@@ -69,49 +71,7 @@ const Sidebar = () => {
                 borderRadius: "50%",
               }}
             />
-            {/* <Link href="#"
-                    sx={{
-                        fontSize: "15px",
-                        color: theme.palette.primary.White,
-                        textDecoration: hover1 ? "underline" : "none",
-                    }}
-                    onMouseEnter={() => setHover1(true)}
-                    onMouseLeave={() => setHover1(false)}
-
-                >
-                    <Typography sx={{
-                        fontSize: "15px",
-                        color: theme.palette.primary.White,
-                    }} margin={"10px 0"}
-                    >Sarah Cruiz</Typography>
-                </Link>
-                <Box sx={{
-                    display: "flex",
-                    alignItems: "center",
-                }}>
-                    <PersonAdd sx={{
-                        fontSize: "12px",
-                        color: theme.palette.primary.White,
-                    }}
-                    />
-                    <Link
-                        href="#"
-                        sx={{
-                            textDecoration: hover2 ? `underline ${theme.palette.primary.White}` : "none",
-                        }}
-                        onMouseEnter={() => setHover2(true)}
-                        onMouseLeave={() => setHover2(false)}
-                    >
-                        <Typography
-                            sx={{
-                                fontSize: "12px",
-                                color: theme.palette.primary.White,
-                            }}
-                        >
-                            1,299 followers
-                        </Typography>
-                    </Link> */}
-            {/* </Box> */}
+           
             <Box margin={"10px 0"}>
               <Typography component={"a"} href='#' sx={{
                 fontSize: "20px",
@@ -165,7 +125,7 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.secondary.contrastText,
-              fontSize: "18px",
+              fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
               paddingBottom: "10px",
@@ -186,7 +146,7 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.secondary.contrastText,
-              fontSize: "18px",
+              fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
               paddingBottom: "10px",
@@ -207,7 +167,7 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.secondary.contrastText,
-              fontSize: "18px",
+              fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
               paddingBottom: "10px",
@@ -228,7 +188,7 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.secondary.contrastText,
-              fontSize: "18px",
+              fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
               paddingBottom: "10px",
@@ -249,7 +209,7 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.secondary.contrastText,
-              fontSize: "18px",
+              fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
               paddingBottom: "10px",
@@ -270,7 +230,7 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.secondary.contrastText,
-              fontSize: "18px",
+              fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
               paddingBottom: "10px",
@@ -322,7 +282,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -339,7 +303,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -356,7 +324,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -373,7 +345,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -390,7 +366,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -407,7 +387,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -424,7 +408,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -441,7 +429,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>
@@ -458,7 +450,11 @@ const Sidebar = () => {
                 <Avatar sx={{
                   width: "58px",
                   height: "58px",
-                }} alt="Remy Sharp" src="/assets/images/userFace.jpg" />
+                }} alt="Remy Sharp"
+                  src={
+                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
+                  }
+                />
               </StyledBadge>
             </Box>
           </Tooltip>

@@ -23,6 +23,9 @@ body {
 h1, h2, h3, h4, h5, h6,span, button{
     font-family: 'Agdasima', sans-serif;
 }
+span{
+	text-transform: initial !important;
+}
 p {
 	font-family: 'Lato', sans-serif !important;
 	font-size: 14px;
@@ -48,11 +51,19 @@ input{
     border: none;
     outline: none;
     cursor: pointer;
+	font-family: 'Lato', sans-serif !important;
+}
+label{
+	border: none;
+	outline: none;
+	cursor: pointer;
+	font-family: 'Lato', sans-serif !important;
 }
 textarea{
     border: none;
     outline: none;
     cursor: pointer;
+	font-family: 'Lato', sans-serif !important;
 }
 
 /* header AREA  */
@@ -119,4 +130,29 @@ opacity: 1;
     top: -6px;
 	color: #939598;
 }
+.search_content_form .MuiOutlinedInput-notchedOutline {
+	border-radius: 50px;
+}
+.search_content_form .MuiInputBase-input {
+	padding: 16.5px 20px !important;
+}
 
+
+.ChatRoomLeftBar::-webkit-scrollbar  {
+	width: 8px;
+	background: #eeeeee;
+	border-radius: 10px;
+}
+
+.ChatRoomLeftBar::-webkit-scrollbar-thumb {
+	background: #d9d9d9;
+	border-radius: 10px;
+	min-height: 10px;
+	width: 5px;
+}
+.ChatRoomLeftBar::-webkit-scrollbar-thumb:hover {
+	background: #c2c2c2;
+}
+.css-raiz8k-MuiPaper-root-MuiAccordion-root:before {
+display: none !important;
+}

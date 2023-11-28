@@ -13,7 +13,9 @@ const AddFriend = () => {
             <Box flex={"1"} padding={"0 10px"}>
                 <Avatar
                     alt="Remy Sharp"
-                    src="/assets/images/profileImg.jpg"
+                    src={
+                        process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                      }
                     sx={{
                         marginRight: "5px",
                         height: "80px",
@@ -56,6 +58,7 @@ const AddFriend = () => {
                             color: theme.palette.primary.White,
                             fontSize: "14px",
                             fontWeight: "600",
+                            lineHeight: "26px",
                             backgroundColor: theme.palette.primary.LogoColor,
                             borderRadius: "30px",
                             padding: "7px 25px",
