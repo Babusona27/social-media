@@ -48,11 +48,13 @@ input{
     border: none;
     outline: none;
     cursor: pointer;
+	font-family: 'Lato', sans-serif !important;
 }
 textarea{
     border: none;
     outline: none;
     cursor: pointer;
+	font-family: 'Lato', sans-serif !important;
 }
 
 /* header AREA  */
