@@ -4,6 +4,9 @@ import {
   Button,
   Container,
   Divider,
+  FormControl,
+  MenuItem,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -15,6 +18,8 @@ import { useDispatch } from "react-redux";
 import { userDetails } from "../redux/reducers/UserReducer";
 
 const Register = ({ onChildClick }) => {
+  const [gender, setGender] = useState("");
+
   const dispatch = useDispatch();
 
   const [messageType, setMessageType] = useState("");
@@ -83,20 +88,22 @@ const Register = ({ onChildClick }) => {
 
     // If form is valid, submit the data
     if (isValid) {
-    //   console.log("Form submitted:", formData);
+      //   console.log("Form submitted:", formData);
       // logic to submit data, e.g., make an API call
-      axios.post(REGISTER, formData).then((res) => {
-        if (res.data.code === 200) {
+      axios
+        .post(REGISTER, formData)
+        .then((res) => {
           setMessageType("success");
           setMessage(res.data.message);
           dispatch(userDetails(res.data.data));
-          //  console.log("Response:", res);
-          //handleClick(1);
-        } else {
-          setMessageType("error");
-          setMessage(res.data.message);
-        }
-      });
+        })
+        .catch((err) => {
+          console.log(err.response);
+          if (err.response) {
+            setMessageType("error");
+            setMessage(err.response.data.message);
+          }
+        });
     }
   };
 
@@ -209,7 +216,8 @@ const Register = ({ onChildClick }) => {
                 }}
                 className="form_imput"
                 fullWidth
-                label="Enter name"
+                placeholder="Enter name"
+                // label="Enter name"
                 variant="outlined"
                 name="name"
                 value={formData.name}
@@ -224,7 +232,8 @@ const Register = ({ onChildClick }) => {
                 }}
                 className="form_imput"
                 fullWidth
-                label="Enter email"
+                placeholder="Enter email"
+                // label="Enter email"
                 variant="outlined"
                 name="email"
                 value={formData.email}
@@ -239,7 +248,9 @@ const Register = ({ onChildClick }) => {
                 }}
                 className="form_imput"
                 fullWidth
-                label="Enter phone number"
+                type="phone"
+                placeholder="Enter phone number"
+                // label="Enter phone number"
                 variant="outlined"
                 name="phone"
                 value={formData.phone}
@@ -247,14 +258,47 @@ const Register = ({ onChildClick }) => {
                 error={Boolean(errors.phone)}
                 helperText={errors.phone}
               />
-
+              <TextField
+                sx={{
+                  padding: "0",
+                  color: theme.palette.primary.White,
+                }}
+                className="form_imput"
+                fullWidth
+                type="date"
+                placeholder="Enter date of birth"
+                variant="outlined"
+                defaultValue={formData.dob}
+                name="date"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                
+              />
+              <FormControl className="form_imput">
+                <Select
+                  sx={{
+                    padding: "0",
+                    textAlign: "left",
+                  }}
+                  labelId="gender-label"
+                  placeholder="Gender"
+                  value={gender}
+                  defaultValue="Gender"
+                  onChange={(e) => setGender(e.target.value)}
+                >
+                  <MenuItem value={"male"}>Male</MenuItem>
+                  <MenuItem value={"female"}>Female</MenuItem>
+                  <MenuItem value={"other"}>Other</MenuItem>
+                </Select>
+              </FormControl>
               <TextField
                 sx={{
                   padding: "0",
                 }}
                 className="form_imput"
                 fullWidth
-                label="Enter a password"
+                placeholder="Enter a password"
                 variant="outlined"
                 name="password"
                 type="password"
@@ -291,11 +335,16 @@ const Register = ({ onChildClick }) => {
           <Typography
             sx={{
               fontSize: "14px",
-              fontWeight: "400",
+              fontWeight: "500",
               lineHeight: "1.5",
               textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+              fontFamily: theme.palette.primary.MainFont1,
+              alignItems: "center",
+              margin: "10px auto 0",
+              background: "transparent",
               color: theme.palette.primary.White,
-              display: "block",
               transition: "all .3s ease",
               "&:hover": {
                 color: theme.palette.primary.deepBlue,

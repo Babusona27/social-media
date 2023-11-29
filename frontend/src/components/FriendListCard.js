@@ -8,7 +8,7 @@ const FriendListCard = () => {
             width: "48%",
         }}>
             <Box sx={{
-                background: `${theme.palette.primary.CoverBgGradient}, url(${process.env.PUBLIC_URL + "/assets/images/sidebarHeaderBg.jpg"}) no-repeat`,
+                background: `${theme.palette.primary.CoverBgGradient}, url(${process.env.PUBLIC_URL + "/assets/images/fb6.jpg"}) no-repeat`,
                 backgroundSize: "cover",
                 width: "100%",
                 minHeight: "120px",
