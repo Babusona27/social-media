@@ -160,3 +160,21 @@ opacity: 1;
 .css-raiz8k-MuiPaper-root-MuiAccordion-root:before {
 display: none !important;
 }
+.profile_input .Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: initial !important;
+    border-width: 1px !important;
+}
+.profile_input :hover .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.3) !important;
+}
+.profile_input .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+	padding: 10px 14px !important;
+}
+.profile_input .css-xfn8dw-MuiFormLabel-root-MuiInputLabel-root {
+    top: -6px;
+	color: #939598;
+}
+.profile_input Select ::placeholder {
+	color: #939598 !important;
+	opacity: 1 !important;
+}
