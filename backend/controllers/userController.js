@@ -73,9 +73,18 @@ exports.userList = async (req, res) => {
     try {
         let limit = parseInt(req.query.limit) || 10;
         let offSet = parseInt(req.query.offSet) || 0;
-        let user = await userSchema.find({ _id: { $ne: req.user.userId } }).populate('hobbies').skip(offSet).limit(limit);
-        if (user) {
-            return res.status(200).json(helper.response(200, true, "User List!", user));
+        let userFriend = await userFriendSchema.find({ $or: [{ user_id_1: req.user.userId }, { user_id_2: req.user.userId }], status: "accepted" });
+        let userFriendId = userFriend.map((item) => {
+            if (item.user_id_1 == req.user.userId) {
+                return item.user_id_2;
+            } else {
+                return item.user_id_1;
+            }
+        });
+        userFriendId.push(req.user.userId);
+        let userList = await userSchema.find({ _id: { $nin: userFriendId } }).skip(offSet).limit(limit);
+        if (userList) {
+            return res.status(200).json(helper.response(200, true, "User List!", userList));
         } else {
             return res.status(200).json(helper.response(200, false, "User List Not Found!"));
         }
