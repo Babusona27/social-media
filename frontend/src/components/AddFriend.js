@@ -19,7 +19,7 @@ const AddFriend = () => {
           },
         })
         .then((res) => {
-          console.log(res.data);
+         // console.log(res.data);
           setUserList(res.data.data);
         })
         .catch((err) => {
@@ -39,7 +39,7 @@ const AddFriend = () => {
           Authorization: `Bearer ${userData.token}`,
         },
       }).then((res) => {
-        console.log(res.data);
+       //console.log(res.data);
         // setUserList(res.data.data);
         showAlert("success", res.data.message);
       }).catch((err) => {

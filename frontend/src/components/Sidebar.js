@@ -1,7 +1,7 @@
 import { Avatar, Box, List, Typography, Badge, Tooltip } from '@mui/material'
 import React from 'react'
 import { PersonAdd } from '@mui/icons-material'
-import { Chat, Feed, Groups, PermMedia, Videocam } from '@mui/icons-material'
+import { Chat,  Groups, PermMedia, Videocam } from '@mui/icons-material'
 import theme from '../Theme'
 import styled from '@mui/material/styles/styled'
 import GroupIcon from '@mui/icons-material/Group';
@@ -126,7 +126,7 @@ const Sidebar = () => {
         {/*-------------- Sidebar List *-------------*/}
 
         <List>
-          <Box sx={{
+          {/* <Box sx={{
             display: "flex",
             alignItems: "center",
             padding: "0 15px",
@@ -153,7 +153,7 @@ const Sidebar = () => {
               },
             }}>
               My Newsfeed</Typography>
-          </Box>
+          </Box> */}
           <Box sx={{
             display: "flex",
             alignItems: "center",
@@ -228,7 +228,7 @@ const Sidebar = () => {
               marginRight: "10px",
               marginBottom: "10px",
             }} />
-            <Typography component={"a"} href='#' sx={{
+            <Typography component={"a"} href='/chatroom' sx={{
               color: theme.palette.primary.ParaColor,
                fontSize: "16px",
                borderBottom: `1px solid ${theme.palette.primary.LightGray}`,

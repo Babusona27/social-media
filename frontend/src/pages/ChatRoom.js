@@ -17,7 +17,9 @@ import Footer from "../components/Footer";
 import ReplyIcon from "@mui/icons-material/Reply";
 import DoneIcon from '@mui/icons-material/Done';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
+
 const ChatRoom = () => {
+
   const [activeTab, setActiveTab] = useState(1);
 
   return (
@@ -200,7 +202,7 @@ const ChatRoom = () => {
                   height: "400px",
                 }}
               >
-                <Tabs orientation="vertical" variant="scrollable">
+             
                   <Button
                     sx={{
                       display: "block",
@@ -211,8 +213,7 @@ const ChatRoom = () => {
                         borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                       },
                     }}
-                    onClick={() => setActiveTab(1)}
-                    className={activeTab === 1 ? "ActiveTab" : ""}
+                   
                   >
                     <Box
                       sx={{
@@ -306,8 +307,7 @@ const ChatRoom = () => {
                         borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                       },
                     }}
-                    onClick={() => setActiveTab(2)}
-                    className={activeTab === 2 ? "ActiveTab" : ""}
+                   
                   >
                     <Box
                       sx={{
@@ -416,8 +416,7 @@ const ChatRoom = () => {
                         borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                       },
                     }}
-                    onClick={() => setActiveTab(3)}
-                    className={activeTab === 3 ? "ActiveTab" : ""}
+                 
                   >
                     <Box
                       sx={{
@@ -512,8 +511,7 @@ const ChatRoom = () => {
                         borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                       },
                     }}
-                    onClick={() => setActiveTab(4)}
-                    className={activeTab === 4 ? "ActiveTab" : ""}
+                  
                   >
                     <Box
                       sx={{
@@ -608,8 +606,7 @@ const ChatRoom = () => {
                         borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                       },
                     }}
-                    onClick={() => setActiveTab(5)}
-                    className={activeTab === 5 ? "ActiveTab" : ""}
+                  
                   >
                     <Box
                       sx={{
@@ -704,8 +701,7 @@ const ChatRoom = () => {
                         borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                       },
                     }}
-                    onClick={() => setActiveTab(6)}
-                    className={activeTab === 6 ? "ActiveTab" : ""}
+                 
                   >
                     <Box
                       sx={{
@@ -800,8 +796,7 @@ const ChatRoom = () => {
                         borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                       },
                     }}
-                    onClick={() => setActiveTab(7)}
-                    className={activeTab === 7 ? "ActiveTab" : ""}
+               
                   >
                     <Box
                       sx={{
@@ -910,8 +905,7 @@ const ChatRoom = () => {
                         borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                       },
                     }}
-                    onClick={() => setActiveTab(8)}
-                    className={activeTab === 8 ? "ActiveTab" : ""}
+                
                   >
                     <Box
                       sx={{
@@ -1006,8 +1000,7 @@ const ChatRoom = () => {
                         borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                       },
                     }}
-                    onClick={() => setActiveTab(9)}
-                    className={activeTab === 9 ? "ActiveTab" : ""}
+                  
                   >
                     <Box
                       sx={{
@@ -1102,8 +1095,7 @@ const ChatRoom = () => {
                         borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                       },
                     }}
-                    onClick={() => setActiveTab(10)}
-                    className={activeTab === 10 ? "ActiveTab" : ""}
+                   
                   >
                     <Box
                       sx={{
@@ -1212,8 +1204,7 @@ const ChatRoom = () => {
                         borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                       },
                     }}
-                    onClick={() => setActiveTab(11)}
-                    className={activeTab === 11 ? "ActiveTab" : ""}
+                  
                   >
                     <Box
                       sx={{
@@ -1297,7 +1288,7 @@ const ChatRoom = () => {
                       </Box>
                     </Box>
                   </Button>
-                </Tabs>
+              
               </Box>
               <Box
                 className="ChatRoomLeftBar"
@@ -1311,66 +1302,7 @@ const ChatRoom = () => {
                   marginLeft: "10px",
                 }}
               >
-                <Box
-                  className={activeTab === 1 ? "activeTabContent" : ""}
-                  style={{ display: activeTab === 1 ? "block" : "none" }}
-                >
-                  Item One
-                </Box>
-                <Box
-                  className={activeTab === 2 ? "activeTabContent" : ""}
-                  style={{ display: activeTab === 2 ? "block" : "none" }}
-                >
-                  Item Two
-                </Box>
-                <Box
-                  className={activeTab === 3 ? "activeTabContent" : ""}
-                  style={{ display: activeTab === 3 ? "block" : "none" }}
-                >
-                  Item Three
-                </Box>
-                <Box
-                  className={activeTab === 4 ? "activeTabContent" : ""}
-                  style={{ display: activeTab === 4 ? "block" : "none" }}
-                >
-                  Item Two
-                </Box>
-                <Box
-                  className={activeTab === 5 ? "activeTabContent" : ""}
-                  style={{ display: activeTab === 5 ? "block" : "none" }}
-                >
-                  Item Three
-                </Box>
-                <Box
-                  className={activeTab === 6 ? "activeTabContent" : ""}
-                  style={{ display: activeTab === 6 ? "block" : "none" }}
-                >
-                  Item One
-                </Box>
-                <Box
-                  className={activeTab === 7 ? "activeTabContent" : ""}
-                  style={{ display: activeTab === 7 ? "block" : "none" }}
-                >
-                  Item Two
-                </Box>
-                <Box
-                  className={activeTab === 8 ? "activeTabContent" : ""}
-                  style={{ display: activeTab === 8 ? "block" : "none" }}
-                >
-                  Item Three
-                </Box>
-                <Box
-                  className={activeTab === 9 ? "activeTabContent" : ""}
-                  style={{ display: activeTab === 9 ? "block" : "none" }}
-                >
-                  Item Two
-                </Box>
-                <Box
-                  className={activeTab === 10 ? "activeTabContent" : ""}
-                  style={{ display: activeTab === 10 ? "block" : "none" }}
-                >
-                  Item Three
-                </Box>
+              
               </Box>
             </Box>
           </Box>

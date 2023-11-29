@@ -5,12 +5,16 @@ import Footer from '../components/Footer'
 import theme from '../Theme'
 import ProfileSideBar from '../components/ProfileSideBar'
 import ProfileRightBar from '../components/ProfileRightBar'
+// import AccountSettings from '../components/AccountSettings'
+import ChangePassword from '../components/ChangePassword'
+// import BasicInformationDetails from '../components/BasicInformationDetails'
+// import MyInterest from '../components/MyInterest'
 
 const EditProfile = () => {
   return (
     <>
       <HeaderNew />
-      <Container maxWidth="lg" sx={{ height: "100%" }}>
+      <Container maxWidth="lg" sx={{ height: "100%",marginBottom:"50px" }}>
         <Box
           sx={{
             height: "500px",
@@ -104,11 +108,18 @@ const EditProfile = () => {
           marginTop: "30px",
           textAlign: "center",
         }}>
-          <Box flex={"0.7"}>
+          <Box flex={"0.7"} padding={"0 10px"}>
             <ProfileSideBar />
           </Box>
-          <Box flex={"2"}></Box>
-          <Box flex={"0.4"}>
+          <Box flex={"2"} padding={"0 10px"} sx={{ 
+
+           }}>
+            {/* <BasicInformationDetails /> */}
+            {/* <MyInterest/> */}
+            {/* <AccountSettings/> */}
+            <ChangePassword/>
+          </Box>
+          <Box flex={"0.4"} padding={"0 10px"}>
 
             <Typography component={"h4"} sx={{
               fontSize: "22px",
@@ -122,10 +133,7 @@ const EditProfile = () => {
             <ProfileRightBar />
             <ProfileRightBar />
           </Box>
-        </Box>
-        <Typography sx={{
-          height: "800px",
-        }}>hkhkhkh</Typography>
+        </Box>        
       </Container>
       <Footer />
     </>

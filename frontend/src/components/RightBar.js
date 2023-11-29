@@ -20,7 +20,7 @@ const RightBar = () => {
           },
         })
         .then((res) => {
-           console.log(res.data);
+          // console.log(res.data);
           setUserList(res.data.data);
         })
         .catch((err) => {
