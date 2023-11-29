@@ -3,8 +3,10 @@ import { Avatar, Box, Typography, } from '@mui/material'
 import theme from '../Theme'
 import axios from "axios";
 import { FRIEND_LIST } from "../Url";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { friendList } from "../redux/reducers/FriendListReducer";
 const FriendListCard = () => {
+    const dispatch = useDispatch();
     const userData = useSelector((state) => state.UserReducer.value);
     const [userList, setUserList] = useState([]);
     useEffect(() => {
@@ -17,13 +19,14 @@ const FriendListCard = () => {
                 })
                 .then((res) => {
                     setUserList(res.data.data);
+                    dispatch(friendList(res.data.data));                
                 })
                 .catch((err) => {
                     console.log(err);
                 });
         }
         getUserList();
-    }, [userData.token]);
+    }, [userData.token, dispatch]);
     return (
         <>
             {userList.map((item, key) => (

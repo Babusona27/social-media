@@ -154,10 +154,7 @@ const FriendList = () => {
               flexWrap: "wrap",
               gap: "20px",
             }}>
-              <FriendListCard />
-              {/* <FriendListCard />
-              <FriendListCard />
-              <FriendListCard /> */}
+              <FriendListCard />             
             </Box>
           </Box>
           <Box flex={0.5} p={"0 10px"}>

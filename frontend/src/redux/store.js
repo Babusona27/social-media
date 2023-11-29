@@ -3,6 +3,7 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 
 import UserReducer from './reducers/UserReducer';
+import FriendListReducer from './reducers/FriendListReducer';
 
 const persistConfig = {
   key: 'root',
@@ -11,6 +12,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   UserReducer: persistReducer(persistConfig, UserReducer), 
+  FriendListReducer: FriendListReducer,
 });
 
 export const store = configureStore({
