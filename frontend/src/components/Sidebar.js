@@ -144,14 +144,14 @@ const Sidebar = () => {
               marginRight: "10px",
               marginBottom: "10px",
             }} />
-            <Typography component={"a"} href='#' sx={{
+            <Typography component={"a"} href='/nearbypeople' sx={{
               color: theme.palette.secondary.contrastText,
               fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
               paddingBottom: "10px",
             }}>
-              People Nearby</Typography>
+              Friend Request</Typography>
           </Box>
           <Box sx={{
             display: "flex",
@@ -165,7 +165,7 @@ const Sidebar = () => {
               marginRight: "10px",
               marginBottom: "10px",
             }} />
-            <Typography component={"a"} href='#' sx={{
+            <Typography component={"a"} href='/friendlist' sx={{
               color: theme.palette.secondary.contrastText,
               fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
