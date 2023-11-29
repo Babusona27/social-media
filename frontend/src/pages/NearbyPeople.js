@@ -150,10 +150,7 @@ const NearbyPeople = () => {
             </Box>
             <Box>
               <AddFriend />
-              <AddFriend />
-              <AddFriend />
-              <AddFriend />
-              <AddFriend />
+             
             </Box>
           </Box>
           <Box flex={0.5} p={"0 10px"}>

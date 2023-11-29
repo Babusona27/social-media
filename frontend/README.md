@@ -84,3 +84,4 @@ display follower list
 design issue
 1) login register box modification , add dob,gender
 2) add flash message    
+

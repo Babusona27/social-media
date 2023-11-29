@@ -35,6 +35,7 @@ import { createTheme } from '@mui/material/styles';
       main: '#f44336',
       dark: '#ba000d',
       contrastText: '#000',
+      InputColor:"#c4c4c4",
     },
   },
 });

@@ -23,6 +23,8 @@ import styled from "@emotion/styled";
 import Footer from "../components/Footer";
 import Register from "../components/Register";
 import Login from "../components/Login";
+import EducationandWork from "../components/EducationandWork";
+import Sidebar from "../components/Sidebar";
 
 const Landing = () => {
   const [tab, setTab] = useState(1);
@@ -1902,6 +1904,22 @@ const Landing = () => {
           </Box>
 </Container>
       </Box>
+      <Container maxWidth="lg" sx={{ height: "100%" }}>
+      <Box sx={{
+        display:"flex",
+        justifyContent:"space-between",
+      }}>
+<Box flex={1}>
+<Sidebar/>
+</Box>
+<Box flex={2} padding={"0px 15px"}>
+<EducationandWork/>
+</Box>
+<Box flex={1}>
+<Sidebar/>
+</Box>
+      </Box>
+      </Container>
 
 
       
