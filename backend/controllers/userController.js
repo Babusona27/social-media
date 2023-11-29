@@ -73,7 +73,7 @@ exports.userList = async (req, res) => {
     try {
         let limit = parseInt(req.query.limit) || 10;
         let offSet = parseInt(req.query.offSet) || 0;
-        let userFriend = await userFriendSchema.find({ $or: [{ user_id_1: req.user.userId }, { user_id_2: req.user.userId }], status: "accepted" });
+        let userFriend = await userFriendSchema.find({ $or: [{ user_id_1: req.user.userId }, { user_id_2: req.user.userId }], status: { $in: ["accepted", "pending"] } });
         let userFriendId = userFriend.map((item) => {
             if (item.user_id_1 == req.user.userId) {
                 return item.user_id_2;
