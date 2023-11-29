@@ -95,7 +95,7 @@ const Header = () => {
           >
             <Box sx={{}}>
               <FormControl
-                className="form_imput"
+                className="form_imputNew"
                 sx={{
                   height: "40px",
                   padding: "0px",

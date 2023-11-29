@@ -21,6 +21,7 @@ import { createTheme } from '@mui/material/styles';
       deepBlue:"#2b3990",
       BackGredient1:"linear-gradient(to bottom, rgba(43,57,144,100%), rgba(39,170,225,1) 55%)",
       LightGray1:"#939598",
+     bgProfile:" linear-gradient(to bottom, rgba(39,170,225,.8), rgba(28,117,188,.8))",
       GrayGredient:"-webkit-radial-gradient(#fff 50%, #EFEFEF 90%)",
       Gray2:"#f8f8f8",
       BoxShadow: "0 12px 12px rgba(39, 170, 225, 0.3)",

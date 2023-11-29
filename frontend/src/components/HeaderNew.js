@@ -91,6 +91,7 @@ const HeaderNew = () => {
               >
                 <TextField
                   fullWidth
+                  className="form_imputNew"
                   sx={{
                     padding: "0px",
                     height: "30px",

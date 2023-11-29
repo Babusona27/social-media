@@ -1,9 +1,10 @@
 import { Avatar, Box, List, Typography, Badge, Tooltip } from '@mui/material'
 import React from 'react'
 import { PersonAdd } from '@mui/icons-material'
-import { Chat, Feed, Groups, PeopleOutline, PermMedia, Videocam } from '@mui/icons-material'
+import { Chat, Feed, Groups, PermMedia, Videocam } from '@mui/icons-material'
 import theme from '../Theme'
 import styled from '@mui/material/styles/styled'
+import GroupIcon from '@mui/icons-material/Group';
 
 const Sidebar = () => {
 
@@ -46,7 +47,7 @@ const Sidebar = () => {
           display: "flex",
         }}>
           <Box className="sideHeader" sx={{
-            background: `${theme.palette.primary.SidebarBgGredient}, url(${process.env.PUBLIC_URL + "/assets/images/sidebarHeaderBg.jpg"}) no-repeat`,
+            background: `url(${process.env.PUBLIC_URL + "/assets/images/fb6.jpg"}) center no-repeat`,
             backgroundSize: "cover",
             width: "100%",
             minHeight: "90px",
@@ -54,6 +55,19 @@ const Sidebar = () => {
             padding: "10px 20px",
             color: "#fff",
             marginBottom: "40px",
+            position: "relative",
+            zIndex: "0",
+            "&::after": {
+              content: "''",
+              position: "absolute",
+              top: "0",
+              left: "0",
+              width: "100%",
+              height: "100%",
+              background: theme.palette.primary.bgProfile,
+              borderRadius: "4px",
+              zIndex: "-1",
+            }
           }}>
             <Avatar
               alt="Remy Sharp"
@@ -78,7 +92,7 @@ const Sidebar = () => {
                 color: theme.palette.primary.White,
                 lineHeight: "0",
                 "&:hover": {
-                  textDecoration: "underline",
+                  color: theme.palette.primary.dark,
                 }
               }}
               >Sarah Cruiz</Typography>
@@ -86,6 +100,7 @@ const Sidebar = () => {
             <Box sx={{
               display: "flex",
               alignItems: "center",
+              gap: "10px",
             }}>
               <PersonAdd sx={{
                 fontSize: "14px",
@@ -97,7 +112,7 @@ const Sidebar = () => {
                   fontSize: "14px",
                   color: theme.palette.primary.White,
                   "&:hover": {
-                    textDecoration: "underline",
+                    color: theme.palette.primary.dark,
                   }
                 }}
               >
@@ -118,17 +133,24 @@ const Sidebar = () => {
             marginBottom: "10px",
           }}>
             <Feed sx={{
-              color: theme.palette.secondary.main,
+              color: "#00b8d4",
               fontSize: "18px",
               marginRight: "10px",
               marginBottom: "10px",
             }} />
             <Typography component={"a"} href='#' sx={{
-              color: theme.palette.secondary.contrastText,
+              color: theme.palette.primary.ParaColor,
               fontSize: "16px",
               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
               width: "100%",
+              fontWeight: "600",
               paddingBottom: "10px",
+              transition: "all .3s ease",
+              "&:hover": {
+                 color: theme.palette.primary.LogoColor,
+                 borderBottom: `1px solid ${theme.palette.primary.LogoColor }`,
+                 paddingLeft:"15px"
+              },
             }}>
               My Newsfeed</Typography>
           </Box>
@@ -139,17 +161,24 @@ const Sidebar = () => {
             marginBottom: "10px",
           }}>
             <Groups sx={{
-              color: theme.palette.primary.main,
+              color: "#6200ea",
               fontSize: "18px",
               marginRight: "10px",
               marginBottom: "10px",
             }} />
             <Typography component={"a"} href='#' sx={{
-              color: theme.palette.secondary.contrastText,
-              fontSize: "16px",
-              borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
-              width: "100%",
-              paddingBottom: "10px",
+               color: theme.palette.primary.ParaColor,
+               fontSize: "16px",
+               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
+               width: "100%",
+               fontWeight: "600",
+               paddingBottom: "10px",
+               transition: "all .3s ease",
+               "&:hover": {
+                  color: theme.palette.primary.LogoColor,
+                  borderBottom: `1px solid ${theme.palette.primary.LogoColor }`,
+                  paddingLeft:"15px"
+               },
             }}>
               People Nearby</Typography>
           </Box>
@@ -159,18 +188,25 @@ const Sidebar = () => {
             padding: "0 15px",
             marginBottom: "10px",
           }}>
-            <PeopleOutline sx={{
-              color: theme.palette.secondary.black,
+            <GroupIcon sx={{
+              color: "#aa00ff",
               fontSize: "18px",
               marginRight: "10px",
               marginBottom: "10px",
             }} />
             <Typography component={"a"} href='#' sx={{
-              color: theme.palette.secondary.contrastText,
-              fontSize: "16px",
-              borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
-              width: "100%",
-              paddingBottom: "10px",
+              color: theme.palette.primary.ParaColor,
+               fontSize: "16px",
+               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
+               width: "100%",
+               fontWeight: "600",
+               paddingBottom: "10px",
+               transition: "all .3s ease",
+               "&:hover": {
+                  color: theme.palette.primary.LogoColor,
+                  borderBottom: `1px solid ${theme.palette.primary.LogoColor }`,
+                  paddingLeft:"15px"
+               },
             }}>
               Friends</Typography>
           </Box>
@@ -181,17 +217,24 @@ const Sidebar = () => {
             marginBottom: "10px",
           }}>
             <Chat sx={{
-              color: theme.palette.secondary.black,
+              color: "#1a237e",
               fontSize: "18px",
               marginRight: "10px",
               marginBottom: "10px",
             }} />
             <Typography component={"a"} href='#' sx={{
-              color: theme.palette.secondary.contrastText,
-              fontSize: "16px",
-              borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
-              width: "100%",
-              paddingBottom: "10px",
+              color: theme.palette.primary.ParaColor,
+               fontSize: "16px",
+               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
+               width: "100%",
+               fontWeight: "600",
+               paddingBottom: "10px",
+               transition: "all .3s ease",
+               "&:hover": {
+                  color: theme.palette.primary.LogoColor,
+                  borderBottom: `1px solid ${theme.palette.primary.LogoColor }`,
+                  paddingLeft:"15px"
+               },
             }}>
               Messages</Typography>
           </Box>
@@ -202,17 +245,24 @@ const Sidebar = () => {
             marginBottom: "10px",
           }}>
             <PermMedia sx={{
-              color: theme.palette.secondary.black,
+              color: "#00c853",
               fontSize: "18px",
               marginRight: "10px",
               marginBottom: "10px",
             }} />
             <Typography component={"a"} href='#' sx={{
-              color: theme.palette.secondary.contrastText,
-              fontSize: "16px",
-              borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
-              width: "100%",
-              paddingBottom: "10px",
+              color: theme.palette.primary.ParaColor,
+               fontSize: "16px",
+               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
+               width: "100%",
+               fontWeight: "600",
+               paddingBottom: "10px",
+               transition: "all .3s ease",
+               "&:hover": {
+                  color: theme.palette.primary.LogoColor,
+                  borderBottom: `1px solid ${theme.palette.primary.LogoColor }`,
+                  paddingLeft:"15px"
+               },
             }}>
               Images</Typography>
           </Box>
@@ -223,17 +273,24 @@ const Sidebar = () => {
             marginBottom: "10px",
           }}>
             <Videocam sx={{
-              color: theme.palette.secondary.black,
+              color: "#dd2c00",
               fontSize: "18px",
               marginRight: "10px",
               marginBottom: "10px",
             }} />
             <Typography component={"a"} href='#' sx={{
-              color: theme.palette.secondary.contrastText,
-              fontSize: "16px",
-              borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
-              width: "100%",
-              paddingBottom: "10px",
+              color: theme.palette.primary.ParaColor,
+               fontSize: "16px",
+               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
+               width: "100%",
+               fontWeight: "600",
+               paddingBottom: "10px",
+               transition: "all .3s ease",
+               "&:hover": {
+                  color: theme.palette.primary.LogoColor,
+                  borderBottom: `1px solid ${theme.palette.primary.LogoColor }`,
+                  paddingLeft:"15px"
+               },
             }}>
               Videos</Typography>
           </Box>

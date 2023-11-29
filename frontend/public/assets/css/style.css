@@ -99,19 +99,20 @@ opacity: 1;
 .form_imput :hover .MuiOutlinedInput-notchedOutline {
     border-color: rgba(0, 0, 0, 0.3) !important;
 }
-.form_imput .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+.form_imput .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input , .form_imput .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
 	padding: 10px 14px !important;
+	color: #fff;
 }
 .form_imput .css-xfn8dw-MuiFormLabel-root-MuiInputLabel-root {
     top: -6px;
 	color: rgb(255 255 255 / 80%);
 }
 
-.form_imput .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+.form_imput .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input, .form_imputNew .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
     padding: 10px 14px !important;
     color: #fff;
 }
-.form_imput .css-dbtxhb-MuiInputBase-root-MuiOutlinedInput-root {
+.form_imputNew .css-dbtxhb-MuiInputBase-root-MuiOutlinedInput-root {
     padding-right: 0;
     background: #ffffff2b;
 	border-radius: 30px;
@@ -136,7 +137,10 @@ opacity: 1;
 .search_content_form .MuiInputBase-input {
 	padding: 16.5px 20px !important;
 }
-
+.form_imput ::placeholder {
+	color: #fff !important;
+	opacity: 1 !important;
+}
 
 .ChatRoomLeftBar::-webkit-scrollbar  {
 	width: 8px;
