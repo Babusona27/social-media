@@ -17,7 +17,9 @@ import Footer from "../components/Footer";
 import ReplyIcon from "@mui/icons-material/Reply";
 import DoneIcon from '@mui/icons-material/Done';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
+
 const ChatRoom = () => {
+
   const [activeTab, setActiveTab] = useState(1);
 
   return (

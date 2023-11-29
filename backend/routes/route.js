@@ -4,6 +4,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 const userController = require('../controllers/userController');
 const messageController = require('../controllers/messageController');
 const feedController = require('../controllers/feedController');
+const fileUploadController = require('../controllers/fileUploadController');
 
 //user API
 router.post('/register', userController.register);
@@ -39,5 +40,6 @@ router.post('/comment-on-feed', [authMiddleware.isAuth], feedController.commentO
 router.post('/reply-on-comment', [authMiddleware.isAuth], feedController.replyOnComment);
 //tag friend on feed
 router.post('/tag-friend-on-feed', [authMiddleware.isAuth], feedController.tagFriendOnFeed);
-
+//file upload
+router.post('/file-upload', [authMiddleware.isAuth], fileUploadController.fileUpload);
 module.exports = router;

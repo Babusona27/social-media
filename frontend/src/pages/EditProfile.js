@@ -101,14 +101,25 @@ const EditProfile = () => {
         </Box>
         <Box sx={{
           display: "flex",
-          marginTop:"30px",
-          textAlign:"center",
+          marginTop: "30px",
+          textAlign: "center",
         }}>
           <Box flex={"0.7"}>
             <ProfileSideBar />
           </Box>
           <Box flex={"2"}></Box>
-          <Box flex={"0.5"}>
+          <Box flex={"0.4"}>
+
+            <Typography component={"h4"} sx={{
+              fontSize: "22px",
+              fontWeight: "500",
+              color: theme.palette.primary.ParaColor,
+              textAlign: "left",
+            }}>Sarah's activity
+            </Typography>
+            <ProfileRightBar />
+            <ProfileRightBar />
+            <ProfileRightBar />
             <ProfileRightBar />
           </Box>
         </Box>

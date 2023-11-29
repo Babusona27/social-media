@@ -148,16 +148,13 @@ const FriendList = () => {
                 </Box>
               </Box>
             </Box>
-            <Box sx={{ 
+            <Box sx={{
               display: "flex",
-              justifyContent:"space-between",
-              flexWrap:"wrap",
-              gap:"20px",
-             }}>
-              <FriendListCard />
-              <FriendListCard />
-              <FriendListCard />
-              <FriendListCard />
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              gap: "20px",
+            }}>
+              <FriendListCard />             
             </Box>
           </Box>
           <Box flex={0.5} p={"0 10px"}>

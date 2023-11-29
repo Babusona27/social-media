@@ -1,9 +1,12 @@
 import { Box, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import theme from '../Theme'
 import { FavoriteBorder, Info, Lock, Tune, Work } from '@mui/icons-material'
 
 const ProfileSideBar = () => {
+
+    const [activeBox, setActiveBox] = useState(false);
+
     return (
         <Box>
             <Typography sx={{
@@ -20,20 +23,20 @@ const ProfileSideBar = () => {
                 marginBottom: "10px",
             }}>Creative Director
             </Typography>
-            <Box sx={{ 
+            <Box sx={{
                 marginTop: "30px",
-             }}>
+            }}>
                 <Box sx={{
                     paddingLeft: "15px",
-                    borderLeft: `2px solid ${theme.palette.primary.Green}`,
+                    borderLeft: `1px solid ${activeBox === 'box1' ? theme.palette.primary.Green : 'transparent'}`,
                 }}>
-                    <Box component={"a"} href='#' sx={{
+                    <Box component={"a"} href='#' onClick={() => setActiveBox("box1")} sx={{
                         display: "flex",
                         alignItems: "center",
                         marginBottom: "15px",
-                        color: theme.palette.primary.Green,
+                        color: ` ${activeBox === 'box1' ? theme.palette.primary.Green : theme.palette.primary.ParaColor}`,
                         gap: "15px",
-                        borderBottom: `1px solid ${theme.palette.primary.Gray}`,
+                        borderBottom: `1px solid ${activeBox === 'box1' ? theme.palette.primary.Green : theme.palette.primary.Gray}`,
                         paddingBottom: "15px",
                         "&:hover": {
                             borderBottom: `1px solid ${theme.palette.primary.Green}`,
@@ -50,15 +53,15 @@ const ProfileSideBar = () => {
                 </Box>
                 <Box sx={{
                     paddingLeft: "15px",
-                    borderLeft: `2px solid ${theme.palette.primary.Green}`,
+                    borderLeft: `1px solid ${activeBox === 'box2' ? theme.palette.primary.Green : 'transparent'}`,
                 }}>
-                    <Box component={"a"} href='#' sx={{
+                    <Box component={"a"} href='#' onClick={() => setActiveBox("box2")} sx={{
                         display: "flex",
                         alignItems: "center",
                         marginBottom: "15px",
-                        color: theme.palette.primary.ParaColor,
+                        color: ` ${activeBox === 'box2' ? theme.palette.primary.Green : theme.palette.primary.ParaColor}`,
                         gap: "15px",
-                        borderBottom: `1px solid ${theme.palette.primary.Gray}`,
+                        borderBottom: `1px solid ${activeBox === 'box2' ? theme.palette.primary.Green : theme.palette.primary.Gray}`,
                         paddingBottom: "15px",
                         "&:hover": {
                             borderBottom: `1px solid ${theme.palette.primary.Green}`,
@@ -75,15 +78,15 @@ const ProfileSideBar = () => {
                 </Box>
                 <Box sx={{
                     paddingLeft: "15px",
-                    borderLeft: `2px solid ${theme.palette.primary.Green}`,
+                    borderLeft: `1px solid ${activeBox === 'box3' ? theme.palette.primary.Green : 'transparent'}`,
                 }}>
-                    <Box component={"a"} href='#' sx={{
+                    <Box component={"a"} href='#' onClick={() => setActiveBox("box3")} sx={{
                         display: "flex",
                         alignItems: "center",
                         marginBottom: "15px",
-                        color: theme.palette.primary.ParaColor,
+                        color: ` ${activeBox === 'box3' ? theme.palette.primary.Green : theme.palette.primary.ParaColor}`,
                         gap: "15px",
-                        borderBottom: `1px solid ${theme.palette.primary.Gray}`,
+                        borderBottom: `1px solid ${activeBox === 'box3' ? theme.palette.primary.Green : theme.palette.primary.Gray}`,
                         paddingBottom: "15px",
                         "&:hover": {
                             borderBottom: `1px solid ${theme.palette.primary.Green}`,
@@ -100,15 +103,15 @@ const ProfileSideBar = () => {
                 </Box>
                 <Box sx={{
                     paddingLeft: "15px",
-                    borderLeft: `2px solid ${theme.palette.primary.Green}`,
+                    borderLeft: `1px solid ${activeBox === 'box4' ? theme.palette.primary.Green : 'transparent'}`,
                 }}>
-                    <Box component={"a"} href='#' sx={{
+                    <Box component={"a"} href='#' onClick={() => setActiveBox("box4")} sx={{
                         display: "flex",
                         alignItems: "center",
                         marginBottom: "15px",
-                        color: theme.palette.primary.ParaColor,
+                        color: ` ${activeBox === 'box4' ? theme.palette.primary.Green : theme.palette.primary.ParaColor}`,
                         gap: "15px",
-                        borderBottom: `1px solid ${theme.palette.primary.Gray}`,
+                        borderBottom: `1px solid ${activeBox === 'box4' ? theme.palette.primary.Green : theme.palette.primary.Gray}`,
                         paddingBottom: "15px",
                         "&:hover": {
                             borderBottom: `1px solid ${theme.palette.primary.Green}`,
@@ -125,15 +128,15 @@ const ProfileSideBar = () => {
                 </Box>
                 <Box sx={{
                     paddingLeft: "15px",
-                    borderLeft: `2px solid ${theme.palette.primary.Green}`,
+                    borderLeft: `1px solid ${activeBox === 'box5' ? theme.palette.primary.Green : 'transparent'}`,
                 }}>
-                    <Box component={"a"} href='#' sx={{
+                    <Box component={"a"} href='#' onClick={() => setActiveBox("box5")} sx={{
                         display: "flex",
                         alignItems: "center",
                         marginBottom: "15px",
-                        color: theme.palette.primary.ParaColor,
+                        color: ` ${activeBox === 'box5' ? theme.palette.primary.Green : theme.palette.primary.ParaColor}`,
                         gap: "15px",
-                        borderBottom: `1px solid ${theme.palette.primary.Gray}`,
+                        borderBottom: `1px solid ${activeBox === 'box5' ? theme.palette.primary.Green : theme.palette.primary.Gray}`,
                         paddingBottom: "15px",
                         "&:hover": {
                             borderBottom: `1px solid ${theme.palette.primary.Green}`,
