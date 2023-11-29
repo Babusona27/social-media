@@ -3,17 +3,16 @@ import React from 'react'
 import theme from '../Theme'
 import { ThumbDownAlt, ThumbUpAlt } from '@mui/icons-material'
 const style = {
-    position: 'absolute',
-    top: '38%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: "40%",
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    bgcolor: "background.paper",
+    border:`1px solid ${theme.palette.primary.LogoColor}`,
     boxShadow: 24,
-    margin: "150px 0 0 0"
-    // p: 4,
-};
+    margin: "130px 0px 50px 0px",
+  };
 const VideoGallery = () => {
 
     const [open, setOpen] = React.useState(false);
