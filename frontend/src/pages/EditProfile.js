@@ -6,8 +6,9 @@ import theme from '../Theme'
 import ProfileSideBar from '../components/ProfileSideBar'
 import ProfileRightBar from '../components/ProfileRightBar'
 // import AccountSettings from '../components/AccountSettings'
-import ChangePassword from '../components/ChangePassword'
-// import BasicInformationDetails from '../components/BasicInformationDetails'
+// import ChangePassword from '../components/ChangePassword'
+// import EducationandWork from '../components/EducationandWork'
+import BasicInformationDetails from '../components/BasicInformationDetails'
 // import MyInterest from '../components/MyInterest'
 
 const EditProfile = () => {
@@ -114,10 +115,11 @@ const EditProfile = () => {
           <Box flex={"2"} padding={"0 10px"} sx={{ 
 
            }}>
-            {/* <BasicInformationDetails /> */}
+            <BasicInformationDetails />
             {/* <MyInterest/> */}
             {/* <AccountSettings/> */}
-            <ChangePassword/>
+            {/* <ChangePassword/> */}
+            {/* <EducationandWork/> */}
           </Box>
           <Box flex={"0.4"} padding={"0 10px"}>
 
