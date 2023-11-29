@@ -68,6 +68,21 @@ exports.login = async (req, res) => {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
     }
 }
+
+exports.userList = async (req, res) => {
+    try {
+        let user = await userSchema.find({ _id: { $ne: req.user.userId } });
+        if (user) {
+            return res.status(200).json(helper.response(200, true, "User List!", user));
+        } else {
+            return res.status(400).json(helper.response(400, false, "User List Not Found!"));
+        }
+    }
+    catch (error) {
+        return res.status(500).json(helper.response(500, false, "something went wrong!"));
+    }
+}
+
 exports.profile = async (req, res) => {
     try {
         let user = await userSchema.findById(req.user.userId).populate('hobbies');

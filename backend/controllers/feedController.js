@@ -28,7 +28,10 @@ exports.createFeed = async (req, res) => {
 exports.feedList = async (req, res) => {
     try {
         let userId = req.user.userId;
-        let feedList = await feedSchema.find({ createdBy: userId }).populate('createdBy').populate('tagFriend.userId').populate('comment.userId').populate('comment.replyComment.userId').populate('reaction.userId').sort({ createdAt: -1 });
+        let limit = parseInt(req.query.limit) || 10;
+        let offSet = parseInt(req.query.offSet) || 0;
+        let feedList = await feedSchema.find({ $or: [{ createdBy: userId }, { "tagFriend.userId": userId }] }).populate('createdBy').populate('tagFriend.userId').populate('comment.userId').populate('comment.replyComment.userId').populate('reaction.userId').sort({ createdAt: -1 }).skip(offSet)
+            .limit(limit);
         if (feedList) {
             return res.status(200).json(helper.response(200, true, "Feed List!", { feedList: feedList }));
         } else {
