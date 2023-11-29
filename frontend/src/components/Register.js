@@ -6,11 +6,8 @@ import {
   Divider,
   FormControl,
   FormControlLabel,
-  FormLabel,
-  MenuItem,
   Radio,
   RadioGroup,
-  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -22,7 +19,7 @@ import { useDispatch } from "react-redux";
 import { userDetails } from "../redux/reducers/UserReducer";
 
 const Register = ({ onChildClick }) => {
-  const [gender, setGender] = useState("");
+  //const [gender, setGender] = useState("");
 
   const dispatch = useDispatch();
 

@@ -1,35 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Avatar, Box, Typography, } from '@mui/material'
 import theme from '../Theme'
-import axios from "axios";
-import { FRIEND_LIST } from "../Url";
-import { useSelector, useDispatch } from "react-redux";
-import { friendList } from "../redux/reducers/FriendListReducer";
+import { useSelector} from "react-redux";
 const FriendListCard = () => {
-    const dispatch = useDispatch();
-    const userData = useSelector((state) => state.UserReducer.value);
-    const [userList, setUserList] = useState([]);
-    useEffect(() => {
-        const getUserList = async () => {
-            axios
-                .get(FRIEND_LIST, {
-                    headers: {
-                        Authorization: `Bearer ${userData.token}`,
-                    },
-                })
-                .then((res) => {
-                    setUserList(res.data.data);
-                    dispatch(friendList(res.data.data));                
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
-        getUserList();
-    }, [userData.token, dispatch]);
+    const friendList = useSelector((state) => state.FriendListReducer.value);
+
     return (
         <>
-            {userList.map((item, key) => (
+            {friendList && friendList.map((item, key) => (
+
                 <Box sx={{
                     width: "48%",
                 }} key={key}>

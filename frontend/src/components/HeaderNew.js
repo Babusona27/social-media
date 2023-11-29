@@ -20,9 +20,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import styled from "@emotion/styled";
 import { useDispatch } from "react-redux";
 import { logOut } from "../redux/reducers/UserReducer";
-
+import { useNavigate } from 'react-router-dom';
 const HeaderNew = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // menubar open
   const [open, setOpen] = React.useState(false);
 
@@ -268,6 +269,7 @@ const HeaderNew = () => {
                     href="#"
                     onClick={() => {
                       dispatch(logOut());
+                      navigate('/');
                     }}
                   >
                     <Typography>Logout </Typography>
