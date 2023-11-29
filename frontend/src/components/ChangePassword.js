@@ -47,94 +47,59 @@ const ChangePassword = () => {
                 sx={{
                     display: "flex",
                     flexDirection: "column",
-                    gap: "15px",
-                    marginTop: "15px",
+                    gap: "20px",
+                    marginTop: "20px",
                 }}
-            //   onSubmit={handleSubmit}
             >
-
-                <Box sx={{
-                    textAlign: "left",
-                }}>
-                    <Typography sx={{
-                        fontSize: "16px",
-                    }}>Old password</Typography>
-                </Box>
-
                 <TextField
                     sx={{
                         padding: "0",
+
                     }}
                     className="profile_input"
                     fullWidth
-                    placeholder="Old password"
-                    variant="outlined"
-                    name="password"
+                    placeholder="Old Password"
                     type="password"
-                // value={formData.password}
-                // onChange={handleInputChange}
-                // error={Boolean(errors.password)}
-                // helperText={errors.password}
+                    variant="outlined"
+                    name="name"
+                    size="small"
                 />
-
                 <Box sx={{
                     display: "flex",
                     gap: "20px",
+                    alignItems: "center",
                 }}>
-                    <Box flex={"1"}>
-                        <Box sx={{
-                            textAlign: "left",
-                        }}>
-                            <Typography sx={{
-                                fontSize: "16px",
-                                marginBottom: "15px",
-                            }}>Old password</Typography>
-                        </Box>
-                        <TextField
-                            sx={{
-                                padding: "0",
-                            }}
-                            className="profile_input"
-                            fullWidth
-                            placeholder="Old password"
-                            variant="outlined"
-                            name="password"
-                            type="password"
-                        // value={formData.password}
-                        // onChange={handleInputChange}
-                        // error={Boolean(errors.password)}
-                        // helperText={errors.password}
-                        />
-                    </Box>
-                    <Box flex={"1"}>
-                        <Box sx={{
-                            textAlign: "left",
-                        }}>
-                            <Typography sx={{ 
-                        fontSize: "16px",
-                        marginBottom: "15px",
-                     }}>Old password</Typography>
-                        </Box>
-                        <TextField
-                            sx={{
-                                padding: "0",
-                            }}
-                            className="profile_input"
-                            fullWidth
-                            placeholder="Old password"
-                            variant="outlined"
-                            name="password"
-                            type="password"
-                        // value={formData.password}
-                        // onChange={handleInputChange}
-                        // error={Boolean(errors.password)}
-                        // helperText={errors.password}
-                        />
-                    </Box>
+                    <TextField
+                        sx={{
+                            padding: "0",
+                            flex: "1",
+                        }}
+                        className="profile_input"
+                        fullWidth
+                        placeholder="New Password"
+                        type="password"
+                        variant="outlined"
+                        name="form"
+                        size="small"
+                    />
+                    <TextField
+                        sx={{
+                            padding: "0",
+                            flex: "1",
+                        }}
+                        className="profile_input"
+                        fullWidth
+                        placeholder="Confirm Password"
+                        type="password"
+                        variant="outlined"
+                        name="to"
+                        size="small"
+
+                    />
                 </Box>
+
                 <Button
                     sx={{
-                        marginBottom: "-20px",
                         color: theme.palette.primary.White,
                         fontWeight: "bold",
                         fontSize: "18px",
@@ -152,7 +117,7 @@ const ChangePassword = () => {
                     variant="contained"
                     type="submit"
                 >
-                    Sign Up
+                    Update Password
                 </Button>
             </Box>
         </>

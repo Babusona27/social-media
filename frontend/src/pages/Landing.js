@@ -9,7 +9,7 @@ import {
 
   Typography,
 } from "@mui/material";
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Header from "../components/Header";
 import theme from "../Theme";
 import PersonAddRoundedIcon from "@mui/icons-material/PersonAddRounded";
@@ -23,14 +23,12 @@ import styled from "@emotion/styled";
 import Footer from "../components/Footer";
 import Register from "../components/Register";
 import Login from "../components/Login";
-import EducationandWork from "../components/EducationandWork";
-import Sidebar from "../components/Sidebar";
 
 const Landing = () => {
   const [tab, setTab] = useState(1);
 
   // Callback function to receive value from the child
-  const handleTabChange = (value) => {   
+  const handleTabChange = (value) => {
     setTab(value);
   };
   return (
@@ -38,14 +36,13 @@ const Landing = () => {
       <Box>
         <Header />
       </Box>
-   
+
       <Box
         sx={{
           height: "500px",
           width: "100%",
-          backgroundImage: `url(${
-            process.env.PUBLIC_URL + "/assets/images/bg.jpg"
-          })`,
+          backgroundImage: `url(${process.env.PUBLIC_URL + "/assets/images/bg.jpg"
+            })`,
           backgroundAttachment: "fixed",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
@@ -65,8 +62,8 @@ const Landing = () => {
         component={"section"}
       >
         {/* login or signup  container */}
-        {tab === 1 ? (  <Login onChildClick={handleTabChange} />) : ( <Register onChildClick={handleTabChange} />)  }
-      
+        {tab === 1 ? (<Login onChildClick={handleTabChange} />) : (<Register onChildClick={handleTabChange} />)}
+
         {/* end login oe signup container */}
       </Box>
       <Box
@@ -122,9 +119,8 @@ const Landing = () => {
                   width: "100px",
                   height: "100px",
                   borderRadius: "50%",
-                  background: ` url(${
-                    process.env.PUBLIC_URL + "/assets/images/fb1.jpg"
-                  })`,
+                  background: ` url(${process.env.PUBLIC_URL + "/assets/images/fb1.jpg"
+                    })`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
@@ -191,9 +187,8 @@ const Landing = () => {
                   width: "100px",
                   height: "100px",
                   borderRadius: "50%",
-                  background: ` url(${
-                    process.env.PUBLIC_URL + "/assets/images/fb2.jpg"
-                  })`,
+                  background: ` url(${process.env.PUBLIC_URL + "/assets/images/fb2.jpg"
+                    })`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
@@ -260,9 +255,8 @@ const Landing = () => {
                   width: "100px",
                   height: "100px",
                   borderRadius: "50%",
-                  background: ` url(${
-                    process.env.PUBLIC_URL + "/assets/images/fb3.jpg"
-                  })`,
+                  background: ` url(${process.env.PUBLIC_URL + "/assets/images/fb3.jpg"
+                    })`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
@@ -329,9 +323,8 @@ const Landing = () => {
                   width: "100px",
                   height: "100px",
                   borderRadius: "50%",
-                  background: ` url(${
-                    process.env.PUBLIC_URL + "/assets/images/fb4.jpg"
-                  })`,
+                  background: ` url(${process.env.PUBLIC_URL + "/assets/images/fb4.jpg"
+                    })`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
@@ -760,14 +753,13 @@ const Landing = () => {
           </Box>
         </Container>
       </Box>
- 
+
       <Box
         sx={{
           minHeight: "460px",
           width: "100%",
-          backgroundImage: `url(${
-            process.env.PUBLIC_URL + "/assets/images/bg-2.jpg"
-          })`,
+          backgroundImage: `url(${process.env.PUBLIC_URL + "/assets/images/bg-2.jpg"
+            })`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "top center",
@@ -779,9 +771,8 @@ const Landing = () => {
         sx={{
           height: "500px",
           width: "100%",
-          backgroundImage: `url(${
-            process.env.PUBLIC_URL + "/assets/images/bg-4.jpg"
-          })`,
+          backgroundImage: `url(${process.env.PUBLIC_URL + "/assets/images/bg-4.jpg"
+            })`,
           backgroundAttachment: "fixed",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
@@ -846,36 +837,36 @@ const Landing = () => {
                     background: "rgba(255,255,255, 50%)",
                     zIndex: "1",
                   },
-               
+
                 }} >
                 <Avatar sx={{
                   width: "70px",
                   height: "70px",
                   background: "rgba(255,255,255, 10%)",
-                 boxShadow: theme.palette.primary.BoxShadow1,
+                  boxShadow: theme.palette.primary.BoxShadow1,
                 }}>
-               <GroupsIcon sx={{
-                 fontSize:"40px",
-                 fontWeight:"bold"
-               }}/>
+                  <GroupsIcon sx={{
+                    fontSize: "40px",
+                    fontWeight: "bold"
+                  }} />
                 </Avatar>
                 <Box >
-                <Typography sx={{
-              fontSize: "25px",
-              fontWeight: "500",
-              lineHeight: "1",marginBottom:"5px",
-              color: theme.palette.primary.White,
-              textAlign: "center",
-            }}
-            component={"h3"}
-          >1,01,242</Typography>
-               <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.White,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >People registered</Typography>
+                  <Typography sx={{
+                    fontSize: "25px",
+                    fontWeight: "500",
+                    lineHeight: "1", marginBottom: "5px",
+                    color: theme.palette.primary.White,
+                    textAlign: "center",
+                  }}
+                    component={"h3"}
+                  >1,01,242</Typography>
+                  <Typography sx={{
+                    fontSize: "14px",
+                    color: theme.palette.primary.White,
+                    textAlign: "center",
+                  }}
+                    component={"p"}
+                  >People registered</Typography>
                 </Box>
 
               </Box>
@@ -906,30 +897,30 @@ const Landing = () => {
                   width: "70px",
                   height: "70px",
                   background: "rgba(255,255,255, 10%)",
-                 boxShadow: theme.palette.primary.BoxShadow1,
+                  boxShadow: theme.palette.primary.BoxShadow1,
                 }}>
-               <CollectionsIcon sx={{
-                 fontSize:"40px",
-                 fontWeight:"bold"
-               }}/>
+                  <CollectionsIcon sx={{
+                    fontSize: "40px",
+                    fontWeight: "bold"
+                  }} />
                 </Avatar >
                 <Box >
-                <Typography sx={{
-              fontSize: "25px",
-              fontWeight: "500",
-              lineHeight: "1",marginBottom:"5px",
-              color: theme.palette.primary.White,
-              textAlign: "center",
-            }}
-            component={"h3"}
-          >21,01,242</Typography>
-               <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.White,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >Posts published</Typography>
+                  <Typography sx={{
+                    fontSize: "25px",
+                    fontWeight: "500",
+                    lineHeight: "1", marginBottom: "5px",
+                    color: theme.palette.primary.White,
+                    textAlign: "center",
+                  }}
+                    component={"h3"}
+                  >21,01,242</Typography>
+                  <Typography sx={{
+                    fontSize: "14px",
+                    color: theme.palette.primary.White,
+                    textAlign: "center",
+                  }}
+                    component={"p"}
+                  >Posts published</Typography>
                 </Box>
 
               </Box>
@@ -971,35 +962,35 @@ const Landing = () => {
                   width: "70px",
                   height: "70px",
                   background: "rgba(255,255,255, 10%)",
-                 boxShadow: theme.palette.primary.BoxShadow1,
+                  boxShadow: theme.palette.primary.BoxShadow1,
                 }}>
-               <OnlinePredictionIcon sx={{
-                 fontSize:"40px",
-                 fontWeight:"bold"
-               }}/>
+                  <OnlinePredictionIcon sx={{
+                    fontSize: "40px",
+                    fontWeight: "bold"
+                  }} />
                 </Avatar>
                 <Box >
-                <Typography sx={{
-              fontSize: "25px",
-              fontWeight: "500",
-              lineHeight: "1",marginBottom:"5px",
-              color: theme.palette.primary.White,
-              textAlign: "center",
-            }}
-            component={"h3"}
-          >41,242</Typography>
-               <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.White,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >People online</Typography>
+                  <Typography sx={{
+                    fontSize: "25px",
+                    fontWeight: "500",
+                    lineHeight: "1", marginBottom: "5px",
+                    color: theme.palette.primary.White,
+                    textAlign: "center",
+                  }}
+                    component={"h3"}
+                  >41,242</Typography>
+                  <Typography sx={{
+                    fontSize: "14px",
+                    color: theme.palette.primary.White,
+                    textAlign: "center",
+                  }}
+                    component={"p"}
+                  >People online</Typography>
                 </Box>
 
               </Box>
             </Box>
-            
+
           </Box>
         </Box>
       </Box>
@@ -1010,8 +1001,8 @@ const Landing = () => {
         }}
         component={"section"}
       >
-<Container maxWidth="lg" sx={{ height: "100%" }}>
-<Typography
+        <Container maxWidth="lg" sx={{ height: "100%" }}>
+          <Typography
             sx={{
               textAlign: "center",
               fontSize: {
@@ -1031,83 +1022,83 @@ const Landing = () => {
             live feed
           </Typography>
           <Stack sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }} direction="row" spacing={2}>
-      <StyledBadge
-        overlap="circular"
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        variant="dot"
-      >
-        <Avatar sx={{
-          width:"60px",
-          height:"60px"
-        }}  alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f1.jpg"} />
-      </StyledBadge>
-      <StyledBadge
-        overlap="circular"
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        variant="dot"
-      >
-        <Avatar sx={{
-          width:"60px",
-          height:"60px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f2.jpg"} />
-      </StyledBadge>
-      <StyledBadge
-        overlap="circular"
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        variant="dot"
-      >
-        <Avatar sx={{
-          width:"60px",
-          height:"60px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f3.jpg"} />
-      </StyledBadge>
-      <StyledBadge
-        overlap="circular"
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        variant="dot"
-      >
-        <Avatar sx={{
-          width:"60px",
-          height:"60px"
-        }} alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f4.jpg"} />
-      </StyledBadge>
-      <StyledBadge
-        overlap="circular"
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        variant="dot"
-      >
-        <Avatar sx={{
-          width:"60px",
-          height:"60px"
-        }}  alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f1.jpg"} />
-      </StyledBadge>
-      <StyledBadge
-        overlap="circular"
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        variant="dot"
-      >
-        <Avatar sx={{
-          width:"60px",
-          height:"60px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f2.jpg"} />
-      </StyledBadge>
-      <StyledBadge
-        overlap="circular"
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        variant="dot"
-      >
-        <Avatar sx={{
-          width:"60px",
-          height:"60px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f3.jpg"} />
-      </StyledBadge>
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              variant="dot"
+            >
+              <Avatar sx={{
+                width: "60px",
+                height: "60px"
+              }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f1.jpg"} />
+            </StyledBadge>
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              variant="dot"
+            >
+              <Avatar sx={{
+                width: "60px",
+                height: "60px"
+              }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f2.jpg"} />
+            </StyledBadge>
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              variant="dot"
+            >
+              <Avatar sx={{
+                width: "60px",
+                height: "60px"
+              }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f3.jpg"} />
+            </StyledBadge>
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              variant="dot"
+            >
+              <Avatar sx={{
+                width: "60px",
+                height: "60px"
+              }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f4.jpg"} />
+            </StyledBadge>
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              variant="dot"
+            >
+              <Avatar sx={{
+                width: "60px",
+                height: "60px"
+              }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f1.jpg"} />
+            </StyledBadge>
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              variant="dot"
+            >
+              <Avatar sx={{
+                width: "60px",
+                height: "60px"
+              }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f2.jpg"} />
+            </StyledBadge>
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              variant="dot"
+            >
+              <Avatar sx={{
+                width: "60px",
+                height: "60px"
+              }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f3.jpg"} />
+            </StyledBadge>
 
-    </Stack>
-    <Typography
+          </Stack>
+          <Typography
             sx={{
               fontSize: "50px",
               fontWeight: "500",
@@ -1118,811 +1109,793 @@ const Landing = () => {
             }}
             component={"h3"}
           >
-         see what’s happening now
+            see what’s happening now
           </Typography>
           <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"30px"
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "30px"
           }}>
-            <Box  sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            flexDirection:"column",
-            gap:"30px"
-          }} component={"ul"}>
-<Box sx={{
-  boxShadow: theme.palette.primary.BoxShadow,
-}} component={"li"}>
             <Box sx={{
-              padding:"10px 20px",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"20px",
-            position:"relative",
-            "&::before":{
-              content:"''",
-              position:"absolute",
-              top:"50%",
-              left:"0px",
-              transform:"translateY(-50%)",
-              width:"2px",
-              height:"100%",
-              background:theme.palette.primary.LogoColor,
-              zIndex:"1"
-            }
-            }}>
-            <Avatar sx={{
-          width:"50px",
-          height:"50px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f1.jpg"} />
-        <Box sx={{
-          display:"flex",
-          flexDirection:"column",
-          gap:"10px"
-        }}>
-      <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"7px"
-          }}>
-      <Typography href="#" sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.LogoColor,
-              textAlign: "center",
-            }}
-            component={"a"}
-          >Suraj</Typography>
-          <Typography sx={{
-                 fontSize: "14px",
-                 color: theme.palette.primary.ParaColor,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >just posted a photo from Moscow</Typography>
-      </Box>
-      <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.ParaColor,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              gap: "30px"
+            }} component={"ul"}>
+              <Box sx={{
+                boxShadow: theme.palette.primary.BoxShadow,
+              }} component={"li"}>
+                <Box sx={{
+                  padding: "10px 20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "20px",
+                  position: "relative",
+                  "&::before": {
+                    content: "''",
+                    position: "absolute",
+                    top: "50%",
+                    left: "0px",
+                    transform: "translateY(-50%)",
+                    width: "2px",
+                    height: "100%",
+                    background: theme.palette.primary.LogoColor,
+                    zIndex: "1"
+                  }
+                }}>
+                  <Avatar sx={{
+                    width: "50px",
+                    height: "50px"
+                  }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f1.jpg"} />
+                  <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                  }}>
+                    <Box sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "7px"
+                    }}>
+                      <Typography href="#" sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.LogoColor,
+                        textAlign: "center",
+                      }}
+                        component={"a"}
+                      >Suraj</Typography>
+                      <Typography sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.ParaColor,
+                        textAlign: "center",
+                      }}
+                        component={"p"}
+                      >just posted a photo from Moscow</Typography>
+                    </Box>
+                    <Typography sx={{
+                      fontSize: "14px",
+                      color: theme.palette.primary.ParaColor,
 
-            }}
-            component={"p"}
-          >20 Secs ago</Typography>
-        </Box>
+                    }}
+                      component={"p"}
+                    >20 Secs ago</Typography>
+                  </Box>
+                </Box>
+                <Divider />
+              </Box>
+              <Box sx={{
+                boxShadow: theme.palette.primary.BoxShadow,
+              }} component={"li"}>
+                <Box sx={{
+                  padding: "10px 20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "20px",
+                  position: "relative",
+                  "&::before": {
+                    content: "''",
+                    position: "absolute",
+                    top: "50%",
+                    left: "0px",
+                    transform: "translateY(-50%)",
+                    width: "2px",
+                    height: "100%",
+                    background: theme.palette.primary.LogoColor,
+                    zIndex: "1"
+                  }
+                }}>
+                  <Avatar sx={{
+                    width: "50px",
+                    height: "50px"
+                  }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f2.jpg"} />
+                  <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                  }}>
+                    <Box sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "7px"
+                    }}>
+                      <Typography href="#" sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.LogoColor,
+                        textAlign: "center",
+                      }}
+                        component={"a"}
+                      >Suraj</Typography>
+                      <Typography sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.ParaColor,
+                        textAlign: "center",
+                      }}
+                        component={"p"}
+                      >just posted a photo from Moscow</Typography>
+                    </Box>
+                    <Typography sx={{
+                      fontSize: "14px",
+                      color: theme.palette.primary.ParaColor,
+
+                    }}
+                      component={"p"}
+                    >20 Secs ago</Typography>
+                  </Box>
+                </Box>
+                <Divider />
+              </Box>
+              <Box sx={{
+                boxShadow: theme.palette.primary.BoxShadow,
+              }} component={"li"}>
+                <Box sx={{
+                  padding: "10px 20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "20px",
+                  position: "relative",
+                  "&::before": {
+                    content: "''",
+                    position: "absolute",
+                    top: "50%",
+                    left: "0px",
+                    transform: "translateY(-50%)",
+                    width: "2px",
+                    height: "100%",
+                    background: theme.palette.primary.LogoColor,
+                    zIndex: "1"
+                  }
+                }}>
+                  <Avatar sx={{
+                    width: "50px",
+                    height: "50px"
+                  }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f3.jpg"} />
+                  <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                  }}>
+                    <Box sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "7px"
+                    }}>
+                      <Typography href="#" sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.LogoColor,
+                        textAlign: "center",
+                      }}
+                        component={"a"}
+                      >Suraj</Typography>
+                      <Typography sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.ParaColor,
+                        textAlign: "center",
+                      }}
+                        component={"p"}
+                      >just posted a photo from Moscow</Typography>
+                    </Box>
+                    <Typography sx={{
+                      fontSize: "14px",
+                      color: theme.palette.primary.ParaColor,
+
+                    }}
+                      component={"p"}
+                    >20 Secs ago</Typography>
+                  </Box>
+                </Box>
+                <Divider />
+              </Box>
+              <Box sx={{
+                boxShadow: theme.palette.primary.BoxShadow,
+              }} component={"li"}>
+                <Box sx={{
+                  padding: "10px 20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "20px",
+                  position: "relative",
+                  "&::before": {
+                    content: "''",
+                    position: "absolute",
+                    top: "50%",
+                    left: "0px",
+                    transform: "translateY(-50%)",
+                    width: "2px",
+                    height: "100%",
+                    background: theme.palette.primary.LogoColor,
+                    zIndex: "1"
+                  }
+                }}>
+                  <Avatar sx={{
+                    width: "50px",
+                    height: "50px"
+                  }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f4.jpg"} />
+                  <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                  }}>
+                    <Box sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "7px"
+                    }}>
+                      <Typography href="#" sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.LogoColor,
+                        textAlign: "center",
+                      }}
+                        component={"a"}
+                      >Suraj</Typography>
+                      <Typography sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.ParaColor,
+                        textAlign: "center",
+                      }}
+                        component={"p"}
+                      >just posted a photo from Moscow</Typography>
+                    </Box>
+                    <Typography sx={{
+                      fontSize: "14px",
+                      color: theme.palette.primary.ParaColor,
+
+                    }}
+                      component={"p"}
+                    >20 Secs ago</Typography>
+                  </Box>
+                </Box>
+                <Divider />
+              </Box>
+              <Box sx={{
+                boxShadow: theme.palette.primary.BoxShadow,
+              }} component={"li"}>
+                <Box sx={{
+                  padding: "10px 20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "20px",
+                  position: "relative",
+                  "&::before": {
+                    content: "''",
+                    position: "absolute",
+                    top: "50%",
+                    left: "0px",
+                    transform: "translateY(-50%)",
+                    width: "2px",
+                    height: "100%",
+                    background: theme.palette.primary.LogoColor,
+                    zIndex: "1"
+                  }
+                }}>
+                  <Avatar sx={{
+                    width: "50px",
+                    height: "50px"
+                  }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f1.jpg"} />
+                  <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                  }}>
+                    <Box sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "7px"
+                    }}>
+                      <Typography href="#" sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.LogoColor,
+                        textAlign: "center",
+                      }}
+                        component={"a"}
+                      >Suraj</Typography>
+                      <Typography sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.ParaColor,
+                        textAlign: "center",
+                      }}
+                        component={"p"}
+                      >just posted a photo from Moscow</Typography>
+                    </Box>
+                    <Typography sx={{
+                      fontSize: "14px",
+                      color: theme.palette.primary.ParaColor,
+
+                    }}
+                      component={"p"}
+                    >20 Secs ago</Typography>
+                  </Box>
+                </Box>
+                <Divider />
+              </Box>
+              <Box sx={{
+                boxShadow: theme.palette.primary.BoxShadow,
+              }} component={"li"}>
+                <Box sx={{
+                  padding: "10px 20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "20px",
+                  position: "relative",
+                  "&::before": {
+                    content: "''",
+                    position: "absolute",
+                    top: "50%",
+                    left: "0px",
+                    transform: "translateY(-50%)",
+                    width: "2px",
+                    height: "100%",
+                    background: theme.palette.primary.LogoColor,
+                    zIndex: "1"
+                  }
+                }}>
+                  <Avatar sx={{
+                    width: "50px",
+                    height: "50px"
+                  }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f2.jpg"} />
+                  <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                  }}>
+                    <Box sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "7px"
+                    }}>
+                      <Typography href="#" sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.LogoColor,
+                        textAlign: "center",
+                      }}
+                        component={"a"}
+                      >Suraj</Typography>
+                      <Typography sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.ParaColor,
+                        textAlign: "center",
+                      }}
+                        component={"p"}
+                      >just posted a photo from Moscow</Typography>
+                    </Box>
+                    <Typography sx={{
+                      fontSize: "14px",
+                      color: theme.palette.primary.ParaColor,
+
+                    }}
+                      component={"p"}
+                    >20 Secs ago</Typography>
+                  </Box>
+                </Box>
+                <Divider />
+              </Box>
+
             </Box>
-        <Divider />
-</Box>
-<Box sx={{
-  boxShadow: theme.palette.primary.BoxShadow,
-}} component={"li"}>
             <Box sx={{
-              padding:"10px 20px",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"20px",
-            position:"relative",
-            "&::before":{
-              content:"''",
-              position:"absolute",
-              top:"50%",
-              left:"0px",
-              transform:"translateY(-50%)",
-              width:"2px",
-              height:"100%",
-              background:theme.palette.primary.LogoColor,
-              zIndex:"1"
-            }
-            }}>
-            <Avatar sx={{
-          width:"50px",
-          height:"50px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f2.jpg"} />
-        <Box sx={{
-          display:"flex",
-          flexDirection:"column",
-          gap:"10px"
-        }}>
-      <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"7px"
-          }}>
-      <Typography href="#" sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.LogoColor,
-              textAlign: "center",
-            }}
-            component={"a"}
-          >Suraj</Typography>
-          <Typography sx={{
-                 fontSize: "14px",
-                 color: theme.palette.primary.ParaColor,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >just posted a photo from Moscow</Typography>
-      </Box>
-      <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.ParaColor,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              gap: "30px"
+            }} component={"ul"}>
+              <Box sx={{
+                boxShadow: theme.palette.primary.BoxShadow,
+              }} component={"li"}>
+                <Box sx={{
+                  padding: "10px 20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "20px",
+                  position: "relative",
+                  "&::before": {
+                    content: "''",
+                    position: "absolute",
+                    top: "50%",
+                    left: "0px",
+                    transform: "translateY(-50%)",
+                    width: "2px",
+                    height: "100%",
+                    background: theme.palette.primary.LogoColor,
+                    zIndex: "1"
+                  }
+                }}>
+                  <Avatar sx={{
+                    width: "50px",
+                    height: "50px"
+                  }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f3.jpg"} />
+                  <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                  }}>
+                    <Box sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "7px"
+                    }}>
+                      <Typography href="#" sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.LogoColor,
+                        textAlign: "center",
+                      }}
+                        component={"a"}
+                      >Suraj</Typography>
+                      <Typography sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.ParaColor,
+                        textAlign: "center",
+                      }}
+                        component={"p"}
+                      >just posted a photo from Moscow</Typography>
+                    </Box>
+                    <Typography sx={{
+                      fontSize: "14px",
+                      color: theme.palette.primary.ParaColor,
 
-            }}
-            component={"p"}
-          >20 Secs ago</Typography>
-        </Box>
-            </Box>
-        <Divider />
-</Box>
-<Box sx={{
-  boxShadow: theme.palette.primary.BoxShadow,
-}} component={"li"}>
-            <Box sx={{
-              padding:"10px 20px",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"20px",
-            position:"relative",
-            "&::before":{
-              content:"''",
-              position:"absolute",
-              top:"50%",
-              left:"0px",
-              transform:"translateY(-50%)",
-              width:"2px",
-              height:"100%",
-              background:theme.palette.primary.LogoColor,
-              zIndex:"1"
-            }
-            }}>
-            <Avatar sx={{
-          width:"50px",
-          height:"50px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f3.jpg"} />
-        <Box sx={{
-          display:"flex",
-          flexDirection:"column",
-          gap:"10px"
-        }}>
-      <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"7px"
-          }}>
-      <Typography href="#" sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.LogoColor,
-              textAlign: "center",
-            }}
-            component={"a"}
-          >Suraj</Typography>
-          <Typography sx={{
-                 fontSize: "14px",
-                 color: theme.palette.primary.ParaColor,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >just posted a photo from Moscow</Typography>
-      </Box>
-      <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.ParaColor,
+                    }}
+                      component={"p"}
+                    >20 Secs ago</Typography>
+                  </Box>
+                </Box>
+                <Divider />
+              </Box>
+              <Box sx={{
+                boxShadow: theme.palette.primary.BoxShadow,
+              }} component={"li"}>
+                <Box sx={{
+                  padding: "10px 20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "20px",
+                  position: "relative",
+                  "&::before": {
+                    content: "''",
+                    position: "absolute",
+                    top: "50%",
+                    left: "0px",
+                    transform: "translateY(-50%)",
+                    width: "2px",
+                    height: "100%",
+                    background: theme.palette.primary.LogoColor,
+                    zIndex: "1"
+                  }
+                }}>
+                  <Avatar sx={{
+                    width: "50px",
+                    height: "50px"
+                  }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f2.jpg"} />
+                  <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                  }}>
+                    <Box sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "7px"
+                    }}>
+                      <Typography href="#" sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.LogoColor,
+                        textAlign: "center",
+                      }}
+                        component={"a"}
+                      >Suraj</Typography>
+                      <Typography sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.ParaColor,
+                        textAlign: "center",
+                      }}
+                        component={"p"}
+                      >just posted a photo from Moscow</Typography>
+                    </Box>
+                    <Typography sx={{
+                      fontSize: "14px",
+                      color: theme.palette.primary.ParaColor,
 
-            }}
-            component={"p"}
-          >20 Secs ago</Typography>
-        </Box>
-            </Box>
-        <Divider />
-</Box>
-<Box sx={{
-  boxShadow: theme.palette.primary.BoxShadow,
-}} component={"li"}>
-            <Box sx={{
-              padding:"10px 20px",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"20px",
-            position:"relative",
-            "&::before":{
-              content:"''",
-              position:"absolute",
-              top:"50%",
-              left:"0px",
-              transform:"translateY(-50%)",
-              width:"2px",
-              height:"100%",
-              background:theme.palette.primary.LogoColor,
-              zIndex:"1"
-            }
-            }}>
-            <Avatar sx={{
-          width:"50px",
-          height:"50px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f4.jpg"} />
-        <Box sx={{
-          display:"flex",
-          flexDirection:"column",
-          gap:"10px"
-        }}>
-      <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"7px"
-          }}>
-      <Typography href="#" sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.LogoColor,
-              textAlign: "center",
-            }}
-            component={"a"}
-          >Suraj</Typography>
-          <Typography sx={{
-                 fontSize: "14px",
-                 color: theme.palette.primary.ParaColor,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >just posted a photo from Moscow</Typography>
-      </Box>
-      <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.ParaColor,
+                    }}
+                      component={"p"}
+                    >20 Secs ago</Typography>
+                  </Box>
+                </Box>
+                <Divider />
+              </Box>
+              <Box sx={{
+                boxShadow: theme.palette.primary.BoxShadow,
+              }} component={"li"}>
+                <Box sx={{
+                  padding: "10px 20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "20px",
+                  position: "relative",
+                  "&::before": {
+                    content: "''",
+                    position: "absolute",
+                    top: "50%",
+                    left: "0px",
+                    transform: "translateY(-50%)",
+                    width: "2px",
+                    height: "100%",
+                    background: theme.palette.primary.LogoColor,
+                    zIndex: "1"
+                  }
+                }}>
+                  <Avatar sx={{
+                    width: "50px",
+                    height: "50px"
+                  }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f4.jpg"} />
+                  <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                  }}>
+                    <Box sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "7px"
+                    }}>
+                      <Typography href="#" sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.LogoColor,
+                        textAlign: "center",
+                      }}
+                        component={"a"}
+                      >Suraj</Typography>
+                      <Typography sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.ParaColor,
+                        textAlign: "center",
+                      }}
+                        component={"p"}
+                      >just posted a photo from Moscow</Typography>
+                    </Box>
+                    <Typography sx={{
+                      fontSize: "14px",
+                      color: theme.palette.primary.ParaColor,
 
-            }}
-            component={"p"}
-          >20 Secs ago</Typography>
-        </Box>
-            </Box>
-        <Divider />
-</Box>
-<Box sx={{
-  boxShadow: theme.palette.primary.BoxShadow,
-}} component={"li"}>
-            <Box sx={{
-              padding:"10px 20px",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"20px",
-            position:"relative",
-            "&::before":{
-              content:"''",
-              position:"absolute",
-              top:"50%",
-              left:"0px",
-              transform:"translateY(-50%)",
-              width:"2px",
-              height:"100%",
-              background:theme.palette.primary.LogoColor,
-              zIndex:"1"
-            }
-            }}>
-            <Avatar sx={{
-          width:"50px",
-          height:"50px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f1.jpg"} />
-        <Box sx={{
-          display:"flex",
-          flexDirection:"column",
-          gap:"10px"
-        }}>
-      <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"7px"
-          }}>
-      <Typography href="#" sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.LogoColor,
-              textAlign: "center",
-            }}
-            component={"a"}
-          >Suraj</Typography>
-          <Typography sx={{
-                 fontSize: "14px",
-                 color: theme.palette.primary.ParaColor,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >just posted a photo from Moscow</Typography>
-      </Box>
-      <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.ParaColor,
+                    }}
+                      component={"p"}
+                    >20 Secs ago</Typography>
+                  </Box>
+                </Box>
+                <Divider />
+              </Box>
+              <Box sx={{
+                boxShadow: theme.palette.primary.BoxShadow,
+              }} component={"li"}>
+                <Box sx={{
+                  padding: "10px 20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "20px",
+                  position: "relative",
+                  "&::before": {
+                    content: "''",
+                    position: "absolute",
+                    top: "50%",
+                    left: "0px",
+                    transform: "translateY(-50%)",
+                    width: "2px",
+                    height: "100%",
+                    background: theme.palette.primary.LogoColor,
+                    zIndex: "1"
+                  }
+                }}>
+                  <Avatar sx={{
+                    width: "50px",
+                    height: "50px"
+                  }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f1.jpg"} />
+                  <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                  }}>
+                    <Box sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "7px"
+                    }}>
+                      <Typography href="#" sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.LogoColor,
+                        textAlign: "center",
+                      }}
+                        component={"a"}
+                      >Suraj</Typography>
+                      <Typography sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.ParaColor,
+                        textAlign: "center",
+                      }}
+                        component={"p"}
+                      >just posted a photo from Moscow</Typography>
+                    </Box>
+                    <Typography sx={{
+                      fontSize: "14px",
+                      color: theme.palette.primary.ParaColor,
 
-            }}
-            component={"p"}
-          >20 Secs ago</Typography>
-        </Box>
-            </Box>
-        <Divider />
-</Box>
-<Box sx={{
-  boxShadow: theme.palette.primary.BoxShadow,
-}} component={"li"}>
-            <Box sx={{
-              padding:"10px 20px",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"20px",
-            position:"relative",
-            "&::before":{
-              content:"''",
-              position:"absolute",
-              top:"50%",
-              left:"0px",
-              transform:"translateY(-50%)",
-              width:"2px",
-              height:"100%",
-              background:theme.palette.primary.LogoColor,
-              zIndex:"1"
-            }
-            }}>
-            <Avatar sx={{
-          width:"50px",
-          height:"50px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f2.jpg"} />
-        <Box sx={{
-          display:"flex",
-          flexDirection:"column",
-          gap:"10px"
-        }}>
-      <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"7px"
-          }}>
-      <Typography href="#" sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.LogoColor,
-              textAlign: "center",
-            }}
-            component={"a"}
-          >Suraj</Typography>
-          <Typography sx={{
-                 fontSize: "14px",
-                 color: theme.palette.primary.ParaColor,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >just posted a photo from Moscow</Typography>
-      </Box>
-      <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.ParaColor,
+                    }}
+                      component={"p"}
+                    >20 Secs ago</Typography>
+                  </Box>
+                </Box>
+                <Divider />
+              </Box>
+              <Box sx={{
+                boxShadow: theme.palette.primary.BoxShadow,
+              }} component={"li"}>
+                <Box sx={{
+                  padding: "10px 20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "20px",
+                  position: "relative",
+                  "&::before": {
+                    content: "''",
+                    position: "absolute",
+                    top: "50%",
+                    left: "0px",
+                    transform: "translateY(-50%)",
+                    width: "2px",
+                    height: "100%",
+                    background: theme.palette.primary.LogoColor,
+                    zIndex: "1"
+                  }
+                }}>
+                  <Avatar sx={{
+                    width: "50px",
+                    height: "50px"
+                  }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f2.jpg"} />
+                  <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                  }}>
+                    <Box sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "7px"
+                    }}>
+                      <Typography href="#" sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.LogoColor,
+                        textAlign: "center",
+                      }}
+                        component={"a"}
+                      >Suraj</Typography>
+                      <Typography sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.ParaColor,
+                        textAlign: "center",
+                      }}
+                        component={"p"}
+                      >just posted a photo from Moscow</Typography>
+                    </Box>
+                    <Typography sx={{
+                      fontSize: "14px",
+                      color: theme.palette.primary.ParaColor,
 
-            }}
-            component={"p"}
-          >20 Secs ago</Typography>
-        </Box>
-            </Box>
-        <Divider />
-</Box>
+                    }}
+                      component={"p"}
+                    >20 Secs ago</Typography>
+                  </Box>
+                </Box>
+                <Divider />
+              </Box>
+              <Box sx={{
+                boxShadow: theme.palette.primary.BoxShadow,
+              }} component={"li"}>
+                <Box sx={{
+                  padding: "10px 20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "20px",
+                  position: "relative",
+                  "&::before": {
+                    content: "''",
+                    position: "absolute",
+                    top: "50%",
+                    left: "0px",
+                    transform: "translateY(-50%)",
+                    width: "2px",
+                    height: "100%",
+                    background: theme.palette.primary.LogoColor,
+                    zIndex: "1"
+                  }
+                }}>
+                  <Avatar sx={{
+                    width: "50px",
+                    height: "50px"
+                  }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/f3.jpg"} />
+                  <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                  }}>
+                    <Box sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "7px"
+                    }}>
+                      <Typography href="#" sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.LogoColor,
+                        textAlign: "center",
+                      }}
+                        component={"a"}
+                      >Suraj</Typography>
+                      <Typography sx={{
+                        fontSize: "14px",
+                        color: theme.palette.primary.ParaColor,
+                        textAlign: "center",
+                      }}
+                        component={"p"}
+                      >just posted a photo from Moscow</Typography>
+                    </Box>
+                    <Typography sx={{
+                      fontSize: "14px",
+                      color: theme.palette.primary.ParaColor,
 
-            </Box>
-            <Box  sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            flexDirection:"column",
-            gap:"30px"
-          }} component={"ul"}>
-<Box sx={{
-  boxShadow: theme.palette.primary.BoxShadow,
-}} component={"li"}>
-            <Box sx={{
-              padding:"10px 20px",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"20px",
-            position:"relative",
-            "&::before":{
-              content:"''",
-              position:"absolute",
-              top:"50%",
-              left:"0px",
-              transform:"translateY(-50%)",
-              width:"2px",
-              height:"100%",
-              background:theme.palette.primary.LogoColor,
-              zIndex:"1"
-            }
-            }}>
-            <Avatar sx={{
-          width:"50px",
-          height:"50px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f3.jpg"} />
-        <Box sx={{
-          display:"flex",
-          flexDirection:"column",
-          gap:"10px"
-        }}>
-      <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"7px"
-          }}>
-      <Typography href="#" sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.LogoColor,
-              textAlign: "center",
-            }}
-            component={"a"}
-          >Suraj</Typography>
-          <Typography sx={{
-                 fontSize: "14px",
-                 color: theme.palette.primary.ParaColor,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >just posted a photo from Moscow</Typography>
-      </Box>
-      <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.ParaColor,
-
-            }}
-            component={"p"}
-          >20 Secs ago</Typography>
-        </Box>
-            </Box>
-        <Divider />
-</Box>
-<Box sx={{
-  boxShadow: theme.palette.primary.BoxShadow,
-}} component={"li"}>
-            <Box sx={{
-              padding:"10px 20px",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"20px",
-            position:"relative",
-            "&::before":{
-              content:"''",
-              position:"absolute",
-              top:"50%",
-              left:"0px",
-              transform:"translateY(-50%)",
-              width:"2px",
-              height:"100%",
-              background:theme.palette.primary.LogoColor,
-              zIndex:"1"
-            }
-            }}>
-            <Avatar sx={{
-          width:"50px",
-          height:"50px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f2.jpg"} />
-        <Box sx={{
-          display:"flex",
-          flexDirection:"column",
-          gap:"10px"
-        }}>
-      <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"7px"
-          }}>
-      <Typography href="#" sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.LogoColor,
-              textAlign: "center",
-            }}
-            component={"a"}
-          >Suraj</Typography>
-          <Typography sx={{
-                 fontSize: "14px",
-                 color: theme.palette.primary.ParaColor,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >just posted a photo from Moscow</Typography>
-      </Box>
-      <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.ParaColor,
-
-            }}
-            component={"p"}
-          >20 Secs ago</Typography>
-        </Box>
-            </Box>
-        <Divider />
-</Box>
-<Box sx={{
-  boxShadow: theme.palette.primary.BoxShadow,
-}} component={"li"}>
-            <Box sx={{
-              padding:"10px 20px",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"20px",
-            position:"relative",
-            "&::before":{
-              content:"''",
-              position:"absolute",
-              top:"50%",
-              left:"0px",
-              transform:"translateY(-50%)",
-              width:"2px",
-              height:"100%",
-              background:theme.palette.primary.LogoColor,
-              zIndex:"1"
-            }
-            }}>
-            <Avatar sx={{
-          width:"50px",
-          height:"50px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f4.jpg"} />
-        <Box sx={{
-          display:"flex",
-          flexDirection:"column",
-          gap:"10px"
-        }}>
-      <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"7px"
-          }}>
-      <Typography href="#" sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.LogoColor,
-              textAlign: "center",
-            }}
-            component={"a"}
-          >Suraj</Typography>
-          <Typography sx={{
-                 fontSize: "14px",
-                 color: theme.palette.primary.ParaColor,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >just posted a photo from Moscow</Typography>
-      </Box>
-      <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.ParaColor,
-
-            }}
-            component={"p"}
-          >20 Secs ago</Typography>
-        </Box>
-            </Box>
-        <Divider />
-</Box>
-<Box sx={{
-  boxShadow: theme.palette.primary.BoxShadow,
-}} component={"li"}>
-            <Box sx={{
-              padding:"10px 20px",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"20px",
-            position:"relative",
-            "&::before":{
-              content:"''",
-              position:"absolute",
-              top:"50%",
-              left:"0px",
-              transform:"translateY(-50%)",
-              width:"2px",
-              height:"100%",
-              background:theme.palette.primary.LogoColor,
-              zIndex:"1"
-            }
-            }}>
-            <Avatar sx={{
-          width:"50px",
-          height:"50px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f1.jpg"} />
-        <Box sx={{
-          display:"flex",
-          flexDirection:"column",
-          gap:"10px"
-        }}>
-      <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"7px"
-          }}>
-      <Typography href="#" sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.LogoColor,
-              textAlign: "center",
-            }}
-            component={"a"}
-          >Suraj</Typography>
-          <Typography sx={{
-                 fontSize: "14px",
-                 color: theme.palette.primary.ParaColor,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >just posted a photo from Moscow</Typography>
-      </Box>
-      <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.ParaColor,
-
-            }}
-            component={"p"}
-          >20 Secs ago</Typography>
-        </Box>
-            </Box>
-        <Divider />
-</Box>
-<Box sx={{
-  boxShadow: theme.palette.primary.BoxShadow,
-}} component={"li"}>
-            <Box sx={{
-              padding:"10px 20px",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"20px",
-            position:"relative",
-            "&::before":{
-              content:"''",
-              position:"absolute",
-              top:"50%",
-              left:"0px",
-              transform:"translateY(-50%)",
-              width:"2px",
-              height:"100%",
-              background:theme.palette.primary.LogoColor,
-              zIndex:"1"
-            }
-            }}>
-            <Avatar sx={{
-          width:"50px",
-          height:"50px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f2.jpg"} />
-        <Box sx={{
-          display:"flex",
-          flexDirection:"column",
-          gap:"10px"
-        }}>
-      <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"7px"
-          }}>
-      <Typography href="#" sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.LogoColor,
-              textAlign: "center",
-            }}
-            component={"a"}
-          >Suraj</Typography>
-          <Typography sx={{
-                 fontSize: "14px",
-                 color: theme.palette.primary.ParaColor,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >just posted a photo from Moscow</Typography>
-      </Box>
-      <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.ParaColor,
-
-            }}
-            component={"p"}
-          >20 Secs ago</Typography>
-        </Box>
-            </Box>
-        <Divider />
-</Box>
-<Box sx={{
-  boxShadow: theme.palette.primary.BoxShadow,
-}} component={"li"}>
-            <Box sx={{
-              padding:"10px 20px",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"20px",
-            position:"relative",
-            "&::before":{
-              content:"''",
-              position:"absolute",
-              top:"50%",
-              left:"0px",
-              transform:"translateY(-50%)",
-              width:"2px",
-              height:"100%",
-              background:theme.palette.primary.LogoColor,
-              zIndex:"1"
-            }
-            }}>
-            <Avatar sx={{
-          width:"50px",
-          height:"50px"
-        }}  alt="Remy Sharp"  src={process.env.PUBLIC_URL + "/assets/images/f3.jpg"} />
-        <Box sx={{
-          display:"flex",
-          flexDirection:"column",
-          gap:"10px"
-        }}>
-      <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            gap:"7px"
-          }}>
-      <Typography href="#" sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.LogoColor,
-              textAlign: "center",
-            }}
-            component={"a"}
-          >Suraj</Typography>
-          <Typography sx={{
-                 fontSize: "14px",
-                 color: theme.palette.primary.ParaColor,
-              textAlign: "center",
-            }}
-            component={"p"}
-          >just posted a photo from Moscow</Typography>
-      </Box>
-      <Typography sx={{
-                 fontSize: "14px",
-              color: theme.palette.primary.ParaColor,
-
-            }}
-            component={"p"}
-          >20 Secs ago</Typography>
-        </Box>
-            </Box>
-        <Divider />
-</Box>
+                    }}
+                      component={"p"}
+                    >20 Secs ago</Typography>
+                  </Box>
+                </Box>
+                <Divider />
+              </Box>
 
 
             </Box>
           </Box>
-</Container>
+        </Container>
       </Box>
-      <Container maxWidth="lg" sx={{ height: "100%" }}>
-      <Box sx={{
-        display:"flex",
-        justifyContent:"space-between",
-      }}>
-<Box flex={1}>
-<Sidebar/>
-</Box>
-<Box flex={2} padding={"0px 15px"}>
-<EducationandWork/>
-</Box>
-<Box flex={1}>
-<Sidebar/>
-</Box>
-      </Box>
-      </Container>
 
-
-      
       <Footer />
 
     </>
