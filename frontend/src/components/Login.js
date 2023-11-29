@@ -187,7 +187,8 @@ const dispatch = useDispatch();
                 }}
                 className="form_imput"
                 fullWidth
-                label="Enter phone number"
+                placeholder="Enter phone number"
+                // label="Enter phone number"
                 variant="outlined"
                 type="phone"
                 name="phone"
@@ -202,7 +203,8 @@ const dispatch = useDispatch();
                 }}
                 className="form_imput"
                 fullWidth
-                label="Enter a password"
+                // label="Enter a password"
+                placeholder="Enter a password"
                 variant="outlined"
                 type="password"
                 name="password"
@@ -239,11 +241,16 @@ const dispatch = useDispatch();
           <Typography
             sx={{
               fontSize: "14px",
-              fontWeight: "400",
+              fontWeight: "500",
               lineHeight: "1.5",
               textAlign: "center",
+              display:"flex",
+              justifyContent:"center",
+              fontFamily:theme.palette.primary.MainFont1,
+              alignItems:"center",
+              margin:"10px auto 0",
+              background:"transparent",
               color: theme.palette.primary.White,
-              display: "block",
               transition: "all .3s ease",
               "&:hover": {
                 color: theme.palette.primary.deepBlue,

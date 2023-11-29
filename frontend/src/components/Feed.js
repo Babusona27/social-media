@@ -66,7 +66,7 @@ const Feed = () => {
                                     fontWeight: "600",
                                     color: theme.palette.primary.LogoColor,
                                     "&:hover": {
-                                        textDecoration: "underline"
+                                        color: theme.palette.primary.Green,
                                     }
                                 }}
 
@@ -167,7 +167,7 @@ const Feed = () => {
                                     fontWeight: "600",
                                     marginRight: "5px",
                                     "&:hover": {
-                                        textDecoration: "underline"
+                                        color: theme.palette.primary.Green,
                                     }
                                 }
                                 }
@@ -202,8 +202,8 @@ const Feed = () => {
                                     color: theme.palette.primary.LogoColor,
                                     fontWeight: "600",
                                     marginRight: "5px",
-                                    "&:hover": {
-                                        textDecoration: "underline"
+                                    "&:hover": { 
+                                        color: theme.palette.primary.Green,
                                     }
                                 }
                                 }

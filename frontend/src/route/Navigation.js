@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 
 const Navigation = () => {
   const userData = useSelector((state) => state.UserReducer.value);
-  console.log("userData", userData);
+   console.log("userData", userData);
   if (userData === null) {
     return (
       <Router>

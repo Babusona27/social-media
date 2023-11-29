@@ -91,6 +91,7 @@ const HeaderNew = () => {
               >
                 <TextField
                   fullWidth
+                  className="form_imputNew"
                   sx={{
                     padding: "0px",
                     height: "30px",
@@ -150,12 +151,12 @@ const HeaderNew = () => {
                       },
                     }}
                     component="a"
-                    href="#"
+                    href="/"
                   >
                     <Typography>home</Typography>
                   </ListItemButton>
                 </ListItem>
-                <ListItem disablePadding>
+               {/* <ListItem disablePadding>
                   <ListItemButton
                     sx={{
                       color: theme.palette.primary.White,
@@ -174,7 +175,7 @@ const HeaderNew = () => {
                     <Typography>Newsfeed </Typography>
                   </ListItemButton>
                 </ListItem>
-                {/* <ListItem disablePadding>
+                 <ListItem disablePadding>
                   <ListItemButton
                     sx={{
                       color: theme.palette.primary.White,
