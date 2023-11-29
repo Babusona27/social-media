@@ -5,7 +5,11 @@ import {
   Container,
   Divider,
   FormControl,
+  FormControlLabel,
+  FormLabel,
   MenuItem,
+  Radio,
+  RadioGroup,
   Select,
   TextField,
   Typography,
@@ -275,23 +279,23 @@ const Register = ({ onChildClick }) => {
                 }}
                 
               />
-              <FormControl className="form_imput">
-                <Select
-                  sx={{
-                    padding: "0",
-                    textAlign: "left",
-                  }}
-                  labelId="gender-label"
-                  placeholder="Gender"
-                  value={gender}
-                  defaultValue="Gender"
-                  onChange={(e) => setGender(e.target.value)}
-                >
-                  <MenuItem value={"male"}>Male</MenuItem>
-                  <MenuItem value={"female"}>Female</MenuItem>
-                  <MenuItem value={"other"}>Other</MenuItem>
-                </Select>
-              </FormControl>
+           <FormControl>
+  <RadioGroup
+    aria-labelledby="demo-radio-buttons-group-label"
+    defaultValue="female"
+    name="radio-buttons-group"
+    sx={{
+      display: "flex",
+      flexDirection: "row",
+      gap: "20px",
+      justifyContent: "start",
+      alignItems: "center",
+    }}
+  >
+    <FormControlLabel value="female" control={<Radio />} label="Female" />
+    <FormControlLabel value="male" control={<Radio />} label="Male" />
+  </RadioGroup>
+</FormControl>
               <TextField
                 sx={{
                   padding: "0",
