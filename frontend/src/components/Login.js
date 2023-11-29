@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import {
   Box,
   Button,
@@ -8,13 +8,76 @@ import {
   Typography,
 } from "@mui/material";
 import theme from "../Theme";
-
+import { LOGIN } from "../Url";
+import axios from "axios";
+import AlertMessage from "./AlertMessage";
+import { useDispatch } from "react-redux";
+import { userDetails } from "../redux/reducers/UserReducer";
 const Login = ({ onChildClick }) => {
+const dispatch = useDispatch();
+  const [messageType, setMessageType] = useState("");
+  const [message, setMessage] = useState("");
+  // State to manage form inputs
+  const [formData, setFormData] = useState({
+    phone: "",
+    password: "",
+  });
+
+  // State to manage validation errors
+  const [errors, setErrors] = useState({
+    phone: "",
+    password: "",
+  });
   // Function to handle the click event in the child
   const handleClick = (valueToSend) => {
     // Invoke the callback function with the desired value
     onChildClick(valueToSend);
   };
+
+    // Function to handle form input changes
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
+      // Reset the corresponding validation error when the user types
+      setErrors({ ...errors, [name]: "" });
+    };
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+  
+      // Validate form inputs
+      let isValid = true;
+      const newErrors = { ...errors };
+  
+      if (!formData.phone.trim()) {
+        isValid = false;
+        newErrors.phone = "Phone is required";
+      }
+      if (!formData.password.trim()) {
+        isValid = false;
+        newErrors.password = "Password is required";
+      }
+  
+      setErrors(newErrors);
+  
+      // If form is valid, submit the data
+      if (isValid) {
+      //   console.log("Form submitted:", formData);
+        // logic to submit data, e.g., make an API call
+        axios.post(LOGIN, formData).then((res) => {
+          setMessageType("success");
+          setMessage(res.data.message);
+          dispatch(userDetails(res.data.data));
+        }).catch((err) => {
+          console.log(err.response);
+          if (err.response) {
+            setMessageType("error");
+            setMessage(err.response.data.message);
+          }
+        });
+      }
+    };
+
   return (
     <Container maxWidth="lg" sx={{ height: "100%" }}>
       <Box
@@ -93,6 +156,10 @@ const Login = ({ onChildClick }) => {
               textAlign: "center",
             }}
           >
+
+{messageType !== "" && (
+              <AlertMessage type={messageType} message={message} />
+            )}
             <Typography
               sx={{
                 fontSize: "14px",
@@ -112,6 +179,7 @@ const Login = ({ onChildClick }) => {
                 gap: "20px",
                 marginTop: "20px",
               }}
+              onSubmit={handleSubmit}
             >
               <TextField
                 sx={{
@@ -119,8 +187,14 @@ const Login = ({ onChildClick }) => {
                 }}
                 className="form_imput"
                 fullWidth
-                label="Enter email"
+                label="Enter phone number"
                 variant="outlined"
+                type="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                error={Boolean(errors.phone)}
+                helperText={errors.phone}
               />
               <TextField
                 sx={{
@@ -131,6 +205,12 @@ const Login = ({ onChildClick }) => {
                 label="Enter a password"
                 variant="outlined"
                 type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                error={Boolean(errors.password)}
+                helperText={errors.password}
+
               />
               <Button
                 sx={{
