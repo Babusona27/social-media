@@ -16,29 +16,42 @@ import Faq from "../pages/Faq";
 import Terms from "../pages/Terms";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 
+import { useSelector } from "react-redux";
 
 const Navigation = () => {
-  return(
-    <Router>
+  const userData = useSelector((state) => state.UserReducer.value);
+  console.log("userData", userData);
+  if (userData === null) {
+    return (
+      <Router>
         <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/chatroom" element={<ChatRoom />} />
-            <Route path="/friendlist" element={<FriendList />} />
-            <Route path="/nearbypeople" element={<NearbyPeople />} />
-            <Route path="/editprofile" element={<EditProfile />} />
-            <Route path="/imagefeed" element={<ImageFeed />} />
-            <Route path="/newsfeed" element={<NewsFeed />} />
-            <Route path="/videofeed" element={<VideoFeed />} />
-            <Route path="/timeline" element={<Timeline />} />
-            <Route path="/timelineabout" element={<TimelineAbout />} />
-            <Route path="/timelinefriend" element={<TimelineFriend />} />
-            <Route path="/faq" element={<Faq />} />
-            <Route path="/Terms" element={<Terms />} />
-            <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
-            <Route path="*" element={<Page404 />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="*" element={<Page404 />} />
         </Routes>
-        </Router>
-  )
+      </Router>
+    );
+  } else {
+    return (
+      <Router>
+        <Routes>
+          <Route path="/" element={<NewsFeed />} />
+          <Route path="/chatroom" element={<ChatRoom />} />
+          <Route path="/friendlist" element={<FriendList />} />
+          <Route path="/nearbypeople" element={<NearbyPeople />} />
+          <Route path="/editprofile" element={<EditProfile />} />
+          <Route path="/imagefeed" element={<ImageFeed />} />
+          <Route path="/videofeed" element={<VideoFeed />} />
+          <Route path="/timeline" element={<Timeline />} />
+          <Route path="/timelineabout" element={<TimelineAbout />} />
+          <Route path="/timelinefriend" element={<TimelineFriend />} />
+          <Route path="*" element={<Page404 />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/Terms" element={<Terms />} />
+          <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+        </Routes>
+      </Router>
+    );
+  }
 };
 
 export default Navigation;
