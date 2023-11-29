@@ -18,7 +18,7 @@ exports.createFeed = async (req, res) => {
         if (feedResult) {
             return res.status(200).json(helper.response(200, true, "Feed Created Successfully!", { feedResult: feedResult }));
         } else {
-            return res.status(400).json(helper.response(400, false, "Feed Created Failed!"));
+            return res.status(200).json(helper.response(200, false, "Feed Created Failed!"));
         }
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
@@ -35,7 +35,7 @@ exports.feedList = async (req, res) => {
         if (feedList) {
             return res.status(200).json(helper.response(200, true, "Feed List!", { feedList: feedList }));
         } else {
-            return res.status(400).json(helper.response(400, false, "Feed List Not Found!"));
+            return res.status(200).json(helper.response(200, false, "Feed List Not Found!"));
         }
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
@@ -58,10 +58,10 @@ exports.reactOnFeed = async (req, res) => {
             if (updateFeed) {
                 return res.status(200).json(helper.response(200, true, "Reaction Added Successfully!", { updateFeed: updateFeed }));
             } else {
-                return res.status(400).json(helper.response(400, false, "Reaction Added Failed!"));
+                return res.status(200).json(helper.response(200, false, "Reaction Added Failed!"));
             }
         } else {
-            return res.status(400).json(helper.response(400, false, "Feed Not Found!"));
+            return res.status(200).json(helper.response(200, false, "Feed Not Found!"));
         }
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
@@ -84,10 +84,10 @@ exports.commentOnFeed = async (req, res) => {
             if (updateFeed) {
                 return res.status(200).json(helper.response(200, true, "Comment Added Successfully!", { updateFeed: updateFeed }));
             } else {
-                return res.status(400).json(helper.response(400, false, "Comment Added Failed!"));
+                return res.status(200).json(helper.response(200, false, "Comment Added Failed!"));
             }
         } else {
-            return res.status(400).json(helper.response(400, false, "Feed Not Found!"));
+            return res.status(200).json(helper.response(200, false, "Feed Not Found!"));
         }
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
@@ -107,10 +107,10 @@ exports.replyOnComment = async (req, res) => {
             if (updateFeed) {
                 return res.status(200).json(helper.response(200, true, "Reply Comment Added Successfully!", { updateFeed: updateFeed }));
             } else {
-                return res.status(400).json(helper.response(400, false, "Reply Comment Added Failed!"));
+                return res.status(200).json(helper.response(200, false, "Reply Comment Added Failed!"));
             }
         } else {
-            return res.status(400).json(helper.response(400, false, "Feed Not Found!"));
+            return res.status(200).json(helper.response(200, false, "Feed Not Found!"));
         }
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
@@ -130,10 +130,10 @@ exports.tagFriendOnFeed = async (req, res) => {
             if (updateFeed) {
                 return res.status(200).json(helper.response(200, true, "Tag Friend Added Successfully!", { updateFeed: updateFeed }));
             } else {
-                return res.status(400).json(helper.response(400, false, "Tag Friend Added Failed!"));
+                return res.status(200).json(helper.response(200, false, "Tag Friend Added Failed!"));
             }
         } else {
-            return res.status(400).json(helper.response(400, false, "Feed Not Found!"));
+            return res.status(200).json(helper.response(200, false, "Feed Not Found!"));
         }
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
