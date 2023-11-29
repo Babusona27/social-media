@@ -10,6 +10,7 @@ router.post('/register', userController.register);
 router.post('/login', userController.login);
 router.get('/profile', [authMiddleware.isAuth], userController.profile);
 router.put('/update-profile', [authMiddleware.isAuth], userController.updateProfile);
+router.get('/user-list', [authMiddleware.isAuth], userController.userList);
 //send user friend request
 router.post('/send-friend-request', [authMiddleware.isAuth], userController.sendFriendRequest);
 //friend request list

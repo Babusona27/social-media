@@ -12,15 +12,15 @@ exports.register = async (req, res) => {
         let payload = req.body;
         let result = validateRegister(payload);
         if (result.error) {
-            return res.status(400).json(helper.response(400, false, (result.error.details[0].message).replace(/\\?"|\\?"/g, '')));
+            return res.status(200).json(helper.response(200, false, (result.error.details[0].message).replace(/\\?"|\\?"/g, '')));
         }
         let email = await userSchema.findOne({ email: payload.email });
         if (email) {
-            return res.status(400).json(helper.response(400, false, "Email Already Exist!"));
+            return res.status(200).json(helper.response(200, false, "Email Already Exist!"));
         }
         let phone = await userSchema.findOne({ phone: payload.phone });
         if (phone) {
-            return res.status(400).json(helper.response(400, false, "Phone Already Exist!"));
+            return res.status(200).json(helper.response(200, false, "Phone Already Exist!"));
         }
         let hashPassword = await bcrypt.hash(payload.password, 10);
         let user = new userSchema({
@@ -38,7 +38,7 @@ exports.register = async (req, res) => {
             });
             return res.status(200).json(helper.response(200, true, "User Register Successfully!", { userResult: userResult, token: token }));
         } else {
-            return res.status(400).json(helper.response(400, false, "User Register Failed!"));
+            return res.status(200).json(helper.response(200, false, "User Register Failed!"));
         }
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
@@ -50,15 +50,15 @@ exports.login = async (req, res) => {
         let payload = req.body;
         let result = validateLogin(payload);
         if (result.error) {
-            return res.status(400).json(helper.response(400, false, (result.error.details[0].message).replace(/\\?"|\\?"/g, '')));
+            return res.status(200).json(helper.response(200, false, (result.error.details[0].message).replace(/\\?"|\\?"/g, '')));
         }
         let user = await userSchema.findOne({ $or: [{ email: payload.email }, { phone: payload.phone }] });
         if (!user) {
-            return res.status(400).json(helper.response(400, false, "User Not Found!"));
+            return res.status(200).json(helper.response(200, false, "User Not Found!"));
         }
         let comparePassword = await bcrypt.compare(payload.password, user.password);
         if (!comparePassword) {
-            return res.status(400).json(helper.response(400, false, "Invalid Password!"));
+            return res.status(200).json(helper.response(200, false, "Invalid Password!"));
         }
         const token = jwt_token.sign({ userId: user._id }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRE,
@@ -68,11 +68,25 @@ exports.login = async (req, res) => {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
     }
 }
+
+exports.userList = async (req, res) => {
+    try {
+        let user = await userSchema.find({ _id: { $ne: req.user.userId } });
+        if (user) {
+            return res.status(200).json(helper.response(200, true, "User List!", user));
+        } else {
+            return res.status(200).json(helper.response(200, false, "User List Not Found!"));
+        }
+    }
+    catch (error) {
+        return res.status(500).json(helper.response(500, false, "something went wrong!"));
+    }
+}
 exports.profile = async (req, res) => {
     try {
         let user = await userSchema.findById(req.user.userId).populate('hobbies');
         if (!user) {
-            return res.status(400).json(helper.response(400, false, "User Not Found!"));
+            return res.status(200).json(helper.response(200, false, "User Not Found!"));
         }
         return res.status(200).json(helper.response(200, true, "User Profile!", user));
     } catch (error) {
@@ -85,7 +99,7 @@ exports.updateProfile = async (req, res) => {
         let payload = req.body;
         let user = await userSchema.findById(req.user.userId);
         if (!user) {
-            return res.status(400).json(helper.response(400, false, "User Not Found!"));
+            return res.status(200).json(helper.response(200, false, "User Not Found!"));
         }
         if (payload.name) {
             user.name = payload.name;
@@ -156,7 +170,7 @@ exports.updateProfile = async (req, res) => {
         if (userResult) {
             return res.status(200).json(helper.response(200, true, "User Profile Update Successfully!", userResult));
         } else {
-            return res.status(400).json(helper.response(400, false, "User Profile Update Failed!"));
+            return res.status(200).json(helper.response(200, false, "User Profile Update Failed!"));
         }
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
@@ -168,11 +182,11 @@ exports.sendFriendRequest = async (req, res) => {
         let payload = req.body;
         let user = await userSchema.findById(payload.user_id_1);
         if (!user) {
-            return res.status(400).json(helper.response(400, false, "User Not Found!"));
+            return res.status(200).json(helper.response(200, false, "User Not Found!"));
         }
         let userFriend = await userFriendSchema.findOne({ user_id_2: req.user.userId, user_id_1: payload.user_id_1 });
         if (userFriend) {
-            return res.status(400).json(helper.response(400, false, "Friend Request Already Sent!"));
+            return res.status(200).json(helper.response(200, false, "Friend Request Already Sent!"));
         }
         let userFriend1 = new userFriendSchema({
             user_id_1: payload.user_id_1,
@@ -183,7 +197,7 @@ exports.sendFriendRequest = async (req, res) => {
         if (userFriendResult) {
             return res.status(200).json(helper.response(200, true, "Friend Request Sent Successfully!", userFriendResult));
         } else {
-            return res.status(400).json(helper.response(400, false, "Friend Request Sent Failed!"));
+            return res.status(200).json(helper.response(200, false, "Friend Request Sent Failed!"));
         }
     } catch (error) {
         console.log(error);
@@ -197,7 +211,7 @@ exports.friendRequestList = async (req, res) => {
         if (userFriend) {
             return res.status(200).json(helper.response(200, true, "Friend Request List!", userFriend));
         } else {
-            return res.status(400).json(helper.response(400, false, "Friend Request List Not Found!"));
+            return res.status(200).json(helper.response(200, false, "Friend Request List Not Found!"));
         }
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
@@ -209,7 +223,7 @@ exports.friendRequestStatusUpdate = async (req, res) => {
         let payload = req.body;
         let userFriend = await userFriendSchema.findOne({ user_id_1: payload.user_id_1, user_id_2: req.user.userId });
         if (!userFriend) {
-            return res.status(400).json(helper.response(400, false, "Friend Request Not Found!"));
+            return res.status(200).json(helper.response(200, false, "Friend Request Not Found!"));
         }
         if (payload.status) {
             userFriend.status = payload.status;
@@ -218,7 +232,7 @@ exports.friendRequestStatusUpdate = async (req, res) => {
         if (userFriendResult) {
             return res.status(200).json(helper.response(200, true, "Friend Request Status Update Successfully!", userFriendResult));
         } else {
-            return res.status(400).json(helper.response(400, false, "Friend Request Status Update Failed!"));
+            return res.status(200).json(helper.response(200, false, "Friend Request Status Update Failed!"));
         }
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
@@ -231,7 +245,7 @@ exports.friendList = async (req, res) => {
         if (userFriend) {
             return res.status(200).json(helper.response(200, true, "Friend List!", userFriend));
         } else {
-            return res.status(400).json(helper.response(400, false, "Friend List Not Found!"));
+            return res.status(200).json(helper.response(200, false, "Friend List Not Found!"));
         }
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
@@ -243,11 +257,11 @@ exports.followUser = async (req, res) => {
         let payload = req.body;
         let user = await userSchema.findById(payload.followUserId);
         if (!user) {
-            return res.status(400).json(helper.response(400, false, "User Not Found!"));
+            return res.status(200).json(helper.response(200, false, "User Not Found!"));
         }
         let userFollow = await userFollowSchema.findOne({ userId: req.user.userId, followUserId: payload.followUserId });
         if (userFollow) {
-            return res.status(400).json(helper.response(400, false, "User Already Followed!"));
+            return res.status(200).json(helper.response(200, false, "User Already Followed!"));
         }
         let userFollow1 = new userFollowSchema({
             userId: req.user.userId,
@@ -257,7 +271,7 @@ exports.followUser = async (req, res) => {
         if (userFollowResult) {
             return res.status(200).json(helper.response(200, true, "User Followed Successfully!", userFollowResult));
         } else {
-            return res.status(400).json(helper.response(400, false, "User Followed Failed!"));
+            return res.status(200).json(helper.response(200, false, "User Followed Failed!"));
         }
     } catch (error) {
         console.log(error);
@@ -271,7 +285,7 @@ exports.followUserList = async (req, res) => {
         if (userFollow) {
             return res.status(200).json(helper.response(200, true, "Follow User List!", userFollow));
         } else {
-            return res.status(400).json(helper.response(400, false, "Follow User List Not Found!"));
+            return res.status(200).json(helper.response(200, false, "Follow User List Not Found!"));
         }
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));

@@ -26,13 +26,13 @@ exports.sendMessage = async (req, res) => {
                     if (updateConversation) {
                         return res.status(200).json(helper.response(200, true, "Message Send Successfully!", { messageResult: messageResult }));
                     } else {
-                        return res.status(400).json(helper.response(400, false, "Message Send Failed!"));
+                        return res.status(200).json(helper.response(200, false, "Message Send Failed!"));
                     }
                 } else {
-                    return res.status(400).json(helper.response(400, false, "Message Send Failed!"));
+                    return res.status(200).json(helper.response(200, false, "Message Send Failed!"));
                 }
             } else {
-                return res.status(400).json(helper.response(400, false, "Message Send Failed!"));
+                return res.status(200).json(helper.response(200, false, "Message Send Failed!"));
             }
         } else {
             let newMessage = new Message({
@@ -45,10 +45,10 @@ exports.sendMessage = async (req, res) => {
                 if (updateConversation) {
                     return res.status(200).json(helper.response(200, true, "Message Send Successfully!", { messageResult: messageResult }));
                 } else {
-                    return res.status(400).json(helper.response(400, false, "Message Send Failed!"));
+                    return res.status(200).json(helper.response(200, false, "Message Send Failed!"));
                 }
             } else {
-                return res.status(400).json(helper.response(400, false, "Message Send Failed!"));
+                return res.status(200).json(helper.response(200, false, "Message Send Failed!"));
             }
         }
     } catch (error) {
@@ -62,7 +62,7 @@ exports.messageList = async (req, res) => {
         let receiverId = req.query.receiverId;
         let conversation = await Conversation.findOne({ participants: { $all: [senderId, receiverId] } }).populate('messages');
         if (!conversation) {
-            return res.status(400).json(helper.response(400, false, "Message Not Found!"));
+            return res.status(200).json(helper.response(200, false, "Message Not Found!"));
         }
         return res.status(200).json(helper.response(200, true, "Message List!", conversation.messages));
     } catch (error) {
