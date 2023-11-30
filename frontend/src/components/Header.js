@@ -1,4 +1,3 @@
-
 import {
   AppBar,
   Box,
@@ -19,16 +18,14 @@ import theme from "../Theme";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import styled from "@emotion/styled";
-
-
-
+import ClearIcon from '@mui/icons-material/Clear';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const checkScroll = () => {
-      setIsScrolled(window.scrollY > 500);
+      setIsScrolled(window.scrollY > 200);
     };
 
     window.addEventListener("scroll", checkScroll);
@@ -77,8 +74,9 @@ const Header = () => {
             href="#"
             component={"a"}
             sx={{
-              width: { xs: "80px", sm: "100px", lg: "180px" },
-              minWidth: { xs: "80px", sm: "100px", lg: "120px" },
+                width: { xs: "160px", sm: "100px", lg: "180px" },
+                minWidth: { xs: "160px", sm: "100px", lg: "120px" },
+                display: "flex",
             }}
           >
             <Box
@@ -93,23 +91,35 @@ const Header = () => {
               justifyContent: "space-between",
             }}
           >
-            <Box sx={{}}>
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                  sm: "none",
+                  lg: "block",
+                },
+              }}
+            >
               <FormControl
                 className="form_imputNew"
                 sx={{
-                  height: "40px",
                   padding: "0px",
                   color: theme.palette.primary.White,
                   width: "100%",
-                  minWidth: "300px",
+                  minWidth: {
+                    xs: "200px",
+                    sm: "200px",
+                    lg: "300px",
+                  },
                   borderRadius: "30px",
                 }}
               >
                 <TextField
                   fullWidth
+                  size="small"
                   sx={{
                     padding: "0px",
-                    height: "30px",
+
                     borderRadius: "30px",
                     boxShadow: "0 5px 10px 0 rgb(87 101 128 / 12%)",
                     color: theme.palette.primary.White,
@@ -166,7 +176,7 @@ const Header = () => {
                       },
                     }}
                     component="a"
-                    href="#"
+                    href="/"
                   >
                     <Typography>home</Typography>
                   </ListItemButton>
@@ -286,42 +296,165 @@ const Header = () => {
                 <MenuIcon />
               </StyledIconButton>
               <StyledDrawer
-                anchor="right"
+                anchor="top"
                 open={open}
                 onClose={handleDrawerClose}
+                sx={{
+                  "& .MuiDrawer-paper": {
+                    width: "100%",
+                    backgroundColor: theme.palette.primary.Black,
+                    color: theme.palette.primary.White,
+                    padding: "20px 0px",
+                  },
+                }}
               >
-                <List>
+                <Box sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                
+                }}>
+                  <Box
+                    href="#"
+                    component={"a"}
+                    sx={{
+                      width: { xs: "170px", sm: "100px", lg: "180px" },
+                      minWidth: { xs: "170px", sm: "100px", lg: "120px" },
+                      display: "flex",
+                      marginLeft: "15px",
+                    }}
+                  >
+                    <Box
+                      component={"img"}
+                      src={process.env.PUBLIC_URL + "/assets/images/logo.png"}
+                    />
+                  </Box>
+                  <IconButton sx={{
+                    color: theme.palette.primary.White,
+                    marginRight: "15px",
+               background: theme.palette.primary.BackGredient2,  
+                  }} onClick={handleDrawerClose}>
+    <ClearIcon />
+  </IconButton>
+                </Box>
+                <List
+                  sx={{
+                    padding: "20px 0px",
+                    margin: "0px",
+                  }}
+                >
                   <ListItem disablePadding>
-                    <ListItemButton component="a" href="#">
+                    <ListItemButton
+                      sx={{
+                        borderBottom: `1px solid ${theme.palette.primary.LogoColor}`,
+                        transition: "all .3s ease-in-out",
+                        "&:hover": {
+                          backgroundColor: theme.palette.primary.LogoColor,
+                          paddingLeft: "35px",
+                        },
+                      }}
+                      component="a"
+                      href="/"
+                    >
                       <Typography>home</Typography>
                     </ListItemButton>
                   </ListItem>
+              
                   <ListItem disablePadding>
-                    <ListItemButton component="a" href="#">
-                      <Typography>home</Typography>
+                    <ListItemButton
+                      sx={{
+                        borderBottom: `1px solid ${theme.palette.primary.LogoColor}`,
+                        transition: "all .3s ease-in-out",
+                        "&:hover": {
+                          backgroundColor: theme.palette.primary.LogoColor,
+                          paddingLeft: "35px",
+                        },
+                      }}
+                      component="a"
+                      href="#"
+                    >
+                      <Typography>About us</Typography>
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
-                    <ListItemButton component="a" href="#">
-                      <Typography>home</Typography>
+                    <ListItemButton
+                      sx={{
+                        borderBottom: `1px solid ${theme.palette.primary.LogoColor}`,
+                        transition: "all .3s ease-in-out",
+                        "&:hover": {
+                          backgroundColor: theme.palette.primary.LogoColor,
+                          paddingLeft: "35px",
+                        },
+                      }}
+                      component="a"
+                      href="#"
+                    >
+                      <Typography>Contact us</Typography>
                     </ListItemButton>
                   </ListItem>
-                  <ListItem disablePadding>
-                    <ListItemButton component="a" href="#">
-                      <Typography>home</Typography>
-                    </ListItemButton>
-                  </ListItem>
-                  <ListItem disablePadding>
-                    <ListItemButton component="a" href="#">
-                      <Typography>home</Typography>
-                    </ListItemButton>
-                  </ListItem>
-                  <ListItem disablePadding>
-                    <ListItemButton component="a" href="#">
-                      <Typography>home</Typography>
-                    </ListItemButton>
-                  </ListItem>
+               
                 </List>
+                <Box
+                  sx={{
+                    padding: "10px 10px 0",
+                  }}
+                >
+                  <FormControl
+                    className="form_imputNew"
+                    sx={{
+                      padding: "0px",
+                      color: theme.palette.primary.White,
+                      width: "100%",
+
+                      minWidth: {
+                        xs: "200px",
+                        sm: "200px",
+                        lg: "300px",
+                      },
+                      borderRadius: "30px",
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          borderColor: theme.palette.primary.LogoColor,
+                          background: "transparent",
+                        },
+                        "&:hover fieldset": {
+                          borderColor: theme.palette.primary.LogoColor,
+                        },
+                        "&.Mui-focused fieldset": {
+                          borderColor: theme.palette.primary.LogoColor,
+                          borderWidth: "1px",
+                        },
+                      },
+                    }}
+                  >
+                    <TextField
+                      fullWidth
+                      size="small"
+                      sx={{
+                        padding: "0px",
+background: "transparent",
+                        borderRadius: "30px",
+                        boxShadow: "0 5px 10px 0 rgb(87 101 128 / 12%)",
+                        color: theme.palette.primary.White,
+                      }}
+                      variant="outlined"
+                      placeholder="Search..."
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              sx={{
+                                color: theme.palette.primary.White,
+                              }}
+                            >
+                              <SearchIcon />
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </FormControl>
+                </Box>
               </StyledDrawer>
             </Box>
           </Box>
@@ -331,7 +464,7 @@ const Header = () => {
   );
 };
 
-const drawerWidth = 260;
+const drawerWidth = "100%";
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
   width: drawerWidth,
