@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Box, Button, Container, Typography } from "@mui/material";
+import { Avatar, Box, Button, Container, Typography,Paper,TextField } from "@mui/material";
 import Sidebar from "../components/Sidebar";
 import HeaderNew from "../components/HeaderNew";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
@@ -10,10 +10,8 @@ import Footer from "../components/Footer";
 import DoneIcon from "@mui/icons-material/Done";
 import { useSelector } from "react-redux";
 
-
 const ChatRoom = () => {
-const friendList = useSelector((state) => state.FriendListReducer.value);
-
+  const friendList = useSelector((state) => state.FriendListReducer.value);
 
   return (
     <>
@@ -195,34 +193,18 @@ const friendList = useSelector((state) => state.FriendListReducer.value);
                   height: "400px",
                 }}
               >
-                {friendList && friendList.map((item, index) => ( 
-                  <Button
-                  key={index}
-                  sx={{
-                    display: "block",
-                    textTransform: "initial",
-                    padding: "10px 10px",
-                    borderBottom: `2px solid ${theme.palette.primary.Gray}`,
-                    "&:hover": {
-                      borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
-                    },
-                  }}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      gap: "15px",
-                    }}
-                  >
-                    <Avatar
-                      alt="Remy Sharp"
-                      src={process.env.PUBLIC_URL + "/assets/images/pf1.jpg"}
-                    />
-                    <Box
+                {friendList &&
+                  friendList.map((item, index) => (
+                    <Button
+                      key={index}
                       sx={{
-                        width: "100%",
+                        display: "block",
+                        textTransform: "initial",
+                        padding: "10px 10px",
+                        borderBottom: `2px solid ${theme.palette.primary.Gray}`,
+                        "&:hover": {
+                          borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
+                        },
                       }}
                     >
                       <Box
@@ -233,67 +215,83 @@ const friendList = useSelector((state) => state.FriendListReducer.value);
                           gap: "15px",
                         }}
                       >
-                        <Typography
-                          sx={{
-                            fontSize: "13px",
-                            fontWeight: "500",
-                            color: theme.palette.primary.LogoColor,
-                            fontFamily: theme.palette.primary.MainFont1,
-                          }}
-                          component={"h6"}
-                        >
-                          {item.user_id_1.name}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontSize: "12px",
-                            fontWeight: "400",
-                            color: theme.palette.primary.ParaColor,
-                            fontFamily: theme.palette.primary.MainFont1,
-                          }}
-                          component={"small"}
-                        >
-                          2 hour ago
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: "15px",
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            fontSize: "13px",
-                            fontWeight: "500",
-                            color: theme.palette.primary.ParaColor,
-                            fontFamily: theme.palette.primary.MainFont1,
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            whiteSpace: "nowrap",
-                            width: "140px",
-                            display: "flex",
-                          }}
-                          component={"p"}
-                        >
-                          Okay fine. thank you
-                        </Typography>
-                        <DoneIcon
-                          sx={{
-                            fontSize: "15px",
-                            color: theme.palette.primary.ParaColor,
-                          }}
+                        <Avatar
+                          alt="Remy Sharp"
+                          src={
+                            process.env.PUBLIC_URL + "/assets/images/pf1.jpg"
+                          }
                         />
+                        <Box
+                          sx={{
+                            width: "100%",
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "space-between",
+                              gap: "15px",
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                fontSize: "13px",
+                                fontWeight: "500",
+                                color: theme.palette.primary.LogoColor,
+                                fontFamily: theme.palette.primary.MainFont1,
+                              }}
+                              component={"h6"}
+                            >
+                              {item.user_id_1.name}
+                            </Typography>
+                            <Typography
+                              sx={{
+                                fontSize: "12px",
+                                fontWeight: "400",
+                                color: theme.palette.primary.ParaColor,
+                                fontFamily: theme.palette.primary.MainFont1,
+                              }}
+                              component={"small"}
+                            >
+                              2 hour ago
+                            </Typography>
+                          </Box>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              gap: "15px",
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                fontSize: "13px",
+                                fontWeight: "500",
+                                color: theme.palette.primary.ParaColor,
+                                fontFamily: theme.palette.primary.MainFont1,
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                whiteSpace: "nowrap",
+                                width: "140px",
+                                display: "flex",
+                              }}
+                              component={"p"}
+                            >
+                              Okay fine. thank you
+                            </Typography>
+                            <DoneIcon
+                              sx={{
+                                fontSize: "15px",
+                                color: theme.palette.primary.ParaColor,
+                              }}
+                            />
+                          </Box>
+                        </Box>
                       </Box>
-                    </Box>
-                  </Box>
-                </Button>
-              
-                )) }
-
-                
+                    </Button>
+                  ))}
               </Box>
               <Box
                 className="ChatRoomLeftBar"
@@ -306,7 +304,42 @@ const friendList = useSelector((state) => state.FriendListReducer.value);
                   height: "400px",
                   marginLeft: "10px",
                 }}
-              ></Box>
+              >
+                {/* chat box  */}
+                <Box >
+                  <Paper elevation={3} >
+                    
+                      <Typography
+                        // key={index}
+                        variant="body1"
+                        textAlign="left"
+                        // style={{
+                        //   textAlign:
+                        //     message.sender === "user" ? "right" : "left",
+                        // }}
+                      >
+                        Hello all
+                      </Typography>
+                
+                  </Paper>
+                  <Box >
+                    <TextField
+                      
+                      variant="outlined"
+                      placeholder="Type your message..."
+                      // value={newMessage}
+                      // onChange={(e) => setNewMessage(e.target.value)}
+                    />
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      // onClick={handleSendMessage}
+                    >
+                      Send
+                    </Button>
+                  </Box>
+                </Box>
+              </Box>
             </Box>
           </Box>
           <Box flex={0.5} p={"0 10px"}>
