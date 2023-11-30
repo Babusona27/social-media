@@ -28,7 +28,7 @@ const Navigation = () => {
   
   useEffect(() => { 
     const checkTokenExpiration = () => {
-      const token = userData.token;
+      const token = userData && userData.token;
     
       if (token) {
         const decodedToken = jwtDecode(token);
@@ -45,7 +45,7 @@ const Navigation = () => {
       }
     };
     checkTokenExpiration();
-  }, [userData.token,dispatch]);
+  }, [userData,dispatch]);
 
   if (userData === null) {
     return (

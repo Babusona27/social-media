@@ -348,8 +348,14 @@ const Sidebar = () => {
         </Box>
         <Box sx={{
           paddingX: "30px",
-          display: "grid",
+          display: {
+            xs: "flex",
+            sm: "flex",
+            md: "grid",
+            lg: "grid",
+          },
           gridTemplateColumns: "repeat(3, 1fr)",
+          flexWrap: "wrap",
           // Gap: "20px",
 
         }}>

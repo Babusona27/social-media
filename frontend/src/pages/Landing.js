@@ -39,7 +39,12 @@ const Landing = () => {
 
       <Box
         sx={{
-          height: "500px",
+          height: {
+            xs: "650px",
+            sm: "650px",
+            md: "500px",
+            lg: "500px",
+          },
           width: "100%",
           backgroundImage: `url(${process.env.PUBLIC_URL + "/assets/images/bg.jpg"
             })`,

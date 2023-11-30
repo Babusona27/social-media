@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
-  Container,
   Divider,
   TextField,
   Typography,
@@ -79,7 +78,6 @@ const Login = ({ onChildClick }) => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ height: "100%" }}>
       <Box
         sx={{
           minHeight: {
@@ -87,7 +85,6 @@ const Login = ({ onChildClick }) => {
             sm: "600px",
             md: "600px",
             lg: "550px",
-
           },
           width: {
             xs: "90%",
@@ -109,6 +106,18 @@ const Login = ({ onChildClick }) => {
             sm: "40px 30px",
             md: "40px 30px",
             lg: "20px",
+          },
+          marginTop:{
+            xs: "25px",
+            sm: "25px",
+            md: "0",
+            lg: "0",
+          },
+          borderRadius: {
+            xs: "10px",
+            sm: "10px",
+            md: "0",
+            lg: "0",
           },
           zIndex: "1",
           display: "flex",
@@ -214,7 +223,7 @@ const Login = ({ onChildClick }) => {
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "20px",
+                gap: "10px",
                 marginTop: "20px",
               }}
               onSubmit={handleSubmit}
@@ -326,7 +335,6 @@ const Login = ({ onChildClick }) => {
           />
         </Box>
       </Box>
-    </Container>
   );
 };
 
