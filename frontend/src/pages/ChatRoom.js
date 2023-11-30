@@ -1,5 +1,14 @@
 import React from "react";
-import { Avatar, Box, Button, Container, Typography,Paper,TextField } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Typography,
+  Paper,
+  TextField,
+  FormControl,
+} from "@mui/material";
 import Sidebar from "../components/Sidebar";
 import HeaderNew from "../components/HeaderNew";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
@@ -191,6 +200,7 @@ const ChatRoom = () => {
                   width: "250px",
                   overflowY: "scroll",
                   height: "400px",
+                  overflowX: "hidden",
                 }}
               >
                 {friendList &&
@@ -297,43 +307,105 @@ const ChatRoom = () => {
                 className="ChatRoomLeftBar"
                 sx={{
                   flex: "2",
-                  paddingX: "10px",
+                  padding: "0px 10px 0px 0px",
                   maxHeight: "400px",
                   width: "100%",
                   overflowY: "scroll",
+                  overflowX: "hidden",
                   height: "400px",
-                  marginLeft: "10px",
+                  marginLeft: "0px",
+                  position: "relative",
                 }}
               >
                 {/* chat box  */}
-                <Box >
-                  <Paper elevation={3} >
-                    
-                      <Typography
-                        // key={index}
-                        variant="body1"
-                        textAlign="left"
-                        // style={{
-                        //   textAlign:
-                        //     message.sender === "user" ? "right" : "left",
-                        // }}
-                      >
-                        Hello all
-                      </Typography>
-                
+                <Box>
+                  <Paper elevation={3}>
+                    <Typography
+                      // key={index}
+                      variant="body1"
+                      textAlign="left"
+                      // style={{
+                      //   textAlign:
+                      //     message.sender === "user" ? "right" : "left",
+                      // }}
+                    >
+                      Hello all
+                    </Typography>
                   </Paper>
-                  <Box >
-                    <TextField
-                      
-                      variant="outlined"
-                      placeholder="Type your message..."
-                      // value={newMessage}
-                      // onChange={(e) => setNewMessage(e.target.value)}
-                    />
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      bottom: "0",
+                      width: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "start",
+                      gap: "10px",
+                      padding: "10px 10px",
+                      borderTop: `1px solid ${theme.palette.primary.Gray}`,
+                      backgroundColor: theme.palette.primary.White,
+                      boxShadow: theme.palette.primary.BoxShadow2,
+                    }}
+                  >
+                    <FormControl
+                      className="form_imputNew"
+                      sx={{
+                        padding: "0px",
+                        color: theme.palette.primary.White,
+                        width: "70%",
+                        minWidth: "70%",
+                        borderRadius: "30px",
+                        "& .MuiOutlinedInput-root": {
+                          "& fieldset": {
+                            borderColor: theme.palette.primary.LogoColor,
+                            background: "transparent",
+                            borderRadius: "30px",
+                          },
+                          "&:hover fieldset": {
+                            borderColor: theme.palette.primary.LogoColor,
+                            borderRadius: "30px",
+                          },
+                          "&.Mui-focused fieldset": {
+                            borderColor: theme.palette.primary.LogoColor,
+                            borderWidth: "1px",
+                            borderRadius: "30px",
+                          },
+                        },
+                      }}
+                    >
+                      <TextField
+                        fullWidth
+                        size="small"
+                        sx={{
+                          padding: "0px",
+                          background: "transparent",
+                          borderRadius: "30px",
+                          boxShadow: "0 5px 10px 0 rgb(87 101 128 / 12%)",
+                          color: theme.palette.primary.White,
+                        }}
+                        variant="outlined"
+                        placeholder="Search..."
+                      />
+                    </FormControl>
                     <Button
                       variant="contained"
                       color="primary"
                       // onClick={handleSendMessage}
+                      sx={{
+                        color: theme.palette.primary.White,
+                        fontSize: "14px",
+                        fontWeight: "600",
+                        lineHeight: "26px",
+                        backgroundColor: theme.palette.primary.LogoColor,
+                        fontFamily: theme.palette.primary.MainFont1,
+                        borderRadius: "30px",
+                        padding: "7px 25px",
+                        width: "30%",
+                        marginRight: "0px",
+                        "&:hover": {
+                          backgroundColor: theme.palette.primary.LogoColor,
+                        },
+                      }}
                     >
                       Send
                     </Button>
