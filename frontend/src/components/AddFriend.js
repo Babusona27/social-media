@@ -120,7 +120,7 @@ const AddFriend = () => {
                   },
                 }}
                 onClick={() => {
-                  _acceptFriendRequest(item.user_id_1._id);
+                  _acceptFriendRequest(item.user_id_2._id);
                 }}
               >
                 Accept Request

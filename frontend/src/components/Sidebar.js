@@ -28,7 +28,7 @@ const Sidebar = () => {
             });
     }
     getUserList();
-}, [userData.token, dispatch]);
+}, [userData, dispatch]);
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {

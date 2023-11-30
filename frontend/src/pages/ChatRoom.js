@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import {
   Avatar,
   Box,
@@ -18,9 +18,65 @@ import RightBar from "../components/RightBar";
 import Footer from "../components/Footer";
 import DoneIcon from "@mui/icons-material/Done";
 import { useSelector } from "react-redux";
+import { SEND_MESSAGE,MESSAGE_LIST } from "../Url";
+import axios from "axios";
 
 const ChatRoom = () => {
   const friendList = useSelector((state) => state.FriendListReducer.value);
+  const userData = useSelector((state) => state.UserReducer.value);
+  const [newMessage, setNewMessage] = useState("");
+  const [selectedFriend, setSelectedFriend] = useState(null);
+  const [messageList, setMessageList] = useState([]);
+
+useEffect(() => {
+    if(selectedFriend) {
+      axios
+        .get(MESSAGE_LIST, {
+          params: {
+            receiverId: selectedFriend.user_id_1._id,
+          },
+          headers: {
+            Authorization: `Bearer ${userData.token}`,
+          },
+        })
+        .then((res) => {
+         
+          setMessageList(res.data.data);
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+        
+    }
+
+}, [selectedFriend,userData])
+
+
+  const handleSendMessage = () => {
+    if(newMessage.trim() !== "") {    
+      setNewMessage("");
+      // code for sending message
+      const data = {
+        message: newMessage,
+        receiverId: selectedFriend.user_id_1._id,
+      };
+     
+      axios
+        .post(SEND_MESSAGE, data, {
+          headers: {
+            Authorization: `Bearer ${userData.token}`,
+          },
+        })
+        .then((res) => {
+          console.log("res", res);
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+ 
+    }
+    
+  };
 
   return (
     <>
@@ -216,6 +272,7 @@ const ChatRoom = () => {
                           borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                         },
                       }}
+                      onClick={() => setSelectedFriend(item)}
                     >
                       <Box
                         sx={{
@@ -319,19 +376,22 @@ const ChatRoom = () => {
               >
                 {/* chat box  */}
                 <Box>
-                  <Paper elevation={3}>
+                  {messageList && messageList.map((message, index) => (
+                    <Paper elevation={3}>
                     <Typography
                       // key={index}
                       variant="body1"
                       textAlign="left"
-                      // style={{
-                      //   textAlign:
-                      //     message.sender === "user" ? "right" : "left",
-                      // }}
+                      style={{
+                        textAlign: message.senderId === userData.user._id ? "right" : "left",
+                      }}
                     >
-                      Hello all
+                      {message.message}
                     </Typography>
                   </Paper>
+                  
+                  ))  
+                  }
                   <Box
                     sx={{
                       position: "absolute",
@@ -384,13 +444,15 @@ const ChatRoom = () => {
                           color: theme.palette.primary.White,
                         }}
                         variant="outlined"
-                        placeholder="Search..."
+                        placeholder="Type..."
+                        value={newMessage}
+                        onChange={(e) => setNewMessage(e.target.value)}
                       />
                     </FormControl>
                     <Button
                       variant="contained"
                       color="primary"
-                      // onClick={handleSendMessage}
+                      onClick={handleSendMessage}
                       sx={{
                         color: theme.palette.primary.White,
                         fontSize: "14px",
