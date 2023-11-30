@@ -20,7 +20,7 @@ const RightBar = () => {
           },
         })
         .then((res) => {
-          // console.log(res.data);
+           console.log("==>>>",res.data);
           setUserList(res.data.data);
         })
         .catch((err) => {
@@ -28,7 +28,7 @@ const RightBar = () => {
         });
     };
     getUserList();
-  }, [userData.token]);
+  }, [userData]);
 
 const _sendFriendRequest = async (id) => {
     axios

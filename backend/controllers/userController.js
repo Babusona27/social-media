@@ -219,7 +219,7 @@ exports.sendFriendRequest = async (req, res) => {
 
 exports.friendRequestList = async (req, res) => {
     try {
-        let userFriend = await userFriendSchema.find({ user_id_2: req.user.userId, status: "pending" }).populate('user_id_1');
+        let userFriend = await userFriendSchema.find({ user_id_1: req.user.userId, status: "pending" }).populate('user_id_2');
         if (userFriend) {
             return res.status(200).json(helper.response(200, true, "Friend Request List!", userFriend));
         } else {

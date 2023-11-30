@@ -64,9 +64,14 @@ const Login = ({ onChildClick }) => {
       //   console.log("Form submitted:", formData);
       // logic to submit data, e.g., make an API call
       axios.post(LOGIN, formData).then((res) => {
+        if(res.data.status === true){        
         setMessageType("success");
         setMessage(res.data.message);
         dispatch(userDetails(res.data.data));
+        }else{
+          setMessageType("error");
+          setMessage(res.data.message);
+        }
       }).catch((err) => {
         console.log(err.response);
         if (err.response) {

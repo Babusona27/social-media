@@ -1,5 +1,14 @@
-import React from "react";
-import { Avatar, Box, Button, Container, Typography,Paper,TextField } from "@mui/material";
+import React,{useState, useEffect} from "react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Typography,
+  Paper,
+  TextField,
+  FormControl,
+} from "@mui/material";
 import Sidebar from "../components/Sidebar";
 import HeaderNew from "../components/HeaderNew";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
@@ -9,9 +18,65 @@ import RightBar from "../components/RightBar";
 import Footer from "../components/Footer";
 import DoneIcon from "@mui/icons-material/Done";
 import { useSelector } from "react-redux";
+import { SEND_MESSAGE,MESSAGE_LIST } from "../Url";
+import axios from "axios";
 
 const ChatRoom = () => {
   const friendList = useSelector((state) => state.FriendListReducer.value);
+  const userData = useSelector((state) => state.UserReducer.value);
+  const [newMessage, setNewMessage] = useState("");
+  const [selectedFriend, setSelectedFriend] = useState(null);
+  const [messageList, setMessageList] = useState([]);
+
+useEffect(() => {
+    if(selectedFriend) {
+      axios
+        .get(MESSAGE_LIST, {
+          params: {
+            receiverId: selectedFriend.user_id_1._id,
+          },
+          headers: {
+            Authorization: `Bearer ${userData.token}`,
+          },
+        })
+        .then((res) => {
+         
+          setMessageList(res.data.data);
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+        
+    }
+
+}, [selectedFriend,userData])
+
+
+  const handleSendMessage = () => {
+    if(newMessage.trim() !== "") {    
+      setNewMessage("");
+      // code for sending message
+      const data = {
+        message: newMessage,
+        receiverId: selectedFriend.user_id_1._id,
+      };
+     
+      axios
+        .post(SEND_MESSAGE, data, {
+          headers: {
+            Authorization: `Bearer ${userData.token}`,
+          },
+        })
+        .then((res) => {
+          console.log("res", res);
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+ 
+    }
+    
+  };
 
   return (
     <>
@@ -191,6 +256,7 @@ const ChatRoom = () => {
                   width: "250px",
                   overflowY: "scroll",
                   height: "400px",
+                  overflowX: "hidden",
                 }}
               >
                 {friendList &&
@@ -206,6 +272,7 @@ const ChatRoom = () => {
                           borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                         },
                       }}
+                      onClick={() => setSelectedFriend(item)}
                     >
                       <Box
                         sx={{
@@ -297,43 +364,110 @@ const ChatRoom = () => {
                 className="ChatRoomLeftBar"
                 sx={{
                   flex: "2",
-                  paddingX: "10px",
+                  padding: "0px 10px 0px 0px",
                   maxHeight: "400px",
                   width: "100%",
                   overflowY: "scroll",
+                  overflowX: "hidden",
                   height: "400px",
-                  marginLeft: "10px",
+                  marginLeft: "0px",
+                  position: "relative",
                 }}
               >
                 {/* chat box  */}
-                <Box >
-                  <Paper elevation={3} >
-                    
-                      <Typography
-                        // key={index}
-                        variant="body1"
-                        textAlign="left"
-                        // style={{
-                        //   textAlign:
-                        //     message.sender === "user" ? "right" : "left",
-                        // }}
-                      >
-                        Hello all
-                      </Typography>
-                
+                <Box>
+                  {messageList && messageList.map((message, index) => (
+                    <Paper elevation={3}>
+                    <Typography
+                      // key={index}
+                      variant="body1"
+                      textAlign="left"
+                      style={{
+                        textAlign: message.senderId === userData.user._id ? "right" : "left",
+                      }}
+                    >
+                      {message.message}
+                    </Typography>
                   </Paper>
-                  <Box >
-                    <TextField
-                      
-                      variant="outlined"
-                      placeholder="Type your message..."
-                      // value={newMessage}
-                      // onChange={(e) => setNewMessage(e.target.value)}
-                    />
+                  
+                  ))  
+                  }
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      bottom: "0",
+                      width: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "start",
+                      gap: "10px",
+                      padding: "10px 10px",
+                      borderTop: `1px solid ${theme.palette.primary.Gray}`,
+                      backgroundColor: theme.palette.primary.White,
+                      boxShadow: theme.palette.primary.BoxShadow2,
+                    }}
+                  >
+                    <FormControl
+                      className="form_imputNew"
+                      sx={{
+                        padding: "0px",
+                        color: theme.palette.primary.White,
+                        width: "70%",
+                        minWidth: "70%",
+                        borderRadius: "30px",
+                        "& .MuiOutlinedInput-root": {
+                          "& fieldset": {
+                            borderColor: theme.palette.primary.LogoColor,
+                            background: "transparent",
+                            borderRadius: "30px",
+                          },
+                          "&:hover fieldset": {
+                            borderColor: theme.palette.primary.LogoColor,
+                            borderRadius: "30px",
+                          },
+                          "&.Mui-focused fieldset": {
+                            borderColor: theme.palette.primary.LogoColor,
+                            borderWidth: "1px",
+                            borderRadius: "30px",
+                          },
+                        },
+                      }}
+                    >
+                      <TextField
+                        fullWidth
+                        size="small"
+                        sx={{
+                          padding: "0px",
+                          background: "transparent",
+                          borderRadius: "30px",
+                          boxShadow: "0 5px 10px 0 rgb(87 101 128 / 12%)",
+                          color: theme.palette.primary.White,
+                        }}
+                        variant="outlined"
+                        placeholder="Type..."
+                        value={newMessage}
+                        onChange={(e) => setNewMessage(e.target.value)}
+                      />
+                    </FormControl>
                     <Button
                       variant="contained"
                       color="primary"
-                      // onClick={handleSendMessage}
+                      onClick={handleSendMessage}
+                      sx={{
+                        color: theme.palette.primary.White,
+                        fontSize: "14px",
+                        fontWeight: "600",
+                        lineHeight: "26px",
+                        backgroundColor: theme.palette.primary.LogoColor,
+                        fontFamily: theme.palette.primary.MainFont1,
+                        borderRadius: "30px",
+                        padding: "7px 25px",
+                        width: "30%",
+                        marginRight: "0px",
+                        "&:hover": {
+                          backgroundColor: theme.palette.primary.LogoColor,
+                        },
+                      }}
                     >
                       Send
                     </Button>
