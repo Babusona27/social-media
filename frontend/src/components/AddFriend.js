@@ -19,7 +19,7 @@ const AddFriend = () => {
           },
         })
         .then((res) => {
-         // console.log(res.data);
+          // console.log(res.data);
           setUserList(res.data.data);
         })
         .catch((err) => {
@@ -39,7 +39,7 @@ const AddFriend = () => {
           Authorization: `Bearer ${userData.token}`,
         },
       }).then((res) => {
-       //console.log(res.data);
+        //console.log(res.data);
         // setUserList(res.data.data);
         showAlert("success", res.data.message);
       }).catch((err) => {
@@ -54,6 +54,13 @@ const AddFriend = () => {
         <Box
           sx={{
             display: "flex",
+            flexDirection: {
+              xs: "column",
+              sm: "row",
+              md: "row",
+              lg: "row",
+            },
+            alignItems: "center",
             borderBottom: `1px solid ${theme.palette.primary.Gray}`,
             paddingBottom: "20px",
             marginBottom: "20px",
@@ -72,7 +79,14 @@ const AddFriend = () => {
               }}
             />
           </Box>
-          <Box flex={"5"} padding={"0 10px"}>
+          <Box flex={"5"} padding={"0 10px"} sx={{
+            margin: {
+              xs: "15px 0",
+              sm: "0",
+              md: "0",
+              lg: "0",
+            },
+          }}>
             <Typography
               sx={{
                 fontSize: "14px",
@@ -94,6 +108,12 @@ const AddFriend = () => {
                 fontSize: "13px",
                 lineHeight: "26px",
                 color: theme.palette.primary.ParaColor,
+                textAlign: {
+                  xs: "center",
+                  sm: "left",
+                  md: "left",
+                  lg: "left",
+                },
               }}
             >
               N/A
@@ -101,7 +121,15 @@ const AddFriend = () => {
 
           </Box>
           <Box flex={"2"} margin={"0 10px"}>
-            <Box >
+            <Box sx={{ 
+              display: {
+                xs: "block",
+                sm: "flex",
+                md: "block",
+                lg: "block",
+              },
+              justifyContent: "flex-end"
+             }}>
               <Typography
                 component={"button"}
                 sx={{
@@ -113,7 +141,12 @@ const AddFriend = () => {
                   backgroundColor: theme.palette.primary.LogoColor,
                   borderRadius: "30px",
                   padding: "7px 12px",
-                  marginLeft: "10px",
+                  marginLeft: {
+                    xs: "0",
+                    sm: "0",
+                    md: "10px",
+                    lg: "10px",
+                  },
                   textAlign: "center",
                   "&:hover": {
                     backgroundColor: theme.palette.primary.LogoColor,

@@ -10,7 +10,12 @@ const FriendListCard = () => {
             {friendList && friendList.map((item, key) => (
 
                 <Box sx={{
-                    width: "48%",
+                    width: {
+                        xs: "100%",
+                        sm: "100%",
+                        md: "48%",
+                        lg: "48%",
+                      },
                 }} key={key}>
                     <Box sx={{
                         background: `${theme.palette.primary.CoverBgGradient}, url(${process.env.PUBLIC_URL + "/assets/images/fb6.jpg"}) no-repeat`,

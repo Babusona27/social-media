@@ -292,6 +292,9 @@ const Header = () => {
                 aria-label="open drawer"
                 edge="start"
                 onClick={handleDrawerOpen}
+                sx={{ 
+                  marginRight: "0px !important",
+                 }}
               >
                 <MenuIcon />
               </StyledIconButton>

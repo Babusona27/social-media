@@ -356,13 +356,19 @@ const Sidebar = () => {
           },
           gridTemplateColumns: "repeat(3, 1fr)",
           flexWrap: "wrap",
+          justifyContent: "center",
           // Gap: "20px",
 
         }}>
           <Tooltip title="Linda Lohan">
             <Box component={"a"} href='#'>
               <StyledBadge sx={{
-                marginRight: "10px",
+                marginRight: {
+                  xs: "17px",
+                  sm: "22px",
+                  md: "10px",
+                  lg: "10px",
+                },
                 marginBottom: "20px",
               }}
                 overlap="circular"
@@ -383,7 +389,12 @@ const Sidebar = () => {
           <Tooltip title="Linda Lohan">
             <Box component={"a"} href='#'>
               <StyledBadge sx={{
-                marginRight: "10px",
+                marginRight: {
+                  xs: "17px",
+                  sm: "22px",
+                  md: "10px",
+                  lg: "10px",
+                },
                 marginBottom: "20px",
               }}
                 overlap="circular"
@@ -404,7 +415,12 @@ const Sidebar = () => {
           <Tooltip title="Linda Lohan">
             <Box component={"a"} href='#'>
               <StyledBadge sx={{
-                marginRight: "10px",
+                marginRight: {
+                  xs: "17px",
+                  sm: "22px",
+                  md: "10px",
+                  lg: "10px",
+                },
                 marginBottom: "20px",
               }}
                 overlap="circular"
@@ -425,7 +441,12 @@ const Sidebar = () => {
           <Tooltip title="Linda Lohan">
             <Box component={"a"} href='#'>
               <StyledBadge sx={{
-                marginRight: "10px",
+                marginRight: {
+                  xs: "17px",
+                  sm: "22px",
+                  md: "10px",
+                  lg: "10px",
+                },
                 marginBottom: "20px",
               }}
                 overlap="circular"
@@ -446,7 +467,12 @@ const Sidebar = () => {
           <Tooltip title="Linda Lohan">
             <Box component={"a"} href='#'>
               <StyledBadge sx={{
-                marginRight: "10px",
+                marginRight: {
+                  xs: "17px",
+                  sm: "22px",
+                  md: "10px",
+                  lg: "10px",
+                },
                 marginBottom: "20px",
               }}
                 overlap="circular"
@@ -467,7 +493,12 @@ const Sidebar = () => {
           <Tooltip title="Linda Lohan">
             <Box component={"a"} href='#'>
               <StyledBadge sx={{
-                marginRight: "10px",
+                marginRight: {
+                  xs: "17px",
+                  sm: "22px",
+                  md: "10px",
+                  lg: "10px",
+                },
                 marginBottom: "20px",
               }}
                 overlap="circular"
@@ -488,7 +519,12 @@ const Sidebar = () => {
           <Tooltip title="Linda Lohan">
             <Box component={"a"} href='#'>
               <StyledBadge sx={{
-                marginRight: "10px",
+                marginRight: {
+                  xs: "17px",
+                  sm: "22px",
+                  md: "10px",
+                  lg: "10px",
+                },
                 marginBottom: "20px",
               }}
                 overlap="circular"
@@ -509,7 +545,12 @@ const Sidebar = () => {
           <Tooltip title="Linda Lohan">
             <Box component={"a"} href='#'>
               <StyledBadge sx={{
-                marginRight: "10px",
+                marginRight: {
+                  xs: "17px",
+                  sm: "22px",
+                  md: "10px",
+                  lg: "10px",
+                },
                 marginBottom: "20px",
               }}
                 overlap="circular"
@@ -530,7 +571,12 @@ const Sidebar = () => {
           <Tooltip title="Linda Lohan">
             <Box component={"a"} href='#'>
               <StyledBadge sx={{
-                marginRight: "10px",
+                marginRight: {
+                  xs: "17px",
+                  sm: "22px",
+                  md: "10px",
+                  lg: "10px",
+                },
                 marginBottom: "20px",
               }}
                 overlap="circular"

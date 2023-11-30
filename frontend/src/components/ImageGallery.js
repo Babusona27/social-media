@@ -13,10 +13,20 @@ import { ThumbDownAlt, ThumbUpAlt } from "@mui/icons-material";
 
 const style = {
   position: "absolute",
-  top: "50%",
+  top: {
+    xs: "39%",
+    sm: "40%",
+    md: "50%",
+    lg: "50%",
+  },
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "40%",
+  width: {
+    xs: "100%",
+    sm: "85%",
+    md: "48%",
+    lg: "48%",
+  },
   bgcolor: "background.paper",
   border:`1px solid ${theme.palette.primary.LogoColor}`,
   boxShadow: 24,
@@ -30,7 +40,12 @@ const ImageGallery = () => {
   return (
     <Box
       sx={{
-        width: "48%",
+        width: {
+          xs: "100%",
+          sm: "100%",
+          md: "48%",
+          lg: "48%",
+        },
       }}
     >
       <Box
@@ -403,7 +418,7 @@ const ImageGallery = () => {
                               }}
                               className="comment_input"
                               fullWidth
-                              label="Enter name"
+                              label="Post a comment"
                               variant="outlined"
                             />
                           </Box>
