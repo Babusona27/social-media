@@ -1,12 +1,5 @@
-import React, { useState } from "react";
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-  Tabs,
-  Typography,
-} from "@mui/material";
+import React from "react";
+import { Avatar, Box, Button, Container, Typography,Paper,TextField } from "@mui/material";
 import Sidebar from "../components/Sidebar";
 import HeaderNew from "../components/HeaderNew";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
@@ -14,13 +7,11 @@ import theme from "../Theme";
 import { EditNote, Map, Photo, Videocam } from "@mui/icons-material";
 import RightBar from "../components/RightBar";
 import Footer from "../components/Footer";
-import ReplyIcon from "@mui/icons-material/Reply";
-import DoneIcon from '@mui/icons-material/Done';
-import DoneAllIcon from '@mui/icons-material/DoneAll';
+import DoneIcon from "@mui/icons-material/Done";
+import { useSelector } from "react-redux";
 
 const ChatRoom = () => {
-
-  const [activeTab, setActiveTab] = useState(1);
+  const friendList = useSelector((state) => state.FriendListReducer.value);
 
   return (
     <>
@@ -202,1093 +193,105 @@ const ChatRoom = () => {
                   height: "400px",
                 }}
               >
-             
-                  <Button
-                    sx={{
-                      display: "block",
-                      textTransform: "initial",
-                      padding: "10px 10px",
-                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
-                      "&:hover": {
-                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
-                      },
-                    }}
-                   
-                  >
-                    <Box
+                {friendList &&
+                  friendList.map((item, index) => (
+                    <Button
+                      key={index}
                       sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: "15px",
+                        display: "block",
+                        textTransform: "initial",
+                        padding: "10px 10px",
+                        borderBottom: `2px solid ${theme.palette.primary.Gray}`,
+                        "&:hover": {
+                          borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
+                        },
                       }}
                     >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={process.env.PUBLIC_URL + "/assets/images/pf1.jpg"}
-                      />
                       <Box
                         sx={{
-                          width: "100%",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          gap: "15px",
                         }}
                       >
+                        <Avatar
+                          alt="Remy Sharp"
+                          src={
+                            process.env.PUBLIC_URL + "/assets/images/pf1.jpg"
+                          }
+                        />
                         <Box
                           sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            gap: "15px",
+                            width: "100%",
                           }}
                         >
-                          <Typography
+                          <Box
                             sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.LogoColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"h6"}
-                          >
-                            Suraj
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: "12px",
-                              fontWeight: "400",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"small"}
-                          >
-                            2 hour ago
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                              width: "140px",
                               display: "flex",
+                              alignItems: "center",
+                              justifyContent: "space-between",
+                              gap: "15px",
                             }}
-                            component={"p"}
                           >
-                            Okay fine. thank you
-                          </Typography>
-                          <DoneIcon
+                            <Typography
+                              sx={{
+                                fontSize: "13px",
+                                fontWeight: "500",
+                                color: theme.palette.primary.LogoColor,
+                                fontFamily: theme.palette.primary.MainFont1,
+                              }}
+                              component={"h6"}
+                            >
+                              {item.user_id_1.name}
+                            </Typography>
+                            <Typography
+                              sx={{
+                                fontSize: "12px",
+                                fontWeight: "400",
+                                color: theme.palette.primary.ParaColor,
+                                fontFamily: theme.palette.primary.MainFont1,
+                              }}
+                              component={"small"}
+                            >
+                              2 hour ago
+                            </Typography>
+                          </Box>
+                          <Box
                             sx={{
-                              fontSize: "15px",
-                              color: theme.palette.primary.ParaColor,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              gap: "15px",
                             }}
-                          />
+                          >
+                            <Typography
+                              sx={{
+                                fontSize: "13px",
+                                fontWeight: "500",
+                                color: theme.palette.primary.ParaColor,
+                                fontFamily: theme.palette.primary.MainFont1,
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                whiteSpace: "nowrap",
+                                width: "140px",
+                                display: "flex",
+                              }}
+                              component={"p"}
+                            >
+                              Okay fine. thank you
+                            </Typography>
+                            <DoneIcon
+                              sx={{
+                                fontSize: "15px",
+                                color: theme.palette.primary.ParaColor,
+                              }}
+                            />
+                          </Box>
                         </Box>
                       </Box>
-                    </Box>
-                  </Button>
-                  <Button
-                    sx={{
-                      display: "block",
-                      textTransform: "initial",
-                      padding: "10px 10px",
-                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
-                      "&:hover": {
-                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
-                      },
-                    }}
-                   
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: "15px",
-                      }}
-                    >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={process.env.PUBLIC_URL + "/assets/images/pf2.jpg"}
-                      />
-                      <Box
-                        sx={{
-                          width: "100%",
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.LogoColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"h6"}
-                          >
-                            Suraj
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: "12px",
-                              fontWeight: "400",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"small"}
-                          >
-                            a hour ago
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                              width: "140px",
-                              display: "flex",
-                            }}
-                            component={"p"}
-                          >
-                            Okay fine. thank you
-                          </Typography>
-                          {/* <ReplyIcon
-                            sx={{
-                              fontSize: "15px",
-                              color: theme.palette.primary.ParaColor,
-                            }}
-                          /> */}
-                          <Box sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                           height:"18px",
-                            width:"16px",
-                          lineHeight:"1",
-                            borderRadius:"5px",
-                            backgroundColor:"red",
-                            color:"#fff",
-                            fontSize:"14px",
-                            fontWeight:"600"
-
-                          }} component={"span"}>1</Box>
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Button>
-
-                  <Button
-                    sx={{
-                      display: "block",
-                      textTransform: "initial",
-                      padding: "10px 10px",
-                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
-                      "&:hover": {
-                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
-                      },
-                    }}
-                 
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: "15px",
-                      }}
-                    >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={process.env.PUBLIC_URL + "/assets/images/pf3.jpg"}
-                      />
-                      <Box
-                        sx={{
-                          width: "100%",
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.LogoColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"h6"}
-                          >
-                            Suraj
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: "12px",
-                              fontWeight: "400",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"small"}
-                          >
-                            13 hour ago
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                              width: "140px",
-                              display: "flex",
-                            }}
-                            component={"p"}
-                          >
-                            Okay fine. thank you{" "}
-                          </Typography>
-                          <DoneAllIcon
-                            sx={{
-                              fontSize: "15px",
-                              color: theme.palette.primary.ParaColor,
-                            }}
-                          />
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Button>
-
-                  <Button
-                    sx={{
-                      display: "block",
-                      textTransform: "initial",
-                      padding: "10px 10px",
-                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
-                      "&:hover": {
-                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
-                      },
-                    }}
-                  
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: "15px",
-                      }}
-                    >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={process.env.PUBLIC_URL + "/assets/images/pf4.jpg"}
-                      />
-                      <Box
-                        sx={{
-                          width: "100%",
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.LogoColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"h6"}
-                          >
-                            Suraj
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: "12px",
-                              fontWeight: "400",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"small"}
-                          >
-                            13 hour ago
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                              width: "140px",
-                              display: "flex",
-                            }}
-                            component={"p"}
-                          >
-                            Okay fine. thank you{" "}
-                          </Typography>
-                          <DoneIcon
-                            sx={{
-                              fontSize: "15px",
-                              color: theme.palette.primary.ParaColor,
-                            }}
-                          />
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Button>
-
-                  <Button
-                    sx={{
-                      display: "block",
-                      textTransform: "initial",
-                      padding: "10px 10px",
-                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
-                      "&:hover": {
-                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
-                      },
-                    }}
-                  
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: "15px",
-                      }}
-                    >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={process.env.PUBLIC_URL + "/assets/images/pf2.jpg"}
-                      />
-                      <Box
-                        sx={{
-                          width: "100%",
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.LogoColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"h6"}
-                          >
-                            Suraj
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: "12px",
-                              fontWeight: "400",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"small"}
-                          >
-                            13 hour ago
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                              width: "140px",
-                              display: "flex",
-                            }}
-                            component={"p"}
-                          >
-                            Okay fine. thank you{" "}
-                          </Typography>
-                          <ReplyIcon
-                            sx={{
-                              fontSize: "15px",
-                              color: theme.palette.primary.ParaColor,
-                            }}
-                          />
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Button>
-
-                  <Button
-                    sx={{
-                      display: "block",
-                      textTransform: "initial",
-                      padding: "10px 10px",
-                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
-                      "&:hover": {
-                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
-                      },
-                    }}
-                 
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: "15px",
-                      }}
-                    >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={process.env.PUBLIC_URL + "/assets/images/pf1.jpg"}
-                      />
-                      <Box
-                        sx={{
-                          width: "100%",
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.LogoColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"h6"}
-                          >
-                            Suraj
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: "12px",
-                              fontWeight: "400",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"small"}
-                          >
-                            13 hour ago
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                              width: "140px",
-                              display: "flex",
-                            }}
-                            component={"p"}
-                          >
-                            Okay fine. thank you{" "}
-                          </Typography>
-                          <DoneAllIcon
-                            sx={{
-                              fontSize: "15px",
-                              color: theme.palette.primary.ParaColor,
-                            }}
-                          />
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Button>
-
-                  <Button
-                    sx={{
-                      display: "block",
-                      textTransform: "initial",
-                      padding: "10px 10px",
-                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
-                      "&:hover": {
-                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
-                      },
-                    }}
-               
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: "15px",
-                      }}
-                    >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={process.env.PUBLIC_URL + "/assets/images/pf3.jpg"}
-                      />
-                      <Box
-                        sx={{
-                          width: "100%",
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.LogoColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"h6"}
-                          >
-                            Suraj
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: "12px",
-                              fontWeight: "400",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"small"}
-                          >
-                            13 hour ago
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                              width: "140px",
-                              display: "flex",
-                            }}
-                            component={"p"}
-                          >
-                            Okay fine. thank you{" "}
-                          </Typography>
-                          {/* <ReplyIcon
-                            sx={{
-                              fontSize: "15px",
-                              color: theme.palette.primary.ParaColor,
-                            }}
-                          /> */}
-                            <Box sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                           height:"18px",
-                            width:"16px",
-                          lineHeight:"1",
-                            borderRadius:"5px",
-                            backgroundColor:"red",
-                            color:"#fff",
-                            fontSize:"14px",
-                            fontWeight:"600"
-
-                          }} component={"span"}>1</Box>
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Button>
-
-                  <Button
-                    sx={{
-                      display: "block",
-                      textTransform: "initial",
-                      padding: "10px 10px",
-                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
-                      "&:hover": {
-                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
-                      },
-                    }}
-                
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: "15px",
-                      }}
-                    >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={process.env.PUBLIC_URL + "/assets/images/pf4.jpg"}
-                      />
-                      <Box
-                        sx={{
-                          width: "100%",
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.LogoColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"h6"}
-                          >
-                            Suraj
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: "12px",
-                              fontWeight: "400",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"small"}
-                          >
-                            13 hour ago
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                              width: "140px",
-                              display: "flex",
-                            }}
-                            component={"p"}
-                          >
-                            Okay fine. thank you{" "}
-                          </Typography>
-                          <ReplyIcon
-                            sx={{
-                              fontSize: "15px",
-                              color: theme.palette.primary.ParaColor,
-                            }}
-                          />
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Button>
-
-                  <Button
-                    sx={{
-                      display: "block",
-                      textTransform: "initial",
-                      padding: "10px 10px",
-                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
-                      "&:hover": {
-                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
-                      },
-                    }}
-                  
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: "15px",
-                      }}
-                    >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={process.env.PUBLIC_URL + "/assets/images/pf1.jpg"}
-                      />
-                      <Box
-                        sx={{
-                          width: "100%",
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.LogoColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"h6"}
-                          >
-                            Suraj
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: "12px",
-                              fontWeight: "400",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"small"}
-                          >
-                            13 hour ago
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                              width: "140px",
-                              display: "flex",
-                            }}
-                            component={"p"}
-                          >
-                            Okay fine. thank you{" "}
-                          </Typography>
-                          <DoneIcon
-                            sx={{
-                              fontSize: "15px",
-                              color: theme.palette.primary.ParaColor,
-                            }}
-                          />
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Button>
-
-                  <Button
-                    sx={{
-                      display: "block",
-                      textTransform: "initial",
-                      padding: "10px 10px",
-                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
-                      "&:hover": {
-                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
-                      },
-                    }}
-                   
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: "15px",
-                      }}
-                    >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={process.env.PUBLIC_URL + "/assets/images/pf2.jpg"}
-                      />
-                      <Box
-                        sx={{
-                          width: "100%",
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.LogoColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"h6"}
-                          >
-                            Suraj
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: "12px",
-                              fontWeight: "400",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"small"}
-                          >
-                            13 hour ago
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                              width: "140px",
-                              display: "flex",
-                            }}
-                            component={"p"}
-                          >
-                            Okay fine. thank you{" "}
-                          </Typography>
-                          {/* <ReplyIcon
-                            sx={{
-                              fontSize: "15px",
-                              color: theme.palette.primary.ParaColor,
-                            }}
-                          /> */}
-                            <Box sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                           height:"18px",
-                            width:"16px",
-                          lineHeight:"1",
-                            borderRadius:"5px",
-                            backgroundColor:"red",
-                            color:"#fff",
-                            fontSize:"14px",
-                            fontWeight:"600"
-
-                          }} component={"span"}>1</Box>
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Button>
-
-                  <Button
-                    sx={{
-                      display: "block",
-                      textTransform: "initial",
-                      padding: "10px 10px",
-                      borderBottom: `2px solid ${theme.palette.primary.Gray}`,
-                      "&:hover": {
-                        borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
-                      },
-                    }}
-                  
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: "15px",
-                      }}
-                    >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={process.env.PUBLIC_URL + "/assets/images/pf4.jpg"}
-                      />
-                      <Box
-                        sx={{
-                          width: "100%",
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.LogoColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"h6"}
-                          >
-                            Suraj
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: "12px",
-                              fontWeight: "400",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                            }}
-                            component={"small"}
-                          >
-                            13 hour ago
-                          </Typography>
-                        </Box>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "15px",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontSize: "13px",
-                              fontWeight: "500",
-                              color: theme.palette.primary.ParaColor,
-                              fontFamily: theme.palette.primary.MainFont1,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                              width: "140px",
-                              display: "flex",
-                            }}
-                            component={"p"}
-                          >
-                            Okay fine. thank you{" "}
-                          </Typography>
-                          <DoneIcon
-                            sx={{
-                              fontSize: "15px",
-                              color: theme.palette.primary.ParaColor,
-                            }}
-                          />
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Button>
-              
+                    </Button>
+                  ))}
               </Box>
               <Box
                 className="ChatRoomLeftBar"
@@ -1302,7 +305,40 @@ const ChatRoom = () => {
                   marginLeft: "10px",
                 }}
               >
-              
+                {/* chat box  */}
+                <Box >
+                  <Paper elevation={3} >
+                    
+                      <Typography
+                        // key={index}
+                        variant="body1"
+                        textAlign="left"
+                        // style={{
+                        //   textAlign:
+                        //     message.sender === "user" ? "right" : "left",
+                        // }}
+                      >
+                        Hello all
+                      </Typography>
+                
+                  </Paper>
+                  <Box >
+                    <TextField
+                      
+                      variant="outlined"
+                      placeholder="Type your message..."
+                      // value={newMessage}
+                      // onChange={(e) => setNewMessage(e.target.value)}
+                    />
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      // onClick={handleSendMessage}
+                    >
+                      Send
+                    </Button>
+                  </Box>
+                </Box>
               </Box>
             </Box>
           </Box>

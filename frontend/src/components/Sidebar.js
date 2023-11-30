@@ -1,13 +1,34 @@
 import { Avatar, Box, List, Typography, Badge, Tooltip } from '@mui/material'
-import React from 'react'
+import React,{ useEffect } from 'react'
 import { PersonAdd } from '@mui/icons-material'
 import { Chat,  Groups, PermMedia, Videocam } from '@mui/icons-material'
 import theme from '../Theme'
 import styled from '@mui/material/styles/styled'
 import GroupIcon from '@mui/icons-material/Group';
-
+import axios from "axios";
+import { FRIEND_LIST } from "../Url";
+import {  useDispatch,useSelector } from "react-redux";
+import { friendList } from "../redux/reducers/FriendListReducer";
 const Sidebar = () => {
-
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.UserReducer.value);
+  useEffect(() => {
+    const getUserList = async () => {
+        axios
+            .get(FRIEND_LIST, {
+                headers: {
+                    Authorization: `Bearer ${userData.token}`,
+                },
+            })
+            .then((res) => {                
+                dispatch(friendList(res.data.data));                
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+    getUserList();
+}, [userData.token, dispatch]);
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -327,8 +348,14 @@ const Sidebar = () => {
         </Box>
         <Box sx={{
           paddingX: "30px",
-          display: "grid",
+          display: {
+            xs: "flex",
+            sm: "flex",
+            md: "grid",
+            lg: "grid",
+          },
           gridTemplateColumns: "repeat(3, 1fr)",
+          flexWrap: "wrap",
           // Gap: "20px",
 
         }}>

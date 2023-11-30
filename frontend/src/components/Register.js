@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
-  Container,
   Divider,
   FormControl,
   FormControlLabel,
-  FormLabel,
-  MenuItem,
   Radio,
   RadioGroup,
-  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -22,7 +18,7 @@ import { useDispatch } from "react-redux";
 import { userDetails } from "../redux/reducers/UserReducer";
 
 const Register = ({ onChildClick }) => {
-  const [gender, setGender] = useState("");
+  //const [gender, setGender] = useState("");
 
   const dispatch = useDispatch();
 
@@ -112,22 +108,65 @@ const Register = ({ onChildClick }) => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ height: "100%" }}>
+
       <Box
         sx={{
-          minHeight: "550px",
-          width: "340px",
+          minHeight: {
+            xs: "600px",
+            sm: "600px",
+            md: "600px",
+            lg: "550px",
+          },
+          width: {
+            xs: "90%",
+            sm: "70%",
+            md: "80%",
+            lg: "340px",
+          },
           background: theme.palette.primary.BackGredient,
           position: "absolute",
           top: "0",
-          left: "15%",
-          padding: "20px",
+          left: {
+            xs: "5%",
+            sm: "15%",
+            md: "10%",
+            lg: "15%",
+          },
+          padding: {
+            xs: "40px 30px",
+            sm: "40px 30px",
+            md: "40px 30px",
+            lg: "20px",
+          },
+          boxShadow: {
+            xs: theme.palette.primary.BoxShadow,
+            sm: theme.palette.primary.BoxShadow,
+            md: "none",
+            lg: "none",
+          },
+          borderRadius: {
+            xs: "0 0 10px 10px",
+            sm: "0 0 10px 10px",
+            md: "0",
+            lg: "0",
+          },
           zIndex: "1",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: {
+            xs: "flex-start",
+            sm: "flex-start",
+            md: "flex-start",
+            lg: "space-between",
+          },
           "&::after": {
+            display: {
+              xs: "none",
+              sm: "none",
+              md: "none",
+              lg: "block",
+            },
             content: "''",
             position: "absolute",
             bottom: "-40px",
@@ -164,6 +203,12 @@ const Register = ({ onChildClick }) => {
               fontWeight: "500",
               fontSize: "30px",
               textAlign: "center",
+              margin: {
+                xs: "30px 0 0",
+                sm: "100px 0 0",
+                md: "100px 0 0",
+                lg: "0",
+              }
             }}
             variant="h6"
             component={"h2"}
@@ -209,7 +254,7 @@ const Register = ({ onChildClick }) => {
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "20px",
+                gap: "10px",
                 marginTop: "20px",
               }}
               onSubmit={handleSubmit}
@@ -277,25 +322,25 @@ const Register = ({ onChildClick }) => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                
+
               />
-           <FormControl>
-  <RadioGroup
-    aria-labelledby="demo-radio-buttons-group-label"
-    defaultValue="female"
-    name="radio-buttons-group"
-    sx={{
-      display: "flex",
-      flexDirection: "row",
-      gap: "20px",
-      justifyContent: "start",
-      alignItems: "center",
-    }}
-  >
-    <FormControlLabel value="female" control={<Radio />} label="Female" />
-    <FormControlLabel value="male" control={<Radio />} label="Male" />
-  </RadioGroup>
-</FormControl>
+              <FormControl>
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "20px",
+                    justifyContent: "start",
+                    alignItems: "center",
+                  }}
+                >
+                  <FormControlLabel value="female" control={<Radio />} label="Female" />
+                  <FormControlLabel value="male" control={<Radio />} label="Male" />
+                </RadioGroup>
+              </FormControl>
               <TextField
                 sx={{
                   padding: "0",
@@ -346,7 +391,12 @@ const Register = ({ onChildClick }) => {
               justifyContent: "center",
               fontFamily: theme.palette.primary.MainFont1,
               alignItems: "center",
-              margin: "10px auto 0",
+              margin: {
+                xs: "50px auto 0",
+                sm: "50px auto 0",
+                md: "10px auto 0",
+                lg: "10px auto 0",
+              },
               background: "transparent",
               color: theme.palette.primary.White,
               transition: "all .3s ease",
@@ -363,7 +413,12 @@ const Register = ({ onChildClick }) => {
             Already have an account?
           </Typography>
           <Box
-            sx={{
+            sx={{display: {
+                xs: "none",
+                sm: "none",
+                md: "none",
+                lg: "block",
+              },
               position: "absolute",
               top: "100%",
               left: "0",
@@ -375,7 +430,6 @@ const Register = ({ onChildClick }) => {
           />
         </Box>
       </Box>
-    </Container>
   );
 };
 

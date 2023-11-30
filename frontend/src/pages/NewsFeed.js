@@ -14,7 +14,15 @@ const NewsFeed = () => {
     <>
       <HeaderNew />
       <Container maxWidth="lg" sx={{ height: "100%" }}>
-        <Box sx={{ display: "flex", padding: "100px 0 50px" }}>
+        <Box sx={{
+          display: {
+            xs: "grid",
+            sm: "grid",
+            md: "flex",
+            lg: "flex",
+          },
+          padding: "100px 0 50px"
+        }}>
           <Box flex={1} p={"0 10px"}>
             <Sidebar />
           </Box>

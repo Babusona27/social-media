@@ -39,7 +39,12 @@ const Landing = () => {
 
       <Box
         sx={{
-          height: "500px",
+          height: {
+            xs: "650px",
+            sm: "650px",
+            md: "500px",
+            lg: "500px",
+          },
           width: "100%",
           backgroundImage: `url(${process.env.PUBLIC_URL + "/assets/images/bg.jpg"
             })`,
@@ -87,9 +92,19 @@ const Landing = () => {
                 xl: "215px",
               },
               color: theme.palette.primary.LightGray,
-              textShadow: "9px 3px 5px rgb(0 0 0 / 15%)",
+              textShadow: {
+                xs: "none",
+                sm: "none",
+                md: "9px 3px 5px rgb(0 0 0 / 15%)",
+                lg: "9px 3px 5px rgb(0 0 0 / 15%)",
+              },
               lineHeight: "1",
-              marginBottom: "-50px",
+              margin: {
+                xs: "20px 0",
+                sm: "40px 0",
+                md: "0 0 -50px 0",
+                lg: "0 0 -50px 0",
+              },
             }}
             component={"h1"}
           >
@@ -98,7 +113,13 @@ const Landing = () => {
           <Box
             component={"ul"}
             sx={{
-              display: "flex",
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "repeat(1, 1fr)",
+                sm: "repeat(2, 1fr)",
+                md: "repeat(4, 1fr)",
+                lg: "repeat(4, 1fr)",
+              },
               justifyContent: "center",
               alignItems: "center",
               gap: "40px",
@@ -106,7 +127,12 @@ const Landing = () => {
           >
             <Box
               sx={{
-                display: "flex",
+                display: {
+                  xs: "grid",
+                  sm: "grid",
+                  md: "flex",
+                  lg: "flex",
+                },
                 alignItems: "center",
                 gap: "20px",
                 justifyContent: "center",
@@ -599,9 +625,24 @@ const Landing = () => {
             >
               <Box
                 sx={{
-                  margin: "0 auto -250px",
-                  width: "823px",
-                  height: "370px",
+                  margin: {
+                    xs: "0 auto 0px",
+                    sm: "0 auto 0px",
+                    md: "0 auto -250px",
+                    lg: "0 auto -250px",
+                  },
+                  width: {
+                    xs: "100%",
+                    sm: "100%",
+                    md: "823px",
+                    lg: "823px",
+                  },
+                  height: {
+                    xs: "100%",
+                    sm: "100%",
+                    md: "370px",
+                    lg: "370px",
+                  },
                 }}
                 component={"img"}
                 src={process.env.PUBLIC_URL + "/assets/images/face-map.png"}
@@ -612,7 +653,12 @@ const Landing = () => {
       </Box>
       <Box
         sx={{
-          padding: "120px 0 70px",
+          padding: {
+            xs: "50px 0 70px",
+            sm: "50px 0 70px",
+            md: "120px 0 70px",
+            lg: "120px 0 70px",
+          },
           position: "relative",
         }}
         component={"section"}
@@ -629,9 +675,19 @@ const Landing = () => {
                 xl: "215px",
               },
               color: theme.palette.primary.LightGray,
-              textShadow: "9px 3px 5px rgb(0 0 0 / 15%)",
+              textShadow: {
+                xs: "none",
+                sm: "none",
+                md: "9px 3px 5px rgb(0 0 0 / 15%)",
+                lg: "9px 3px 5px rgb(0 0 0 / 15%)",
+              },
               lineHeight: "1",
-              marginBottom: "-50px",
+              marginBottom: {
+                xs: "30px",
+                sm: "30px",
+                md: "-50px",
+                lg: "-50px",
+              },
             }}
             component={"h1"}
           >
@@ -744,7 +800,12 @@ const Landing = () => {
             <Box
               sx={{
                 margin: "0 auto 0px",
-                width: "780px",
+                width: {
+                  xs: "100%",
+                  sm: "100%",
+                  md: "780px",
+                  lg: "780px",
+                },
                 height: "180px",
               }}
               component={"img"}
@@ -756,14 +817,29 @@ const Landing = () => {
 
       <Box
         sx={{
-          minHeight: "460px",
-          width: "100%",
+          minHeight: {
+            xs: "0",
+            sm: "0",
+            md: "460px",
+            lg: "460px",
+          },
+          width: {
+            xs: "0",
+            sm: "0",
+            md: "100%",
+            lg: "100%",
+          },
           backgroundImage: `url(${process.env.PUBLIC_URL + "/assets/images/bg-2.jpg"
             })`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "top center",
-          padding: "0 20px",
+          padding: {
+            xs: "0",
+            sm: "0",
+            md: "0 20px",
+            lg: "0 20px",
+          },
           position: "relative",
         }}
         component={"section"}></Box>
@@ -795,16 +871,36 @@ const Landing = () => {
       >
         <Box
           sx={{
-            width: "660px",
-            height: "660px",
+            width: {
+              xs: "96%",
+              sm: "86%",
+              md: "660px",
+              lg: "660px",
+            },
+            height: {
+              xs: "auto",
+              sm: "auto",
+              md: "660px",
+              lg: "660px",
+            },
             background: theme.palette.primary.LogoColor,
             position: "absolute",
             zIndex: "2",
-            borderRadius: "100%",
+            borderRadius: {
+              xs: "15px",
+              sm: "15px",
+              md: "100%",
+              lg: "100%",
+            },
             top: "50%",
             left: "50%",
             transform: "translate(-50%,-50%)",
-            padding: "70px",
+            padding: {
+              xs: "50px",
+              sm: "50px",
+              md: "70px",
+              lg: "70px",
+            },
           }}
         >
           <Box
@@ -1013,9 +1109,19 @@ const Landing = () => {
                 xl: "215px",
               },
               color: theme.palette.primary.LightGray,
-              textShadow: "9px 3px 5px rgb(0 0 0 / 15%)",
+              textShadow: {
+                xs: "none",
+                sm: "none",
+                md: "9px 3px 5px rgb(0 0 0 / 15%)",
+                lg: "9px 3px 5px rgb(0 0 0 / 15%)",
+              },
               lineHeight: "1",
-              marginBottom: "-50px",
+              marginBottom: {
+                xs: "30px",
+                sm: "30px",
+                md: "-50px",
+                lg: "-50px",
+              },
             }}
             component={"h1"}
           >
@@ -1025,6 +1131,8 @@ const Landing = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            flexWrap: "wrap",
+            gap: "10px",
           }} direction="row" spacing={2}>
             <StyledBadge
               overlap="circular"
@@ -1112,7 +1220,13 @@ const Landing = () => {
             see what’s happening now
           </Typography>
           <Box sx={{
-            display: "flex",
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "repeat(1, 1fr)",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(2, 1fr)",
+              lg: "repeat(2, 1fr)",
+            },
             justifyContent: "center",
             alignItems: "center",
             gap: "30px"
@@ -1156,7 +1270,12 @@ const Landing = () => {
                     gap: "10px"
                   }}>
                     <Box sx={{
-                      display: "flex",
+                      display: {
+                        xs: "block",
+                        sm: "block",
+                        md: "flex",
+                        lg: "flex",
+                      },
                       justifyContent: "center",
                       alignItems: "center",
                       gap: "7px"
@@ -1219,7 +1338,12 @@ const Landing = () => {
                     gap: "10px"
                   }}>
                     <Box sx={{
-                      display: "flex",
+                      display: {
+                        xs: "block",
+                        sm: "block",
+                        md: "flex",
+                        lg: "flex",
+                      },
                       justifyContent: "center",
                       alignItems: "center",
                       gap: "7px"
@@ -1282,7 +1406,12 @@ const Landing = () => {
                     gap: "10px"
                   }}>
                     <Box sx={{
-                      display: "flex",
+                      display: {
+                        xs: "block",
+                        sm: "block",
+                        md: "flex",
+                        lg: "flex",
+                      },
                       justifyContent: "center",
                       alignItems: "center",
                       gap: "7px"
@@ -1345,7 +1474,12 @@ const Landing = () => {
                     gap: "10px"
                   }}>
                     <Box sx={{
-                      display: "flex",
+                      display: {
+                        xs: "block",
+                        sm: "block",
+                        md: "flex",
+                        lg: "flex",
+                      },
                       justifyContent: "center",
                       alignItems: "center",
                       gap: "7px"
@@ -1408,7 +1542,12 @@ const Landing = () => {
                     gap: "10px"
                   }}>
                     <Box sx={{
-                      display: "flex",
+                      display: {
+                        xs: "block",
+                        sm: "block",
+                        md: "flex",
+                        lg: "flex",
+                      },
                       justifyContent: "center",
                       alignItems: "center",
                       gap: "7px"
@@ -1471,7 +1610,12 @@ const Landing = () => {
                     gap: "10px"
                   }}>
                     <Box sx={{
-                      display: "flex",
+                      display: {
+                        xs: "block",
+                        sm: "block",
+                        md: "flex",
+                        lg: "flex",
+                      },
                       justifyContent: "center",
                       alignItems: "center",
                       gap: "7px"
@@ -1543,7 +1687,12 @@ const Landing = () => {
                     gap: "10px"
                   }}>
                     <Box sx={{
-                      display: "flex",
+                      display: {
+                        xs: "block",
+                        sm: "block",
+                        md: "flex",
+                        lg: "flex",
+                      },
                       justifyContent: "center",
                       alignItems: "center",
                       gap: "7px"
@@ -1606,7 +1755,12 @@ const Landing = () => {
                     gap: "10px"
                   }}>
                     <Box sx={{
-                      display: "flex",
+                      display: {
+                        xs: "block",
+                        sm: "block",
+                        md: "flex",
+                        lg: "flex",
+                      },
                       justifyContent: "center",
                       alignItems: "center",
                       gap: "7px"
@@ -1669,7 +1823,12 @@ const Landing = () => {
                     gap: "10px"
                   }}>
                     <Box sx={{
-                      display: "flex",
+                      display: {
+                        xs: "block",
+                        sm: "block",
+                        md: "flex",
+                        lg: "flex",
+                      },
                       justifyContent: "center",
                       alignItems: "center",
                       gap: "7px"
@@ -1732,7 +1891,12 @@ const Landing = () => {
                     gap: "10px"
                   }}>
                     <Box sx={{
-                      display: "flex",
+                      display: {
+                        xs: "block",
+                        sm: "block",
+                        md: "flex",
+                        lg: "flex",
+                      },
                       justifyContent: "center",
                       alignItems: "center",
                       gap: "7px"
@@ -1795,7 +1959,12 @@ const Landing = () => {
                     gap: "10px"
                   }}>
                     <Box sx={{
-                      display: "flex",
+                      display: {
+                        xs: "block",
+                        sm: "block",
+                        md: "flex",
+                        lg: "flex",
+                      },
                       justifyContent: "center",
                       alignItems: "center",
                       gap: "7px"
@@ -1858,7 +2027,12 @@ const Landing = () => {
                     gap: "10px"
                   }}>
                     <Box sx={{
-                      display: "flex",
+                      display: {
+                        xs: "block",
+                        sm: "block",
+                        md: "flex",
+                        lg: "flex",
+                      },
                       justifyContent: "center",
                       alignItems: "center",
                       gap: "7px"
