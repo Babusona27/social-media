@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Landing from "../pages/Landing";
 import ChatRoom from "../pages/ChatRoom";
@@ -16,11 +16,37 @@ import Faq from "../pages/Faq";
 import Terms from "../pages/Terms";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { jwtDecode } from "jwt-decode";
+import { logOut } from '../redux/reducers/UserReducer'
 
 const Navigation = () => {
+  const dispatch = useDispatch();
   const userData = useSelector((state) => state.UserReducer.value);
    console.log("userData", userData);
+
+  
+  useEffect(() => { 
+    const checkTokenExpiration = () => {
+      const token = userData.token;
+    
+      if (token) {
+        const decodedToken = jwtDecode(token);
+        const currentTime = Date.now() / 1000; // Convert milliseconds to seconds
+        
+    
+        if (decodedToken.exp < currentTime) {
+          // Logout user
+          dispatch(logOut());
+          window.location.href = "/";
+        }
+      } else {
+        // Token not found, handle accordingly (e.g., redirect to login)
+      }
+    };
+    checkTokenExpiration();
+  }, [userData.token,dispatch]);
+
   if (userData === null) {
     return (
       <Router>
