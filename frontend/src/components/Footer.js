@@ -17,7 +17,13 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        height: "350px",
+        height: {
+          xs: "auto",
+          sm: "auto",
+          lg: "350px",
+          xl: "350px",
+        },
+       
         width: "100%",
         padding: "50px 0",
         position: "relative",
@@ -61,7 +67,13 @@ const Footer = () => {
         <Box
           sx={{
             height: "100%",
-            display: "flex",
+            display: {
+              xs: "block",
+              sm: "block",
+              lg: "flex",
+              xl: "flex",
+            },
+         
             justifyContent: "space-between",
             position: "relative",
             zIndex: "3",
@@ -84,17 +96,27 @@ const Footer = () => {
               component={"a"}
               sx={{
                 width: {
-                  xs: "80px",
+                  xs: "150px",
                   sm: "100px",
                   lg: "180px",
                 },
                 minWidth: {
-                  xs: "80px",
+                  xs: "150px",
                   sm: "100px",
                   lg: "120px",
                 },
                 display: "flex",
                 marginBottom: "20px",
+                marginRight: {
+                  xs: "auto",
+                  sm: "auto",
+                  lg: "0px",
+                },
+                marginLeft: {
+                  xs: "auto",
+                  sm: "auto",
+                  lg: "0px",
+                },
               }}
             >
               <Box
@@ -104,6 +126,12 @@ const Footer = () => {
             </Box>
             <Typography sx={{
                 color: theme.palette.primary.White,
+                textAlign:{
+                    xs:"center",
+                    sm:"center",
+                    lg:"left",
+                },
+           
             }} variant="body1">is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </Typography>
           </Box>
           <Box  sx={{
@@ -323,7 +351,12 @@ gap:"10px",
             textAlign: "center",
             display:"flex",
             alignItems:"center",
-            justifyContent:"start",
+            justifyContent:{
+                xs:"center",
+                sm:"center",
+                lg:"start",
+            },
+           
             gap:"10px",
             "&:hover": {
               color: theme.palette.primary.LogoColor,
@@ -342,7 +375,11 @@ gap:"10px",
            textAlign: "center",
            display:"flex",
            alignItems:"center",
-           justifyContent:"start",
+           justifyContent:{
+            xs:"center",
+            sm:"center",
+            lg:"start",
+        },
            gap:"10px",
            "&:hover": {
              color: theme.palette.primary.LogoColor,
@@ -361,7 +398,11 @@ gap:"10px",
              textAlign: "center",
              display:"flex",
              alignItems:"center",
-             justifyContent:"start",
+             justifyContent:{
+              xs:"center",
+              sm:"center",
+              lg:"start",
+          },
              gap:"10px",
              "&:hover": {
                color: theme.palette.primary.LogoColor,

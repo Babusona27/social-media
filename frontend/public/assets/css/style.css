@@ -185,3 +185,6 @@ display: none !important;
 	border-color: var(--blue) !important;
 	border-width: 1px !important;
 }
+.css-dbtxhb-MuiInputBase-root-MuiOutlinedInput-root {
+    color: rgb(255 255 255 / 100%) !important;
+}
