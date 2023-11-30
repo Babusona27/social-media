@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -14,7 +14,7 @@ import AlertMessage from "./AlertMessage";
 import { useDispatch } from "react-redux";
 import { userDetails } from "../redux/reducers/UserReducer";
 const Login = ({ onChildClick }) => {
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [messageType, setMessageType] = useState("");
   const [message, setMessage] = useState("");
   // State to manage form inputs
@@ -34,67 +34,99 @@ const dispatch = useDispatch();
     onChildClick(valueToSend);
   };
 
-    // Function to handle form input changes
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
-      // Reset the corresponding validation error when the user types
-      setErrors({ ...errors, [name]: "" });
-    };
+  // Function to handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    // Reset the corresponding validation error when the user types
+    setErrors({ ...errors, [name]: "" });
+  };
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-  
-      // Validate form inputs
-      let isValid = true;
-      const newErrors = { ...errors };
-  
-      if (!formData.phone.trim()) {
-        isValid = false;
-        newErrors.phone = "Phone is required";
-      }
-      if (!formData.password.trim()) {
-        isValid = false;
-        newErrors.password = "Password is required";
-      }
-  
-      setErrors(newErrors);
-  
-      // If form is valid, submit the data
-      if (isValid) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate form inputs
+    let isValid = true;
+    const newErrors = { ...errors };
+
+    if (!formData.phone.trim()) {
+      isValid = false;
+      newErrors.phone = "Phone is required";
+    }
+    if (!formData.password.trim()) {
+      isValid = false;
+      newErrors.password = "Password is required";
+    }
+
+    setErrors(newErrors);
+
+    // If form is valid, submit the data
+    if (isValid) {
       //   console.log("Form submitted:", formData);
-        // logic to submit data, e.g., make an API call
-        axios.post(LOGIN, formData).then((res) => {
-          setMessageType("success");
-          setMessage(res.data.message);
-          dispatch(userDetails(res.data.data));
-        }).catch((err) => {
-          console.log(err.response);
-          if (err.response) {
-            setMessageType("error");
-            setMessage(err.response.data.message);
-          }
-        });
-      }
-    };
+      // logic to submit data, e.g., make an API call
+      axios.post(LOGIN, formData).then((res) => {
+        setMessageType("success");
+        setMessage(res.data.message);
+        dispatch(userDetails(res.data.data));
+      }).catch((err) => {
+        console.log(err.response);
+        if (err.response) {
+          setMessageType("error");
+          setMessage(err.response.data.message);
+        }
+      });
+    }
+  };
 
   return (
     <Container maxWidth="lg" sx={{ height: "100%" }}>
       <Box
         sx={{
-          minHeight: "550px",
-          width: "340px",
+          minHeight: {
+            xs: "600px",
+            sm: "600px",
+            md: "600px",
+            lg: "550px",
+
+          },
+          width: {
+            xs: "90%",
+            sm: "70%",
+            md: "80%",
+            lg: "340px",
+          },
           background: theme.palette.primary.BackGredient,
           position: "absolute",
           top: "0",
-          left: "15%",
-          padding: "20px",
+          left: {
+            xs: "5%",
+            sm: "15%",
+            md: "10%",
+            lg: "15%",
+          },
+          padding: {
+            xs: "40px 30px",
+            sm: "40px 30px",
+            md: "40px 30px",
+            lg: "20px",
+          },
           zIndex: "1",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: {
+            xs: "flex-start",
+            sm: "flex-start",
+            md: "flex-start",
+            lg: "space-between",
+          },
           "&::after": {
+            display: {
+              xs: "none",
+              sm: "none",
+              md: "none",
+              lg: "block",
+            },
             content: "''",
             position: "absolute",
             bottom: "-40px",
@@ -131,6 +163,12 @@ const dispatch = useDispatch();
               fontWeight: "500",
               fontSize: "30px",
               textAlign: "center",
+              margin: {
+                xs: "120px 0 0",
+                sm: "100px 0 0",
+                md: "100px 0 0",
+                lg: "0",
+              }
             }}
             variant="h6"
             component={"h2"}
@@ -157,7 +195,7 @@ const dispatch = useDispatch();
             }}
           >
 
-{messageType !== "" && (
+            {messageType !== "" && (
               <AlertMessage type={messageType} message={message} />
             )}
             <Typography
@@ -244,12 +282,17 @@ const dispatch = useDispatch();
               fontWeight: "500",
               lineHeight: "1.5",
               textAlign: "center",
-              display:"flex",
-              justifyContent:"center",
-              fontFamily:theme.palette.primary.MainFont1,
-              alignItems:"center",
-              margin:"10px auto 0",
-              background:"transparent",
+              display: "flex",
+              justifyContent: "center",
+              fontFamily: theme.palette.primary.MainFont1,
+              alignItems: "center",
+              margin: {
+                xs: "50px auto 0",
+                sm: "50px auto 0",
+                md: "10px auto 0",
+                lg: "10px auto 0",
+              },
+              background: "transparent",
               color: theme.palette.primary.White,
               transition: "all .3s ease",
               "&:hover": {
@@ -266,6 +309,12 @@ const dispatch = useDispatch();
           </Typography>
           <Box
             sx={{
+              display: {
+                xs: "none",
+                sm: "none",
+                md: "none",
+                lg: "block",
+              },
               position: "absolute",
               top: "100%",
               left: "0",
