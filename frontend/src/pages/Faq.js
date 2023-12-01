@@ -27,7 +27,12 @@ const Faq = () => {
         <Container maxWidth="lg" sx={{ height: "100%" }}>
           <Box
             sx={{
-              padding: "30px",
+              padding: {
+                xs: "0",
+                sm: "0",
+                md: "30px",
+                lg: "30px",
+              },
               borderRadius: "10px",
               width: "100%",
             }}

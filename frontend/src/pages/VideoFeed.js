@@ -13,7 +13,15 @@ const VideoFeed = () => {
     <>
       <HeaderNew />
       <Container maxWidth="lg" sx={{ height: "100%" }}>
-        <Box sx={{ display: "flex", padding: "100px 0 50px" }}>
+        <Box sx={{
+          display: {
+            xs: "grid",
+            sm: "grid",
+            md: "flex",
+            lg: "flex",
+          },
+          padding: "100px 0 50px"
+        }}>
           <Box flex={1} p={"0 10px"}>
             <Sidebar />
           </Box>
@@ -27,7 +35,12 @@ const VideoFeed = () => {
               }}
             >
               <Box sx={{
-                display: "flex",
+                display: {
+                  xs: "block",
+                  sm: "flex",
+                  md: "flex",
+                  lg: "flex",
+                },
                 justifyContent: "space-between",
                 alignItems: "center",
               }}>
@@ -150,7 +163,18 @@ const VideoFeed = () => {
               </Box>
             </Box>
             <Box sx={{
-              display: "flex",
+              display: {
+                xs: "grid",
+                sm: "grid",
+                md: "flex",
+                lg: "flex",
+              },
+              gridTemplateColumns: {
+                xs: "repeat(1, 1fr)",
+                sm: "repeat(2, 1fr)",
+                md: "repeat(2, 1fr)",
+                lg: "repeat(2, 1fr)",
+              },
               justifyContent: "space-between",
               flexWrap: "wrap",
               gap: "24px",
