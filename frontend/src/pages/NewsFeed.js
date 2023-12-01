@@ -35,7 +35,12 @@ const NewsFeed = () => {
               }}
             >
               <Box sx={{
-                display: "flex",
+                display: {
+                  xs: "block",
+                  sm: "flex",
+                  md: "flex",
+                  lg: "flex",
+                },
                 justifyContent: "space-between",
                 alignItems: "center",
               }}>
@@ -78,61 +83,72 @@ const NewsFeed = () => {
                 <Box flex={"1"} sx={{
                   display: "flex",
                   alignItems: "center",
+                  justifyContent: "space-between",
                   p: "0 10px",
+                  marginTop: {
+                    xs: "10px",
+                    sm: "10px",
+                    md: "0",
+                    lg: "0",
+                  },
                 }}>
                   <Box sx={{
-                    marginRight: "10px",
-                    "& :hover": {
-                      color: theme.palette.primary.LogoColor,
-                    },
-                  }}
-                    component={"a"} href='#'>
-                    <EditNote
-                      sx={{
-                        color: theme.palette.primary.ParaColor,
-                        fontSize: "25px",
-                      }}
-                    />
-                  </Box>
-                  <Box sx={{
-                    marginRight: "10px",
-                    "& :hover": {
-                      color: theme.palette.primary.LogoColor,
-                    },
-                  }}
-                    component={"a"} href='#'>
-                    <Photo
-                      sx={{
-                        color: theme.palette.primary.ParaColor,
-                        fontSize: "20px",
-                      }} />
-                  </Box>
-
-                  <Box sx={{
-                    marginRight: "10px",
-                    "& :hover": {
-                      color: theme.palette.primary.LogoColor,
-                    },
-                  }}
-                    component={"a"} href='#'>
-                    <Videocam
-                      sx={{
-                        color: theme.palette.primary.ParaColor,
-                        fontSize: "20px",
-                      }} />
-                  </Box>
-                  <Box sx={{
-                    marginRight: "10px",
-                    "& :hover": {
-                      color: theme.palette.primary.LogoColor,
-                    },
-                  }}
-                    component={"a"} href='#'>
-                    <Map
-                      sx={{
-                        color: theme.palette.primary.ParaColor,
-                        fontSize: "20px",
-                      }} />
+                    display: "flex",
+                    alignItems: "center",
+                  }}>
+                    <Box sx={{
+                      marginRight: "10px",
+                      "& :hover": {
+                        color: theme.palette.primary.LogoColor,
+                      },
+                    }}
+                      component={"a"} href='#'>
+                      <EditNote
+                        sx={{
+                          color: theme.palette.primary.ParaColor,
+                          fontSize: "25px",
+                        }}
+                      />
+                    </Box>
+                    <Box sx={{
+                      marginRight: "10px",
+                      "& :hover": {
+                        color: theme.palette.primary.LogoColor,
+                      },
+                    }}
+                      component={"a"} href='#'>
+                      <Photo
+                        sx={{
+                          color: theme.palette.primary.ParaColor,
+                          fontSize: "20px",
+                        }} />
+                    </Box>
+                    <Box sx={{
+                      marginRight: "10px",
+                      "& :hover": {
+                        color: theme.palette.primary.LogoColor,
+                      },
+                    }}
+                      component={"a"} href='#'>
+                      <Videocam
+                        sx={{
+                          color: theme.palette.primary.ParaColor,
+                          fontSize: "20px",
+                        }} />
+                    </Box>
+                    <Box sx={{
+                      marginRight: "10px",
+                      "& :hover": {
+                        color: theme.palette.primary.LogoColor,
+                      },
+                    }}
+                      component={"a"} href='#'>
+                      <Map
+                        sx={{
+                          color: theme.palette.primary.ParaColor,
+                          fontSize: "20px",
+                        }} />
+                    </Box>
                   </Box>
                   <Box
                     sx={{
@@ -157,8 +173,10 @@ const NewsFeed = () => {
                 </Box>
               </Box>
             </Box>
-            <Feed />
-            <Feed />
+            <Box>
+              <Feed />
+              <Feed />
+            </Box>
           </Box>
           <Box flex={0.5} p={"0 10px"}>
             <RightBar />

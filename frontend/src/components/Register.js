@@ -93,9 +93,15 @@ const Register = ({ onChildClick }) => {
       axios
         .post(REGISTER, formData)
         .then((res) => {
-          setMessageType("success");
-          setMessage(res.data.message);
-          dispatch(userDetails(res.data.data));
+          if(res.data.status === true ){
+            setMessageType("success");
+            setMessage(res.data.message);
+            dispatch(userDetails(res.data.data));
+          }else{
+            setMessageType("error");
+            setMessage(res.data.message);
+          }
+          
         })
         .catch((err) => {
           console.log(err.response);

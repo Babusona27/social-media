@@ -14,7 +14,15 @@ const FriendList = () => {
     <>
       <HeaderNew />
       <Container maxWidth="lg" sx={{ height: "100%" }}>
-        <Box sx={{ display: "flex", padding: "100px 0 50px" }}>
+        <Box sx={{
+          display: {
+            xs: "grid",
+            sm: "grid",
+            md: "flex",
+            lg: "flex",
+          },
+          padding: "100px 0 50px"
+        }}>
           <Box flex={1} p={"0 10px"}>
             <Sidebar />
           </Box>
@@ -27,7 +35,12 @@ const FriendList = () => {
               }}
             >
               <Box sx={{
-                display: "flex",
+                display: {
+                  xs: "block",
+                  sm: "flex",
+                  md: "flex",
+                  lg: "flex",
+                },
                 justifyContent: "space-between",
                 alignItems: "center",
               }}>
@@ -40,7 +53,7 @@ const FriendList = () => {
                   <Avatar
                     alt="Remy Sharp"
                     src={
-                      process.env.PUBLIC_URL + "/assets/images/profileImg.png"
+                      process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
                     }
                     sx={{
                       border: "7px solid #fff",
@@ -70,61 +83,72 @@ const FriendList = () => {
                 <Box flex={"1"} sx={{
                   display: "flex",
                   alignItems: "center",
+                  justifyContent: "space-between",
                   p: "0 10px",
+                  marginTop: {
+                    xs: "10px",
+                    sm: "10px",
+                    md: "0",
+                    lg: "0",
+                  },
                 }}>
                   <Box sx={{
-                    marginRight: "10px",
-                    "& :hover": {
-                      color: theme.palette.primary.LogoColor,
-                    },
-                  }}
-                    component={"a"} href='#'>
-                    <EditNote
-                      sx={{
-                        color: theme.palette.primary.ParaColor,
-                        fontSize: "25px",
-                      }}
-                    />
-                  </Box>
-                  <Box sx={{
-                    marginRight: "10px",
-                    "& :hover": {
-                      color: theme.palette.primary.LogoColor,
-                    },
-                  }}
-                    component={"a"} href='#'>
-                    <Photo
-                      sx={{
-                        color: theme.palette.primary.ParaColor,
-                        fontSize: "20px",
-                      }} />
-                  </Box>
-
-                  <Box sx={{
-                    marginRight: "10px",
-                    "& :hover": {
-                      color: theme.palette.primary.LogoColor,
-                    },
-                  }}
-                    component={"a"} href='#'>
-                    <Videocam
-                      sx={{
-                        color: theme.palette.primary.ParaColor,
-                        fontSize: "20px",
-                      }} />
-                  </Box>
-                  <Box sx={{
-                    marginRight: "10px",
-                    "& :hover": {
-                      color: theme.palette.primary.LogoColor,
-                    },
-                  }}
-                    component={"a"} href='#'>
-                    <Map
-                      sx={{
-                        color: theme.palette.primary.ParaColor,
-                        fontSize: "20px",
-                      }} />
+                    display: "flex",
+                    alignItems: "center",
+                  }}>
+                    <Box sx={{
+                      marginRight: "10px",
+                      "& :hover": {
+                        color: theme.palette.primary.LogoColor,
+                      },
+                    }}
+                      component={"a"} href='#'>
+                      <EditNote
+                        sx={{
+                          color: theme.palette.primary.ParaColor,
+                          fontSize: "25px",
+                        }}
+                      />
+                    </Box>
+                    <Box sx={{
+                      marginRight: "10px",
+                      "& :hover": {
+                        color: theme.palette.primary.LogoColor,
+                      },
+                    }}
+                      component={"a"} href='#'>
+                      <Photo
+                        sx={{
+                          color: theme.palette.primary.ParaColor,
+                          fontSize: "20px",
+                        }} />
+                    </Box>
+                    <Box sx={{
+                      marginRight: "10px",
+                      "& :hover": {
+                        color: theme.palette.primary.LogoColor,
+                      },
+                    }}
+                      component={"a"} href='#'>
+                      <Videocam
+                        sx={{
+                          color: theme.palette.primary.ParaColor,
+                          fontSize: "20px",
+                        }} />
+                    </Box>
+                    <Box sx={{
+                      marginRight: "10px",
+                      "& :hover": {
+                        color: theme.palette.primary.LogoColor,
+                      },
+                    }}
+                      component={"a"} href='#'>
+                      <Map
+                        sx={{
+                          color: theme.palette.primary.ParaColor,
+                          fontSize: "20px",
+                        }} />
+                    </Box>
                   </Box>
                   <Box
                     sx={{
@@ -142,6 +166,7 @@ const FriendList = () => {
                         color: theme.palette.primary.White,
                         fontSize: "14px",
                         fontWeight: "600",
+                        lineHeight: "26px",
                       }}
                     >Publish</Typography>
                   </Box>
@@ -149,12 +174,23 @@ const FriendList = () => {
               </Box>
             </Box>
             <Box sx={{
-              display: "flex",
+              display: {
+                xs: "grid",
+                sm: "grid",
+                md: "flex",
+                lg: "flex",
+              },
+              gridTemplateColumns: {
+                xs: "repeat(1, 1fr)",
+                sm: "repeat(2, 1fr)",
+                md: "repeat(2, 1fr)",
+                lg: "repeat(2, 1fr)",
+              },
               justifyContent: "space-between",
               flexWrap: "wrap",
               gap: "20px",
             }}>
-              <FriendListCard />             
+              <FriendListCard />
             </Box>
           </Box>
           <Box flex={0.5} p={"0 10px"}>

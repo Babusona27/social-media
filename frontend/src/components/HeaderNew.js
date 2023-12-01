@@ -66,9 +66,10 @@ const HeaderNew = () => {
             href="#"
             component={"a"}
             sx={{
-              width: { xs: "80px", sm: "100px", lg: "180px" },
-              minWidth: { xs: "80px", sm: "100px", lg: "120px" },
-            }}
+              width: { xs: "160px", sm: "100px", lg: "180px" },
+              minWidth: { xs: "160px", sm: "100px", lg: "120px" },
+              display: "flex",
+          }}
           >
             <Box
               component={"img"}
@@ -82,7 +83,13 @@ const HeaderNew = () => {
               justifyContent: "space-between",
             }}
           >
-            <Box sx={{}}>
+            <Box sx={{
+                display: {
+                  xs: "none",
+                  sm: "none",
+                  lg: "block",
+                },
+              }}>
               <FormControl
                 className="form_imput"
                 sx={{
@@ -240,6 +247,9 @@ const HeaderNew = () => {
                 aria-label="open drawer"
                 edge="start"
                 onClick={handleDrawerOpen}
+                sx={{ 
+                  marginRight: "0px !important",
+                 }}
               >
                 <MenuIcon />
               </StyledIconButton>
@@ -430,7 +440,7 @@ background: "transparent",
     </AppBar>
   );
 };
-const drawerWidth = 260;
+const drawerWidth = "100%";
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
   width: drawerWidth,

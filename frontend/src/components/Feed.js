@@ -37,8 +37,18 @@ const Feed = () => {
                                 float: "left",
                                 marginRight: "5px",
                                 position: "relative",
-                                height: "70px",
-                                width: "70px",
+                                height: {
+                                    xs: "50px",
+                                    sm: "70px",
+                                    md: "70px",
+                                    lg: "70px",
+                                  },
+                                width: {
+                                    xs: "50px",
+                                    sm: "70px",
+                                    md: "70px",
+                                    lg: "70px",
+                                  },
                                 borderRadius: "50%",
                             }}
                         />
@@ -243,7 +253,7 @@ const Feed = () => {
                                     }}
                                     className="comment_input"
                                     fullWidth
-                                    label="Enter name"
+                                    label="Post a comment"
                                     variant="outlined"
                                 />
                             </Box>
