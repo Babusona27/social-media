@@ -5,13 +5,16 @@ import Footer from '../components/Footer'
 import theme from '../Theme'
 import ProfileSideBar from '../components/ProfileSideBar'
 import ProfileRightBar from '../components/ProfileRightBar'
-// import AccountSettings from '../components/AccountSettings'
-// import ChangePassword from '../components/ChangePassword'
-// import EducationandWork from '../components/EducationandWork'
+import AccountSettings from '../components/AccountSettings'
+import ChangePassword from '../components/ChangePassword'
+import EducationandWork from '../components/EducationandWork'
 import BasicInformationDetails from '../components/BasicInformationDetails'
-// import MyInterest from '../components/MyInterest'
+import MyInterest from '../components/MyInterest'
+import { useSelector } from 'react-redux'
 
 const EditProfile = () => {
+  const selectedTab = useSelector((state) => state.ProfileTabReducer.value);
+  // console.log("selectedTab", selectedTab);
   return (
     <>
       <HeaderNew />
@@ -115,7 +118,13 @@ const EditProfile = () => {
           <Box flex={"2"} padding={"0 10px"} sx={{ 
 
            }}>
-            <BasicInformationDetails />
+             {/* <BasicInformationDetails /> */}
+            {selectedTab == "Basic Information" && <BasicInformationDetails />}
+            {selectedTab == "Account Settings" && <AccountSettings />}
+            {selectedTab === "Change Password" && <ChangePassword />}
+            {selectedTab === "Education and Work" && <EducationandWork />}
+            {selectedTab === "My Interests" && <MyInterest />}
+           
             {/* <MyInterest/> */}
             {/* <AccountSettings/> */}
             {/* <ChangePassword/> */}

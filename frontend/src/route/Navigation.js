@@ -23,7 +23,7 @@ import { logOut } from '../redux/reducers/UserReducer'
 const Navigation = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.UserReducer.value);
-   console.log("userData", userData);
+  //  console.log("userData", userData);
 
   
   useEffect(() => { 

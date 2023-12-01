@@ -165,7 +165,7 @@ const HeaderNew = () => {
                     component="a"
                     href="/"
                   >
-                    <Typography>home</Typography>
+                    <Typography>Home</Typography>
                   </ListItemButton>
                 </ListItem>
              

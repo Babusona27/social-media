@@ -9,9 +9,11 @@ import axios from "axios";
 import { FRIEND_LIST } from "../Url";
 import {  useDispatch,useSelector } from "react-redux";
 import { friendList } from "../redux/reducers/FriendListReducer";
+import { Link } from 'react-router-dom';
 const Sidebar = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.UserReducer.value);
+  console.log("userData_sidebar", userData);
   useEffect(() => {
     const getUserList = async () => {
         axios
@@ -108,15 +110,16 @@ const Sidebar = () => {
             />
            
             <Box margin={"10px 0"}>
-              <Typography component={"a"} href='#' sx={{
+              <Typography component={"a"} sx={{
                 fontSize: "20px",
                 color: theme.palette.primary.White,
                 lineHeight: "0",
                 "&:hover": {
                   color: theme.palette.primary.dark,
+                  cursor: "pointer",
                 }
               }}
-              >Sarah Cruiz</Typography>
+              ><Link to="/editprofile">{userData && userData.user.name}</Link></Typography>
             </Box>
             <Box sx={{
               display: "flex",

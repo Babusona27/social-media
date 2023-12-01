@@ -2,9 +2,12 @@ import { Box, List, Typography } from '@mui/material'
 import React from 'react'
 import theme from '../Theme'
 import { Favorite, Info, Lock, Tune, Work } from '@mui/icons-material'
+import { useSelector, useDispatch } from 'react-redux'
+import { profileTab } from '../redux/reducers/ProfileTabReducer'
 
 const ProfileSideBar = () => {
-
+const selectedTab = useSelector((state) => state.ProfileTabReducer.value);
+const dispatch = useDispatch();
     return (
         <Box>
             <Typography sx={{
@@ -38,7 +41,7 @@ const ProfileSideBar = () => {
                         marginRight: "10px",
                         marginBottom: "10px",
                     }} />
-                    <Typography component={"a"} href='#' sx={{
+                    <Typography component={"button"}  sx={{
                         color: theme.palette.primary.ParaColor,
                         fontSize: "16px",
                         borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
@@ -50,8 +53,13 @@ const ProfileSideBar = () => {
                             color: theme.palette.primary.LogoColor,
                             borderBottom: `1px solid ${theme.palette.primary.LogoColor}`,
                             paddingLeft: "15px"
-                        },
-                    }}>Basic Information</Typography>
+                        },                                                
+                    }}
+                    onClick={() => {
+                        dispatch(profileTab("Basic Information"));
+                    }}
+                    
+                    >Basic Information</Typography>
                 </Box>
                 <Box sx={{
                     display: "flex",
@@ -79,7 +87,11 @@ const ProfileSideBar = () => {
                             borderBottom: `1px solid ${theme.palette.primary.LogoColor}`,
                             paddingLeft: "15px"
                         },
-                    }}>Education and Work</Typography>
+                    }}
+                    onClick={() => {
+                        dispatch(profileTab("Education and Work"));
+                    }}
+                    >Education and Work</Typography>
                 </Box>
                 <Box sx={{
                     display: "flex",
@@ -107,7 +119,11 @@ const ProfileSideBar = () => {
                             borderBottom: `1px solid ${theme.palette.primary.LogoColor}`,
                             paddingLeft: "15px"
                         },
-                    }}>My Interests</Typography>
+                    }}
+                    onClick={() => {    
+                        dispatch(profileTab("My Interests"));
+                    }}
+                    >My Interests</Typography>
                 </Box>
                 <Box sx={{
                     display: "flex",
@@ -135,7 +151,11 @@ const ProfileSideBar = () => {
                             borderBottom: `1px solid ${theme.palette.primary.LogoColor}`,
                             paddingLeft: "15px"
                         },
-                    }}>Account Settings</Typography>
+                    }}
+                    onClick={() => {
+                        dispatch(profileTab("Account Settings"));
+                    }}
+                    >Account Settings</Typography>
                 </Box>
                 <Box sx={{
                     display: "flex",
@@ -163,7 +183,11 @@ const ProfileSideBar = () => {
                             borderBottom: `1px solid ${theme.palette.primary.LogoColor}`,
                             paddingLeft: "15px"
                         },
-                    }}>Change Password</Typography>
+                    }}
+                    onClick={() => {
+                        dispatch(profileTab("Change Password"));
+                    }}
+                    >Change Password</Typography>
                 </Box>
 
             </List>

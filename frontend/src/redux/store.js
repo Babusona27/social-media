@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 
 import UserReducer from './reducers/UserReducer';
 import FriendListReducer from './reducers/FriendListReducer';
+import ProfileTabReducer from './reducers/ProfileTabReducer';
 
 const persistConfig = {
   key: 'root',
@@ -13,6 +14,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   UserReducer: persistReducer(persistConfig, UserReducer), 
   FriendListReducer: FriendListReducer,
+  ProfileTabReducer: ProfileTabReducer,
 });
 
 export const store = configureStore({
