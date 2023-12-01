@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Avatar,
   Box,
@@ -18,8 +18,10 @@ import RightBar from "../components/RightBar";
 import Footer from "../components/Footer";
 import DoneIcon from "@mui/icons-material/Done";
 import { useSelector } from "react-redux";
-import { SEND_MESSAGE,MESSAGE_LIST } from "../Url";
+import { SEND_MESSAGE, MESSAGE_LIST } from "../Url";
 import axios from "axios";
+
+import io from "socket.io-client";
 
 const ChatRoom = () => {
   const friendList = useSelector((state) => state.FriendListReducer.value);
@@ -28,39 +30,75 @@ const ChatRoom = () => {
   const [selectedFriend, setSelectedFriend] = useState(null);
   const [messageList, setMessageList] = useState([]);
 
-useEffect(() => {
-    if(selectedFriend) {
+  const [socket, setSocket] = useState(null);
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+
+    if (selectedFriend) {
       axios
         .get(MESSAGE_LIST, {
           params: {
-            receiverId: selectedFriend.user_id_1._id,
+            receiverId: selectedFriend._id,
           },
           headers: {
             Authorization: `Bearer ${userData.token}`,
           },
         })
         .then((res) => {
-         
           setMessageList(res.data.data);
         })
         .catch((err) => {
           console.log("err", err);
         });
-        
     }
 
-}, [selectedFriend,userData])
+    // Connect to the Socket.IO server
+    const socketInstance = io("http://localhost:4000");
+    // Set the socket instance in state
+    setSocket(socketInstance);
 
+    // Disconnect the socket when the component unmounts
+    return () => {
+      socketInstance.disconnect();
+    };
+  }, [selectedFriend, userData]);
+
+
+  useEffect(() => {
+    if (socket) {
+      // Listen for private messages
+      socket.on('private_message', (data) => {
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { senderUserId: data.senderUserId, message: data.message },
+        ]);
+      });
+    }
+  }, [socket]);
 
   const handleSendMessage = () => {
-    if(newMessage.trim() !== "") {    
-      setNewMessage("");
+    if (newMessage.trim() !== "") {
+
+      // Emit the private message to the target user
+      socket.emit('private_message', {
+        targetUserId: selectedFriend._id,
+        message: newMessage,
+      });
+      // Add the message to the list of messages
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { senderUserId: socket.id, message: newMessage },
+      ]);
+
+
+      
       // code for sending message
       const data = {
         message: newMessage,
-        receiverId: selectedFriend.user_id_1._id,
+        receiverId: selectedFriend._id,
       };
-     
+
       axios
         .post(SEND_MESSAGE, data, {
           headers: {
@@ -73,9 +111,9 @@ useEffect(() => {
         .catch((err) => {
           console.log("err", err);
         });
- 
+
+        setNewMessage("");
     }
-    
   };
 
   return (
@@ -310,7 +348,7 @@ useEffect(() => {
                               }}
                               component={"h6"}
                             >
-                              {item.user_id_1.name}
+                              {item.name}
                             </Typography>
                             <Typography
                               sx={{
@@ -376,22 +414,24 @@ useEffect(() => {
               >
                 {/* chat box  */}
                 <Box>
-                  {messageList && messageList.map((message, index) => (
-                    <Paper elevation={3}>
-                    <Typography
-                      // key={index}
-                      variant="body1"
-                      textAlign="left"
-                      style={{
-                        textAlign: message.senderId === userData.user._id ? "right" : "left",
-                      }}
-                    >
-                      {message.message}
-                    </Typography>
-                  </Paper>
-                  
-                  ))  
-                  }
+                  {messageList &&
+                    messageList.map((message, index) => (
+                      <Paper elevation={3} key={index}>
+                        <Typography
+                          // key={index}
+                          variant="body1"
+                          textAlign="left"
+                          style={{
+                            textAlign:
+                              message.senderId === userData.user._id
+                                ? "right"
+                                : "left",
+                          }}
+                        >
+                          {message.message}
+                        </Typography>
+                      </Paper>
+                    ))}
                   <Box
                     sx={{
                       position: "absolute",
