@@ -63,7 +63,12 @@ const Page404 = () => {
                 marginTop: "20px",
               }}>
                 <TextField className='search_content_form' sx={{
-                  width: "50%",
+                  width: {
+                    xs: "100%",
+                    sm: "70%",
+                    md: "50%",
+                    lg: "50%",
+                  },
                   borderRadius: "50px",
                 }} id="outlined-basic" label="Search what you want to find..." variant="outlined" />
 
@@ -84,8 +89,18 @@ const Page404 = () => {
                     backgroundColor: theme.palette.primary.LogoColor,
                     borderRadius: "30px",
                     padding: "7px 25px",
-                    marginLeft: "10px",
-                    width: "15%",
+                    marginLeft: {
+                      xs: "0",
+                      sm: "0",
+                      md: "10px",
+                      lg: "10px",
+                    },
+                    width: {
+                      xs: "50%",
+                      sm: "30%",
+                      md: "15%",
+                      lg: "15%",
+                    },
                     "&:hover": {
                       backgroundColor: theme.palette.primary.LogoColor,
                     },
