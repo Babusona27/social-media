@@ -233,7 +233,7 @@ exports.friendRequestList = async (req, res) => {
 exports.friendRequestStatusUpdate = async (req, res) => {
     try {
         let payload = req.body;
-        let userFriend = await userFriendSchema.findOne({ user_id_1: payload.user_id_1, user_id_2: req.user.userId });
+        let userFriend = await userFriendSchema.findOne({ user_id_2: payload.user_id_1, user_id_1: req.user.userId });
         if (!userFriend) {
             return res.status(200).json(helper.response(200, false, "Friend Request Not Found!"));
         }
