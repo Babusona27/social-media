@@ -312,6 +312,26 @@ exports.friendList = async (req, res) => {
     }
 };
 
+exports.friendDelete = async (req, res) => {
+    try {
+        let payload = req.body;
+        let userFriend = await userFriendSchema.findOne({ $or: [{ user_id_1: req.user.userId, user_id_2: payload.friend_id }, { user_id_1: payload.friend_id, user_id_2: req.user.userId }] });
+        if (!userFriend) {
+            return res.status(200).json(helper.response(200, false, "Friend Not Found!"));
+        }
+        let userFriendResult = await userFriend.deleteOne({ _id: userFriend._id });
+        if (userFriendResult) {
+            return res.status(200).json(helper.response(200, true, "Friend Delete Successfully!", userFriendResult));
+        } else {
+            return res.status(200).json(helper.response(200, false, "Friend Delete Failed!"));
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json(helper.response(500, false, "something went wrong!"));
+    }
+}
+
+
 
 
 exports.followUser = async (req, res) => {

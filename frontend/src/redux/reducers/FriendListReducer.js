@@ -9,7 +9,11 @@ export const FriendListReducer = createSlice({
     friendList: (state, action) => {
       state.value = action.payload;
     },
+    removeFriend: (state, action) => {
+      const newList = state.value.filter((item) => item._id !== action.payload);
+      state.value = newList;
+    }
   },
 });
-export const { friendList } = FriendListReducer.actions;
+export const { friendList, removeFriend } = FriendListReducer.actions;
 export default FriendListReducer.reducer;

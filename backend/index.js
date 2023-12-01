@@ -38,13 +38,21 @@ const io = socketIO(server, {
   }
 });
 
-
+const onlineUsers = {}; // { [socket.id]: user }
 io.on('connection', (socket) => {
   console.log('a user connected: ' + socket.id);
 
   // join room
   socket.on('joinRoom', ({ room }) => {
     socket.join(room);
+  });
+  // listen for typing and stop typing events
+  socket.on('typing', ({ room }) => {
+    socket.to(room).emit('typing');
+  });
+
+  socket.on('stop typing', ({ room }) => {
+    socket.to(room).emit('stop typing');
   });
 
   // listen for private message
@@ -53,7 +61,16 @@ io.on('connection', (socket) => {
     socket.to(room).emit('private message', message);
   });
 
+  // listen for online users
+  socket.on('online users', ({ user }) => {
+    onlineUsers[socket.id] = user;
+    io.emit('online users', Object.values(onlineUsers));
+  });
+
+
   socket.on('disconnect', () => {
+    delete onlineUsers[socket.id];
+    io.emit('online users', Object.values(onlineUsers));
     console.log('user disconnected: ' + socket.id);
   });
 });
