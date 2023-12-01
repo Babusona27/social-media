@@ -38,23 +38,23 @@ const io = socketIO(server, {
   }
 });
 
-// Listen for socket connections
-io.on('connection', (socket) => {
-  console.log('A user connected');
 
-  // Listen for private messages
-  socket.on('private_message', (data) => {
-    console.log("data==>", data);
-    // Emit the private message to the target user
-    io.to(data.targetUserId).emit('private_message', {
-      senderUserId: socket.id,
-      message: data.message,
-    });
+io.on('connection', (socket) => {
+  console.log('a user connected: ' + socket.id);
+
+  // join room
+  socket.on('joinRoom', ({ room }) => {
+    socket.join(room);
   });
 
-  // Listen for disconnections
+  // listen for private message
+  socket.on('private message', ({ room, message }) => {
+    console.log("server message", message);
+    socket.to(room).emit('private message', message);
+  });
+
   socket.on('disconnect', () => {
-    console.log('User disconnected');
+    console.log('user disconnected: ' + socket.id);
   });
 });
 

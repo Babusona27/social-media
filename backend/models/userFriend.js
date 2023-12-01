@@ -1,3 +1,4 @@
+const { string } = require('joi');
 const mongoose = require('mongoose');
 
 const userFriendSchema = new mongoose.Schema({
@@ -13,6 +14,9 @@ const userFriendSchema = new mongoose.Schema({
         type: String,
         enum: ["pending", "accepted", "rejected"],
         default: "pending"
+    },
+    chat_id: {
+        type: String,
     },
     created_at: {
         type: Date,

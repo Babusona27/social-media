@@ -32,7 +32,7 @@ const ChatRoom = () => {
 
   const [socket, setSocket] = useState(null);
   const [messages, setMessages] = useState([]);
-
+  const room = 'room1';
   useEffect(() => {
 
     if (selectedFriend) {
@@ -52,67 +52,43 @@ const ChatRoom = () => {
           console.log("err", err);
         });
     }
+    const socket = io('http://localhost:4000');
+    socket.emit('joinRoom', { room });
+    socket.on('private message', (message) => {
+      console.log('client side message==>', message);
+      setMessages((messages) => [...messages, message]);
+    });
 
-    // Connect to the Socket.IO server
-    const socketInstance = io("http://localhost:4000");
-    // Set the socket instance in state
-    setSocket(socketInstance);
-
-    // Disconnect the socket when the component unmounts
+    setSocket(socket);
     return () => {
-      socketInstance.disconnect();
+      socket.disconnect();
     };
+
   }, [selectedFriend, userData]);
 
 
-  useEffect(() => {
-    if (socket) {
-      // Listen for private messages
-      socket.on('private_message', (data) => {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { senderUserId: data.senderUserId, message: data.message },
-        ]);
-      });
-    }
-  }, [socket]);
 
-  const handleSendMessage = () => {
+  const handleSendMessage = (event) => {
+    event.preventDefault();
     if (newMessage.trim() !== "") {
 
-      // Emit the private message to the target user
-      socket.emit('private_message', {
-        targetUserId: selectedFriend._id,
-        message: newMessage,
-      });
-      // Add the message to the list of messages
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { senderUserId: socket.id, message: newMessage },
-      ]);
+      socket.emit('private message', { room, message: newMessage });
 
 
-      
-      // code for sending message
-      const data = {
-        message: newMessage,
-        receiverId: selectedFriend._id,
-      };
+      // axios
+      //   .post(SEND_MESSAGE, data, {
+      //     headers: {
+      //       Authorization: `Bearer ${userData.token}`,
+      //     },
+      //   })
+      //   .then((res) => {
+      //     console.log("res", res);
+      //   })
+      //   .catch((err) => {
+      //     console.log("err", err);
+      //   });
 
-      axios
-        .post(SEND_MESSAGE, data, {
-          headers: {
-            Authorization: `Bearer ${userData.token}`,
-          },
-        })
-        .then((res) => {
-          console.log("res", res);
-        })
-        .catch((err) => {
-          console.log("err", err);
-        });
-
-        setNewMessage("");
+      setNewMessage("");
     }
   };
 
