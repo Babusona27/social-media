@@ -20,7 +20,7 @@ const RightBar = () => {
           },
         })
         .then((res) => {
-           console.log("==>>>",res.data);
+          // console.log("==>>>", res.data);
           setUserList(res.data.data);
         })
         .catch((err) => {
@@ -30,10 +30,10 @@ const RightBar = () => {
     getUserList();
   }, [userData]);
 
-const _sendFriendRequest = async (id) => {
+  const _sendFriendRequest = async (id) => {
     axios
       .post(
-        SEND_FRIEND_REQUEST,{user_id_1: id},
+        SEND_FRIEND_REQUEST, { user_id_1: id },
         {
           headers: {
             Authorization: `Bearer ${userData.token}`,
@@ -42,16 +42,20 @@ const _sendFriendRequest = async (id) => {
       )
       .then((res) => {
         //console.log(res.data);     
-        
-        showAlert("error", res.data.message);   
-        
+
+        showAlert("error", res.data.message);
+
+        // remove from list
+        const newList = userList.filter((item) => item._id !== id);
+        setUserList(newList);
+
       })
       .catch((err) => {
-        console.log("==>",err);
+        console.log("==>", err);
         if (err.response) {
           //console.log(err.response.data);
-     
-        }       
+
+        }
       });
   }
 
@@ -65,9 +69,9 @@ const _sendFriendRequest = async (id) => {
           color: theme.palette.primary.ParaColor,
         }}
       >
-        Who to Follow
+        People you may know
       </Typography>
-   
+
       {userList.map((item, index) => (
         <Box
           sx={{
@@ -118,10 +122,10 @@ const _sendFriendRequest = async (id) => {
                 {item.name}
               </Typography>
             </Box>
-            <Box 
-            onClick={() =>{                
+            <Box
+              onClick={() => {
                 _sendFriendRequest(item._id)
-            }}
+              }}
             >
               <Typography
                 sx={{
@@ -143,7 +147,7 @@ const _sendFriendRequest = async (id) => {
           </Box>
         </Box>
       ))}
-    <AlertComponent/>
+      <AlertComponent />
     </Box>
   );
 };

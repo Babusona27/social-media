@@ -38,23 +38,40 @@ const io = socketIO(server, {
   }
 });
 
-// Listen for socket connections
+const onlineUsers = {}; // { [socket.id]: user }
 io.on('connection', (socket) => {
-  console.log('A user connected');
+  console.log('a user connected: ' + socket.id);
 
-  // Listen for private messages
-  socket.on('private_message', (data) => {
-    console.log("data==>", data);
-    // Emit the private message to the target user
-    io.to(data.targetUserId).emit('private_message', {
-      senderUserId: socket.id,
-      message: data.message,
-    });
+  // join room
+  socket.on('joinRoom', ({ room }) => {
+    socket.join(room);
+  });
+  // listen for typing and stop typing events
+  socket.on('typing', ({ room }) => {
+    socket.to(room).emit('typing');
   });
 
-  // Listen for disconnections
+  socket.on('stop typing', ({ room }) => {
+    socket.to(room).emit('stop typing');
+  });
+
+  // listen for private message
+  socket.on('private message', ({ room, message }) => {
+    console.log("server message", message);
+    socket.to(room).emit('private message', message);
+  });
+
+  // listen for online users
+  socket.on('online users', ({ user }) => {
+    onlineUsers[socket.id] = user;
+    io.emit('online users', Object.values(onlineUsers));
+  });
+
+
   socket.on('disconnect', () => {
-    console.log('User disconnected');
+    delete onlineUsers[socket.id];
+    io.emit('online users', Object.values(onlineUsers));
+    console.log('user disconnected: ' + socket.id);
   });
 });
 

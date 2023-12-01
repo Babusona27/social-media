@@ -1,36 +1,72 @@
 import { Avatar, Box, List, Typography, Badge, Tooltip } from '@mui/material'
-import React,{ useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { PersonAdd } from '@mui/icons-material'
-import { Chat,  Groups, PermMedia, Videocam } from '@mui/icons-material'
+import { Chat, Groups, PermMedia, Videocam } from '@mui/icons-material'
 import theme from '../Theme'
 import styled from '@mui/material/styles/styled'
 import GroupIcon from '@mui/icons-material/Group';
 import axios from "axios";
 import { FRIEND_LIST } from "../Url";
-import {  useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { friendList } from "../redux/reducers/FriendListReducer";
 import { Link } from 'react-router-dom';
+import io from "socket.io-client";
 const Sidebar = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.UserReducer.value);
-  console.log("userData_sidebar", userData);
+  const [friend, setFriend] = useState([]);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [onlineFriends, setOnlineFriends] = useState([]);
+
   useEffect(() => {
+    // get online users
+    const socket = io('http://localhost:4000');
+    socket.emit('online users', { user: userData.user });
+    socket.on('online users', (users) => {
+
+      // filter out current user
+      users = users.filter((user) => user._id !== userData.user._id);
+
+      // filter out duplicate users
+      users = users.filter((user, index, self) =>
+        index === self.findIndex((t) => (
+          t._id === user._id
+        ))
+      );
+
+      console.log('online users', users);
+      setOnlineUsers(users);
+    });
+
+    // get friend list
     const getUserList = async () => {
-        axios
-            .get(FRIEND_LIST, {
-                headers: {
-                    Authorization: `Bearer ${userData.token}`,
-                },
-            })
-            .then((res) => {                
-                dispatch(friendList(res.data.data));                
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+      axios
+        .get(FRIEND_LIST, {
+          headers: {
+            Authorization: `Bearer ${userData.token}`,
+          },
+        })
+        .then((res) => {
+          dispatch(friendList(res.data.data));
+          setFriend(res.data.data);
+
+          // filter out online friends
+          if (onlineUsers.length === 0) return setOnlineFriends([]);
+          const onlineFriends = res.data.data.filter((friend) =>
+            onlineUsers.find((user) => user._id === friend._id)
+          );
+          setOnlineFriends(onlineFriends);
+
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
     getUserList();
-}, [userData, dispatch]);
+    return () => {
+      socket.disconnect();
+    };
+  }, [userData, dispatch]);
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -108,9 +144,9 @@ const Sidebar = () => {
                 borderRadius: "50%",
               }}
             />
-           
+
             <Box margin={"10px 0"}>
-              <Typography component={"a"} sx={{
+              <Typography component={"a"} href='/editprofile'  sx={{
                 fontSize: "20px",
                 color: theme.palette.primary.White,
                 lineHeight: "0",
@@ -119,7 +155,11 @@ const Sidebar = () => {
                   cursor: "pointer",
                 }
               }}
-              ><Link to="/editprofile">{userData && userData.user.name}</Link></Typography>
+
+              >{userData && userData.user.name}</Typography>
+
+          
+
             </Box>
             <Box sx={{
               display: "flex",
@@ -140,7 +180,7 @@ const Sidebar = () => {
                   }
                 }}
               >
-                1,299 followers
+                {(friend ? friend.length : 0) + ' Friends'}
               </Typography>
             </Box>
 
@@ -191,21 +231,21 @@ const Sidebar = () => {
               marginBottom: "10px",
             }} />
 
-           
+
 
             <Typography component={"a"} href='/nearbypeople' sx={{
-               color: theme.palette.primary.ParaColor,
-               fontSize: "16px",
-               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
-               width: "100%",
-               fontWeight: "600",
-               paddingBottom: "10px",
-               transition: "all .3s ease",
-               "&:hover": {
-                  color: theme.palette.primary.LogoColor,
-                  borderBottom: `1px solid ${theme.palette.primary.LogoColor }`,
-                  paddingLeft:"15px"
-               },
+              color: theme.palette.primary.ParaColor,
+              fontSize: "16px",
+              borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
+              width: "100%",
+              fontWeight: "600",
+              paddingBottom: "10px",
+              transition: "all .3s ease",
+              "&:hover": {
+                color: theme.palette.primary.LogoColor,
+                borderBottom: `1px solid ${theme.palette.primary.LogoColor}`,
+                paddingLeft: "15px"
+              },
 
             }}>
               Friend Request</Typography>
@@ -225,17 +265,17 @@ const Sidebar = () => {
 
             <Typography component={"a"} href='/friendlist' sx={{
               color: theme.palette.primary.ParaColor,
-               fontSize: "16px",
-               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
-               width: "100%",
-               fontWeight: "600",
-               paddingBottom: "10px",
-               transition: "all .3s ease",
-               "&:hover": {
-                  color: theme.palette.primary.LogoColor,
-                  borderBottom: `1px solid ${theme.palette.primary.LogoColor }`,
-                  paddingLeft:"15px"
-               },
+              fontSize: "16px",
+              borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
+              width: "100%",
+              fontWeight: "600",
+              paddingBottom: "10px",
+              transition: "all .3s ease",
+              "&:hover": {
+                color: theme.palette.primary.LogoColor,
+                borderBottom: `1px solid ${theme.palette.primary.LogoColor}`,
+                paddingLeft: "15px"
+              },
 
             }}>
               Friends</Typography>
@@ -254,17 +294,17 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='/chatroom' sx={{
               color: theme.palette.primary.ParaColor,
-               fontSize: "16px",
-               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
-               width: "100%",
-               fontWeight: "600",
-               paddingBottom: "10px",
-               transition: "all .3s ease",
-               "&:hover": {
-                  color: theme.palette.primary.LogoColor,
-                  borderBottom: `1px solid ${theme.palette.primary.LogoColor }`,
-                  paddingLeft:"15px"
-               },
+              fontSize: "16px",
+              borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
+              width: "100%",
+              fontWeight: "600",
+              paddingBottom: "10px",
+              transition: "all .3s ease",
+              "&:hover": {
+                color: theme.palette.primary.LogoColor,
+                borderBottom: `1px solid ${theme.palette.primary.LogoColor}`,
+                paddingLeft: "15px"
+              },
             }}>
               Messages</Typography>
           </Box>
@@ -282,17 +322,17 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.primary.ParaColor,
-               fontSize: "16px",
-               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
-               width: "100%",
-               fontWeight: "600",
-               paddingBottom: "10px",
-               transition: "all .3s ease",
-               "&:hover": {
-                  color: theme.palette.primary.LogoColor,
-                  borderBottom: `1px solid ${theme.palette.primary.LogoColor }`,
-                  paddingLeft:"15px"
-               },
+              fontSize: "16px",
+              borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
+              width: "100%",
+              fontWeight: "600",
+              paddingBottom: "10px",
+              transition: "all .3s ease",
+              "&:hover": {
+                color: theme.palette.primary.LogoColor,
+                borderBottom: `1px solid ${theme.palette.primary.LogoColor}`,
+                paddingLeft: "15px"
+              },
             }}>
               Images</Typography>
           </Box>
@@ -310,17 +350,17 @@ const Sidebar = () => {
             }} />
             <Typography component={"a"} href='#' sx={{
               color: theme.palette.primary.ParaColor,
-               fontSize: "16px",
-               borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
-               width: "100%",
-               fontWeight: "600",
-               paddingBottom: "10px",
-               transition: "all .3s ease",
-               "&:hover": {
-                  color: theme.palette.primary.LogoColor,
-                  borderBottom: `1px solid ${theme.palette.primary.LogoColor }`,
-                  paddingLeft:"15px"
-               },
+              fontSize: "16px",
+              borderBottom: `1px solid ${theme.palette.primary.LightGray}`,
+              width: "100%",
+              fontWeight: "600",
+              paddingBottom: "10px",
+              transition: "all .3s ease",
+              "&:hover": {
+                color: theme.palette.primary.LogoColor,
+                borderBottom: `1px solid ${theme.palette.primary.LogoColor}`,
+                paddingLeft: "15px"
+              },
             }}>
               Videos</Typography>
           </Box>
@@ -363,240 +403,35 @@ const Sidebar = () => {
           // Gap: "20px",
 
         }}>
-          <Tooltip title="Linda Lohan">
-            <Box component={"a"} href='#'>
-              <StyledBadge sx={{
-                marginRight: {
-                  xs: "17px",
-                  sm: "22px",
-                  md: "10px",
-                  lg: "10px",
-                },
-                marginBottom: "20px",
-              }}
-                overlap="circular"
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                variant="dot"
-              >
-                <Avatar sx={{
-                  width: "58px",
-                  height: "58px",
-                }} alt="Remy Sharp"
-                  src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
-                  }
-                />
-              </StyledBadge>
-            </Box>
-          </Tooltip>
-          <Tooltip title="Linda Lohan">
-            <Box component={"a"} href='#'>
-              <StyledBadge sx={{
-                marginRight: {
-                  xs: "17px",
-                  sm: "22px",
-                  md: "10px",
-                  lg: "10px",
-                },
-                marginBottom: "20px",
-              }}
-                overlap="circular"
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                variant="dot"
-              >
-                <Avatar sx={{
-                  width: "58px",
-                  height: "58px",
-                }} alt="Remy Sharp"
-                  src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
-                  }
-                />
-              </StyledBadge>
-            </Box>
-          </Tooltip>
-          <Tooltip title="Linda Lohan">
-            <Box component={"a"} href='#'>
-              <StyledBadge sx={{
-                marginRight: {
-                  xs: "17px",
-                  sm: "22px",
-                  md: "10px",
-                  lg: "10px",
-                },
-                marginBottom: "20px",
-              }}
-                overlap="circular"
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                variant="dot"
-              >
-                <Avatar sx={{
-                  width: "58px",
-                  height: "58px",
-                }} alt="Remy Sharp"
-                  src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
-                  }
-                />
-              </StyledBadge>
-            </Box>
-          </Tooltip>
-          <Tooltip title="Linda Lohan">
-            <Box component={"a"} href='#'>
-              <StyledBadge sx={{
-                marginRight: {
-                  xs: "17px",
-                  sm: "22px",
-                  md: "10px",
-                  lg: "10px",
-                },
-                marginBottom: "20px",
-              }}
-                overlap="circular"
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                variant="dot"
-              >
-                <Avatar sx={{
-                  width: "58px",
-                  height: "58px",
-                }} alt="Remy Sharp"
-                  src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
-                  }
-                />
-              </StyledBadge>
-            </Box>
-          </Tooltip>
-          <Tooltip title="Linda Lohan">
-            <Box component={"a"} href='#'>
-              <StyledBadge sx={{
-                marginRight: {
-                  xs: "17px",
-                  sm: "22px",
-                  md: "10px",
-                  lg: "10px",
-                },
-                marginBottom: "20px",
-              }}
-                overlap="circular"
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                variant="dot"
-              >
-                <Avatar sx={{
-                  width: "58px",
-                  height: "58px",
-                }} alt="Remy Sharp"
-                  src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
-                  }
-                />
-              </StyledBadge>
-            </Box>
-          </Tooltip>
-          <Tooltip title="Linda Lohan">
-            <Box component={"a"} href='#'>
-              <StyledBadge sx={{
-                marginRight: {
-                  xs: "17px",
-                  sm: "22px",
-                  md: "10px",
-                  lg: "10px",
-                },
-                marginBottom: "20px",
-              }}
-                overlap="circular"
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                variant="dot"
-              >
-                <Avatar sx={{
-                  width: "58px",
-                  height: "58px",
-                }} alt="Remy Sharp"
-                  src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
-                  }
-                />
-              </StyledBadge>
-            </Box>
-          </Tooltip>
-          <Tooltip title="Linda Lohan">
-            <Box component={"a"} href='#'>
-              <StyledBadge sx={{
-                marginRight: {
-                  xs: "17px",
-                  sm: "22px",
-                  md: "10px",
-                  lg: "10px",
-                },
-                marginBottom: "20px",
-              }}
-                overlap="circular"
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                variant="dot"
-              >
-                <Avatar sx={{
-                  width: "58px",
-                  height: "58px",
-                }} alt="Remy Sharp"
-                  src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
-                  }
-                />
-              </StyledBadge>
-            </Box>
-          </Tooltip>
-          <Tooltip title="Linda Lohan">
-            <Box component={"a"} href='#'>
-              <StyledBadge sx={{
-                marginRight: {
-                  xs: "17px",
-                  sm: "22px",
-                  md: "10px",
-                  lg: "10px",
-                },
-                marginBottom: "20px",
-              }}
-                overlap="circular"
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                variant="dot"
-              >
-                <Avatar sx={{
-                  width: "58px",
-                  height: "58px",
-                }} alt="Remy Sharp"
-                  src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
-                  }
-                />
-              </StyledBadge>
-            </Box>
-          </Tooltip>
-          <Tooltip title="Linda Lohan">
-            <Box component={"a"} href='#'>
-              <StyledBadge sx={{
-                marginRight: {
-                  xs: "17px",
-                  sm: "22px",
-                  md: "10px",
-                  lg: "10px",
-                },
-                marginBottom: "20px",
-              }}
-                overlap="circular"
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                variant="dot"
-              >
-                <Avatar sx={{
-                  width: "58px",
-                  height: "58px",
-                }} alt="Remy Sharp"
-                  src={
-                    process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
-                  }
-                />
-              </StyledBadge>
-            </Box>
-          </Tooltip>
+          {onlineFriends.map((item, index) => (
+
+            <Tooltip title="Linda Lohan" key={index}>
+              <Box component={"a"} href='#'>
+                <StyledBadge sx={{
+                  marginRight: {
+                    xs: "17px",
+                    sm: "22px",
+                    md: "10px",
+                    lg: "10px",
+                  },
+                  marginBottom: "20px",
+                }}
+                  overlap="circular"
+                  anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                  variant="dot"
+                >
+                  <Avatar sx={{
+                    width: "58px",
+                    height: "58px",
+                  }} alt="Remy Sharp"
+                    src={
+                      process.env.PUBLIC_URL + "/assets/images/userFace.jpg"
+                    }
+                  />
+                </StyledBadge>
+              </Box>
+            </Tooltip>
+          ))}
 
         </Box>
       </Box>

@@ -1,13 +1,37 @@
 import React from "react";
 import { Avatar, Box, Typography, } from '@mui/material'
 import theme from '../Theme'
-import { useSelector} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import axios, { Axios } from "axios";
+import { FRIEND_DELETE } from "../Url";
+import CustomAlert from "./CustomAlert";
+import { removeFriend } from "../redux/reducers/FriendListReducer";
 const FriendListCard = () => {
-    const friendList = useSelector((state) => state.FriendListReducer.value);
-
+    const dispatch = useDispatch();
+    const friendListArray = useSelector((state) => state.FriendListReducer.value);
+    const userData = useSelector((state) => state.UserReducer.value);
+    const { showAlert, AlertComponent } = CustomAlert();
+    const _deleteFriend = async (id) => {
+        //delete friend
+        axios.delete(FRIEND_DELETE, {
+            headers: {
+                Authorization: `Bearer ${userData.token}`,
+            },
+            data: {
+                friend_id: id._id,
+            },
+        }).then((res) => {
+            //console.log(res.data);
+            showAlert("success", res.data.message);
+            dispatch(removeFriend(res.data.data._id));
+        }).catch((err) => {
+            console.log(err);
+            showAlert("error", err.response.data.message);
+        })
+    }
     return (
         <>
-            {friendList && friendList.map((item, key) => (
+            {friendListArray && friendListArray.map((item, key) => (
 
                 <Box sx={{
                     width: {
@@ -15,7 +39,7 @@ const FriendListCard = () => {
                         sm: "100%",
                         md: "48%",
                         lg: "48%",
-                      },
+                    },
                 }} key={key}>
                     <Box sx={{
                         background: `${theme.palette.primary.CoverBgGradient}, url(${process.env.PUBLIC_URL + "/assets/images/fb6.jpg"}) no-repeat`,
@@ -81,6 +105,17 @@ const FriendListCard = () => {
 
                                         component={"a"} href='#' variant="body2" color="text.secondary">
                                         My Friend
+                                    </Typography>
+                                    <Typography sx={{
+                                        fontSize: "13px",
+                                        fontWeight: "500",
+                                        color: theme.palette.primary.ParaColor,
+                                    }}
+                                        onClick={() => {
+                                            _deleteFriend(item);
+                                        }}
+                                    >
+                                        Delete
                                     </Typography>
                                 </Box>
 

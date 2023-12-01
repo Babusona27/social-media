@@ -19,10 +19,10 @@ const MyInterest = () => {
                     marginRight: "10px",
                 }} />
                 <Typography component={"h4"} sx={{
-                    fontSize: "20px",
-                    fontWeight: "500",
-                    color: theme.palette.primary.ParaColor,
-                }}
+                    fontSize: "22px",
+                    fontWeight: "600",
+                    color: theme.palette.primary.LogoColor,
+                  }}
                 >
                     My Interests
                 </Typography>

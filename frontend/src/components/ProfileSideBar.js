@@ -31,7 +31,12 @@ const dispatch = useDispatch();
                 <Box sx={{
                     display: "flex",
                     alignItems: "center",
-                    padding: "0px 15px",
+                    padding: {
+                        xs: "0",
+                        sm: "0",
+                        md: "0px 15px",
+                        lg: "0px 15px",
+                      },
                     marginBottom: "10px",
                     textAlign: "left",
                 }}>
@@ -64,7 +69,12 @@ const dispatch = useDispatch();
                 <Box sx={{
                     display: "flex",
                     alignItems: "center",
-                    padding: "0 15px",
+                    padding: {
+                        xs: "0",
+                        sm: "0",
+                        md: "0px 15px",
+                        lg: "0px 15px",
+                      },
                     marginBottom: "10px",
                     textAlign: "left",
                 }}>
@@ -96,7 +106,12 @@ const dispatch = useDispatch();
                 <Box sx={{
                     display: "flex",
                     alignItems: "center",
-                    padding: "0 15px",
+                    padding: {
+                        xs: "0",
+                        sm: "0",
+                        md: "0px 15px",
+                        lg: "0px 15px",
+                      },
                     marginBottom: "10px",
                     textAlign: "left",
                 }}>
@@ -128,7 +143,12 @@ const dispatch = useDispatch();
                 <Box sx={{
                     display: "flex",
                     alignItems: "center",
-                    padding: "0 15px",
+                    padding: {
+                        xs: "0",
+                        sm: "0",
+                        md: "0px 15px",
+                        lg: "0px 15px",
+                      },
                     marginBottom: "10px",
                     textAlign: "left",
                 }}>
@@ -160,7 +180,12 @@ const dispatch = useDispatch();
                 <Box sx={{
                     display: "flex",
                     alignItems: "center",
-                    padding: "0 15px",
+                    padding: {
+                        xs: "0",
+                        sm: "0",
+                        md: "0px 15px",
+                        lg: "0px 15px",
+                      },
                     marginBottom: "10px",
                     textAlign: "left",
                 }}>

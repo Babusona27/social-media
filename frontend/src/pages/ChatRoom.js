@@ -29,10 +29,9 @@ const ChatRoom = () => {
   const [newMessage, setNewMessage] = useState("");
   const [selectedFriend, setSelectedFriend] = useState(null);
   const [messageList, setMessageList] = useState([]);
-
   const [socket, setSocket] = useState(null);
-  const [messages, setMessages] = useState([]);
-
+  const [room, setRoom] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   useEffect(() => {
 
     if (selectedFriend) {
@@ -46,59 +45,61 @@ const ChatRoom = () => {
           },
         })
         .then((res) => {
-          setMessageList(res.data.data);
+          console.log("message list", res.data.data);
+          if (Array.isArray(res.data.data)) {
+            setMessageList(res.data.data);
+          } else {
+            console.error('res.data.data is not an array:', res.data.data);
+          }
         })
         .catch((err) => {
           console.log("err", err);
         });
     }
+    const socket = io('http://localhost:4000');
+    socket.emit('joinRoom', { room });
+    socket.on('private message', (message) => {
+      setMessageList((messageList) => [...messageList, { message: message }]);
+    });
 
-    // Connect to the Socket.IO server
-    const socketInstance = io("http://localhost:4000");
-    // Set the socket instance in state
-    setSocket(socketInstance);
+    setSocket(socket);
+    socket.on('typing', () => {
+      setIsTyping(true);
+    });
 
-    // Disconnect the socket when the component unmounts
+    socket.on('stop typing', () => {
+      setIsTyping(false);
+    });
     return () => {
-      socketInstance.disconnect();
+      socket.disconnect();
     };
+
   }, [selectedFriend, userData]);
 
-
-  useEffect(() => {
-    if (socket) {
-      // Listen for private messages
-      socket.on('private_message', (data) => {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { senderUserId: data.senderUserId, message: data.message },
-        ]);
-      });
-    }
-  }, [socket]);
-
-  const handleSendMessage = () => {
+  // Emit typing event when user starts typing
+  const handleKeyDown = () => {
+    socket.emit('typing', { room });
+  };
+  // Emit stop typing event when user stops typing
+  const handleKeyUp = () => {
+    socket.emit('stop typing', { room });
+  };
+  const handleSendMessage = (event) => {
+    event.preventDefault();
     if (newMessage.trim() !== "") {
 
-      // Emit the private message to the target user
-      socket.emit('private_message', {
-        targetUserId: selectedFriend._id,
-        message: newMessage,
-      });
-      // Add the message to the list of messages
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { senderUserId: socket.id, message: newMessage },
+      socket.emit('private message', { room, message: newMessage });
+
+      // push message to message list
+      setMessageList((messageList) => [
+        ...messageList,
+        { message: newMessage, senderId: userData.user._id },
       ]);
 
-
-      
-      // code for sending message
       const data = {
         message: newMessage,
         receiverId: selectedFriend._id,
       };
-
       axios
         .post(SEND_MESSAGE, data, {
           headers: {
@@ -112,7 +113,7 @@ const ChatRoom = () => {
           console.log("err", err);
         });
 
-        setNewMessage("");
+      setNewMessage("");
     }
   };
 
@@ -310,7 +311,10 @@ const ChatRoom = () => {
                           borderBottom: `2px solid ${theme.palette.primary.LogoColor}`,
                         },
                       }}
-                      onClick={() => setSelectedFriend(item)}
+                      onClick={() => {
+                        setSelectedFriend(item);
+                        setRoom(item.chat_id);
+                      }}
                     >
                       <Box
                         sx={{
@@ -473,6 +477,7 @@ const ChatRoom = () => {
                         },
                       }}
                     >
+                      {isTyping && <p>The other user is typing...</p>}
                       <TextField
                         fullWidth
                         size="small"
@@ -487,6 +492,8 @@ const ChatRoom = () => {
                         placeholder="Type..."
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        onKeyUp={handleKeyUp}
                       />
                     </FormControl>
                     <Button

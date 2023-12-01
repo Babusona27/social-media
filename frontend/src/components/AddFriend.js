@@ -42,6 +42,9 @@ const AddFriend = () => {
         //console.log(res.data);
         // setUserList(res.data.data);
         showAlert("success", res.data.message);
+        // remove from list
+        const newList = userList.filter((item) => item.user_id_2._id !== id);
+        setUserList(newList);
       }).catch((err) => {
         console.log(err);
         showAlert("error", err.response.data.message);
@@ -121,7 +124,7 @@ const AddFriend = () => {
 
           </Box>
           <Box flex={"2"} margin={"0 10px"}>
-            <Box sx={{ 
+            <Box sx={{
               display: {
                 xs: "block",
                 sm: "flex",
@@ -129,7 +132,7 @@ const AddFriend = () => {
                 lg: "block",
               },
               justifyContent: "flex-end"
-             }}>
+            }}>
               <Typography
                 component={"button"}
                 sx={{

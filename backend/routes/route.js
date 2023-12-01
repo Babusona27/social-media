@@ -20,6 +20,8 @@ router.get('/friend-request-list', [authMiddleware.isAuth], userController.frien
 router.put('/friend-request-status-update', [authMiddleware.isAuth], userController.friendRequestStatusUpdate);
 //friend list
 router.get('/friend-list', [authMiddleware.isAuth], userController.friendList);
+//friend delete
+router.delete('/friend-delete', [authMiddleware.isAuth], userController.friendDelete);
 //follow user
 router.post('/follow-user', [authMiddleware.isAuth], userController.followUser);
 //follow user list
