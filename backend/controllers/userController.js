@@ -253,16 +253,60 @@ exports.friendRequestStatusUpdate = async (req, res) => {
 
 exports.friendList = async (req, res) => {
     try {
-        let userFriend = await userFriendSchema.find({ $or: [{ user_id_1: req.user.userId }, { user_id_2: req.user.userId }], status: "accepted" }).populate('user_id_1').populate('user_id_2');
-        if (userFriend) {
-            return res.status(200).json(helper.response(200, true, "Friend List!", userFriend));
-        } else {
-            return res.status(200).json(helper.response(200, false, "Friend List Not Found!"));
+      // Get the user's friend list excluding the logged-in user
+      let userFriend = await userFriendSchema
+        .find({
+          $or: [
+            { user_id_1: req.user.userId },
+            { user_id_2: req.user.userId },
+          ],
+          status: "accepted",
+        })
+        .populate({
+          path: 'user_id_1',
+          match: { _id: { $ne: req.user.userId } }, // Exclude the logged-in user
+          select: 'name email phone dob gender hobbies follow_me send_notification enable_tagging', // Include only desired fields
+        })
+        .populate({
+          path: 'user_id_2',
+          match: { _id: { $ne: req.user.userId } },
+          select: 'name email phone dob gender hobbies follow_me send_notification enable_tagging',
+        });
+  
+      // Flatten the data structure
+      const flattenedFriendList = userFriend.reduce((result, friend) => {
+        const friendObject = friend.user_id_1 || friend.user_id_2;
+        if (friendObject) {
+          result.push({
+            _id: friend._id,
+            status: friend.status,
+            created_at: friend.created_at,
+            // Include other properties if needed
+            // ...
+            ...friendObject.toObject(), // Convert Mongoose document to plain JavaScript object
+          });
         }
+        return result;
+      }, []);
+  
+      if (flattenedFriendList.length > 0) {
+        return res
+          .status(200)
+          .json(helper.response(200, true, "Friend List!", flattenedFriendList));
+      } else {
+        return res
+          .status(200)
+          .json(helper.response(200, false, "Friend List Not Found!"));
+      }
     } catch (error) {
-        return res.status(500).json(helper.response(500, false, "something went wrong!"));
+      console.error(error);
+      return res
+        .status(500)
+        .json(helper.response(500, false, "Something went wrong!"));
     }
-}
+  };
+  
+  
 
 exports.followUser = async (req, res) => {
     try {

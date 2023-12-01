@@ -33,7 +33,7 @@ useEffect(() => {
       axios
         .get(MESSAGE_LIST, {
           params: {
-            receiverId: selectedFriend.user_id_1._id,
+            receiverId: selectedFriend._id,
           },
           headers: {
             Authorization: `Bearer ${userData.token}`,
@@ -58,7 +58,7 @@ useEffect(() => {
       // code for sending message
       const data = {
         message: newMessage,
-        receiverId: selectedFriend.user_id_1._id,
+        receiverId: selectedFriend._id,
       };
      
       axios
@@ -310,7 +310,7 @@ useEffect(() => {
                               }}
                               component={"h6"}
                             >
-                              {item.user_id_1.name}
+                              {item.name}
                             </Typography>
                             <Typography
                               sx={{
@@ -377,7 +377,7 @@ useEffect(() => {
                 {/* chat box  */}
                 <Box>
                   {messageList && messageList.map((message, index) => (
-                    <Paper elevation={3}>
+                    <Paper elevation={3} key={index}>
                     <Typography
                       // key={index}
                       variant="body1"

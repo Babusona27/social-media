@@ -66,7 +66,7 @@ const FriendListCard = () => {
                                     }}
 
                                         component={"a"} href='#' variant="body2" color="text.secondary">
-                                        {item.user_id_1.name}
+                                        {item.name}
                                     </Typography>
                                 </Box>
                                 <Box flex={"1"}>
