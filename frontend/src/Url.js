@@ -9,5 +9,7 @@ export const ACCEPT_FRIEND_REQUEST = API_BASE_URL + "friend-request-status-updat
 export const SEND_MESSAGE = API_BASE_URL + "send-message";
 export const MESSAGE_LIST = API_BASE_URL + "message-list";
 export const FRIEND_DELETE = API_BASE_URL + "friend-delete";
+export const FEED_POST = API_BASE_URL + "create-feed";
+export const FEED_LIST = API_BASE_URL + "feed-list";
 
 
