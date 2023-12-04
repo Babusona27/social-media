@@ -38,7 +38,7 @@ exports.register = async (req, res) => {
             const token = jwt_token.sign({ userId: result._id }, process.env.JWT_SECRET, {
                 expiresIn: process.env.JWT_EXPIRE,
             });
-            return res.status(200).json(helper.response(200, true, "User Register Successfully!", { userResult: userResult, token: token }));
+            return res.status(200).json(helper.response(200, true, "User Register Successfully!", { user: userResult, token: token }));
         } else {
             return res.status(200).json(helper.response(200, false, "User Register Failed!"));
         }

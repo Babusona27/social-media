@@ -1,8 +1,7 @@
 import { PlaylistAddCheck } from '@mui/icons-material'
 import { Box, Button, FormControl, FormControlLabel, MenuItem, Radio, RadioGroup, Select, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
+import React, { useState, useEffect } from 'react';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import theme from '../Theme'
 import styled from '@emotion/styled'
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,51 +12,7 @@ import { userDetails } from '../redux/reducers/UserReducer';
 const BasicInformationDetails = () => {
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.UserReducer.value);
-    // console.log("userData_basicInfo", userData);
-    const [message, setMessage] = useState("");
-    const [messageType, setMessageType] = useState("");
 
-    // Create a new Date object from the date of birth
-    let dob = new Date(userData.user.dob);
-
-    // Extract the day, month, and year
-    let day = dob.getDate();
-    let month = dob.getMonth() + 1; // getMonth() returns a zero-based month, so add 1
-    let year = dob.getFullYear();
-    // console.log("day", day, "month", month, "year", year);
-
-    const [selectedDate, setSelectedDate] = useState('');
-    const [selectedYear, setSelectedYear] = useState('');
-    const [selectedMonth, setSelectedMonth] = useState('');
-    // for year
-    const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: 50 }, (_, index) => currentYear - index);
-
-    // for month
-    const months = [
-        'January', 'February', 'March', 'April',
-        'May', 'June', 'July', 'August',
-        'September', 'October', 'November', 'December'
-    ];
-    // for Date
-    const getDatesForMonth = (year, month) => {
-        const numberOfDaysInMonth = new Date(year, month + 1, 0).getDate();
-        return Array.from({ length: numberOfDaysInMonth }, (_, index) => index + 1);
-    };
-
-    //   const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth();
-    const currentDates = getDatesForMonth(currentYear, currentMonth);
-
-    const handleChange = (event) => {
-        setSelectedDate(event.target.value);
-    };
-    const handleChangeMonth = (event) => {
-        setSelectedMonth(event.target.value);
-    }
-    const handleChangeYear = (event) => {
-        setSelectedYear(event.target.value);
-    }
     const [formData, setFormData] = useState({
         name: userData.user.name,
         email: userData.user.email,
@@ -65,100 +20,86 @@ const BasicInformationDetails = () => {
         dob: "",
         password: "",
         confirmPassword: "",
-        workDescription: userData.user.work_description,
+        workDescription: userData.user.work_description?userData.user.work_description:"",
 
     });
+
+    useEffect(() => {
+    }, []);
+
     const [errors, setErrors] = useState({
         name: "",
-        email: "",
+        dob: "",
+        password: "",
+        confirmPassword: ""
     });
+
+
+    // Function to handle form input changes
     const handleInputUpdate = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-        // setErrors({ ...errors, [name]: "" });
-        // setErrors((prevErrors) => ({    
-        //     ...prevErrors,
-        //     [e.target.name]: "",
-        // }));
-    }
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+        // Reset the corresponding validation error when the user types
+        setErrors({ ...errors, [name]: "" });
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log("formData", formData);
+        console.log("formData", formData);
         let isValid = true;
         const newErrors = { ...errors };
-
         if (!formData.name.trim()) {
             isValid = false;
             newErrors.name = "Name is required";
         }
-        if (!formData.email.trim()) {
-            isValid = false;
-            newErrors.email = "Email is required";
-        }
 
-        if (formData.email.trim() && !/\S+@\S+\.\S+/.test(formData.email)) {
-            isValid = false;
-            newErrors.email = "Email address is invalid";
-        }
-        if (!formData.password.trim()) {
-            isValid = false;
-            newErrors.password = "Password is required";
-        }
-        if (!formData.confirmPassword.trim()) {
-            isValid = false;
-            newErrors.confirmPassword = "Confirm password is required";
-        }
-        if (formData.password !== formData.confirmPassword) {
-            isValid = false;
-            newErrors.confirmPassword = "Passwords do not match";
-        }
 
+
+        if (formData.password !== "" && formData.confirmPassword !== "" && formData.password !== formData.confirmPassword) {
+            isValid = false;
+            newErrors.confirmPassword = "Password and Confirm Password should be same";
+        }
         setErrors(newErrors);
+
+        // remove empty fields from formData
+        const formDataCopy = { ...formData };
+        Object.keys(formDataCopy).forEach((key) => {
+            if (formDataCopy[key] === "") {
+                delete formDataCopy[key];
+            }
+        });
+        // remove email from formDataCopy
+        delete formDataCopy.email;
+
+
+        console.log("formDataCopy", formDataCopy);
+
         if (isValid) {
-            console.log("formData", formData);
+            //update code here
             axios
-                .put(UPDATE_PROFILE, formData, {
+                .put(UPDATE_PROFILE, formDataCopy, {
                     headers: {
                         Authorization: `Bearer ${userData.token}`,
                     }
                 })
                 .then((response) => {
                     console.log(response);
-                    // if (response.data.status === true) {
-                    //     setMessageType("success");
-                    //     setMessage(response.data.message);
+                 if(response.data.state===true){
+                    userData.user=response.data.data.user;
+                    dispatch(userDetails(userData));
 
-                    //     userData.user.name = response.data.data.name;
-                    //     userData.user.dob = response.data.data.dob;
-                    //     userData.user.gender = response.data.data.gender;
-                    //     userData.user.work_description = response.data.data.work_description;
-                    //     userData.user.password = response.data.data.password;
-                    //     // console.log("userData", userData);
-                    //     dispatch(userDetails(userData));
-                    // } else {
-                    //     setMessageType("error");
-                    //     setMessage(response.data.message);
-                    // }
+                 }
 
                 })
                 .catch((err) => {
                     console.log(err.response);
                     if (err.response) {
-                        setMessageType("error");
-                        setMessage(err.response.data.message);
+                      
                     }
                 });
+
         }
     }
-    useEffect(() => {
-        // Update formData.dob when selectedYear, selectedMonth, or selectedDate changes
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            dob: `${selectedYear}-${selectedMonth}-${selectedDate}`,
-        }));
-    }, [selectedYear, selectedMonth, selectedDate]);
     return (
         <>
             <Box sx={{
@@ -225,6 +166,7 @@ const BasicInformationDetails = () => {
                             name="name"
                             size="small"
                             value={formData.name}
+                            error={Boolean(errors.name)}
                             onChange={handleInputUpdate}
                         />
 
@@ -246,104 +188,8 @@ const BasicInformationDetails = () => {
                         onChange={handleInputUpdate}
 
                     />
-                    <Box sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "20px",
-                    }}>
-                        {/* <FormControl className="form_imput" fullWidth>
 
-                            <Select
-                                sx={{
-                                    padding: "0",
-                                    textAlign: "left",
-                                }}
-                                // labelId="gender-label"
-                                label="Date"
-                            // placeholder="Date"
-                            // value={day}
-                            // defaultValue="Date"
-                            // onChange={(e) => setBday(e.target.value)}
-                            >
-                                <MenuItem value="" disabled>Date</MenuItem>
-                                <MenuItem value={"1"}>1</MenuItem>
-                                <MenuItem value={"2"}>2</MenuItem>
-                                <MenuItem value={"3"}>3</MenuItem>
-                            </Select>
-                        </FormControl> */}
-
-                        <Select
-                            sx={{
-                                padding: "0",
-                                textAlign: "left",
-                            }}
-                            // value={day}
-                            value={selectedDate}
-                            // onChange={handleInputUpdate}
-                            onChange={handleChange}
-                            displayEmpty
-                            inputProps={{ 'aria-label': "Select a date" }}
-                        >
-                            <MenuItem value="" disabled>
-                                {day ? day : "Select a date"}
-                                {/* Select a date */}
-                            </MenuItem>
-                            {currentDates.map((date) => (
-                                <MenuItem key={date} value={date}>
-                                    {date}
-                                </MenuItem>
-                            ))}
-                        </Select>
-
-                        {/* <FormControl className="form_imput" fullWidth> */}
-                        <Select
-                            sx={{
-                                padding: "0",
-                                textAlign: "left",
-                            }}
-                            // labelId="gender-label"
-                            // placeholder="Month"
-                            value={selectedMonth}
-                            onChange={handleChangeMonth}
-                            displayEmpty
-                            inputProps={{ 'aria-label': 'Select a month' }}
-                        >
-                            <MenuItem value="" disabled>
-                                {/* {month ? month : "Select a month"}   */}
-                                {month ? months[month - 1] : "Select a month"}
-                                {/* Select a month */}
-                            </MenuItem>
-                            {months.map((month, index) => (
-                                <MenuItem key={index + 1} value={index + 1}>
-                                    {month}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                        {/* </FormControl> */}
-                        {/* <FormControl className="form_imput" fullWidth> */}
-                        <Select
-                            sx={{
-                                padding: "0",
-                                textAlign: "left",
-                            }}
-                            id="select"
-                            labelId="gender-label"
-                            value={selectedYear}
-                            onChange={handleChangeYear}
-                            displayEmpty
-                            inputProps={{ 'aria-label': 'Select a year' }}
-                        >
-                            <MenuItem value="" disabled>
-                                {year ? year : "Select a year"}
-                            </MenuItem>
-                            {years.map((year) => (
-                                <MenuItem key={year} value={year}>
-                                    {year}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                        {/* </FormControl> */}
-                    </Box>
+                    
 
                     <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
@@ -382,7 +228,7 @@ const BasicInformationDetails = () => {
                             name="password"
                             value={formData.password}
                             onChange={handleInputUpdate}
-                        // error={Boolean(errors.password)}
+                            error={Boolean(errors.password)}
                         // helperText={errors.password}
                         />
                         <TextField
@@ -397,9 +243,8 @@ const BasicInformationDetails = () => {
                             name="confirmPassword"
                             value={formData.confirmPassword}
                             onChange={handleInputUpdate}
-                        // value={userData.user.password}
-                        // onChange={handleInputChange}
-                        // error={Boolean(errors.password)}
+
+                            error={Boolean(errors.confirmPassword)}
                         // helperText={errors.password}
                         />
                     </Box>
@@ -433,35 +278,5 @@ const BasicInformationDetails = () => {
         </>
     )
 }
-const TextareaAutosize = styled(BaseTextareaAutosize)(
-    ({ theme }) => `
-      width: 100%;
-      font-family: ${theme.palette.primary.MainFont1};
-      font-size:14px;
-      font-weight: 400;
-      line-height: 1.5;
-      padding: 8px 12px;
-      border-radius: 4px;
-      color: ${theme.palette.secondary.InputColor};
-      background: transparent;
-      border: 1px solid ${theme.palette.secondary.InputColor};
-      box-shadow: none;
-    
-      &:hover {
-        border-color: ${theme.palette.primary.LogoColor};
-      }
-    
-      &:focus {
-        border-color: ${theme.palette.primary.LogoColor};
-        border-width: 1px;
-        outline: 0;
-        box-shadow: none;
-      }
-    
-      // firefox
-      &:focus-visible {
-        outline: 0;
-      }
-    `,
-);
+
 export default BasicInformationDetails
