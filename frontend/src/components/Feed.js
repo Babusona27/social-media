@@ -1,6 +1,6 @@
-import { ThumbDownAlt, ThumbUpAlt } from '@mui/icons-material'
-import { Avatar, Box, Card, CardContent, CardMedia, TextField, Typography } from '@mui/material'
-import React from 'react'
+import { Send, ThumbDownAlt, ThumbUpAlt } from '@mui/icons-material'
+import { Avatar, Box, Button, Card, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, InputAdornment, TextField, Typography } from '@mui/material'
+import React, { useState } from 'react'
 import theme from '../Theme'
 import { useSelector } from 'react-redux'
 const Feed = () => {
@@ -25,13 +25,16 @@ const Feed = () => {
             return `${diffSeconds} seconds ago`;
         }
     }
+    const [open, setOpen] = useState(false);
 
     return (
         Array.isArray(feedData) && feedData.map((item, key) => (
             <Card sx={{
                 boxShadow: "none",
-                border: `1px solid ${theme.palette.primary.Gray}`,
-                marginBottom: "20px",
+                borderLeft: `1px solid ${theme.palette.primary.Gray}`,
+                borderRight: `1px solid ${theme.palette.primary.Gray}`,
+                borderRadius: "10px 10px 0 0",
+
             }} key={key}>
                 <CardMedia
                     component="img"
@@ -245,84 +248,185 @@ const Feed = () => {
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                 </Typography>
                             </Box> */}
-                            {item.comment.map((comment, key) => (
-                                <Box sx={{
-                                    display: "flex",
-                                    margin: "20px 0",
-                                }} key={key}>
-                                    <Avatar
-                                        alt="Remy Sharp"
-                                        src={
-                                            process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
-                                        }
-                                        sx={{
-                                            marginRight: "10px",
-                                            height: "40px",
-                                            width: "40px",
-                                            borderRadius: "50%",
-                                        }}
-                                    />
-
-                                    <Typography component={"p"} sx={{
-                                        fontSize: "13px",
-                                        lineHeight: "26px",
-                                        color: theme.palette.primary.ParaColor,
-                                    }}>
-                                        <Box sx={{
-                                            color: theme.palette.primary.LogoColor,
-                                            fontWeight: "600",
-                                            marginRight: "5px",
-                                            "&:hover": {
-                                                color: theme.palette.primary.Green,
-                                            }
-                                        }
-                                        }
-                                            component={"a"} href='#'
-                                        >Diana</Box>
-                                        {comment.comment}
-                                    </Typography>
-                                </Box>
-                            ))}
-
-                            <Box sx={{
-                                display: "flex",
-                                margin: "20px 0",
+                            <Box className='ChatRoomLeftBar' sx={{
+                                padding: "20px 0px",
+                                maxHeight: "180px",
+                                overflowY: "scroll",
+                                height: "fit-content",
+                                overflowX: "hidden",
                             }}>
-                                <Avatar
-                                    alt="Remy Sharp"
-                                    src={
-                                        process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
-                                    }
-                                    sx={{
-                                        marginRight: "10px",
-                                        height: "40px",
-                                        width: "40px",
-                                        borderRadius: "50%",
-                                    }}
-                                />
-                                <Box sx={{
-                                    width: "100%",
-                                }}>
-                                    {/* <TextField sx={{ 
-                                    width: "100%",
-                                    cursor: "auto",
-                                 }} id="outlined-basic" label="Post a comment" variant="outlined" /> */}
+                                {item.comment.map((comment, key) => (
+                                    <Box>
+                                     <Box sx={{
+                                        display: "flex",
+                                        margin: "20px 0",
+                                    }} key={key}>
+                                        <Avatar
+                                            alt="Remy Sharp"
+                                            src={
+                                                process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                            }
+                                            sx={{
+                                                marginRight: "10px",
+                                                height: "40px",
+                                                width: "40px",
+                                                borderRadius: "50%",
+                                            }}
+                                        />
 
-                                    <TextField
-                                        sx={{
-                                            padding: "0",
-                                        }}
-                                        className="comment_input"
-                                        fullWidth
-                                        label="Post a comment"
-                                        variant="outlined"
-                                    />
-                                </Box>
+                                        <Typography component={"p"} sx={{
+                                            fontSize: "13px",
+                                            lineHeight: "26px",
+                                            color: theme.palette.primary.ParaColor,
+                                        }}>
+                                            <Box sx={{
+                                                color: theme.palette.primary.LogoColor,
+                                                fontWeight: "600",
+                                                marginRight: "5px",
+                                                "&:hover": {
+                                                    color: theme.palette.primary.Green,
+                                                }
+                                            }
+                                            }
+                                                component={"a"} href='#'
+                                            >Diana</Box>
+                                            {comment.comment}
+
+                                        </Typography>
+                                        <Typography sx={{
+                                            fontFamily: theme.palette.primary.MainFont1,
+                                            fontSize: "14px",
+                                            lineHeight: "1",
+                                            color: theme.palette.primary.LogoColor,
+                                            cursor: "pointer",
+                                            padding: "5px 10px",
+                                        }} onClick={() => setOpen(true)}>Reply</Typography>
+
+                                        <Dialog sx={{
+                                            padding: "20px !important",
+                                        }} open={open} fullWidth maxWidth="sm" onClose={() => setOpen(false)}>
+                                            <DialogTitle component={"h3"} sx={{
+                                                fontFamily: theme.palette.primary.MainFont1,
+                                                fontSize: "25px",
+                                                lineHeight: "1",
+                                                fontWeight: "600",
+                                                paddingTop: "20px",
+                                            }}>Reply to Comment</DialogTitle>
+                                            <DialogContent>
+                                                <TextField
+                                                    autoFocus
+                                                    margin="dense"
+                                                    id="name"
+                                                    label="Your Reply"
+                                                    type="text"
+                                                    fullWidth
+                                                />
+                                            </DialogContent>
+                                            <DialogActions sx={{
+                                                padding: "20px",
+                                                paddingTop: "0px",
+                                            }}>
+                                                <Button sx={{
+                                                    color: theme.palette.primary.White,
+                                                    fontSize: "14px",
+                                                    fontWeight: "600",
+                                                    lineHeight: "26px",
+                                                    backgroundColor: theme.palette.primary.LogoColor,
+                                                    fontFamily: theme.palette.primary.MainFont1,
+                                                    borderRadius: "30px",
+                                                    padding: "7px 25px",
+                                                    width: "fit-content",
+                                                    marginRight: "0px",
+                                                    "&:hover": {
+                                                        backgroundColor: theme.palette.primary.Green,
+                                                    },
+                                                }} onClick={() => setOpen(false)}>Cancel</Button>
+                                                <Button sx={{
+                                                    color: theme.palette.primary.LogoColor,
+                                                    fontSize: "14px",
+                                                    fontWeight: "600",
+                                                    lineHeight: "26px",
+                                                    backgroundColor: theme.palette.primary.White,
+                                                    border: `1px solid ${theme.palette.primary.LogoColor}`,
+                                                    fontFamily: theme.palette.primary.MainFont1,
+                                                    borderRadius: "30px",
+                                                    padding: "7px 25px",
+                                                    width: "fit-content",
+                                                    marginRight: "0px",
+                                                    "&:hover": {
+                                                        backgroundColor: theme.palette.primary.LogoColor,
+                                                        color: theme.palette.primary.White,
+                                                    },
+                                                }} onClick={() => {
+                                                    // Handle reply submission
+                                                    setOpen(false);
+                                                }}>Submit</Button>
+                                            </DialogActions>
+                                        </Dialog>
+                                    </Box>
+                                    {/* reply box  */}
+                                    <Box className="reply" sx={{
+                                        display: "flex",
+                                        margin: "20px 30px",
+                                        position: "relative",
+                                        "&::before": {
+                                            content: "''",
+                                            position: "absolute",
+                                            top: "-34px",
+                                            left: "-14px",
+                                            width: "30px",
+                                            height: "60px",
+                                            borderLeft: `1px solid ${theme.palette.primary.Green}`,
+                                            borderBottom: `1px solid ${theme.palette.primary.Green}`,
+                                        },
+                                    }} key={key}>
+                                        <Avatar
+                                            alt="Remy Sharp"
+                                            src={
+                                                process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                            }
+                                            sx={{
+                                                marginRight: "10px",
+                                                height: "40px",
+                                                width: "40px",
+                                                borderRadius: "50%",
+                                            }}
+                                        />
+
+                                        <Typography component={"p"} sx={{
+                                            fontSize: "13px",
+                                            lineHeight: "26px",
+                                            color: theme.palette.primary.ParaColor,
+                                        }}>
+                                            <Box sx={{
+                                                color: theme.palette.primary.LogoColor,
+                                                fontWeight: "600",
+                                                marginRight: "5px",
+                                                "&:hover": {
+                                                    color: theme.palette.primary.Green,
+                                                }
+                                            }
+                                            }
+                                                component={"a"} href='#'
+                                            >Diana</Box>
+                                            {comment.comment}
+
+                                        </Typography>
+                                     
+                                    </Box>
+                                    </Box>
+                                   
+                                    
+                                ))}
                             </Box>
+
+
+
 
                         </CardContent>
                     </Box>
                 </Box>
+
 
             </Card>
         ))

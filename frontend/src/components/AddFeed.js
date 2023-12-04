@@ -200,7 +200,7 @@ const AddFeed = () => {
                         </Modal>
                     </Box>
                 </Box>
-                <Box flex={"1"} sx={{
+                <Box flex={"0"} sx={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
