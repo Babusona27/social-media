@@ -382,7 +382,7 @@ const ChatRoom = () => {
                               }}
                               component={"small"}
                             >
-                              {getFeedPublishTime(item.lastMessage.createdAt)}
+                              {item.lastMessage !== null && getFeedPublishTime(item.lastMessage.createdAt)}
                             </Typography>
                           </Box>
                           <Box
@@ -407,7 +407,7 @@ const ChatRoom = () => {
                               }}
                               component={"p"}
                             >
-                              {item.lastMessage.message}
+                              {item.lastMessage !== null && item.lastMessage.message}
                             </Typography>
                             <DoneIcon
                               sx={{
