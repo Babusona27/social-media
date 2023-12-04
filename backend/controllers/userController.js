@@ -2,6 +2,8 @@ const userSchema = require('../models/userModel');
 const userHobbiesSchema = require('../models/userHobbiesModel');
 const userFriendSchema = require('../models/userFriend');
 const userFollowSchema = require('../models/userFollow');
+const messageSchema = require('../models/messageModel');
+const conversationSchema = require('../models/conversationModel');
 const helper = require('../helper/index');
 const bcrypt = require('bcrypt');
 const jwt_token = require('jsonwebtoken');
@@ -279,21 +281,32 @@ exports.friendList = async (req, res) => {
             });
 
         // Flatten the data structure
-        const flattenedFriendList = userFriend.reduce((result, friend) => {
+        const flattenedFriendList = await Promise.all(userFriend.map(async (friend) => {
             const friendObject = friend.user_id_1 || friend.user_id_2;
             if (friendObject) {
-                result.push({
+                // Find conversation between the logged-in user and the friend
+                const conversation = await conversationSchema.findOne({
+                    participants: { $all: [req.user.userId, friendObject._id] },
+                });
+
+                let lastMessage = null;
+                if (conversation) {
+                    lastMessage = await messageSchema.findOne({ _id: { $in: conversation.messages } })
+                        .sort({ createdAt: -1 });
+                }
+
+                return {
                     _id: friend._id,
                     status: friend.status,
                     created_at: friend.created_at,
                     chat_id: friend.chat_id,
+                    lastMessage: lastMessage,
                     // Include other properties if needed
                     // ...
                     ...friendObject.toObject(), // Convert Mongoose document to plain JavaScript object
-                });
+                };
             }
-            return result;
-        }, []);
+        }));
 
         if (flattenedFriendList.length > 0) {
             return res
@@ -330,9 +343,6 @@ exports.friendDelete = async (req, res) => {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
     }
 }
-
-
-
 
 exports.followUser = async (req, res) => {
     try {

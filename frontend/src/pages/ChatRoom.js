@@ -116,6 +116,24 @@ const ChatRoom = () => {
       setNewMessage("");
     }
   };
+  const getFeedPublishTime = (date) => {
+    const currentDate = new Date();
+    const feedDate = new Date(date);
+    const diffTime = Math.abs(currentDate - feedDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+    const diffMinutes = Math.ceil(diffTime / (1000 * 60));
+    const diffSeconds = Math.ceil(diffTime / (1000));
+    if (diffDays > 1) {
+      return `${diffDays} days ago`;
+    } else if (diffHours > 1) {
+      return `${diffHours} hours ago`;
+    } else if (diffMinutes > 1) {
+      return `${diffMinutes} minutes ago`;
+    } else {
+      return `${diffSeconds} seconds ago`;
+    }
+  }
 
   return (
     <>
@@ -300,6 +318,7 @@ const ChatRoom = () => {
               >
                 {friendList &&
                   friendList.map((item, index) => (
+                    console.log('item', item.lastMessage),
                     <Button
                       key={index}
                       sx={{
@@ -363,7 +382,7 @@ const ChatRoom = () => {
                               }}
                               component={"small"}
                             >
-                              2 hour ago
+                              {getFeedPublishTime(item.lastMessage.createdAt)}
                             </Typography>
                           </Box>
                           <Box
@@ -388,7 +407,7 @@ const ChatRoom = () => {
                               }}
                               component={"p"}
                             >
-                              Okay fine. thank you
+                              {item.lastMessage.message}
                             </Typography>
                             <DoneIcon
                               sx={{
