@@ -50,19 +50,16 @@ button{
 input{
     border: none;
     outline: none;
-    cursor: pointer;
 	font-family: 'Lato', sans-serif !important;
 }
 label{
 	border: none;
 	outline: none;
-	cursor: pointer;
 	font-family: 'Lato', sans-serif !important;
 }
 textarea{
     border: none;
     outline: none;
-    cursor: pointer;
 	font-family: 'Lato', sans-serif !important;
 }
 
@@ -187,4 +184,31 @@ display: none !important;
 }
 .css-dbtxhb-MuiInputBase-root-MuiOutlinedInput-root {
     color: rgb(255 255 255 / 100%) !important;
+}
+.modal_form_input .Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: initial !important;
+    border-width: 1px !important;
+}
+.modal_form_input :hover .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.3) !important;
+}
+.modal_form_input .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input , .form_imput .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+	padding: 10px 14px !important;
+	color: #000;
+}
+.modal_form_input .css-xfn8dw-MuiFormLabel-root-MuiInputLabel-root {
+    top: -6px;
+	color: rgb(255 255 255 / 80%);
+}
+
+.modal_form_input .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input, .form_imputNew .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+    padding: 10px 14px !important;
+    color: #000;
+}
+.modal_form_input input::placeholder {
+	color: #000 !important;
+}
+.modal_form_input textarea::placeholder {
+    color: #000 !important;
+    opacity: 0.4 !important;
 }
