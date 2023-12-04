@@ -426,20 +426,25 @@ const ChatRoom = () => {
                 sx={{
                   flex: "2",
                   padding: "0px 10px 0px 0px",
-                  maxHeight: "400px",
-                  width: "100%",
-                  overflowY: "scroll",
-                  overflowX: "hidden",
-                  height: "400px",
-                  marginLeft: "0px",
                   position: "relative",
                 }}
               >
                 {/* chat box  */}
-                <Box>
+                <Box sx={{}}>
+                  <Box sx={{
+                      maxHeight: "400px",
+                      width: "100%",
+                      overflowY: "scroll",
+                      overflowX: "hidden",
+                      height: "400px",
+                      marginLeft: "0px",
+                      marginBottom:"50px"
+                    
+                  }}>
                   {messageList &&
                     messageList.map((message, index) => (
-                      <Paper elevation={3} key={index}>
+                  
+                        <Paper elevation={3} key={index}>
                         <Typography
                           // key={index}
                           variant="body1"
@@ -453,8 +458,17 @@ const ChatRoom = () => {
                         >
                           {message.message}
                         </Typography>
+                     
                       </Paper>
+                        
+                   
+                      
+                      
                     ))}
+                    {/* {isTyping && <p className="typing_text">The other user is typing...</p>} */}
+                    {isTyping &&  <Typography component={"P"} className="typing_text">typing...</Typography>}
+                  </Box>
+                
                   <Box
                     sx={{
                       position: "absolute",
@@ -478,6 +492,7 @@ const ChatRoom = () => {
                         width: "70%",
                         minWidth: "70%",
                         borderRadius: "30px",
+                        display:"block",
                         "& .MuiOutlinedInput-root": {
                           "& fieldset": {
                             borderColor: theme.palette.primary.LogoColor,
@@ -496,7 +511,7 @@ const ChatRoom = () => {
                         },
                       }}
                     >
-                      {isTyping && <p>The other user is typing...</p>}
+                      
                       <TextField
                         fullWidth
                         size="small"

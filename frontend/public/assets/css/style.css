@@ -215,3 +215,9 @@ display: none !important;
 .comment_input input.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedEnd.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
 	color: #000;
 }
+p.typing_text {
+    position: relative;
+    top: 10px;
+	left: 10px;
+    color: #8f8b8b;
+}
