@@ -77,10 +77,15 @@ const BasicInformationDetails = () => {
             ...formData,
             [e.target.name]: e.target.value,
         });
+        // setErrors({ ...errors, [name]: "" });
+        // setErrors((prevErrors) => ({    
+        //     ...prevErrors,
+        //     [e.target.name]: "",
+        // }));
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("formData", formData);
+        // console.log("formData", formData);
         let isValid = true;
         const newErrors = { ...errors };
 
@@ -112,14 +117,15 @@ const BasicInformationDetails = () => {
 
         setErrors(newErrors);
         if (isValid) {
+            console.log("formData", formData);
             axios
                 .put(UPDATE_PROFILE, formData, {
                     headers: {
                         Authorization: `Bearer ${userData.token}`,
-                    },
+                    }
                 })
                 .then((response) => {
-                    console.log(response.data);
+                    console.log(response);
                     // if (response.data.status === true) {
                     //     setMessageType("success");
                     //     setMessage(response.data.message);

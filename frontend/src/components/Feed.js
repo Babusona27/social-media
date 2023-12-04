@@ -3,10 +3,13 @@ import { Avatar, Box, Button, Card, CardContent, CardMedia, Dialog, DialogAction
 import React, { useState } from 'react'
 import theme from '../Theme'
 import { useSelector } from 'react-redux'
+import { CREATE_COMMENT } from '../Url'
+import axios from 'axios'
 const Feed = () => {
     const feedData = useSelector((state) => state.FeedListReducer.value);
-    console.log(feedData);
-
+    const userData = useSelector((state) => state.UserReducer.value);
+    const [open, setOpen] = useState(false);
+    const [comment, setComment] = useState('');
     const getFeedPublishTime = (date) => {
         const currentDate = new Date();
         const feedDate = new Date(date);
@@ -25,21 +28,34 @@ const Feed = () => {
             return `${diffSeconds} seconds ago`;
         }
     }
-    const [open, setOpen] = useState(false);
-
+    const handleComment = (item) => {
+        axios.post(CREATE_COMMENT, {
+            feedId: item._id,
+            comment: comment,
+        }, {
+            headers: {
+                Authorization: `Bearer ${userData.token}`,
+            },
+        }).then((res) => {
+            // console.log(res.data);
+            setComment('');
+        }).catch((err) => {
+            console.log(err);
+        })
+    };
     return (
         Array.isArray(feedData) && feedData.map((item, key) => (
             <Box sx={{
                 marginBottom: "20px",
 
-            }}>
+            }} key={key}>
                 <Card sx={{
                     boxShadow: "none",
                     borderLeft: `1px solid ${theme.palette.primary.Gray}`,
                     borderRight: `1px solid ${theme.palette.primary.Gray}`,
                     borderRadius: "10px 10px 0 0",
 
-                }} key={key}>
+                }}>
                     <CardMedia
                         component="img"
                         height="194"
@@ -186,12 +202,12 @@ const Feed = () => {
                                     height: "fit-content",
                                     overflowX: "hidden",
                                 }}>
-                                    {item.comment.map((comment, key) => (
-                                        <Box>
+                                    {item.comment.map((comment, key1) => (
+                                        <Box key={key1}>
                                             <Box sx={{
                                                 display: "flex",
                                                 margin: "20px 0",
-                                            }} key={key}>
+                                            }}>
                                                 <Avatar
                                                     alt="Remy Sharp"
                                                     src={
@@ -310,7 +326,7 @@ const Feed = () => {
                                                     borderLeft: `1px solid ${theme.palette.primary.Green}`,
                                                     borderBottom: `1px solid ${theme.palette.primary.Green}`,
                                                 },
-                                            }} key={key}>
+                                            }}>
                                                 <Avatar
                                                     alt="Remy Sharp"
                                                     src={
@@ -391,11 +407,13 @@ const Feed = () => {
                             fullWidth
                             label="Post a comment"
                             variant="outlined"
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
 
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
-                                        <IconButton>
+                                        <IconButton onClick={() => handleComment(item)}>
                                             <Send />
                                         </IconButton>
                                     </InputAdornment>
@@ -405,9 +423,6 @@ const Feed = () => {
                     </Box>
                 </Box>
             </Box>
-
-
-
         ))
 
     )

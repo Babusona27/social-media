@@ -12,4 +12,5 @@ export const FRIEND_DELETE = API_BASE_URL + "friend-delete";
 export const FEED_POST = API_BASE_URL + "create-feed";
 export const FEED_LIST = API_BASE_URL + "feed-list";
 export const UPDATE_PROFILE = API_BASE_URL + "update-profile";
+export const CREATE_COMMENT = API_BASE_URL + "comment-on-feed";
 
