@@ -519,6 +519,28 @@ const ChatRoom = () => {
                       Send
                     </Button>
                   </Box>
+                  {messageList.length === 0 && (
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          fontSize: "14px",
+                          fontWeight: "600",
+                          color: theme.palette.primary.LogoColor,
+                          fontFamily: theme.palette.primary.MainFont1,
+                        }}
+                        component={"p"}
+                      >
+                        Select a friend to start chat
+                      </Typography>
+                    </Box>
+                  )}
                 </Box>
               </Box>
             </Box>

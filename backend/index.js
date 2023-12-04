@@ -40,7 +40,7 @@ const io = socketIO(server, {
 
 const onlineUsers = {}; // { [socket.id]: user }
 io.on('connection', (socket) => {
-  console.log('a user connected: ' + socket.id);
+  // console.log('a user connected: ' + socket.id);
 
   // join room
   socket.on('joinRoom', ({ room }) => {
@@ -71,7 +71,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     delete onlineUsers[socket.id];
     io.emit('online users', Object.values(onlineUsers));
-    console.log('user disconnected: ' + socket.id);
+    // console.log('user disconnected: ' + socket.id);
   });
 });
 

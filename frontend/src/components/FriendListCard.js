@@ -11,19 +11,19 @@ const FriendListCard = () => {
     const friendListArray = useSelector((state) => state.FriendListReducer.value);
     const userData = useSelector((state) => state.UserReducer.value);
     const { showAlert, AlertComponent } = CustomAlert();
-    const _deleteFriend = async (id) => {
+    const _deleteFriend = async (item) => {
         //delete friend
         axios.delete(FRIEND_DELETE, {
             headers: {
                 Authorization: `Bearer ${userData.token}`,
             },
             data: {
-                friend_id: id._id,
+                friend_id: item._id,
             },
         }).then((res) => {
             //console.log(res.data);
             showAlert("success", res.data.message);
-            dispatch(removeFriend(res.data.data._id));
+            dispatch(removeFriend(item._id));
         }).catch((err) => {
             console.log(err);
             showAlert("error", err.response.data.message);
