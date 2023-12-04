@@ -30,7 +30,7 @@ const Navigation = () => {
     const checkTokenExpiration = () => {
       const token = userData && userData.token;
     
-      if (token) {
+      if (token !==null) {
         const decodedToken = jwtDecode(token);
         const currentTime = Date.now() / 1000; // Convert milliseconds to seconds
         
@@ -38,9 +38,13 @@ const Navigation = () => {
         if (decodedToken.exp < currentTime) {
           // Logout user
           dispatch(logOut());
-          window.location.href = "/";
+          //window.location.href = "/";
+          return false;
         }
       } else {
+        dispatch(logOut());
+        //window.location.href = "/";
+        return false;
         // Token not found, handle accordingly (e.g., redirect to login)
       }
     };
@@ -48,6 +52,7 @@ const Navigation = () => {
   }, [userData,dispatch]);
 
   if (userData === null) {
+    
     return (
       <Router>
         <Routes>
