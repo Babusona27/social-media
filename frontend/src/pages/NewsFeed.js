@@ -55,56 +55,7 @@ const NewsFeed = () => {
             <AddFeed />
             <Box>
               <Feed />
-              <Box sx={{
-                display: "flex",
-                padding: "20px",
-                backgroundColor: theme.palette.primary.LightBlue,
-                border: `1px solid ${theme.palette.primary.Gray}`,
-                borderTop: "none",
-                borderRadius: "0 0 10px 10px",
-              }}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src={
-                    process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
-                  }
-                  sx={{
-                    marginRight: "10px",
-                    height: "40px",
-                    width: "40px",
-                    borderRadius: "50%",
-                  }}
-                />
-                <Box sx={{
-                  width: "100%",
-                }}>
-                  {/* <TextField sx={{ 
-                                    width: "100%",
-                                    cursor: "auto",
-                                 }} id="outlined-basic" label="Post a comment" variant="outlined" /> */}
 
-                  <TextField
-                    sx={{
-                      padding: "0",
-                      color: theme.palette.primary.ParaColor,
-                    }}
-                    className="comment_input"
-                    fullWidth
-                    label="Post a comment"
-                    variant="outlined"
-
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton>
-                            <Send />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Box>
-              </Box>
             </Box>
           </Box>
           <Box flex={0.5} p={"0 10px"}>
