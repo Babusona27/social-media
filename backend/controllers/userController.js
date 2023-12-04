@@ -171,13 +171,13 @@ exports.updateProfile = async (req, res) => {
             }));
             user.hobbies = hobbies;
         }
-        if (payload.follow_me) {
+        if (payload.follow_me !== undefined) {
             user.follow_me = payload.follow_me;
         }
-        if (payload.send_notification) {
+        if (payload.send_notification !== undefined) {
             user.send_notification = payload.send_notification;
         }
-        if (payload.enable_tagging) {
+        if (payload.enable_tagging !== undefined) {
             user.enable_tagging = payload.enable_tagging;
         }
         let userResult = await user.save();
