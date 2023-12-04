@@ -1,5 +1,5 @@
-import React from 'react'
-import { Avatar, Box, Container, Typography } from '@mui/material';
+import React, { useState } from 'react'
+import { Avatar, Box, Container, Modal, TextField, Typography } from '@mui/material';
 import Sidebar from '../components/Sidebar'
 import HeaderNew from '../components/HeaderNew';
 import Feed from '../components/Feed';
@@ -10,10 +10,24 @@ import RightBar from '../components/RightBar';
 import Footer from '../components/Footer';
 
 const NewsFeed = () => {
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       <HeaderNew />
-      <Container maxWidth="lg" sx={{ height: "100%" }}>
+      <Container maxWidth="lg" sx={{ 
+        height: "100%",
+        padding: {
+          xs: "0",
+          sm: "0",
+          md: "0",
+          lg: "0",
+        },
+    }}>
         <Box sx={{
           display: {
             xs: "grid",
@@ -65,20 +79,112 @@ const NewsFeed = () => {
                       borderRadius: "50%",
                     }}
                   />
+                  <Box sx={{ 
+                    width: "100%",
+                   }}>
+                    <TextareaAutosize
+                      minRows={3}
+                      placeholder="Write what you wish"
+                      style={{
+                        height: "60px",
+                        width: '100%',
+                        border: `1px solid ${theme.palette.primary.LightGray}`,
+                        padding: "6px 12px",
+                        borderRadius: "5px",
+                        fontSize: "16px",
+                        cursor: "pointer",
+                      }}
+                      onClick={handleOpen}
+                    />
+                    <Modal
+                      open={open}
+                      onClose={handleClose}
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Box sx={{
+                        backgroundColor: theme.palette.primary.White,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        width: "500px",
+                        height: "400px",
+                        padding: "0 30px",
+                        gap: "20px",
+                        borderRadius: "10px",
+                        margin: {
+                          xs: "0 10px",
+                          sm: "0",
+                          md: "0",
+                          lg: "0",
+                        
+                        },
+                      }}
+                      className="modal_form_input">
+                        <Typography sx={{
+                          fontSize: "18px",
+                          fontWeight: "500",
+                          color: theme.palette.primary.LogoColor,
+                        }}>Title of your feed post</Typography>
+                        <TextField
+                          sx={{
+                            padding: "0",
+                            fontSize: "16px",
+                          }}
+                          fullWidth
+                          placeholder="Title of your feed post"
+                          variant="outlined"
+                          name="Title"
+                        // value={formData.password}
+                        // onChange={handleInputChange}
+                        // error={Boolean(errors.password)}
+                        // helperText={errors.password}
 
-                  <TextareaAutosize
-                    minRows={3}
-                    placeholder="Write what you wish"
-                    style={{
-                      height: "60px",
-                      width: '100%',
-                      border: `1px solid ${theme.palette.primary.LightGray}`,
-                      padding: "6px 12px",
-                      borderRadius: "5px",
-                      fontSize: "16px",
-                      cursor: "auto",
-                    }}
-                  />
+                        />
+                        <Typography sx={{
+                          fontSize: "18px",
+                          fontWeight: "500",
+                          color: theme.palette.primary.LogoColor,
+                        }}>Write what you wish</Typography>
+                        <TextareaAutosize
+                          minRows={3}
+                          placeholder="Write what you wish"
+                          style={{
+                            height: "60px",
+                            width: '100%',
+                            border: `1px solid ${theme.palette.primary.LightGray}`,
+                            padding: "6px 12px",
+                            borderRadius: "5px",
+                            fontSize: "16px",
+                          }}
+                        />
+                        <Box
+                          sx={{
+                            backgroundColor: theme.palette.primary.LogoColor,
+                            borderRadius: "30px",
+                            padding: "7px 25px",
+                            // marginTop: "20px",
+                            "&:hover": {
+                              backgroundColor: theme.palette.primary.LogoColor,
+                            },
+                          }}
+                          component={"a"} href='#'>
+                          <Typography
+                            sx={{
+                              color: theme.palette.primary.White,
+                              fontSize: "14px",
+                              fontWeight: "600",
+                              lineHeight: "26px",
+                              textAlign: "center",
+                            }}
+                          >Post</Typography>
+                        </Box>
+                      </Box>
+                    </Modal>
+                  </Box>
                 </Box>
                 <Box flex={"1"} sx={{
                   display: "flex",
