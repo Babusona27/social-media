@@ -350,15 +350,9 @@ const Feed = () => {
 
                                     ))}
                                 </Box>
-
-
-
-
                             </CardContent>
                         </Box>
                     </Box>
-
-
                 </Card>
                 <Box sx={{
                     display: "flex",
