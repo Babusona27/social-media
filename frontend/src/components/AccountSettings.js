@@ -1,9 +1,14 @@
 import { Tune } from '@mui/icons-material'
 import { Box, Typography } from '@mui/material'
-import React from 'react'
+import React,{useState} from 'react'
 import theme from '../Theme'
 import styled from '@emotion/styled'
 import Switch from '@mui/material/Switch';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { UPDATE_PROFILE } from '../Url';
+import { useDispatch } from 'react-redux';
+import { userDetails } from '../redux/reducers/UserReducer';
 
 const IOSSwitch = styled((props) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -53,7 +58,43 @@ const IOSSwitch = styled((props) => (
         transition: theme.transitions.create(['background-color']),
     },
 }));
+// const userData = useSelector((state) => state.UserReducer.value);
+// console.log("userData_accountSetting", userData);
+
 const AccountSettings = () => {
+    const userData = useSelector((state) => state.UserReducer.value);
+    // console.log("userData_accountSetting", userData);
+    const [selectFollowme, setSelectedFollowme] = useState(userData.user.follow_me);
+    const handleChange = async (event) => {
+        setSelectedFollowme(event.target.checked);
+        console.log("selectFollowme", selectFollowme);
+        console.log("event.target.checked", event.target.checked);
+
+      await axios
+            .put(UPDATE_PROFILE, { follow_me: false }, {
+                headers: {
+                    Authorization: `Bearer ${userData.token}`,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                // if (response.data.status === true) {
+                //     setMessageType("success");
+                //     setMessage(response.data.message);
+
+                //     userData.user.follow_me = response.data.data.follow_me;
+                //     // console.log("userData", userData);
+                //     dispatch(userDetails(userData));
+                // } else {
+                //     setMessageType("error");
+                //     setMessage(response.data.message);
+                // }
+            })
+            .catch((error) => {
+                console.log(error.response);
+            });
+    };
+
     return (
         <>
             <Box sx={{
@@ -72,7 +113,7 @@ const AccountSettings = () => {
                     fontSize: "22px",
                     fontWeight: "600",
                     color: theme.palette.primary.LogoColor,
-                  }}
+                }}
                 >
                     Account Settings
                 </Typography>
@@ -123,7 +164,11 @@ const AccountSettings = () => {
                     display: "flex",
                     justifyContent: "flex-end",
                 }}>
-                    <IOSSwitch className="toggleSwitch" />
+                    <IOSSwitch className="toggleSwitch"
+                        // checked={userData.user.follow_me}
+                        checked={selectFollowme}
+                        onChange={handleChange}
+                    />
                 </Box>
             </Box>
         </>
