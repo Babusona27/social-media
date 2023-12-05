@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import {
   Avatar,
   Box,
@@ -25,6 +25,12 @@ import io from "socket.io-client";
 import AddFeed from "../components/AddFeed";
 
 const ChatRoom = () => {
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView();
+  };
+
   const friendList = useSelector((state) => state.FriendListReducer.value);
   const userData = useSelector((state) => state.UserReducer.value);
   const [newMessage, setNewMessage] = useState("");
@@ -34,7 +40,7 @@ const ChatRoom = () => {
   const [room, setRoom] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   useEffect(() => {
-
+    
     if (selectedFriend) {
       axios
         .get(MESSAGE_LIST, {
@@ -75,7 +81,7 @@ const ChatRoom = () => {
       socket.disconnect();
     };
 
-  }, [selectedFriend, userData]);
+  }, [selectedFriend, userData,messageList]);
 
   // Emit typing event when user starts typing
   const handleKeyDown = () => {
@@ -115,6 +121,7 @@ const ChatRoom = () => {
         });
 
       setNewMessage("");
+      scrollToBottom()
     }
   };
   const getFeedPublishTime = (date) => {
@@ -299,8 +306,7 @@ const ChatRoom = () => {
                     paddingTop: "20px",
                     display: "grid",
                     gap: "10px",
-
-
+          
 
                   }}>
                     {messageList &&
@@ -359,11 +365,8 @@ const ChatRoom = () => {
                           </Typography>
 
                         </Paper>
-
-
-
-
                       ))}
+                      <Box ref={messagesEndRef} />
                     {/* {isTyping && <p className="typing_text">The other user is typing...</p>} */}
                     {isTyping && <Typography component={"P"} className="typing_text">typing...</Typography>}
                   </Box>
