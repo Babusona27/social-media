@@ -243,7 +243,7 @@ const Feed = () => {
                                     <Box className='ChatRoomLeftBar' sx={{
                                         padding: "20px 0px",
                                         maxHeight: "180px",
-                                        overflowY: "scroll",
+                                        overflowY: "auto",
                                         height: "fit-content",
                                         overflowX: "hidden",
                                     }}>
