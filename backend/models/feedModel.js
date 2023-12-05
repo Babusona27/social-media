@@ -19,7 +19,7 @@ const replyCommentSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
-    replyComment: {
+    replyUserComment: {
         type: String,
     },
     createdAt: {
@@ -52,7 +52,7 @@ const reactionSchema = new mongoose.Schema({
     },
     reactionType: {
         type: String,
-        enum: ["like", "love", "hah", "wow", "sad", "angry"]
+        enum: ["like", "dislike"]
     },
     createdAt: {
         type: Date,

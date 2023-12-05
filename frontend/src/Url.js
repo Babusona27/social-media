@@ -13,4 +13,6 @@ export const FEED_POST = API_BASE_URL + "create-feed";
 export const FEED_LIST = API_BASE_URL + "feed-list";
 export const UPDATE_PROFILE = API_BASE_URL + "update-profile";
 export const CREATE_COMMENT = API_BASE_URL + "comment-on-feed";
+export const CREATE_REPLY_COMMENT = API_BASE_URL + "reply-on-comment";
+export const REACT_ON_FEED = API_BASE_URL + "react-on-feed";
 

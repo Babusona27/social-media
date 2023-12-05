@@ -16,7 +16,7 @@ exports.createFeed = async (req, res) => {
         });
         let feedResult = await feed.save();
         if (feedResult) {
-            return res.status(200).json(helper.response(200, true, "Feed Created Successfully!", { feedResult: feedResult }));
+            return res.status(200).json(helper.response(200, true, "Feed Created Successfully!", { feedList: feedResult }));
         } else {
             return res.status(200).json(helper.response(200, false, "Feed Created Failed!"));
         }
@@ -45,20 +45,28 @@ exports.feedList = async (req, res) => {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
     }
 }
-
 exports.reactOnFeed = async (req, res) => {
     try {
         let payload = req.body;
         let feedId = payload.feedId;
         let reactionType = payload.reactionType;
         let userId = req.user.userId;
-        let feed = await feedSchema.findById(feedId);
+        let feed = await feedSchema.findById(feedId).populate('reaction.userId');
         if (feed) {
-            let reaction = {
-                userId: userId,
-                reactionType: reactionType,
+            let existingReactionIndex = feed.reaction.findIndex(r => r.userId._id.toString() === userId.toString());
+
+            if (existingReactionIndex >= 0) {
+                feed.reaction[existingReactionIndex].reactionType = reactionType;
+            } else {
+                let reaction = {
+                    userId: userId,
+                    reactionType: reactionType,
+                }
+                feed.reaction.push(reaction);
             }
-            let updateFeed = await feedSchema.findByIdAndUpdate(feedId, { $push: { reaction: reaction } }, { new: true });
+
+            let updateFeed = await feed.save();
+
             if (updateFeed) {
                 return res.status(200).json(helper.response(200, true, "Reaction Added Successfully!", { updateFeed: updateFeed }));
             } else {
@@ -103,7 +111,7 @@ exports.replyOnComment = async (req, res) => {
         let payload = req.body;
         let feedId = payload.feedId;
         let commentId = payload.commentId;
-        let replyUserComment = payload.replyComment;
+        let replyUserComment = payload.replyUserComment;
         let userId = req.user.userId;
         let feed = await feedSchema.findById(feedId);
         if (feed) {

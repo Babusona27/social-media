@@ -27,11 +27,10 @@ const AddFeed = () => {
                 Authorization: `Bearer ${userData.token}`
             }
         }).then((res) => {
-            handleClose();
-            // console.log(res.data);
             if (res.data.status) {
-                dispatch(addFeed(res.data.data));
+                dispatch(addFeed(res.data.data.feedList));
             }
+            handleClose();
         }).catch((err) => {
             console.log(err);
         })

@@ -21,7 +21,6 @@ const NewsFeed = () => {
         Authorization: `Bearer ${userData.token}`,
       },
     }).then((res) => {
-      // console.log(res.data.data.feedList);
       dispatch(feedList(res.data.data.feedList));
     }).catch((err) => {
       console.log(err);

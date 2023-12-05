@@ -146,7 +146,7 @@ const Sidebar = () => {
             />
 
             <Box margin={"10px 0"}>
-              <Typography component={"a"} href='/editprofile'  sx={{
+              <Typography component={"a"} href='/editprofile' sx={{
                 fontSize: "20px",
                 color: theme.palette.primary.White,
                 lineHeight: "0",
@@ -158,7 +158,7 @@ const Sidebar = () => {
 
               >{userData && userData.user.name}</Typography>
 
-          
+
 
             </Box>
             <Box sx={{
@@ -308,7 +308,7 @@ const Sidebar = () => {
             }}>
               Messages</Typography>
           </Box>
-          <Box sx={{
+          {/* <Box sx={{
             display: "flex",
             alignItems: "center",
             padding: "0 15px",
@@ -363,7 +363,7 @@ const Sidebar = () => {
               },
             }}>
               Videos</Typography>
-          </Box>
+          </Box> */}
         </List>
       </Box>
 
