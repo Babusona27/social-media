@@ -162,6 +162,9 @@ const Header = () => {
                   minWidth: "550px",
                 }}
               >
+               
+         
+              
                 <ListItem disablePadding>
                   <ListItemButton
                     sx={{
@@ -176,68 +179,12 @@ const Header = () => {
                       },
                     }}
                     component="a"
-                    href="/"
-                  >
-                    <Typography>home</Typography>
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton
-                    sx={{
-                      color: theme.palette.primary.White,
-                      transition: "all .3s ease-in-out",
-                      padding: "0px",
-                      fontSize: "14px",
-                      textAlign: "center",
-                      display: "block",
-                      "&:hover": {
-                        color: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                    component="a"
-                    href="#"
-                  >
-                    <Typography>Newsfeed </Typography>
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton
-                    sx={{
-                      color: theme.palette.primary.White,
-                      transition: "all .3s ease-in-out",
-                      padding: "0px",
-                      fontSize: "14px",
-                      textAlign: "center",
-                      display: "block",
-                      "&:hover": {
-                        color: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                    component="a"
-                    href="#"
-                  >
-                    <Typography>Timeline </Typography>
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton
-                    sx={{
-                      color: theme.palette.primary.White,
-                      transition: "all .3s ease-in-out",
-                      padding: "0px",
-                      fontSize: "14px",
-                      textAlign: "center",
-                      display: "block",
-                      "&:hover": {
-                        color: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                    component="a"
-                    href="#"
+                    href="/aboutus"
                   >
                     <Typography>About us </Typography>
                   </ListItemButton>
                 </ListItem>
+               
                 <ListItem disablePadding>
                   <ListItemButton
                     sx={{
@@ -252,26 +199,7 @@ const Header = () => {
                       },
                     }}
                     component="a"
-                    href="#"
-                  >
-                    <Typography>Blog</Typography>
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton
-                    sx={{
-                      color: theme.palette.primary.White,
-                      transition: "all .3s ease-in-out",
-                      padding: "0px",
-                      fontSize: "14px",
-                      textAlign: "center",
-                      display: "block",
-                      "&:hover": {
-                        color: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                    component="a"
-                    href="#"
+                    href="/contactus"
                   >
                     <Typography>Contact us</Typography>
                   </ListItemButton>

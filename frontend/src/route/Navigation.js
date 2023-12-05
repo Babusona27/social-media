@@ -15,6 +15,8 @@ import Page404 from "../pages/Page404";
 import Faq from "../pages/Faq";
 import Terms from "../pages/Terms";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+import ContactUs from "../pages/ContactUs";
+import AboutUs from "../pages/AboutUs";
 
 import { useSelector, useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode";
@@ -58,6 +60,8 @@ const Navigation = () => {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="*" element={<Page404 />} />
+          <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/aboutus" element={<AboutUs />} />
         </Routes>
       </Router>
     );
@@ -79,6 +83,8 @@ const Navigation = () => {
           <Route path="/faq" element={<Faq />} />
           <Route path="/Terms" element={<Terms />} />
           <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+          <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/aboutus" element={<AboutUs />} />
         </Routes>
       </Router>
     );

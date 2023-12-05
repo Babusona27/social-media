@@ -13,7 +13,7 @@ import Sidebar from "../components/Sidebar";
 import HeaderNew from "../components/HeaderNew";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import theme from "../Theme";
-import { EditNote, Map, Photo, Videocam } from "@mui/icons-material";
+import { Add, EditNote, Map, Photo, Videocam } from "@mui/icons-material";
 import RightBar from "../components/RightBar";
 import Footer from "../components/Footer";
 import DoneIcon from "@mui/icons-material/Done";
@@ -22,6 +22,7 @@ import { SEND_MESSAGE, MESSAGE_LIST } from "../Url";
 import axios from "axios";
 
 import io from "socket.io-client";
+import AddFeed from "../components/AddFeed";
 
 const ChatRoom = () => {
   const friendList = useSelector((state) => state.FriendListReducer.value);
@@ -144,160 +145,9 @@ const ChatRoom = () => {
             <Sidebar />
           </Box>
           <Box flex={2} p={"0 10px"}>
-            <Box
-              sx={{
-                paddingBottom: "20px",
-                marginBottom: "20px",
-                borderBottom: `1px solid ${theme.palette.primary.Gray}`,
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Box
-                  flex={"2"}
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "0 10px",
-                  }}
-                >
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="/assets/images/profileImg.jpg"
-                    sx={{
-                      border: "7px solid #fff",
-                      float: "left",
-                      marginRight: "5px",
-                      position: "relative",
-                      height: "70px",
-                      width: "70px",
-                      borderRadius: "50%",
-                    }}
-                  />
-
-                  <TextareaAutosize
-                    minRows={3}
-                    placeholder="Write what you wish"
-                    style={{
-                      height: "60px",
-                      width: "100%",
-                      border: `1px solid ${theme.palette.primary.LightGray}`,
-                      padding: "6px 12px",
-                      borderRadius: "5px",
-                      fontSize: "16px",
-                      cursor: "auto",
-                    }}
-                  />
-                </Box>
-                <Box
-                  flex={"1"}
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    p: "0 10px",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      marginRight: "10px",
-                      "& :hover": {
-                        color: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                    component={"a"}
-                    href="#"
-                  >
-                    <EditNote
-                      sx={{
-                        color: theme.palette.primary.ParaColor,
-                        fontSize: "25px",
-                      }}
-                    />
-                  </Box>
-                  <Box
-                    sx={{
-                      marginRight: "10px",
-                      "& :hover": {
-                        color: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                    component={"a"}
-                    href="#"
-                  >
-                    <Photo
-                      sx={{
-                        color: theme.palette.primary.ParaColor,
-                        fontSize: "20px",
-                      }}
-                    />
-                  </Box>
-
-                  <Box
-                    sx={{
-                      marginRight: "10px",
-                      "& :hover": {
-                        color: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                    component={"a"}
-                    href="#"
-                  >
-                    <Videocam
-                      sx={{
-                        color: theme.palette.primary.ParaColor,
-                        fontSize: "20px",
-                      }}
-                    />
-                  </Box>
-                  <Box
-                    sx={{
-                      marginRight: "10px",
-                      "& :hover": {
-                        color: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                    component={"a"}
-                    href="#"
-                  >
-                    <Map
-                      sx={{
-                        color: theme.palette.primary.ParaColor,
-                        fontSize: "20px",
-                      }}
-                    />
-                  </Box>
-                  <Box
-                    sx={{
-                      backgroundColor: theme.palette.primary.LogoColor,
-                      borderRadius: "30px",
-                      padding: "7px 25px",
-                      marginLeft: "10px",
-                      "&:hover": {
-                        backgroundColor: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                    component={"a"}
-                    href="#"
-                  >
-                    <Typography
-                      sx={{
-                        color: theme.palette.primary.White,
-                        fontSize: "14px",
-                        fontWeight: "600",
-                      }}
-                    >
-                      Publish
-                    </Typography>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
+            {/* Feed add component */}
+            <AddFeed />
+            {/* Feed add component */}
             <Box
               sx={{
                 display: "flex",
