@@ -17,7 +17,7 @@ const Feed = () => {
     const [feedId, setFeedId] = useState('');
     const [commentId, setCommentId] = useState('');
 
-    console.log("feedData==>",feedData);
+    // console.log("feedData==>",feedData);
     const getFeedPublishTime = (date) => {
         const currentDate = new Date();
         const feedDate = new Date(date);
@@ -188,7 +188,7 @@ const Feed = () => {
                                         justifyContent: "space-between",
                                         alignItems: "center",
                                     }}>
-                                        <Box component={"a"} href='#' sx={{
+                                        <Box component={"button"}  sx={{
                                             display: "flex",
                                             alignItems: "center",
                                             color: theme.palette.primary.Green,
@@ -206,7 +206,7 @@ const Feed = () => {
                                                 fontWeight: "400",
                                             }} >{item.reaction.filter(r => r.reactionType === 'like').length}</Typography>
                                         </Box>
-                                        <Box component={"a"} href='#' sx={{
+                                        <Box component={"button"}  sx={{
                                             display: "flex",
                                             alignItems: "center",
                                             color: theme.palette.secondary.main,
@@ -315,7 +315,7 @@ const Feed = () => {
                                                                 fontSize: "13px",
                                                                 lineHeight: "26px",
                                                                 color: theme.palette.primary.ParaColor,
-                                                            }} className='reply_time' component={"p"}>2 days ago</Typography>
+                                                            }} className='reply_time' component={"p"}>{ getFeedPublishTime(value.createdAt)}</Typography>
                                                             <Typography component={"a"} sx={{
                                                                 fontFamily: theme.palette.primary.MainFont1,
                                                                 fontSize: "14px",
@@ -415,7 +415,7 @@ const Feed = () => {
                                                                 fontSize: "13px",
                                                                 lineHeight: "26px",
                                                                 color: theme.palette.primary.ParaColor,
-                                                            }} className='reply_time' component={"p"}>2 days ago</Typography>
+                                                            }} className='reply_time' component={"p"}>{getFeedPublishTime(replyVal.createdAt)}</Typography>
                                                         </Box>
 
 
