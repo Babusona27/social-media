@@ -17,6 +17,7 @@ const Feed = () => {
     const [feedId, setFeedId] = useState('');
     const [commentId, setCommentId] = useState('');
 
+    console.log("feedData==>",feedData);
     const getFeedPublishTime = (date) => {
         const currentDate = new Date();
         const feedDate = new Date(date);
