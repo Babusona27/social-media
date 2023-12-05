@@ -302,15 +302,15 @@ const ChatRoom = () => {
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
-                alignItems: "center",
+                // alignItems: "center",
               }}
             >
               <Box
                 className="ChatRoomLeftBar"
                 sx={{
-                  padding: "20px 0px",
+                  padding: "0px 0px 20px",
                   maxHeight: "400px",
-                  width: "250px",
+                  width: "285px",
                   overflowY: "scroll",
                   height: "400px",
                   overflowX: "hidden",
@@ -322,7 +322,9 @@ const ChatRoom = () => {
                     <Button
                       key={index}
                       sx={{
-                        display: "block",
+                        display: "flex",
+                        width: "100%",
+                        justifyContent:"space-between",
                         textTransform: "initial",
                         padding: "10px 10px",
                         borderBottom: `2px solid ${theme.palette.primary.Gray}`,
@@ -341,12 +343,13 @@ const ChatRoom = () => {
                           alignItems: "center",
                           justifyContent: "space-between",
                           gap: "15px",
+                          width: "100%",
                         }}
                       >
                         <Avatar
                           alt="Remy Sharp"
                           src={
-                            process.env.PUBLIC_URL + "/assets/images/pf1.jpg"
+                            process.env.PUBLIC_URL + "/assets/images/pf3.jpg"
                           }
                         />
                         <Box
@@ -368,6 +371,7 @@ const ChatRoom = () => {
                                 fontWeight: "500",
                                 color: theme.palette.primary.LogoColor,
                                 fontFamily: theme.palette.primary.MainFont1,
+                                textAlign: "left",
                               }}
                               component={"h6"}
                             >
@@ -389,7 +393,7 @@ const ChatRoom = () => {
                             sx={{
                               display: "flex",
                               alignItems: "center",
-                              justifyContent: "center",
+                              justifyContent: "space-between",
                               gap: "15px",
                             }}
                           >
@@ -403,7 +407,8 @@ const ChatRoom = () => {
                                 textOverflow: "ellipsis",
                                 whiteSpace: "nowrap",
                                 width: "140px",
-                                display: "flex",
+                                display: "block",
+                                textAlign: "left",
                               }}
                               component={"p"}
                             >
@@ -422,7 +427,7 @@ const ChatRoom = () => {
                   ))}
               </Box>
               <Box
-                className="ChatRoomLeftBar"
+
                 sx={{
                   flex: "2",
                   padding: "0px 10px 0px 0px",
@@ -431,47 +436,91 @@ const ChatRoom = () => {
               >
                 {/* chat box  */}
                 <Box sx={{}}>
-                  <Box sx={{
-                      maxHeight: "400px",
-                      width: "100%",
-                      overflowY: "scroll",
-                      overflowX: "hidden",
-                      height: "400px",
-                      marginLeft: "0px",
-                      marginBottom:"50px"
-                    
+                  <Box className="ChatRoomLeftBar" sx={{
+                    maxHeight: "400px",
+                    width: "100%",
+                    overflowY: "scroll",
+                    overflowX: "hidden",
+                    height: "400px",
+                    paddingLeft: "10px",
+                    marginRight: "0px",
+                    paddingRight: "10px",
+                    paddingBottom: "50px",
+                    paddingTop: "20px",
+                    display: "grid",
+                    gap: "10px",
+
+
+
                   }}>
-                  {messageList &&
-                    messageList.map((message, index) => (
-                  
-                        <Paper elevation={3} key={index}>
-                        <Typography
-                          // key={index}
-                          variant="body1"
-                          textAlign="left"
-                          style={{
-                            textAlign:
-                              message.senderId === userData.user._id
-                                ? "right"
-                                : "left",
-                          }}
-                        >
-                          {message.message}
-                        </Typography>
-                     
-                      </Paper>
-                        
-                   
-                      
-                      
-                    ))}
+                    {messageList &&
+                      messageList.map((message, index) => (
+
+                        <Paper sx={{
+                          display: "flex",
+                          gap: "10px",
+                          justifyContent: "flex-start",
+                          flexDirection: message.senderId === userData.user._id ? "row-reverse" : "row",
+                          alignItems: "self-start",
+                          maxWidth: "300px",
+                          marginLeft: message.senderId === userData.user._id ? "auto" : "0px",
+                          boxShadow:"none"
+                        }} className="chatBox"  key={index}>
+                          <Avatar sx={{
+                            height: "25px",
+                            width: "25px",
+                          }} alt="Remy Sharp" src={process.env.PUBLIC_URL + "/assets/images/pf4.jpg"} />
+                          <Typography elevation={3}
+                            sx={{
+                              maxWidth: "fit-content",
+                              color: theme.palette.primary.White,
+                              backgroundColor: message.senderId === userData.user._id ? theme.palette.primary.LogoColor : theme.palette.primary.Green,
+                              padding: "5px 15px",
+                              borderRadius: "10px",
+                              position: "relative",
+                              marginTop: "5px", 
+                              fontSize: "14px",
+                             
+                              "&:after": {
+                                content: "''",
+                                position: "absolute",
+                                top: "10px",
+                                right: message.senderId === userData.user._id ? "-8px" : "auto",
+                                left: message.senderId === userData.user._id ? "auto" : "-8px",
+                                width: "0",
+                                height: "0",
+                                border: "10px solid transparent",
+                                borderTopColor: message.senderId === userData.user._id ? theme.palette.primary.LogoColor : theme.palette.primary.Green,
+                                borderBottom: "0",
+                                marginTop: "-10px",
+                              },
+                            }}
+                            // key={index}
+                            variant="body1"
+                            textAlign="left"
+                            style={{
+                              textAlign:
+                                message.senderId === userData.user._id
+                                  ? "right"
+                                  : "left",
+                            }}
+                          >
+                            {message.message}
+                          </Typography>
+
+                        </Paper>
+
+
+
+
+                      ))}
                     {/* {isTyping && <p className="typing_text">The other user is typing...</p>} */}
-                    {isTyping &&  <Typography component={"P"} className="typing_text">typing...</Typography>}
+                    {isTyping && <Typography component={"P"} className="typing_text">typing...</Typography>}
                   </Box>
-                
+
                   <Box
                     sx={{
-                      position: "absolute",
+                      position: "relative",
                       bottom: "0",
                       width: "100%",
                       display: "flex",
@@ -492,7 +541,7 @@ const ChatRoom = () => {
                         width: "70%",
                         minWidth: "70%",
                         borderRadius: "30px",
-                        display:"block",
+                        display: "block",
                         "& .MuiOutlinedInput-root": {
                           "& fieldset": {
                             borderColor: theme.palette.primary.LogoColor,
@@ -511,7 +560,7 @@ const ChatRoom = () => {
                         },
                       }}
                     >
-                      
+
                       <TextField
                         fullWidth
                         size="small"
