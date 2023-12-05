@@ -63,7 +63,7 @@ const HeaderNew = () => {
           }}
         >
           <Box
-            href="#"
+            href="/"
             component={"a"}
             sx={{
               width: { xs: "160px", sm: "100px", lg: "180px" },
@@ -183,7 +183,7 @@ const HeaderNew = () => {
                       },
                     }}
                     component="a"
-                    href="#"
+                    href="/aboutus"
                   >
                     <Typography>About us </Typography>
                   </ListItemButton>
@@ -203,7 +203,7 @@ const HeaderNew = () => {
                       },
                     }}
                     component="a"
-                    href="#"
+                    href="/contactus"
                   >
                     <Typography>Contact us</Typography>
                   </ListItemButton>

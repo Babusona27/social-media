@@ -27,6 +27,8 @@ import { createTheme } from '@mui/material/styles';
       BoxShadow: "0 12px 12px rgba(39, 170, 225, 0.3)",
       BoxShadow1:"0 12px 12px rgb(31 31 31 / 32%)",
       BoxShadow2:"0px -2px 13px 2px rgba(39, 170, 225, 0.3)",
+      BoxShadow3:"0px 3px 3px -2px rgb(39 170 225 / 19%), 0px 3px 4px 0px rgb(39 170 225 / 15%), 0px 1px 8px 0px rgb(39 170 225 / 11%)",
+
       GalleryBorder:"rgba(39, 170, 225, 0.3)",
       LightBlue:" rgb(41 171 226 / 5%)",
       CoverBgGradient:"linear-gradient(to bottom, rgb(35 31 32 / 50%), rgb(112 174 224 / 80%))",

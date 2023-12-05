@@ -242,7 +242,7 @@ const Feed = () => {
                                     <Box className='ChatRoomLeftBar' sx={{
                                         padding: "20px 0px",
                                         maxHeight: "180px",
-                                        overflowY: "scroll",
+                                        overflowY: "auto",
                                         height: "fit-content",
                                         overflowX: "hidden",
                                     }}>
@@ -263,43 +263,79 @@ const Feed = () => {
                                                             height: "40px",
                                                             width: "40px",
                                                             borderRadius: "50%",
+                                                            position: "relative",
+                                                            zIndex: "1",
                                                         }}
                                                     />
-
-                                                    <Typography component={"p"} sx={{
-                                                        fontSize: "13px",
-                                                        lineHeight: "26px",
-                                                        color: theme.palette.primary.ParaColor,
+                                                    <Box sx={{
+                                                        display: "flex",
+                                                        flexDirection: "column",
+                                                        gap: "10px",
                                                     }}>
                                                         <Box sx={{
-                                                            color: theme.palette.primary.LogoColor,
-                                                            fontWeight: "600",
-                                                            marginRight: "5px",
-                                                            "&:hover": {
-                                                                color: theme.palette.primary.Green,
+                                                            background: theme.palette.primary.White,
+                                                            padding: "5px 10px",
+                                                            borderRadius: "10px",
+                                                            boxShadow: theme.palette.primary.BoxShadow3,
+                                                            marginRight: "10px",
+                                                        }}>
+                                                            <Box sx={{
+                                                                fontSize: "13px",
+                                                                lineHeight: "1",
+                                                                color: theme.palette.primary.LogoColor,
+                                                                fontWeight: "600",
+                                                                marginRight: "5px",
+                                                                "&:hover": {
+                                                                    color: theme.palette.primary.Green,
+                                                                }
                                                             }
-                                                        }
-                                                        }
-                                                            component={"a"} href='#'
-                                                        >{value.userId.name}</Box>
-                                                        {value.comment}
+                                                            }
+                                                                component={"a"} href='#'
+                                                            >{value.userId.name}</Box>
 
-                                                    </Typography>
-                                                    <Typography sx={{
-                                                        fontFamily: theme.palette.primary.MainFont1,
-                                                        fontSize: "14px",
-                                                        lineHeight: "1",
-                                                        color: theme.palette.primary.LogoColor,
-                                                        cursor: "pointer",
-                                                        padding: "5px 10px",
-                                                    }} onClick={() => {
-                                                        setOpen(true)
-                                                        setFeedId(item._id);
-                                                        setCommentId(value._id);
+                                                            <Typography component={"p"} sx={{
+                                                                fontSize: "13px",
+                                                                lineHeight: "26px",
+                                                                color: theme.palette.primary.ParaColor,
 
-                                                    }}>Reply</Typography>
+                                                            }}>
 
+                                                                {value.comment}
 
+                                                            </Typography>
+                                                        </Box>
+                                                        <Box sx={{
+                                                            display: "flex",
+                                                            justifyContent: "start",
+                                                            alignItems: "center",
+                                                            gap: "10px",
+                                                        }}>
+                                                            <Typography sx={{
+                                                                fontSize: "13px",
+                                                                lineHeight: "26px",
+                                                                color: theme.palette.primary.ParaColor,
+                                                            }} className='reply_time' component={"p"}>2 days ago</Typography>
+                                                            <Typography component={"a"} sx={{
+                                                                fontFamily: theme.palette.primary.MainFont1,
+                                                                fontSize: "14px",
+                                                                lineHeight: "1",
+                                                                color: theme.palette.primary.LogoColor,
+                                                                cursor: "pointer",
+                                                                padding: "5px 10px",
+                                                                display: "inline-block",
+                                                                width: "fit-content",
+                                                                "&:hover": {
+                                                                    color: theme.palette.primary.Green,
+                                                                }
+                                                            }} onClick={() => {
+                                                                setOpen(true)
+                                                                setFeedId(item._id);
+                                                                setCommentId(value._id);
+
+                                                            }}>Reply</Typography>
+                                                        </Box>
+
+                                                    </Box>
                                                 </Box>
                                                 {/* reply box  */}
                                                 {value.replyComment != undefined && value.replyComment.map((replyVal, key2) => (
@@ -310,10 +346,10 @@ const Feed = () => {
                                                         "&::before": {
                                                             content: "''",
                                                             position: "absolute",
-                                                            top: "-34px",
+                                                            top: "-124px",
                                                             left: "-14px",
                                                             width: "30px",
-                                                            height: "60px",
+                                                            height: "145px",
                                                             borderLeft: `1px solid ${theme.palette.primary.Green}`,
                                                             borderBottom: `1px solid ${theme.palette.primary.Green}`,
                                                         },
@@ -330,26 +366,58 @@ const Feed = () => {
                                                                 borderRadius: "50%",
                                                             }}
                                                         />
-
-                                                        <Typography component={"p"} sx={{
-                                                            fontSize: "13px",
-                                                            lineHeight: "26px",
-                                                            color: theme.palette.primary.ParaColor,
+                                                        <Box sx={{
+                                                            display: "flex",
+                                                            flexDirection: "column",
+                                                            gap: "10px",
                                                         }}>
                                                             <Box sx={{
-                                                                color: theme.palette.primary.LogoColor,
-                                                                fontWeight: "600",
-                                                                marginRight: "5px",
-                                                                "&:hover": {
-                                                                    color: theme.palette.primary.Green,
-                                                                }
-                                                            }
-                                                            }
-                                                                component={"a"} href='#'
-                                                            >{replyVal.userId.name}</Box>
-                                                            {replyVal.replyUserComment}
+                                                                display: "flex",
+                                                                flexDirection: "column",
+                                                                width: "100%",
+                                                                background: theme.palette.primary.White,
+                                                                padding: "5px 10px",
+                                                                borderRadius: "10px",
+                                                                boxShadow: theme.palette.primary.BoxShadow3,
+                                                            }}>
+                                                                <Box sx={{
+                                                                    display: "flex",
+                                                                    flexDirection: "column",
+                                                                    width: "100%",
 
-                                                        </Typography>
+                                                                }}>
+                                                                    <Box sx={{
+                                                                        fontSize: "13px",
+                                                                        color: theme.palette.primary.LogoColor,
+                                                                        fontWeight: "600",
+                                                                        marginRight: "5px",
+                                                                        "&:hover": {
+                                                                            color: theme.palette.primary.Green,
+                                                                        }
+                                                                    }} component={"a"} href='#'
+                                                                    >{replyVal.userId.name}</Box>
+
+                                                                </Box>
+                                                                <Typography className='ChatRoomLeftBar' component={"p"} sx={{
+                                                                    fontSize: "13px",
+                                                                    lineHeight: "26px",
+                                                                    color: theme.palette.primary.ParaColor,
+                                                                    maxHeight: "70px",
+                                                                    overflowY: "auto",
+                                                                }}>
+
+                                                                    {replyVal.replyUserComment}
+
+                                                                </Typography>
+                                                            </Box>
+                                                            <Typography sx={{
+                                                                fontSize: "13px",
+                                                                lineHeight: "26px",
+                                                                color: theme.palette.primary.ParaColor,
+                                                            }} className='reply_time' component={"p"}>2 days ago</Typography>
+                                                        </Box>
+
+
 
                                                     </Box>
                                                 ))}

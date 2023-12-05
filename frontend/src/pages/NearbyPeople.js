@@ -8,6 +8,7 @@ import { EditNote, Map, Photo, Videocam } from '@mui/icons-material';
 import RightBar from '../components/RightBar';
 import AddFriend from '../components/AddFriend';
 import Footer from '../components/Footer';
+import AddFeed from '../components/AddFeed';
 
 const NearbyPeople = () => {
   return (
@@ -27,152 +28,9 @@ const NearbyPeople = () => {
             <Sidebar />
           </Box>
           <Box flex={2} p={"0 10px"} >
-          <Box
-              sx={{
-                paddingBottom: "20px",
-                marginBottom: "20px",
-                borderBottom: `1px solid ${theme.palette.primary.Gray}`,
-              }}
-            >
-              <Box sx={{
-                display: {
-                  xs: "block",
-                  sm: "flex",
-                  md: "flex",
-                  lg: "flex",
-                },
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}>
-                <Box flex={"2"} sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "0 10px",
-                }}>
-                  <Avatar
-                    alt="Remy Sharp"
-                    src={
-                      process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
-                    }
-                    sx={{
-                      border: "7px solid #fff",
-                      float: "left",
-                      marginRight: "5px",
-                      position: "relative",
-                      height: "70px",
-                      width: "70px",
-                      borderRadius: "50%",
-                    }}
-                  />
-
-                  <TextareaAutosize
-                    minRows={3}
-                    placeholder="Write what you wish"
-                    style={{
-                      height: "60px",
-                      width: '100%',
-                      border: `1px solid ${theme.palette.primary.LightGray}`,
-                      padding: "6px 12px",
-                      borderRadius: "5px",
-                      fontSize: "16px",
-                      cursor: "auto",
-                    }}
-                  />
-                </Box>
-                <Box flex={"1"} sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  p: "0 10px",
-                  marginTop: {
-                    xs: "10px",
-                    sm: "10px",
-                    md: "0",
-                    lg: "0",
-                  },
-                }}>
-                  <Box sx={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}>
-                    <Box sx={{
-                      marginRight: "10px",
-                      "& :hover": {
-                        color: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                      component={"a"} href='#'>
-                      <EditNote
-                        sx={{
-                          color: theme.palette.primary.ParaColor,
-                          fontSize: "25px",
-                        }}
-                      />
-                    </Box>
-                    <Box sx={{
-                      marginRight: "10px",
-                      "& :hover": {
-                        color: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                      component={"a"} href='#'>
-                      <Photo
-                        sx={{
-                          color: theme.palette.primary.ParaColor,
-                          fontSize: "20px",
-                        }} />
-                    </Box>
-                    <Box sx={{
-                      marginRight: "10px",
-                      "& :hover": {
-                        color: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                      component={"a"} href='#'>
-                      <Videocam
-                        sx={{
-                          color: theme.palette.primary.ParaColor,
-                          fontSize: "20px",
-                        }} />
-                    </Box>
-                    <Box sx={{
-                      marginRight: "10px",
-                      "& :hover": {
-                        color: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                      component={"a"} href='#'>
-                      <Map
-                        sx={{
-                          color: theme.palette.primary.ParaColor,
-                          fontSize: "20px",
-                        }} />
-                    </Box>
-                  </Box>
-                  <Box
-                    sx={{
-                      backgroundColor: theme.palette.primary.LogoColor,
-                      borderRadius: "30px",
-                      padding: "7px 25px",
-                      marginLeft: "10px",
-                      "&:hover": {
-                        backgroundColor: theme.palette.primary.LogoColor,
-                      },
-                    }}
-                    component={"a"} href='#'>
-                    <Typography
-                      sx={{
-                        color: theme.palette.primary.White,
-                        fontSize: "14px",
-                        fontWeight: "600",
-                        lineHeight: "26px",
-                      }}
-                    >Publish</Typography>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
+          {/* Feed add component */}
+          <AddFeed />
+            {/* Feed add component */}
             <Box>
               <AddFriend />
              

@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import Header from "../components/Header";
+//import Header from "../components/Header";
 import theme from "../Theme";
 import PersonAddRoundedIcon from "@mui/icons-material/PersonAddRounded";
 import CollectionsRoundedIcon from "@mui/icons-material/CollectionsRounded";
@@ -33,9 +33,9 @@ const Landing = () => {
   };
   return (
     <>
-      <Box>
+      {/* <Box>
         <Header />
-      </Box>
+      </Box> */}
 
       <Box
         sx={{

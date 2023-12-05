@@ -221,3 +221,7 @@ p.typing_text {
 	left: 10px;
     color: #8f8b8b;
 }
+.modal_form_input .file_upload {
+    color: #000 !important;
+    opacity: 0.4 !important;
+}
