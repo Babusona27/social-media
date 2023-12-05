@@ -84,7 +84,6 @@ exports.commentOnFeed = async (req, res) => {
     try {
         let payload = req.body;
         let feedId = payload.feedId;
-        // let comment = payload.comment;
         let userId = req.user.userId;
         let feed = await feedSchema.findById(feedId);
         if (feed) {
@@ -92,7 +91,7 @@ exports.commentOnFeed = async (req, res) => {
                 userId: userId,
                 comment: payload.comment,
             }
-            let updateFeed = await feedSchema.findByIdAndUpdate(feedId, { $push: { comment: comment } }, { new: true });
+            let updateFeed = await feedSchema.findByIdAndUpdate(feedId, { $push: { comment: comment } }, { new: true }).populate('comment.userId').populate('comment.replyComment.userId');
             if (updateFeed) {
                 return res.status(200).json(helper.response(200, true, "Comment Added Successfully!", { updateFeed: updateFeed }));
             } else {
@@ -115,7 +114,7 @@ exports.replyOnComment = async (req, res) => {
         let userId = req.user.userId;
         let feed = await feedSchema.findById(feedId);
         if (feed) {
-            let updateFeed = await feedSchema.findOneAndUpdate({ _id: feedId, "comment._id": commentId }, { $push: { "comment.$.replyComment": { userId: userId, replyUserComment: replyUserComment } } }, { new: true });
+            let updateFeed = await feedSchema.findOneAndUpdate({ _id: feedId, "comment._id": commentId }, { $push: { "comment.$.replyComment": { userId: userId, replyUserComment: replyUserComment } } }, { new: true }).populate('comment.userId').populate('comment.replyComment.userId');
             if (updateFeed) {
                 return res.status(200).json(helper.response(200, true, "Reply Comment Added Successfully!", { updateFeed: updateFeed }));
             } else {
