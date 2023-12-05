@@ -109,7 +109,7 @@ const AddFeed = () => {
                                 flexDirection: "column",
                                 justifyContent: "center",
                                 width: "500px",
-                                height: "400px",
+                                minHeight: "510px",
                                 padding: "0 30px",
                                 gap: "20px",
                                 borderRadius: "10px",
@@ -149,7 +149,6 @@ const AddFeed = () => {
                                     type="text"
                                     value={formData.title}
                                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-
                                 />
                                 <Typography sx={{
                                     fontSize: "18px",
@@ -171,6 +170,24 @@ const AddFeed = () => {
                                     type="text"
                                     value={formData.description}
                                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                                />
+                                <Typography sx={{
+                                    fontSize: "18px",
+                                    fontWeight: "500",
+                                    color: theme.palette.primary.LogoColor,
+                                }}>File upload</Typography>
+                                <TextField className='file_upload'
+                                    sx={{
+                                        padding: "0",
+                                        fontSize: "16px",
+                                    }}
+                                    fullWidth
+                                    placeholder="Title of your feed post"
+                                    variant="outlined"
+                                    name="Title"
+                                    type="file"
+                                    // value={formData.title}
+                                    // onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                                 />
                                 <Box
                                     sx={{
