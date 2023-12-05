@@ -7,11 +7,14 @@ import styled from '@emotion/styled'
 import { useSelector, useDispatch } from 'react-redux';
 import { UPDATE_PROFILE } from '../Url';
 import axios from 'axios';
-import { userDetails } from '../redux/reducers/UserReducer';
+import { updateUserDetails } from '../redux/reducers/UserReducer';
+import CustomAlert from "./CustomAlert";
 
 const BasicInformationDetails = () => {
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.UserReducer.value);
+    const { showAlert, AlertComponent } = CustomAlert();
+
 
     const [formData, setFormData] = useState({
         name: userData.user.name,
@@ -82,19 +85,18 @@ const BasicInformationDetails = () => {
                         Authorization: `Bearer ${userData.token}`,
                     }
                 })
-                .then((response) => {
-                    console.log(response);
-                 if(response.data.state===true){
-                    userData.user=response.data.data.user;
-                    dispatch(userDetails(userData));
-
+                .then((response) => {             
+                 if(response.data.status === true){                   
+                    dispatch(updateUserDetails(response.data.data.user));
+                   showAlert("success", response.data.message);
+                 }else{
+                    showAlert("error", response.data.message);
                  }
-
                 })
                 .catch((err) => {
                     console.log(err.response);
                     if (err.response) {
-                      
+                      showAlert("error", err.response.data.message);
                     }
                 });
 
@@ -271,6 +273,7 @@ const BasicInformationDetails = () => {
                     >
                         Save Changes
                     </Button>
+                    <AlertComponent />
                 </Box>
             }
 
