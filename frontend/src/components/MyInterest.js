@@ -14,7 +14,38 @@ const MyInterest = () => {
     const userData = useSelector((state) => state.UserReducer.value);
     const dispatch = useDispatch();
     console.log("userData_interest", userData.user.hobbies);
+    const [formData, setFormData] = useState({
+        interest: ""
+    });
+    const handleInputUpdate = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+        // Reset the corresponding validation error when the user types
+        // setErrors({ ...errors, [name]: "" });
+    }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("formData==>", formData);
+
+        let hobbies = [];
+        hobbies.push(formData.interest);
+
+
+        axios
+            .put(UPDATE_PROFILE, { "hobbies":hobbies }, {
+                headers: {
+                    Authorization: `Bearer ${userData.token}`,
+                },
+            })
+            .then((res) => {
+                console.log("res", res);
+                dispatch(updateUserDetails(res.data.data.user));
+            })
+            .catch((err) => {
+                console.log("err", err);
+            });
+    }
     return (
         <>
             <Box sx={{
@@ -59,31 +90,31 @@ const MyInterest = () => {
                 alignItems: "center",
                 gap: "15px",
             }}>
-                {userData.user.hobbies.map((item) => {
-console.log("item",item);
-                    // <Box component={"a"} href='#' sx={{
-                    //     display: "flex",
-                    //     alignItems: "center",
-                    //     gap: "5px",
-                    //     color: theme.palette.primary.White,
-                    //     backgroundColor: theme.palette.primary.Green,
-                    //     padding: "5px 15px",
-                    //     borderRadius: "40px",
-                    // }}>
-                    //     <DirectionsBike sx={{
-                    //         fontSize: "18px",
-                    //     }} />
-                    //     <Typography sx={{
-                    //         fontSize: "15px",
-                    //         lineHeight: "26px",
-                    //         color: theme.palette.primary.White,
-                    //         "&:hover": {
-                    //             textDecoration: "underline",
-                    //         }
-                    //     }}>
-                    //         {item.name}
-                    //     </Typography>
-                    // </Box>
+                {userData.user.hobbies.map((item,key) => {
+
+                    <Box component={"a"} href='#' sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "5px",
+                        color: theme.palette.primary.White,
+                        backgroundColor: theme.palette.primary.Green,
+                        padding: "5px 15px",
+                        borderRadius: "40px",
+                    }}>
+                        <DirectionsBike sx={{
+                            fontSize: "18px",
+                        }} />
+                        <Typography sx={{
+                            fontSize: "15px",
+                            lineHeight: "26px",
+                            color: theme.palette.primary.White,
+                            "&:hover": {
+                                textDecoration: "underline",
+                            }
+                        }}>
+                            {item}
+                        </Typography>
+                    </Box>
 
                 }
                 )}
@@ -106,9 +137,17 @@ console.log("item",item);
                     display: "flex",
                     gap: "20px",
                 }}>
-                    <TextField className='profile_input' sx={{
-                        width: "70%",
-                    }} label="Interests. For example, photography" variant="outlined" />
+                    <TextField className='profile_input'
+                        sx={{
+                            width: "70%",
+                        }}
+                        label="Interests. For example, photography"
+                        variant="outlined"
+                        name='interest'
+                        onChange={handleInputUpdate}
+                        value={formData.interest}
+
+                    />
                     <Button sx={{
                         color: theme.palette.primary.White,
                         fontSize: "14px",
@@ -121,7 +160,8 @@ console.log("item",item);
                         "&:hover": {
                             backgroundColor: theme.palette.primary.LogoColor,
                         }
-                    }} variant="contained" color="primary">
+                    }} variant="contained" color="primary"
+                        onClick={handleSubmit} >
                         Add
                     </Button>
                 </Box>
