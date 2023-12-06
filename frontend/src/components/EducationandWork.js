@@ -11,37 +11,43 @@ import { useState } from 'react';
 import axios from 'axios';
 import { UPDATE_PROFILE } from '../Url';
 import { useDispatch } from 'react-redux';
-import { userDetails } from '../redux/reducers/UserReducer';
+import { updateUserDetails } from '../redux/reducers/UserReducer';
+import CustomAlert from './CustomAlert';
 const EducationandWork = () => {
   const userData = useSelector((state) => state.UserReducer.value);
   // console.log("userData_education", userData);
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
+  const { showAlert, AlertComponent } = CustomAlert();
+
   const [formData, setFormData] = useState({
-    companyName: userData.user.company_city,
+    company_name: userData.user.company_name,
     designation: userData.user.designation,
-    workDescription: userData.user.work_description,
+    from: userData.user.from,
+    to: userData.user.to,
+    work_description: userData.user.work_description,
+    company_city: userData.user.company_city,
   });
   const [errors, setErrors] = useState({
-    companyName: "",
+    company_name: "",
     designation: "",
   });
   const handleInputUpdate = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    // Reset the corresponding validation error when the user types
+    setErrors({ ...errors, [name]: "" });
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("formData", formData);
+    // console.log("formData", formData);
     let isValid = true;
     const newErrors = { ...errors };
 
-    if (!formData.companyName) {
+    if (!formData.company_name) {
       isValid = false;
-      newErrors.companyName = "Company name is required";
+      newErrors.company_name = "Company name is required";
     }
     if (!formData.designation) {
       isValid = false;
@@ -58,23 +64,26 @@ const EducationandWork = () => {
         .then((response) => {
           console.log(response.data);
           if (response.data.status === true) {
-              setMessageType("success");
-              setMessage(response.data.message);
+            // setMessageType("success");
+            // setMessage(response.data.message);
 
-              userData.user.designation = response.data.data.designation;
-              // console.log("userData", userData);
-              dispatch(userDetails(userData));
+            // userData.user.designation = response.data.data.designation;
+            // console.log("userData", userData);
+            dispatch(updateUserDetails(response.data.data.user));
+            showAlert("success", response.data.message);
           } else {
-              setMessageType("error");
-              setMessage(response.data.message);
+            // setMessageType("error");
+            // setMessage(response.data.message);
+            showAlert("error", response.data.message);
           }
 
         })
         .catch((err) => {
           console.log(err.response);
           if (err.response) {
-            setMessageType("error");
-            setMessage(err.response.data.message);
+            // setMessageType("error");
+            // setMessage(err.response.data.message);
+            showAlert("error", err.response.data.message);
           }
         });
     }
@@ -117,7 +126,7 @@ const EducationandWork = () => {
             textAlign: "left",
           }}
           >
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate
+            {userData.user.work_description ? userData.user.work_description : "Add your work description"}
           </Typography>
         </Box>
         <Box
@@ -135,13 +144,14 @@ const EducationandWork = () => {
             }}
             className="profile_input"
             fullWidth
-            disabled
             placeholder="Company"
             variant="outlined"
-            name="companyName"
+            name="company_name"
             size="small"
-            value={formData.companyName}
+            value={formData.company_name}
             onChange={handleInputUpdate}
+            error={Boolean(errors.company_name)}
+            helperText={errors.company_name}
           />
           <TextField
             sx={{
@@ -156,6 +166,8 @@ const EducationandWork = () => {
             size="small"
             value={formData.designation}
             onChange={handleInputUpdate}
+            error={Boolean(errors.designation)}
+            helperText={errors.designation}
           />
           <Box sx={{
             display: "flex",
@@ -171,8 +183,10 @@ const EducationandWork = () => {
               fullWidth
               placeholder="From"
               variant="outlined"
-              name="form"
+              name="from"
               size="small"
+              value={formData.from}
+              onChange={handleInputUpdate}
             />
             <TextField
               sx={{
@@ -185,6 +199,8 @@ const EducationandWork = () => {
               variant="outlined"
               name="to"
               size="small"
+              value={formData.to}
+              onChange={handleInputUpdate}
 
             />
           </Box>
@@ -196,12 +212,14 @@ const EducationandWork = () => {
             fullWidth
             placeholder="City/Town"
             variant="outlined"
-            name="to"
+            name="company_city"
             size="small"
+            value={formData.company_city}
+            onChange={handleInputUpdate}
 
           />
           {/* <TextareaAutosize minRows={3} aria-label="empty textarea" placeholder="Description" /> */}
-          <TextareaAutosize minRows={3} aria-label="empty textarea" placeholder="Work Description" value={formData.workDescription} name='workDescription' onChange={handleInputUpdate} />
+          <TextareaAutosize minRows={3} aria-label="empty textarea" placeholder="Work Description" value={formData.work_description} name='work_description' onChange={handleInputUpdate} />
           <Button
             sx={{
               color: theme.palette.primary.White,
@@ -224,6 +242,7 @@ const EducationandWork = () => {
           >
             Save Changes
           </Button>
+          <AlertComponent />
         </Box>
       </Box>
     </>

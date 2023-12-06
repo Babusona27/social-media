@@ -13,6 +13,7 @@ import CustomAlert from "./CustomAlert";
 const BasicInformationDetails = () => {
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.UserReducer.value);
+    // console.log("userData", userData);
     const { showAlert, AlertComponent } = CustomAlert();
 
 
@@ -20,10 +21,10 @@ const BasicInformationDetails = () => {
         name: userData.user.name,
         email: userData.user.email,
         gender: userData.user.gender,
-        dob: "",
+        dob: userData.user.dob ? userData.user.dob : "",
         password: "",
         confirmPassword: "",
-        workDescription: userData.user.work_description?userData.user.work_description:"",
+        work_description: userData.user.work_description ? userData.user.work_description : "",
 
     });
 
@@ -37,6 +38,14 @@ const BasicInformationDetails = () => {
         confirmPassword: ""
     });
 
+    function formatDate(dateString) {
+        let dob = new Date(dateString);
+        if (isNaN(dob)) { // dob is not a valid date
+            return '';
+        }
+        let formattedDob = dob.toISOString().split('T')[0];
+        return formattedDob;
+    }
 
     // Function to handle form input changes
     const handleInputUpdate = (e) => {
@@ -56,7 +65,10 @@ const BasicInformationDetails = () => {
             newErrors.name = "Name is required";
         }
 
-
+        if (!formData.dob.trim()) {
+            isValid = false;
+            newErrors.dob = "Date of birth is required";
+        }
 
         if (formData.password !== "" && formData.confirmPassword !== "" && formData.password !== formData.confirmPassword) {
             isValid = false;
@@ -74,7 +86,7 @@ const BasicInformationDetails = () => {
         // remove email from formDataCopy
         delete formDataCopy.email;
         delete formDataCopy.confirmPassword;
-     
+
         console.log("formDataCopy", formDataCopy);
 
         if (isValid) {
@@ -85,18 +97,19 @@ const BasicInformationDetails = () => {
                         Authorization: `Bearer ${userData.token}`,
                     }
                 })
-                .then((response) => {             
-                 if(response.data.status === true){                   
-                    dispatch(updateUserDetails(response.data.data.user));
-                   showAlert("success", response.data.message);
-                 }else{
-                    showAlert("error", response.data.message);
-                 }
+                .then((response) => {
+                    if (response.data.status === true) {
+                        // console.log(response.data.data.user);
+                        dispatch(updateUserDetails(response.data.data.user));
+                        showAlert("success", response.data.message);
+                    } else {
+                        showAlert("error", response.data.message);
+                    }
                 })
                 .catch((err) => {
                     console.log(err.response);
                     if (err.response) {
-                      showAlert("error", err.response.data.message);
+                        showAlert("error", err.response.data.message);
                     }
                 });
 
@@ -137,7 +150,7 @@ const BasicInformationDetails = () => {
                     textAlign: "left",
                 }}
                 >
-                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate
+                    {userData.user.work_description ? userData.user.work_description : "Add your work description"}
                 </Typography>
             </Box>
 
@@ -168,8 +181,10 @@ const BasicInformationDetails = () => {
                             name="name"
                             size="small"
                             value={formData.name}
-                            error={Boolean(errors.name)}
                             onChange={handleInputUpdate}
+                            error={Boolean(errors.name)}
+                            helperText={errors.name}
+
                         />
 
                     </Box>
@@ -188,10 +203,30 @@ const BasicInformationDetails = () => {
                         size="small"
                         value={formData.email}
                         onChange={handleInputUpdate}
+                    />
+                    <TextField
+                        sx={{
+                            padding: "0",
+                            color: theme.palette.primary.White,
+                        }}
+                        className="form_imput date_picker"
+                        fullWidth
+                        type="date"
+                        placeholder="Enter date of birth"
+                        variant="outlined"
+                        defaultValue={formData.dob}
+                        name="dob"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        value={formatDate(formData.dob)}
+                        //   value={formatDate(formData.dob)}
+                        onChange={handleInputUpdate}
+                        error={Boolean(errors.dob)}
+                        helperText={errors.dob}
 
                     />
 
-                    
 
                     <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
@@ -231,7 +266,7 @@ const BasicInformationDetails = () => {
                             value={formData.password}
                             onChange={handleInputUpdate}
                             error={Boolean(errors.password)}
-                        // helperText={errors.password}
+                            helperText={errors.password}
                         />
                         <TextField
                             sx={{
@@ -247,10 +282,10 @@ const BasicInformationDetails = () => {
                             onChange={handleInputUpdate}
 
                             error={Boolean(errors.confirmPassword)}
-                        // helperText={errors.password}
+                            helperText={errors.confirmPassword}
                         />
                     </Box>
-                    <TextareaAutosize minRows={3} aria-label="empty textarea" placeholder="Work Description" value={formData.workDescription} onChange={handleInputUpdate} name='workDescription' />
+                    <TextareaAutosize minRows={3} aria-label="empty textarea" placeholder="Work Description" value={formData.work_description} onChange={handleInputUpdate} name='work_description' />
                     <Button
                         sx={{
                             color: theme.palette.primary.White,

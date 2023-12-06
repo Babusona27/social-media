@@ -182,7 +182,8 @@ exports.updateProfile = async (req, res) => {
         }
         let userResult = await user.save();
         if (userResult) {
-            return res.status(200).json(helper.response(200, true, "User Profile Update Successfully!", { user: userResult }));
+            let user = await userSchema.findById(req.user.userId).populate('hobbies');
+            return res.status(200).json(helper.response(200, true, "User Profile Update Successfully!", { user: user }));
         } else {
             return res.status(200).json(helper.response(200, false, "User Profile Update Failed!"));
         }

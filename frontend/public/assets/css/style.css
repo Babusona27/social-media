@@ -109,6 +109,10 @@ opacity: 1;
     padding: 10px 14px !important;
     color: #fff;
 }
+.form_imput.date_picker .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input, .form_imput.date_picker .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+    padding: 10px 14px !important;
+    color: #a2a2a2;
+}
 .form_imputNew .css-dbtxhb-MuiInputBase-root-MuiOutlinedInput-root {
     padding-right: 0;
     background: #ffffff2b;
