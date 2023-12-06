@@ -73,8 +73,8 @@ const BasicInformationDetails = () => {
         });
         // remove email from formDataCopy
         delete formDataCopy.email;
-
-
+        delete formDataCopy.confirmPassword;
+     
         console.log("formDataCopy", formDataCopy);
 
         if (isValid) {
