@@ -59,6 +59,9 @@ const userSchema = new mongoose.Schema({
     company_city: {
         type: String,
     },
+    image: {
+        type: String,
+    },
     hobbies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Hobbies' }],
     follow_me: {
         type: Boolean,
