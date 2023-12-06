@@ -65,7 +65,8 @@ exports.login = async (req, res) => {
         const token = jwt_token.sign({ userId: user._id }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRE,
         });
-        return res.status(200).json(helper.response(200, true, "Login Successfully!", { user: user, token: token }));
+        let userResult = await userSchema.findById(user._id).populate('hobbies');
+        return res.status(200).json(helper.response(200, true, "Login Successfully!", { user: userResult, token: token }));
     } catch (error) {
         return res.status(500).json(helper.response(500, false, "something went wrong!"));
     }
