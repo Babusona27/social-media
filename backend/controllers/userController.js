@@ -181,6 +181,9 @@ exports.updateProfile = async (req, res) => {
         if (payload.enable_tagging !== undefined) {
             user.enable_tagging = payload.enable_tagging;
         }
+        if (payload.image) {
+            user.image = payload.image;
+        }
         let userResult = await user.save();
         if (userResult) {
             let user = await userSchema.findById(req.user.userId).populate('hobbies');
