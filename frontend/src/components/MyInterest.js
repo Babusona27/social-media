@@ -26,11 +26,38 @@ const MyInterest = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("formData==>", formData);
+        console.log("formData==>",  formData);
 
         let hobbies = [];
+        //push userData.user.hobbies into hobbies array
+        userData.user.hobbies.map((item,key) => {
+            hobbies.push(item.name);
+        })
         hobbies.push(formData.interest);
 
+
+        axios
+            .put(UPDATE_PROFILE, { "hobbies":hobbies }, {
+                headers: {
+                    Authorization: `Bearer ${userData.token}`,
+                },
+            })
+            .then((res) => {
+                console.log("res", res);
+                dispatch(updateUserDetails(res.data.data.user));
+            })
+            .catch((err) => {
+                console.log("err", err);
+            });
+    }
+    const removeIntarest = (index) => {
+        console.log("index", index);
+        let hobbies = [];
+        //push userData.user.hobbies into hobbies array
+        userData.user.hobbies.map((item,key) => {
+            hobbies.push(item.name);
+        })
+        hobbies.splice(index, 1);
 
         axios
             .put(UPDATE_PROFILE, { "hobbies":hobbies }, {
@@ -91,33 +118,37 @@ const MyInterest = () => {
                 gap: "15px",
             }}>
                 {userData.user.hobbies.map((item,key) => {
-
-                    <Box component={"a"} href='#' sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "5px",
-                        color: theme.palette.primary.White,
-                        backgroundColor: theme.palette.primary.Green,
-                        padding: "5px 15px",
-                        borderRadius: "40px",
-                    }}>
-                        <DirectionsBike sx={{
-                            fontSize: "18px",
-                        }} />
-                        <Typography sx={{
-                            fontSize: "15px",
-                            lineHeight: "26px",
+                    return (
+                        <Box component={"button"}  sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "5px",
                             color: theme.palette.primary.White,
-                            "&:hover": {
-                                textDecoration: "underline",
-                            }
+                            backgroundColor: theme.palette.primary.Green,
+                            padding: "5px 15px",
+                            borderRadius: "40px",
                         }}>
-                            {item}
-                        </Typography>
-                    </Box>
-
+                            <DirectionsBike sx={{
+                                fontSize: "18px",
+                            }}
+                            onClick={() => {
+                                removeIntarest(key)
+                            }}
+                            />
+                            <Typography sx={{
+                                fontSize: "15px",
+                                lineHeight: "26px",
+                                color: theme.palette.primary.White,
+                                "&:hover": {
+                                    textDecoration: "underline",
+                                }
+                            }}>
+                                {item.name}
+                            </Typography>
+                        </Box>
+                    )})
+                    
                 }
-                )}
 
 
             </Box >
@@ -141,7 +172,7 @@ const MyInterest = () => {
                         sx={{
                             width: "70%",
                         }}
-                        label="Interests. For example, photography"
+                        placeholder="Interests. For example, photography"
                         variant="outlined"
                         name='interest'
                         onChange={handleInputUpdate}

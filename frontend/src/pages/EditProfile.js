@@ -215,13 +215,13 @@ const EditProfile = () => {
              {/* <BasicInformationDetails /> */}
             {selectedTab == "Basic Information" && <BasicInformationDetails />}
             {selectedTab == "Account Settings" && <AccountSettings />}
-            {selectedTab === "Change Password" && <ChangePassword />}
+            {/* {selectedTab === "Change Password" && <ChangePassword />} */}
             {selectedTab === "Education and Work" && <EducationandWork />}
             {selectedTab === "My Interests" && <MyInterest />}
            
 
           </Box>
-          <Box flex={"0.4"} padding={"0 10px"}>
+          {/* <Box flex={"0.4"} padding={"0 10px"}>
 
             <Typography component={"h4"} sx={{
               fontSize: "22px",
@@ -234,7 +234,7 @@ const EditProfile = () => {
             <ProfileRightBar />
             <ProfileRightBar />
             <ProfileRightBar />
-          </Box>
+          </Box> */}
         </Box>
       </Container>
       <Footer />

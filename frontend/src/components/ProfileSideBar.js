@@ -177,7 +177,7 @@ const dispatch = useDispatch();
                     }}
                     >Account Settings</Typography>
                 </Box>
-                <Box sx={{
+                {/* <Box sx={{
                     display: "flex",
                     alignItems: "center",
                     padding: {
@@ -213,7 +213,7 @@ const dispatch = useDispatch();
                         dispatch(profileTab("Change Password"));
                     }}
                     >Change Password</Typography>
-                </Box>
+                </Box> */}
 
             </List>
         </Box>
