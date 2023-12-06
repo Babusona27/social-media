@@ -11,10 +11,14 @@ import EducationandWork from '../components/EducationandWork'
 import BasicInformationDetails from '../components/BasicInformationDetails'
 import MyInterest from '../components/MyInterest'
 import { useSelector } from 'react-redux'
+import { IMAGE_BASE_URL } from '../Url'
+
 
 const EditProfile = () => {
   const selectedTab = useSelector((state) => state.ProfileTabReducer.value);
   // console.log("selectedTab", selectedTab);
+  const userData = useSelector((state) => state.UserReducer.value);
+  console.log("userData", userData);
   return (
     <>
       <HeaderNew />
@@ -93,10 +97,16 @@ const EditProfile = () => {
                 lg: "0",
               },
             }}
+              // src={
+              //   process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+              // }
+              // src={
+              //   process.env.PUBLIC_URL + (userData && userData.user.image)
+              // }
               src={
-                process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                userData.user.image ? IMAGE_BASE_URL + userData.user.image : process.env.PUBLIC_URL + "/assets/images/profileImg.jpg" 
               }
-            />
+            ></Box>
             <Box sx={{
               padding: {
                 xs: "60px 10px 20px 10px",

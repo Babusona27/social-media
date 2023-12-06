@@ -64,7 +64,7 @@ const IOSSwitch = styled((props) => (
 const AccountSettings = () => {
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.UserReducer.value);
-   // console.log("userData_accountSetting", userData);
+   console.log("userData_accountSetting", userData);
     const [selectFollowme, setSelectedFollowme] = useState();
     // const [selectFollowme, setSelectedFollowme] = useState(userData);   
 

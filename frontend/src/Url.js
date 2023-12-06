@@ -1,4 +1,7 @@
 export const API_BASE_URL = "http://localhost:4000/social/api/v1/";
+export const IMAGE_BASE_URL = 'http://localhost:4000/social-media/backend/';
+
+
 export const LOGIN = API_BASE_URL + "login";
 export const REGISTER = API_BASE_URL + "register";
 export const FRIEND_LIST = API_BASE_URL + "friend-list";
@@ -15,4 +18,6 @@ export const UPDATE_PROFILE = API_BASE_URL + "update-profile";
 export const CREATE_COMMENT = API_BASE_URL + "comment-on-feed";
 export const CREATE_REPLY_COMMENT = API_BASE_URL + "reply-on-comment";
 export const REACT_ON_FEED = API_BASE_URL + "react-on-feed";
+
+export const POST_FILE_UPLOAD = API_BASE_URL + "file-upload";
 
