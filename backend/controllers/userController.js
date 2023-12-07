@@ -299,6 +299,7 @@ exports.friendList = async (req, res) => {
                     lastMessage = await messageSchema.findOne({ _id: { $in: conversation.messages } })
                         .sort({ createdAt: -1 });
                 }
+                const friendDetails = await userSchema.findById(friendObject._id);
 
                 return {
                     _id: friend._id,
@@ -306,9 +307,10 @@ exports.friendList = async (req, res) => {
                     created_at: friend.created_at,
                     chat_id: friend.chat_id,
                     lastMessage: lastMessage,
-                    // Include other properties if needed
-                    // ...
-                    ...friendObject.toObject(), // Convert Mongoose document to plain JavaScript object
+                    image: friendDetails ? friendDetails.image || '' : '',
+
+
+                    ...friendObject.toObject(),
                 };
             }
         }));
