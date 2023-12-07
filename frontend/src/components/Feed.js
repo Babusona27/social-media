@@ -7,6 +7,7 @@ import { CREATE_COMMENT, CREATE_REPLY_COMMENT, REACT_ON_FEED } from '../Url'
 import { addComment, addReaction } from '../redux/reducers/FeedListReducer'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
+import { IMAGE_BASE_URL } from '../Url'
 const Feed = () => {
     const dispatch = useDispatch();
     const feedData = useSelector((state) => state.FeedListReducer.value);
@@ -92,6 +93,7 @@ const Feed = () => {
     return (
         <Box>
             {Array.isArray(feedData) && feedData.map((item, key) => (
+                // console.log("item", item)
                 <Box sx={{
                     marginBottom: "20px",
 
@@ -103,14 +105,20 @@ const Feed = () => {
                         borderRadius: "10px 10px 0 0",
 
                     }}>
-                        <CardMedia
-                            component="img"
-                            height="194"
-                            image={
-                                process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
-                            }
-                            alt="Paella dish"
-                        />
+                        {item.image &&
+                            <CardMedia
+                                component="img"
+                                height="194"
+                                // image={
+                                //     process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                // }
+                                image={
+                                    item.image ? IMAGE_BASE_URL + item.image : ""
+                                }
+                            // alt="Paella dish"
+                            />
+                        }
+
 
                         <Box sx={{
                             display: "flex",
@@ -122,7 +130,7 @@ const Feed = () => {
                                     <Avatar
                                         alt="Remy Sharp"
                                         src={
-                                            process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                            item.createdBy.image ? IMAGE_BASE_URL + item.createdBy.image : process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
                                         }
                                         sx={{
                                             float: "left",
@@ -188,7 +196,7 @@ const Feed = () => {
                                         justifyContent: "space-between",
                                         alignItems: "center",
                                     }}>
-                                        <Box component={"button"}  sx={{
+                                        <Box component={"button"} sx={{
                                             display: "flex",
                                             alignItems: "center",
                                             color: theme.palette.primary.Green,
@@ -206,7 +214,7 @@ const Feed = () => {
                                                 fontWeight: "400",
                                             }} >{item.reaction.filter(r => r.reactionType === 'like').length}</Typography>
                                         </Box>
-                                        <Box component={"button"}  sx={{
+                                        <Box component={"button"} sx={{
                                             display: "flex",
                                             alignItems: "center",
                                             color: theme.palette.secondary.main,
@@ -255,9 +263,12 @@ const Feed = () => {
                                                     margin: "20px 0",
                                                 }}>
                                                     <Avatar
-                                                        alt="Remy Sharp"
+                                                        // alt="Remy Sharp"
+                                                        // src={
+                                                        //     process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                                        // }
                                                         src={
-                                                            process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                                            value.userId.image ? IMAGE_BASE_URL + value.userId.image : process.env.PUBLIC_URL + "/assets/images/man-avatar.png"
                                                         }
                                                         sx={{
                                                             marginRight: "10px",
@@ -315,7 +326,7 @@ const Feed = () => {
                                                                 fontSize: "13px",
                                                                 lineHeight: "26px",
                                                                 color: theme.palette.primary.ParaColor,
-                                                            }} className='reply_time' component={"p"}>{ getFeedPublishTime(value.createdAt)}</Typography>
+                                                            }} className='reply_time' component={"p"}>{getFeedPublishTime(value.createdAt)}</Typography>
                                                             <Typography component={"a"} sx={{
                                                                 fontFamily: theme.palette.primary.MainFont1,
                                                                 fontSize: "14px",
@@ -340,6 +351,7 @@ const Feed = () => {
                                                 </Box>
                                                 {/* reply box  */}
                                                 {value.replyComment != undefined && value.replyComment.map((replyVal, key2) => (
+                                                    // console.log("replyVal", replyVal)
                                                     <Box className="reply" sx={{
                                                         display: "flex",
                                                         margin: "20px 30px",
@@ -356,9 +368,12 @@ const Feed = () => {
                                                         },
                                                     }} key={key2}>
                                                         <Avatar
-                                                            alt="Remy Sharp"
+                                                            // alt="Remy Sharp"
+                                                            // src={
+                                                            //     process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                                            // }
                                                             src={
-                                                                process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                                                replyVal.userId.image ? IMAGE_BASE_URL + replyVal.userId.image : process.env.PUBLIC_URL + "/assets/images/man-avatar.png"
                                                             }
                                                             sx={{
                                                                 marginRight: "10px",
@@ -509,9 +524,9 @@ const Feed = () => {
                         borderRadius: "0 0 10px 10px",
                     }}>
                         <Avatar
-                            alt="Remy Sharp"
+                            // alt="Remy Sharp"
                             src={
-                                process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                userData.user.image ? IMAGE_BASE_URL + userData.user.image : process.env.PUBLIC_URL + "/assets/images/man-avatar.png"
                             }
                             sx={{
                                 marginRight: "10px",

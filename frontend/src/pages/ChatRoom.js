@@ -52,7 +52,7 @@ const ChatRoom = () => {
           },
         })
         .then((res) => {
-          console.log("message list", res.data.data);
+         // console.log("message list", res.data.data);
           if (Array.isArray(res.data.data)) {
             setMessageList(res.data.data);
           } else {
@@ -175,7 +175,7 @@ const ChatRoom = () => {
               >
                 {friendList &&
                   friendList.map((item, index) => (
-                    console.log('item', item.lastMessage),
+                    // console.log('item', item),
                     <Button
                       key={index}
                       sx={{

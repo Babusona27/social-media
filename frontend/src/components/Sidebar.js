@@ -10,6 +10,7 @@ import { FRIEND_LIST } from "../Url";
 import { useDispatch, useSelector } from "react-redux";
 import { friendList } from "../redux/reducers/FriendListReducer";
 import { Link } from 'react-router-dom';
+import { IMAGE_BASE_URL } from '../Url';
 import io from "socket.io-client";
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const Sidebar = () => {
         ))
       );
 
-      console.log('online users', users);
+    //  console.log('online users', users);
       setOnlineUsers(users);
     });
 
@@ -47,6 +48,7 @@ const Sidebar = () => {
           },
         })
         .then((res) => {
+         // console.log("getUserList==>",res.data);
           dispatch(friendList(res.data.data));
           setFriend(res.data.data);
 
@@ -130,8 +132,11 @@ const Sidebar = () => {
           }}>
             <Avatar
               alt="Remy Sharp"
+              // src={
+              //   process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+              // }
               src={
-                process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                userData.user.image ? IMAGE_BASE_URL + userData.user.image : process.env.PUBLIC_URL + "/assets/images/man-avatar.png" 
               }
               sx={{
                 border: "7px solid #fff",

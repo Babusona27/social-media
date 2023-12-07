@@ -5,7 +5,7 @@ import axios from "axios";
 import { SEND_FRIEND_REQUEST, USER_LIST } from "../Url";
 import { useSelector } from "react-redux";
 import CustomAlert from "./CustomAlert";
-
+import { IMAGE_BASE_URL } from "../Url";
 const RightBar = () => {
   const userData = useSelector((state) => state.UserReducer.value);
   const [userList, setUserList] = useState([]);
@@ -73,24 +73,33 @@ const RightBar = () => {
       </Typography>
 
       {userList.map((item, index) => (
+        // console.log("item", item)
         <Box
           sx={{
             display: "flex",
           }}
           key={index}
         >
-          <Avatar
-            alt="Remy Sharp"
-            src="/assets/images/profileImg.jpg"
-            sx={{
-              float: "left",
-              marginRight: "15px",
-              position: "relative",
-              height: "40px",
-              width: "40px",
-              borderRadius: "50%",
-            }}
-          />
+          {/* {item.image && */}
+            <Avatar
+              // alt="Remy Sharp"
+              // src="/assets/images/profileImg.jpg"
+              src={
+                item.image
+                  ?  IMAGE_BASE_URL + item.image
+                  : process.env.PUBLIC_URL + "/assets/images/man-avatar.png"
+              }
+              sx={{
+                float: "left",
+                marginRight: "15px",
+                position: "relative",
+                height: "40px",
+                width: "40px",
+                borderRadius: "50%",
+              }}
+            />
+          {/* } */}
+
 
           <Box
             sx={{
