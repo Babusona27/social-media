@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 
-
+app.use('/social-media/backend/public', express.static('public'));
 mongoose.connect(process.env.MONGO_URI).then(() => {
   console.log('Connected to database!');
 }).catch(() => {
