@@ -6,6 +6,8 @@ import axios, { Axios } from "axios";
 import { FRIEND_DELETE } from "../Url";
 import CustomAlert from "./CustomAlert";
 import { removeFriend } from "../redux/reducers/FriendListReducer";
+import { IMAGE_BASE_URL } from "../Url";
+
 const FriendListCard = () => {
     const dispatch = useDispatch();
     const friendListArray = useSelector((state) => state.FriendListReducer.value);
@@ -33,6 +35,7 @@ const FriendListCard = () => {
         <>
             {friendListArray && friendListArray.map((item, key) => (
 
+                // console.log("item", item)
                 <Box sx={{
                     width: {
                         xs: "100%",
@@ -60,8 +63,13 @@ const FriendListCard = () => {
                             <Box>
                                 <Avatar
                                     alt="Remy Sharp"
+                                    // src={
+                                    //     process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                    // }
                                     src={
-                                        process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                                        item.image
+                                            ? IMAGE_BASE_URL + item.image
+                                            : process.env.PUBLIC_URL + "/assets/images/man-avatar.png"
                                     }
                                     sx={{
                                         border: "7px solid #fff",
@@ -120,13 +128,13 @@ const FriendListCard = () => {
                                 </Box>
 
                             </Box>
-                            <Typography sx={{
+                            {/* <Typography sx={{
                                 fontSize: "13px",
                                 fontWeight: "500",
                                 color: theme.palette.primary.ParaColor,
                             }}>
                                 Student at Harvard
-                            </Typography>
+                            </Typography> */}
 
                         </Box>
                     </Box>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Avatar,
   Box,
@@ -18,7 +18,7 @@ import RightBar from "../components/RightBar";
 import Footer from "../components/Footer";
 import DoneIcon from "@mui/icons-material/Done";
 import { useSelector } from "react-redux";
-import { SEND_MESSAGE, MESSAGE_LIST } from "../Url";
+import { SEND_MESSAGE, MESSAGE_LIST, IMAGE_BASE_URL } from "../Url";
 import axios from "axios";
 
 import io from "socket.io-client";
@@ -40,7 +40,7 @@ const ChatRoom = () => {
   const [room, setRoom] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   useEffect(() => {
-    
+
     if (selectedFriend) {
       axios
         .get(MESSAGE_LIST, {
@@ -52,11 +52,12 @@ const ChatRoom = () => {
           },
         })
         .then((res) => {
-          console.log("message list", res.data.data);
+          // console.log("message list", res.data.data);
           if (Array.isArray(res.data.data)) {
             setMessageList(res.data.data);
           } else {
             console.error('res.data.data is not an array:', res.data.data);
+            setMessageList([]);
           }
         })
         .catch((err) => {
@@ -81,7 +82,7 @@ const ChatRoom = () => {
       socket.disconnect();
     };
 
-  }, [selectedFriend, userData,messageList]);
+  }, [selectedFriend, userData, messageList]);
 
   // Emit typing event when user starts typing
   const handleKeyDown = () => {
@@ -175,13 +176,13 @@ const ChatRoom = () => {
               >
                 {friendList &&
                   friendList.map((item, index) => (
-                    console.log('item', item.lastMessage),
+                    // console.log('item', item),
                     <Button
                       key={index}
                       sx={{
                         display: "flex",
                         width: "100%",
-                        justifyContent:"space-between",
+                        justifyContent: "space-between",
                         textTransform: "initial",
                         padding: "10px 10px",
                         borderBottom: `2px solid ${theme.palette.primary.Gray}`,
@@ -204,9 +205,11 @@ const ChatRoom = () => {
                         }}
                       >
                         <Avatar
-                          alt="Remy Sharp"
+                          // alt="Remy Sharp"
                           src={
-                            process.env.PUBLIC_URL + "/assets/images/pf3.jpg"
+                            item.image
+                              ? IMAGE_BASE_URL + item.image
+                              : process.env.PUBLIC_URL + "/assets/images/man-avatar.png"
                           }
                         />
                         <Box
@@ -306,7 +309,7 @@ const ChatRoom = () => {
                     paddingTop: "20px",
                     display: "grid",
                     gap: "10px",
-          
+
 
                   }}>
                     {messageList &&
@@ -320,8 +323,8 @@ const ChatRoom = () => {
                           alignItems: "self-start",
                           maxWidth: "300px",
                           marginLeft: message.senderId === userData.user._id ? "auto" : "0px",
-                          boxShadow:"none"
-                        }} className="chatBox"  key={index}>
+                          boxShadow: "none"
+                        }} className="chatBox" key={index}>
                           <Avatar sx={{
                             height: "25px",
                             width: "25px",
@@ -334,9 +337,9 @@ const ChatRoom = () => {
                               padding: "5px 15px",
                               borderRadius: "10px",
                               position: "relative",
-                              marginTop: "5px", 
+                              marginTop: "5px",
                               fontSize: "14px",
-                             
+
                               "&:after": {
                                 content: "''",
                                 position: "absolute",
@@ -366,7 +369,7 @@ const ChatRoom = () => {
 
                         </Paper>
                       ))}
-                      <Box ref={messagesEndRef} />
+                    <Box ref={messagesEndRef} />
                     {/* {isTyping && <p className="typing_text">The other user is typing...</p>} */}
                     {isTyping && <Typography component={"P"} className="typing_text">typing...</Typography>}
                   </Box>

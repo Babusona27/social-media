@@ -5,6 +5,7 @@ import axios from "axios";
 import { FRIEND_REQUEST_LIST, ACCEPT_FRIEND_REQUEST } from "../Url";
 import { useSelector } from "react-redux";
 import CustomAlert from "./CustomAlert";
+import { IMAGE_BASE_URL } from "../Url";
 
 const AddFriend = () => {
   const { showAlert, AlertComponent } = CustomAlert();
@@ -54,6 +55,7 @@ const AddFriend = () => {
   return (
     <>
       {userList.map((item, key) => (
+
         <Box
           sx={{
             display: "flex",
@@ -72,8 +74,11 @@ const AddFriend = () => {
         >
           <Box flex={"1"} padding={"0 10px"}>
             <Avatar
-              alt="Remy Sharp"
-              src={process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"}
+              // alt="Remy Sharp"
+              // src={process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"}
+              src={item.user_id_2.image
+                ? IMAGE_BASE_URL + item.user_id_2.image
+                : process.env.PUBLIC_URL + "/assets/images/man-avatar.png"}
               sx={{
                 marginRight: "5px",
                 height: "80px",
@@ -104,7 +109,7 @@ const AddFriend = () => {
               variant="body2"
               color="text.secondary"
             >
-              {item.user_id_1.name}
+              {item.user_id_2.name}
             </Typography>
             <Typography
               sx={{
@@ -119,7 +124,7 @@ const AddFriend = () => {
                 },
               }}
             >
-              N/A
+              {item.user_id_2.name}
             </Typography>
 
           </Box>

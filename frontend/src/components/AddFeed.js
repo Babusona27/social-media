@@ -3,34 +3,59 @@ import { Avatar, Box, Typography, Modal, Button, TextField } from '@mui/material
 import theme from '../Theme';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import { FEED_POST } from '../Url';
+import { FEED_POST, POST_FILE_UPLOAD } from '../Url';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { EditNote, Map, Photo, Videocam, Close } from '@mui/icons-material';
 import { addFeed } from '../redux/reducers/FeedListReducer';
+import { IMAGE_BASE_URL } from '../Url';
+import { useNavigate } from 'react-router-dom';
 const AddFeed = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const userData = useSelector((state) => state.UserReducer.value);
     const [open, setOpen] = useState(false);
+    const [image, setImage] = useState("");
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    console.log(userData);
+    // console.log(userData);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
-        feedType: "text",
+        // feedType: "text",
+        image: "",
     });
 
     const _createFeed = () => {
+        // add image to form data
+        formData.image = image;
+
         axios.post(FEED_POST, formData, {
             headers: {
                 Authorization: `Bearer ${userData.token}`
             }
         }).then((res) => {
             if (res.data.status) {
+                // console.log("res", res.data.data.feedList);
                 dispatch(addFeed(res.data.data.feedList));
+                navigate('/');
             }
             handleClose();
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+    const _feedImageUpload = (file) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        axios.post(POST_FILE_UPLOAD, formData, {
+            headers: {
+                Authorization: `Bearer ${userData.token}`,
+            },
+        }).then((res) => {
+            if (res.data.status) {
+                setImage(res.data.data.fileUrl);
+            }
         }).catch((err) => {
             console.log(err);
         })
@@ -65,7 +90,7 @@ const AddFeed = () => {
                     <Avatar
                         alt="Remy Sharp"
                         src={
-                            process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
+                            userData.user.image ? IMAGE_BASE_URL + userData.user.image : process.env.PUBLIC_URL + "/assets/images/man-avatar.png"
                         }
                         sx={{
                             border: "7px solid #fff",
@@ -186,8 +211,11 @@ const AddFeed = () => {
                                     variant="outlined"
                                     name="Title"
                                     type="file"
-                                    // value={formData.title}
-                                    // onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                                    onChange={(e) =>
+                                        _feedImageUpload(e.target.files[0])
+                                    }
+                                // value={formData.title}
+                                // onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                                 />
                                 <Box
                                     sx={{

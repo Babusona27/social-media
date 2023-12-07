@@ -97,14 +97,8 @@ const EditProfile = () => {
                 lg: "0",
               },
             }}
-              // src={
-              //   process.env.PUBLIC_URL + "/assets/images/profileImg.jpg"
-              // }
-              // src={
-              //   process.env.PUBLIC_URL + (userData && userData.user.image)
-              // }
               src={
-                userData.user.image ? IMAGE_BASE_URL + userData.user.image : process.env.PUBLIC_URL + "/assets/images/profileImg.jpg" 
+                userData.user.image ? IMAGE_BASE_URL + userData.user.image : process.env.PUBLIC_URL + "/assets/images/man-avatar.png" 
               }
             ></Box>
             <Box sx={{
