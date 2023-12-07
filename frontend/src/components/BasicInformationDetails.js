@@ -5,7 +5,7 @@ import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import theme from '../Theme'
 import styled from '@emotion/styled'
 import { useSelector, useDispatch } from 'react-redux';
-import { UPDATE_PROFILE } from '../Url';
+import { UPDATE_PROFILE, POST_FILE_UPLOAD } from '../Url';
 import axios from 'axios';
 import { updateUserDetails } from '../redux/reducers/UserReducer';
 import CustomAlert from "./CustomAlert";
@@ -15,7 +15,7 @@ const BasicInformationDetails = () => {
     const userData = useSelector((state) => state.UserReducer.value);
     // console.log("userData", userData);
     const { showAlert, AlertComponent } = CustomAlert();
-
+    const [image, setImage] = useState("");
 
     const [formData, setFormData] = useState({
         name: userData.user.name,
@@ -25,6 +25,7 @@ const BasicInformationDetails = () => {
         password: "",
         confirmPassword: "",
         work_description: userData.user.work_description ? userData.user.work_description : "",
+        image: ""
 
     });
 
@@ -47,6 +48,29 @@ const BasicInformationDetails = () => {
         return formattedDob;
     }
 
+    const _imageUpload = (file) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        // console.log(`file name: ${file.name}, file type: ${file.type}, file size: ${file.size}`);
+        
+        fetch(POST_FILE_UPLOAD, {
+            method: "post",
+            body: formData,
+            headers: {
+                Authorization: `Bearer ${userData.token}`,
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("data", data.data.fileUrl);
+                // dispatch(updateUserDetails(data));
+                setImage(data.data.fileUrl);
+            })
+            .catch((err) => {
+                console.log("err", err);
+            });
+    };
+
     // Function to handle form input changes
     const handleInputUpdate = (e) => {
         const { name, value } = e.target;
@@ -58,6 +82,7 @@ const BasicInformationDetails = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("formData", formData);
+
         let isValid = true;
         const newErrors = { ...errors };
         if (!formData.name.trim()) {
@@ -86,6 +111,10 @@ const BasicInformationDetails = () => {
         // remove email from formDataCopy
         delete formDataCopy.email;
         delete formDataCopy.confirmPassword;
+
+        // add image to formDataCopy
+        formDataCopy.image = image;
+
 
         console.log("formDataCopy", formDataCopy);
 
@@ -286,6 +315,23 @@ const BasicInformationDetails = () => {
                         />
                     </Box>
                     <TextareaAutosize minRows={3} aria-label="empty textarea" placeholder="Work Description" value={formData.work_description} onChange={handleInputUpdate} name='work_description' />
+                    <TextField
+                        sx={{
+                            padding: "0",
+                        }}
+                        className="profile_input"
+                        fullWidth
+                        placeholder="Enter your location"
+                        variant="outlined"
+                        size="small"
+                        type='file'
+                        name="file"
+                        onChange={(e) => {
+                            // setImage(e.target.files[0]);
+                            _imageUpload(e.target.files[0]);
+                        }}
+                    />
+
                     <Button
                         sx={{
                             color: theme.palette.primary.White,

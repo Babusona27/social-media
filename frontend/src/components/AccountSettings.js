@@ -1,6 +1,6 @@
 import { Tune } from '@mui/icons-material'
 import { Box, Typography } from '@mui/material'
-import React,{useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import theme from '../Theme'
 import styled from '@emotion/styled'
 import Switch from '@mui/material/Switch';
@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { UPDATE_PROFILE } from '../Url';
 import { useDispatch } from 'react-redux';
-import { userDetails } from '../redux/reducers/UserReducer';
+import { updateUserDetails } from '../redux/reducers/UserReducer';
 
 const IOSSwitch = styled((props) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -62,37 +62,70 @@ const IOSSwitch = styled((props) => (
 // console.log("userData_accountSetting", userData);
 
 const AccountSettings = () => {
+    const dispatch = useDispatch();
     const userData = useSelector((state) => state.UserReducer.value);
-    // console.log("userData_accountSetting", userData);
-    const [selectFollowme, setSelectedFollowme] = useState(userData.user.follow_me);
+   console.log("userData_accountSetting", userData);
+    const [selectFollowme, setSelectedFollowme] = useState();
+    // const [selectFollowme, setSelectedFollowme] = useState(userData);   
+
+useEffect(() => {
+    setSelectedFollowme(userData.user.follow_me);
+}, [userData.user.follow_me]);
+    
     const handleChange = async (event) => {
-        setSelectedFollowme(event.target.checked);
-        console.log("selectFollowme", selectFollowme);
-        console.log("event.target.checked", event.target.checked);
+         setSelectedFollowme(event.target.checked);
+        // console.log("event.target.checked", event.target.checked);
+      await  axios.put(UPDATE_PROFILE, { follow_me: event.target.checked }, {
+            headers: {
+                Authorization: `Bearer ${userData.token}`,
+            },
+        }).then((response) => {
+            // console.log("response.data.data.user", response.data.data.user);
+            if (response.data.status === true) {
+                // console.log("response.data.data.user", response.data.data.user);
+                dispatch(updateUserDetails(response.data.data.user));
+            } else {
+                
+            }
+        }).catch((error) => {
+            console.log(error.response);
+        });
 
-      await axios
-            .put(UPDATE_PROFILE, { follow_me: false }, {
-                headers: {
-                    Authorization: `Bearer ${userData.token}`,
-                },
-            })
-            .then((response) => {
-                console.log(response.data);
-                // if (response.data.status === true) {
-                //     setMessageType("success");
-                //     setMessage(response.data.message);
 
-                //     userData.user.follow_me = response.data.data.follow_me;
-                //     // console.log("userData", userData);
-                //     dispatch(userDetails(userData));
-                // } else {
-                //     setMessageType("error");
-                //     setMessage(response.data.message);
-                // }
-            })
-            .catch((error) => {
-                console.log(error.response);
-            });
+
+
+        // setSelectedFollowme((prevUserData) => ({
+        //     user: {
+        //       ...prevUserData.user,
+        //       follow_me: !prevUserData.user.follow_me,
+        //     },
+        //   }));
+        // };
+        // console.log("selectFollowme", selectFollowme);
+        // await axios
+        //     .put(UPDATE_PROFILE, { follow_me:  }, {
+        //         headers: {
+        //             Authorization: `Bearer ${userData.token}`,
+        //         },
+        //     })
+        //     .then((response) => {
+        //         if (response.data.status === true) {
+        //             // setMessageType("success");
+        //             // setMessage(response.data.message);
+        //             console.log("response.data.data.user", response.data.data.user);
+        //             dispatch(updateUserDetails(response.data.data.user));
+        //             // userData.user.follow_me = response.data.data.follow_me;
+        //             // console.log("userData", userData);
+        //             // dispatch(userDetails(userData));
+        //         } else {
+        //             // setMessageType("error");
+        //             // setMessage(response.data.message);
+        //             console.log("response.data.message", response.data.message);
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.log(error.response);
+        //     });
     };
 
     return (
@@ -164,8 +197,13 @@ const AccountSettings = () => {
                     display: "flex",
                     justifyContent: "flex-end",
                 }}>
+                    {/* <IOSSwitch className="toggleSwitch"
+                        checked={userData.user.follow_me}
+                        onChange={handleChange}
+                    /> */}
                     <IOSSwitch className="toggleSwitch"
-                        // checked={userData.user.follow_me}
+                    
+
                         checked={selectFollowme}
                         onChange={handleChange}
                     />

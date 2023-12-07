@@ -8,6 +8,7 @@ import { profileTab } from '../redux/reducers/ProfileTabReducer'
 const ProfileSideBar = () => {
 const selectedTab = useSelector((state) => state.ProfileTabReducer.value);
 const dispatch = useDispatch();
+const userData = useSelector((state) => state.UserReducer.value);
     return (
         <Box>
             <Typography sx={{
@@ -15,14 +16,14 @@ const dispatch = useDispatch();
                 fontWeight: "500",
                 color: theme.palette.primary.LogoColor,
                 marginBottom: "10px",
-            }}>Sarah Cruiz
+            }}>{userData.user.name}
             </Typography>
             <Typography sx={{
                 fontSize: "13px",
                 fontWeight: "400",
                 color: theme.palette.primary.ParaColor,
                 marginBottom: "10px",
-            }}>Creative Director
+            }}>{userData.user.designation}
             </Typography>
             <List sx={{
                 marginTop: "30px",
@@ -177,7 +178,7 @@ const dispatch = useDispatch();
                     }}
                     >Account Settings</Typography>
                 </Box>
-                <Box sx={{
+                {/* <Box sx={{
                     display: "flex",
                     alignItems: "center",
                     padding: {
@@ -213,7 +214,7 @@ const dispatch = useDispatch();
                         dispatch(profileTab("Change Password"));
                     }}
                     >Change Password</Typography>
-                </Box>
+                </Box> */}
 
             </List>
         </Box>
