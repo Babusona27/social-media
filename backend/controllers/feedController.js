@@ -10,7 +10,7 @@ exports.createFeed = async (req, res) => {
         let feed = new feedSchema({
             title: payload.title,
             description: payload.description,
-            feedType: payload.feedType,
+            // feedType: payload.feedType,
             image: payload.image,
             video: payload.video,
             createdBy: userId,
