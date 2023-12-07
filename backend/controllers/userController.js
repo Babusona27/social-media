@@ -307,7 +307,7 @@ exports.friendList = async (req, res) => {
                     created_at: friend.created_at,
                     chat_id: friend.chat_id,
                     lastMessage: lastMessage,
-                    image: friendDetails ? friendDetails.image || '' : '',
+                    image: friendDetails && friendDetails.image ? friendDetails.image : '',
 
 
                     ...friendObject.toObject(),

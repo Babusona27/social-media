@@ -60,7 +60,13 @@ exports.messageList = async (req, res) => {
     try {
         let senderId = req.user.userId;
         let receiverId = req.query.receiverId;
-        let conversation = await Conversation.findOne({ participants: { $all: [senderId, receiverId] } }).populate('messages');
+        let conversation = await Conversation.findOne({ participants: { $all: [senderId, receiverId] } }).populate({
+            path: 'messages',
+            populate: {
+                path: 'senderId',
+                select: 'name email image',
+            },
+        });
         if (!conversation) {
             return res.status(200).json(helper.response(200, false, "Message Not Found!"));
         }
