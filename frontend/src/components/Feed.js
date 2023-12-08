@@ -13,7 +13,7 @@ const Feed = () => {
     const feedData = useSelector((state) => state.FeedListReducer.value);
     const userData = useSelector((state) => state.UserReducer.value);
     const [open, setOpen] = useState(false);
-    const [comment, setComment] = useState('');
+    const [comments, setComments] = useState(Array.isArray(feedData) ? Array(feedData.length).fill('') : []);
     const [replyComment, setReplyComment] = useState('');
     const [feedId, setFeedId] = useState('');
     const [commentId, setCommentId] = useState('');
@@ -37,10 +37,17 @@ const Feed = () => {
             return `${diffSeconds} seconds ago`;
         }
     }
-    const handleComment = (item) => {
+    //comment change function
+    const handleCommentChange = (e, index) => {
+        const newComments = [...comments];
+        newComments[index] = e.target.value;
+        setComments(newComments);
+    };
+    //comment submit function
+    const handleComment = (item, index) => {
         axios.post(CREATE_COMMENT, {
             feedId: item._id,
-            comment: comment,
+            comment: comments[index],
         }, {
             headers: {
                 Authorization: `Bearer ${userData.token}`,
@@ -50,11 +57,14 @@ const Feed = () => {
             dispatch(addComment({
                 feedId: item._id, comment: res.data.data.updateFeed.comment
             }));
-            setComment('');
+            const newComments = [...comments];
+            newComments[index] = '';
+            setComments(newComments);
         }).catch((err) => {
             console.log(err);
         })
     };
+    //reply comment function
     const handleReplyComment = () => {
         axios.post(CREATE_REPLY_COMMENT, {
             feedId: feedId,
@@ -73,6 +83,7 @@ const Feed = () => {
             console.log(err);
         })
     };
+    //react on feed function
     const _handleReactOnFeed = (item, type) => {
         axios.post(REACT_ON_FEED, {
             feedId: item._id,
@@ -552,13 +563,13 @@ const Feed = () => {
                                 fullWidth
                                 label="Post a comment"
                                 variant="outlined"
-                                value={comment}
-                                onChange={(e) => setComment(e.target.value)}
+                                value={comments[key]}
+                                onChange={(e) => handleCommentChange(e, key)}
 
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position="end">
-                                            <IconButton onClick={() => handleComment(item)}>
+                                            <IconButton onClick={() => handleComment(item, key)}>
                                                 <Send />
                                             </IconButton>
                                         </InputAdornment>
