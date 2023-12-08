@@ -32,7 +32,7 @@ const server = app.listen(port, () => {
 const io = socketIO(server, {
   cors: {
     origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
   }

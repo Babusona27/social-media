@@ -101,7 +101,7 @@ const ChatRoom = () => {
       // push message to message list
       setMessageList((messageList) => [
         ...messageList,
-        { message: newMessage, senderId: userData.user._id },
+        { message: newMessage, senderId: { _id: userData.user._id } },
       ]);
 
       const data = {
@@ -319,10 +319,10 @@ const ChatRoom = () => {
                           display: "flex",
                           gap: "10px",
                           justifyContent: "flex-start",
-                          flexDirection: message.senderId === userData.user._id ? "row-reverse" : "row",
+                          flexDirection: message.senderId._id === userData.user._id ? "row-reverse" : "row",
                           alignItems: "self-start",
                           maxWidth: "300px",
-                          marginLeft: message.senderId === userData.user._id ? "auto" : "0px",
+                          marginLeft: message.senderId._id === userData.user._id ? "auto" : "0px",
                           boxShadow: "none"
                         }} className="chatBox" key={index}>
                           <Avatar sx={{
@@ -333,7 +333,7 @@ const ChatRoom = () => {
                             sx={{
                               maxWidth: "fit-content",
                               color: theme.palette.primary.White,
-                              backgroundColor: message.senderId === userData.user._id ? theme.palette.primary.LogoColor : theme.palette.primary.Green,
+                              backgroundColor: message.senderId._id === userData.user._id ? theme.palette.primary.LogoColor : theme.palette.primary.Green,
                               padding: "5px 15px",
                               borderRadius: "10px",
                               position: "relative",
@@ -344,12 +344,12 @@ const ChatRoom = () => {
                                 content: "''",
                                 position: "absolute",
                                 top: "10px",
-                                right: message.senderId === userData.user._id ? "-8px" : "auto",
-                                left: message.senderId === userData.user._id ? "auto" : "-8px",
+                                right: message.senderId._id === userData.user._id ? "-8px" : "auto",
+                                left: message.senderId._id === userData.user._id ? "auto" : "-8px",
                                 width: "0",
                                 height: "0",
                                 border: "10px solid transparent",
-                                borderTopColor: message.senderId === userData.user._id ? theme.palette.primary.LogoColor : theme.palette.primary.Green,
+                                borderTopColor: message.senderId._id === userData.user._id ? theme.palette.primary.LogoColor : theme.palette.primary.Green,
                                 borderBottom: "0",
                                 marginTop: "-10px",
                               },
@@ -359,14 +359,13 @@ const ChatRoom = () => {
                             textAlign="left"
                             style={{
                               textAlign:
-                                message.senderId === userData.user._id
+                                message.senderId._id === userData.user._id
                                   ? "right"
                                   : "left",
                             }}
                           >
                             {message.message}
                           </Typography>
-
                         </Paper>
                       ))}
                     <Box ref={messagesEndRef} />
